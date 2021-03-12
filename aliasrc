@@ -1,0 +1,27 @@
+# Navigation
+alias wd="cd /mnt/e/WebDev"
+
+# Config files
+alias zshrc="$EDITOR ~/.zshrc"
+alias vimrc="$EDITOR ~/.vimrc"
+alias aliasrc="$EDITOR ~/.aliasrc"
+
+# Git stuff
+gitcommit() {
+    git add .
+    git commit
+}
+gitpush() {
+    git pull
+    git push
+}
+gitupdate() {
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ecdsa_github
+    ssh -T git@github.com
+}
+
+alias gc=gitcommit
+alias gp=gitpush
+alias gu=gitupdate
+

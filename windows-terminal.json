@@ -1,22 +1,21 @@
 {
-  "defaults":
-    {
-      "fontFace": "3270Medium Nerd Font Mono",
-      "useAcrylic": true,
-      "acrylicOpacity": 0.9,
-      "colorScheme": "Dracula"
+  "profiles": {
+    "defaults": {
+        "fontFace": "3270Medium Nerd Font Mono",
+        "useAcrylic": true,
+        "acrylicOpacity": 1,
+        "colorScheme": "TokyoNightStorm", 
+        "startingDirectory": "E:/WebDev"
+    }
   },
 
   "schemes": [
     {
-      "name": "Dracula",
-
+      "name": "Dracula", 
       "cursorColor": "#F8F8F2",
-      "selectionBackground": "#F8F8F2",
-
+      "selectionBackground": "#F8F8F2", 
       "background" : "#282A36",
-      "foreground" : "#F8F8F2",
-
+      "foreground" : "#F8F8F2", 
       "black" : "#21222C",
       "blue" : "#BD93F9",
       "brightBlack" : "#6272A4",
@@ -32,8 +31,28 @@
       "purple" : "#FF79C6",
       "red" : "#FF5555",
       "white" : "#F8F8F2",
-      "yellow" : "#F1FA8C"
-
+      "yellow" : "#F1FA8C" 
+    },
+    {
+      "name": "TokyoNightStorm",
+      "black": "#3b4261",
+      "red": "#f7768e",
+      "green": "#73daca",
+      "yellow": "#e0af68",
+      "blue": "#7aa2f7",
+      "purple": "#bb9af7",
+      "cyan": "#7dcfff",
+      "white": "#7982a9",
+      "brightBlack": "#3b4261",
+      "brightRed": "#f7768e",
+      "brightGreen": "#73daca",
+      "brightYellow": "#e0af68",
+      "brightBlue": "#7aa2f7",
+      "brightPurple": "#bb9af7",
+      "brightCyan": "#7dcfff",
+      "brightWhite": "#a9b1d6",
+      "background": "#1f2335",
+      "foreground": "#7982a9"
     } 
   ]
 }

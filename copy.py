@@ -1,4 +1,5 @@
 from os import path
+from sys import platform
 from shutil import copyfile
 
 from os.path import expanduser
@@ -10,15 +11,18 @@ def copy_here(src):
 
 
 def copy_files():
-  files_srcs = [
-    f"{home}/.zshrc", 
-    f"{home}/.vimrc", 
-    f"{home}/.aliasrc", 
-    "/mnt/c/Users/USER/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
-  ]
-
-  for file_src in files_srcs:
+  if platform == "linux":
+    files_srcs = [
+      f"{home}/.zshrc",
+      f"{home}/.vimrc",
+      f"{home}/.aliasrc",
+      "/mnt/c/Users/USER/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+    ]
+    for file_src in files_srcs:
       copy_here(file_src) 
+
+  else: print("You have to be on linux to copy files.")
+
 
 
 copy_files()

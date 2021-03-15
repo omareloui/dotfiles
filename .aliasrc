@@ -19,9 +19,15 @@ gitupdate() {
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_ecdsa_github
     ssh -T git@github.com
-}
+} 
 
 alias gc=gitcommit
 alias gp=gitpush
-alias gu=gitupdate
+alias gu=gitupdate 
 
+# Python stuff
+alias pye="source env/bin/activate"
+
+
+# Other
+alias h=history

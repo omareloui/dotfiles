@@ -16,7 +16,7 @@ Plug 'tpope/vim-surround' " Surrondings
 Plug 'scrooloose/syntastic' " Hacker view
 Plug 'mkitt/tabline.vim' " Tabline
 Plug 'itchyny/lightline.vim' " Lightline Themes (Themes for Tabline)
-Plug 'preservim/nerdcommenter' " Commenter
+Plug 'preservim/nerdcommenter' " Commenter 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 call plug#end()

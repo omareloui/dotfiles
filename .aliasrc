@@ -21,6 +21,7 @@ gitupdate() {
     ssh -T git@github.com
 } 
 
+alias gs="git status"
 alias gc=gitcommit
 alias gp=gitpush
 alias gu=gitupdate 

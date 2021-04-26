@@ -11,24 +11,35 @@ gitcommit() {
     git add .
     git commit
 }
-gitpush() {
-    git pull
-    git push
-}
 gitupdate() {
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_ecdsa_github
     ssh -T git@github.com
 } 
+gitpush() {
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ecdsa_github
+    ssh -T git@github.com
+    git pull
+    git push
+}
 
 alias gs="git status"
 alias gc=gitcommit
 alias gp=gitpush
 alias gu=gitupdate 
 
+# Deno
+alias deno=~/.deno/bin/deno
+
 # Python stuff
 alias pye="source env/bin/activate"
 
+# NPM stuff
+alias ns="npm start"
+alias nd="npm run dev"
+alias nb="npm run build"
 
 # Other
 alias h=history
+

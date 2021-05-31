@@ -5,6 +5,7 @@ alias wd="cd /mnt/e/WebDev"
 alias zshrc="$EDITOR ~/.zshrc"
 alias vimrc="$EDITOR ~/.vimrc"
 alias aliasrc="$EDITOR ~/.aliasrc"
+alias emails="$EDITOR ~/secrets/.emails"
 
 # Git stuff
 gitcommit() {

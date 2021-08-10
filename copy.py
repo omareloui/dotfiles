@@ -16,7 +16,6 @@ def copy_files():
       f"{home}/.zshrc",
       f"{home}/.vimrc",
       f"{home}/.aliasrc",
-      "/mnt/c/Users/USER/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
     ]
     for file_src in files_srcs:
       copy_here(file_src) 

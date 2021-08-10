@@ -39,7 +39,7 @@ let g:lightline = { 'colorscheme': 'powerline' }
 let &t_SI = "\e[5 q" " Cursor on insert mode
 let &t_EI = "\e[2 q" " Cursor on normal mode
 
-" reset the cursor on start (for older versions of vim, usually not required)
+" reset the cursor on start
 augroup myCmds
 au!
 autocmd VimEnter * silent !echo -ne "\e[2 q"
@@ -48,6 +48,14 @@ augroup END
 
 " Key mappings
 imap jk <Esc>
+nnoremap Y y$ 
+" Move text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-j> :m .+1<CR>==
+inoremap <C-k> :m .-2<CR>==
+nnoremap <leader>j :m .+1 <CR>==
+nnoremap <leader>k :m .-2 <CR>== 
 
 
 " Commenting stuff

@@ -1,2 +1,4 @@
 __pycache__
+
 dotfiles/nvim/plugin
+dotfiles/fish/fish_variables

@@ -1,7 +1,7 @@
 set fish_greeting
 
-set EDITOR nvim
-set VISUAL nvim
+set -Ux EDITOR nvim
+set -Ux VISUAL nvim
 
 
 ####################

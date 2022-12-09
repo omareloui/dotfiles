@@ -57,6 +57,13 @@ return packer.startup(function(use)
     use "nvim-lua/plenary.nvim"      -- Useful lua functions used ny lots of plugins
     use "windwp/nvim-autopairs"      -- Complete the (), [], {}, etc...
 
+    use {                            -- Fold
+      "anuvyklack/pretty-fold.nvim",
+      config = function()
+        require('pretty-fold').setup()
+      end
+    }
+
 
     -- LSP
     use "neovim/nvim-lspconfig"      -- enable LSP
@@ -97,4 +104,3 @@ return packer.startup(function(use)
     require("packer").sync()
   end
 end)
-

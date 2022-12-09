@@ -3,7 +3,7 @@
 DOTFILES=$HOME/dotfiles
 
 config_in_dot_config="nvim fish"
-config_in_home=".gitignore"
+config_in_home=".gitconfig"
 
 function create_sym {
   src=$1

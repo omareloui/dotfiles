@@ -12,11 +12,11 @@ Clone this repository in your home directory.
 git clone git@github.com:omareloui/dotfiles.git
 ```
 
-To install the configuration all you have to do is to run the `install_dotfiles.sh` file.
+To install the configuration all you have to do is to run the `scripts/install_dotfiles.sh` file.
 
 ```bash
-chmod +x install.sh
-./install_dotfiles.sh
+chmod +x scripts/install_dotfiles.sh
+./scripts/install_dotfiles.sh
 ```
 
 ## Included configuration
@@ -26,7 +26,7 @@ chmod +x install.sh
 - `git`
 - List in `./packages.txt` for all installed apt packages.
 
-  To update this list run `./list_packages.sh` script.
+  To update this list run `./scripts/list_packages.sh`.
 
 ---
 

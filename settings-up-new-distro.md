@@ -1,6 +1,6 @@
 # Setting Up a New Distro
 
-## Applications and packages included in `install_packages.sh`
+## Applications and packages included in `scripts/install_packages.sh`
 
 - bat
 - bpytop
@@ -26,15 +26,16 @@
 - telegram-desktop
 - ulancher
 - ulauncher
+- vlc
 - wmctrl
 - xclip
 - zoxide
 
 ## Applications and packages to download manually
 
+- edge
 - vscode
 - zoom
-- edge
 
 ---
 
@@ -91,8 +92,8 @@ Needs to install `wmctrl` to focus on open.
 - [ ] Clone this repo
 
 - [ ] Install the packages
-  - [ ] Cd to this repo and give permission to all script files `chmod +x *.sh`.
-  - [ ] Run `install.sh` script.
+  - [ ] Cd to this repo and give permission to all script files `chmod +x scripts/*.sh`.
+  - [ ] Run `./scripts/install.sh` script.
 
     This will place the dotfiles, download the packages and required fonts.
 
@@ -109,7 +110,7 @@ Needs to install `wmctrl` to focus on open.
   - [ ] Install [Auto Select Headset](https://extensions.gnome.org/extension/3928/auto-select-headset/)
 
 - [ ] Install ULauncher extensions.
-  - [ ] Run `install_extensions_requirements.sh`.
+  - [ ] Run `./scripts/install_extensions_requirements.sh`.
   - [ ] Install [Calculate Anything](https://github.com/tchar/ulauncher-albert-calculate-anything)
   - [ ] Install [Translate](https://github.com/manahter/ulauncher-translate)
   - [ ] Install [Files Fuzzy Search](<https://github.com/hillaryychan/ulauncher-fzf>)

@@ -44,7 +44,8 @@ sudo nala install -y \
   inkscape \
   ulauncher \
   fish \
-  keepassxc
+  keepassxc \
+  vlc
 
 # Deno
 curl -fsSL https://deno.land/x/install/install.sh | sh

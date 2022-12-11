@@ -1,6 +1,6 @@
 # Dotfiles
 
-All dotfiles I use and need.
+All dotfiles I use and need. And more on [starting up an new distro](./settings-up-new-distro.md).
 
 ---
 
@@ -12,11 +12,11 @@ Clone this repository in your home directory.
 git clone git@github.com:omareloui/dotfiles.git
 ```
 
-To install the configuration all you have to do is to run the install.sh file.
+To install the configuration all you have to do is to run the `install_dotfiles.sh` file.
 
 ```bash
 chmod +x install.sh
-./install.sh
+./install_dotfiles.sh
 ```
 
 ## Included configuration

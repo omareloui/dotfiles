@@ -1,9 +1,11 @@
 # Startup Scripts I use
 
+Run `Startup Applications` and add the scripts. Or add them through `gnome-tweaks`.
+
 - Start Telegram to tray
 
   ```bash
-  env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/telegram-desktop_telegram-desktop.desktop /snap/bin/telegram-desktop -startintray -- %u
+  telegram-desktop -startintray -- %u
   ```
 
 - CopyQ

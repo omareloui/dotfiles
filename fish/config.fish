@@ -116,4 +116,3 @@ set -gx PATH "$DENO_INSTALL/bin:$PATH"
 
 zoxide init fish | source
 starship init fish | source
-

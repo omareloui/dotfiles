@@ -154,9 +154,6 @@ format = '[$time]($style)'
 fish_indicator = ''
 style = 'cyan bold'
 
-[[battery.display]]
-threshold = 20
-
 [shlvl]
 # disabled = false
 symbol = ''

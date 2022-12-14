@@ -72,22 +72,23 @@ $crystal\
 $custom\
 \
 $memory_usage\
-\
 $cmd_duration\
 $jobs\
 $time\
 $line_break\
 $shlvl\
-$sudo\
 $battery\
 $status\
 $container\
 $shell\
-$character
+$sudo\
+$character\
 """
 
 
-
+# =============================== #
+# ============ Left ============ #
+# =============================== #
 [os]
 disabled = false
 style = 'bright-red'
@@ -107,7 +108,7 @@ format = '[@]($style)[$ssh_symbol]($style)[$hostname]($style):'
 disabled = false
 
 [directory]
-read_only = ""
+read_only = " "
 format = '[$path]($style)[$read_only]($read_only_style) '
 
 [git_metrics]
@@ -117,26 +118,6 @@ format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 [localip]
 disabled = true
 
-[shell]
-# disabled = false
-fish_indicator = ''
-style = 'cyan bold'
-
-[[battery.display]]
-threshold = 20
-
-[shlvl]
-disabled = false
-symbol = '↕️'
-format = '[$shlvl]($style) [$symbol](yellow) '
-threshold = 3
-
-[sudo]
-disabled = false
-symbol = ''
-style = "red"
-format = '[$symbol ]($style)'
-
 
 [fill]
 symbol = ' '
@@ -145,12 +126,11 @@ symbol = ' '
 # =============================== #
 # ============ Right ============ #
 # =============================== #
-
 [memory_usage]
 disabled = false
 threshold = -1
 symbol = ''
-format = ' $symbol [${ram_pct}]($style) '
+format = '$symbol [${ram_pct}]($style) '
 
 [jobs]
 symbol = ''
@@ -166,11 +146,41 @@ style = 'bold white'
 format = '[$time]($style)'
 
 
-# ============== Package ============== #
-[package]
-format = '[$symbol($version )]($style) '
+# ============================== #
+# =========== Prompt =========== #
+# ============================== #
+[shell]
+# disabled = false
+fish_indicator = ''
+style = 'cyan bold'
 
-# ============== Languages specific ============== #
+[[battery.display]]
+threshold = 20
+
+[shlvl]
+# disabled = false
+symbol = ''
+format = '[$shlvl]($style) [$symbol](yellow) '
+threshold = 2
+
+[sudo]
+disabled = false
+symbol = ''
+style = "red"
+format = '[$symbol ]($style)'
+
+
+
+# =================================== #
+# ============ Languages ============ #
+# =================================== #
+
+# === Package === #
+[package]
+disabled = true
+# format = '[$symbol($version )]($style) '
+
+
 [bun]
 format = '[$symbol($version )]($style)'
 

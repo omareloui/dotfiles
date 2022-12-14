@@ -22,6 +22,7 @@ chmod +x scripts/install_dotfiles.sh
 ## Included configuration
 
 - `nvim`
+- VS Code
 - `fish`
 - `git`
 - `starship`

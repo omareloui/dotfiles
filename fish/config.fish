@@ -32,8 +32,6 @@ alias l='ls -CF'
 
 alias ll="ls -lh"
 alias lt="ls --human-readable --size -1 -S --classify"
-
-alias mkdir="mkdir -pv"
 ## End Moving
 
 alias edge="/opt/microsoft/msedge/microsoft-edge"

@@ -24,6 +24,7 @@ chmod +x scripts/install_dotfiles.sh
 - `nvim`
 - `fish`
 - `git`
+- `starship`
 - List in `./packages.txt` for all installed apt packages.
 
   To update this list run `./scripts/list_packages.sh`.

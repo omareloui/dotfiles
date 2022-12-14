@@ -73,6 +73,8 @@ Needs to install `wmctrl` to focus on open.
 
   Requires `tornado` and `thefuzz`.
 
+- [Terminal Runner](https://ext.ulauncher.io/-/github-lighttigerxiv-ulauncher-terminal-runner-extension)
+
 ### Gnome extensions
 
 - [Clipboard Indicator](https://extensions.gnome.org/extension/779/clipboard-indicator/)
@@ -118,3 +120,4 @@ Needs to install `wmctrl` to focus on open.
   - [ ] Install [Password Generator](https://github.com/rkarami/ulauncher-password-generator)
   - [ ] Install [VSCode Recent](https://github.com/plibither8/ulauncher-vscode-recent)
   - [ ] Install [Notion Search](https://github.com/hakonmh/ulauncher-notion-search)
+  - [ ] Install [Terminal Runner](https://ext.ulauncher.io/-/github-lighttigerxiv-ulauncher-terminal-runner-extension)

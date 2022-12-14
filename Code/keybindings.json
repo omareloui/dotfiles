@@ -16,14 +16,14 @@
     "key": "shift+ctrl+e",
     "command": "actions.findWithSelection"
   },
-  {
-    "key": "ctrl+e",
-    "command": "-actions.findWithSelection"
-  },
-  {
-    "key": "ctrl+e",
-    "command": "workbench.view.explorer"
-  },
+  // {
+  //   "key": "ctrl+e",
+  //   "command": "-actions.findWithSelection"
+  // },
+  // {
+  //   "key": "ctrl+e",
+  //   "command": "workbench.view.explorer"
+  // },
   {
     "key": "shift+ctrl+e",
     "command": "-workbench.view.explorer"

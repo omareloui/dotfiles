@@ -1,10 +1,11 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+'$schema' = 'https://starship.rs/config-schema.json'
+
 
 format = """
+$os\
 $username\
 $hostname\
 $localip\
-$shlvl\
 $singularity\
 $kubernetes\
 $directory\
@@ -61,7 +62,7 @@ $nix_shell\
 $conda\
 $meson\
 $spack\
-$memory_usage\
+\
 $aws\
 $gcloud\
 $openstack\
@@ -70,21 +71,29 @@ $env_var\
 $crystal\
 $custom\
 \
-$sudo\
+$memory_usage\
+\
 $cmd_duration\
 $jobs\
 $time\
 $line_break\
+$shlvl\
+$sudo\
 $battery\
 $status\
-$os\
 $container\
 $shell\
 $character
 """
 
-[fill]
-symbol = " "
+
+
+[os]
+disabled = false
+style = 'bright-red'
+
+[os.symbols]
+Ubuntu = ' '
 
 [username]
 format = '[$user](bright-black bold)'
@@ -93,31 +102,68 @@ show_always = true
 
 [hostname]
 ssh_only = false
-style = "white dimmed"
+style = 'white dimmed'
 format = '[@]($style)[$ssh_symbol]($style)[$hostname]($style):'
 disabled = false
 
-[jobs]
-symbol = ""
-style = "bold red"
-number_threshold = 1
-format = "[$symbol ]($style)"
+[directory]
+read_only = ""
+format = '[$path]($style)[$read_only]($read_only_style) '
 
 [git_metrics]
 disabled = false
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+
+[localip]
+disabled = true
+
+[shell]
+# disabled = false
+fish_indicator = ''
+style = 'cyan bold'
+
+[[battery.display]]
+threshold = 20
+
+[shlvl]
+disabled = false
+symbol = '↕️'
+format = '[$shlvl]($style) [$symbol](yellow) '
+threshold = 3
+
+[sudo]
+disabled = false
+symbol = ''
+style = "red"
+format = '[$symbol ]($style)'
+
+
+[fill]
+symbol = ' '
 
 
 # =============================== #
 # ============ Right ============ #
 # =============================== #
 
+[memory_usage]
+disabled = false
+threshold = -1
+symbol = ''
+format = ' $symbol [${ram_pct}]($style) '
+
+[jobs]
+symbol = ''
+style = 'bold red'
+format = '[$symbol ]($style)'
+
 [cmd_duration]
-format = "[$duration ]($style)"
+format = '[$duration ]($style)'
 
 [time]
 disabled = false
-style = "bold white"
-format = "[$time]($style)"
+style = 'bold white'
+format = '[$time]($style)'
 
 
 # ============== Package ============== #
@@ -126,31 +172,31 @@ format = '[$symbol($version )]($style) '
 
 # ============== Languages specific ============== #
 [bun]
-format = "[$symbol($version )]($style)"
+format = '[$symbol($version )]($style)'
 
 [buf]
-format = "[$symbol($version )]($style)"
+format = '[$symbol($version )]($style)'
 
 [cmake]
-format = "[$symbol($version )]($style)"
+format = '[$symbol($version )]($style)'
 
 [cobol]
-format = "[$symbol($version )]($style)"
+format = '[$symbol($version )]($style)'
 
 [crystal]
-format = "[$symbol($version )]($style)"
+format = '[$symbol($version )]($style)'
 
 [daml]
-format = "[$symbol($version )]($style)"
+format = '[$symbol($version )]($style)'
 
 [dart]
-format = "[$symbol($version )]($style)"
+format = '[$symbol($version )]($style)'
 
 [deno]
-format = "[$symbol($version )]($style)"
+format = '[$symbol($version )]($style)'
 
 [dotnet]
-format = "[$symbol($version )(🎯 $tfm )]($style)"
+format = '[$symbol($version )(🎯 $tfm )]($style)'
 
 [elixir]
 format = '[$symbol($version )]($style)'

@@ -90,6 +90,7 @@
   "vscode-neovim.neovimExecutablePaths.darwin": "/usr/bin/nvim",
   "window.menuBarVisibility": "toggle",
   "window.zoomLevel": 1,
+  "whichkey.sortOrder": "alphabetically",
   "whichkey.bindings": [
     {
       "key": ";",

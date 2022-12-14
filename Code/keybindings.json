@@ -69,19 +69,9 @@
     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
   },
   {
-    "key": "tab",
-    "command": "workbench.action.quickOpenNavigateNext",
-    "when": "inQuickOpen"
-  },
-  {
     "key": "shift+tab",
     "command": "selectPrevSuggestion",
     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-  },
-  {
-    "key": "shift+tab",
-    "command": "workbench.action.quickOpenNavigatePrevious",
-    "when": "inQuickOpen"
   },
   {
     "key": "ctrl+k",
@@ -123,10 +113,20 @@
     "command": "insertPrevSuggestion",
     "when": "hasOtherSuggestions && textInputFocus && textInputFocus && !inSnippetMode && !suggestWidgetVisible && config.editor.tabCompletion == 'on'"
   },
+  // {
+  //   "key": "ctrl+l",
+  //   "when": "sideBarFocus",
+  //   "command": "workbench.action.focusActiveEditorGroup"
+  // },
   {
-    "key": "ctrl+l",
+    "key": "ctrl+h",
     "when": "sideBarFocus",
     "command": "workbench.action.focusActiveEditorGroup"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "-editor.action.startFindReplaceAction",
+    "when": "editorFocus || editorIsOpen"
   },
   {
     "key": "ctrl+k",
@@ -156,11 +156,11 @@
     "key": "ctrl+j",
     "command": "-workbench.action.togglePanel"
   },
-  {
-    "key": "shift+k",
-    "command": "editor.action.showHover",
-    "when": "editorTextFocus"
-  },
+  // {
+  //   "key": "shift+k",
+  //   "command": "editor.action.showHover",
+  //   "when": "editorTextFocus"
+  // },
   {
     "key": "ctrl+k ctrl+i",
     "command": "-editor.action.showHover",
@@ -185,10 +185,5 @@
     "key": "ctrl+tab",
     "command": "editor.action.triggerSuggest",
     "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+h",
-    "command": "-editor.action.startFindReplaceAction",
-    "when": "editorFocus || editorIsOpen"
   }
 ]

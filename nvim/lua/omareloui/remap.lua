@@ -64,6 +64,7 @@ if vim.g.vscode then
     xnoremap <silent> <C-w>n :call <SID>splitNew('h', '__vscode_new__')<CR>
 
 
+    " Resize windows
     nnoremap <silent> <C-w>= :<C-u>call VSCodeNotify('workbench.action.evenEditorWidths')<CR>
     xnoremap <silent> <C-w>= :<C-u>call VSCodeNotify('workbench.action.evenEditorWidths')<CR>
 
@@ -112,6 +113,13 @@ if vim.g.vscode then
   -- Open whichkey
   nnoremap("<leader>", ":call VSCodeNotify('whichkey.show')<CR>")
   xnoremap("<leader>", ":call VSCodeNotify('whichkey.show')<CR>")
+
+  -- Show suggestions
+  nnoremap("K", ":call VSCodeNotify('editor.action.showHover')<CR>")
+
+  -- Change tabs
+  nnoremap("<Tab>", ":call VSCodeNotify('workbench.action.nextEditorInGroup')<CR>")
+  nnoremap("<S-Tab>", ":call VSCodeNotify('workbench.action.previousEditorInGroup')<CR>")
 else
   inoremap("jk", "<Esc>")
 

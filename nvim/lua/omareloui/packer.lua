@@ -39,17 +39,17 @@ packer.init {
 
 
 return packer.startup(function(use)
-    use "wbthomason/packer.nvim"     -- Let packer manage itself
-    use "terrortylor/nvim-comment"   -- Commenter
-    use {                            -- Surround
-      "kylechui/nvim-surround",
-      tag="*",
-      config = function ()
-        require("nvim-surround").setup({
-          -- Config here
-        })
-      end
-    }
+  use "wbthomason/packer.nvim"     -- Let packer manage itself
+  use "terrortylor/nvim-comment"   -- Commenter
+  use {                            -- Surround
+    "kylechui/nvim-surround",
+    tag="*",
+    config = function ()
+      require("nvim-surround").setup({
+        -- Config here
+      })
+    end
+  }
 
   if not vim.g.vscode then
     use "folke/tokyonight.nvim"      -- TokyoNight theme

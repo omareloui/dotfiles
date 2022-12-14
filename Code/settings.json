@@ -12,6 +12,9 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua"
+  },
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -90,6 +93,7 @@
   "vscode-neovim.neovimExecutablePaths.darwin": "/usr/bin/nvim",
   "window.menuBarVisibility": "toggle",
   "window.zoomLevel": 1,
+  "Lua.telemetry.enable": false,
   "whichkey.sortOrder": "alphabetically",
   "whichkey.bindings": [
     {

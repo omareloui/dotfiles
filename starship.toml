@@ -94,7 +94,7 @@ show_always = true
 [hostname]
 ssh_only = false
 style = "white dimmed"
-format = '[@]($style)[$ssh_symbol]($style)[$hostname]($style) '
+format = '[@]($style)[$ssh_symbol]($style)[$hostname]($style):'
 disabled = false
 
 [jobs]

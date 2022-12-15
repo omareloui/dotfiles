@@ -179,11 +179,11 @@
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
   },
-  {
-    "key": "ctrl+shift+t",
-    "command": "workbench.action.terminal.focus",
-    "when": "!terminalFocus"
-  },
+  // {
+  //   "key": "ctrl+shift+t",
+  //   "command": "workbench.action.terminal.focus",
+  //   "when": "!terminalFocus"
+  // },
   {
     "key": "ctrl+j",
     "command": "-editor.action.insertLineAfter",

@@ -41,7 +41,6 @@
   "editor.fontWeight": "600",
   "editor.linkedEditing": true,
   "editor.renderControlCharacters": false,
-  "editor.smoothScrolling": true,
   "editor.cursorSmoothCaretAnimation": true,
   "editor.suggestSelection": "first",
   "editor.formatOnSave": true,

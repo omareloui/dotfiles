@@ -13,20 +13,23 @@ vnoremap(">", ">gv")
 -- Doens't store the new text on pasting on selected text
 vnoremap("p", '"_dP')
 
-
 if vim.g.vscode then
+  -- Better scrolling
+  nnoremap("<C-d>", "<NOP>")
+  nnoremap("<C-u>", "<NOP>")
+
   -- Resize Windows
   function _G.manageEditorSize(provided_count, to)
     local count = (provided_count and (provided_count > 0)) and provided_count or 1
-    local function_to_call = (to == 'increase') and 'workbench.action.increaseViewSize' or
-        'workbench.action.decreaseViewSize'
+    local function_to_call = (to == "increase") and "workbench.action.increaseViewSize" or
+        "workbench.action.decreaseViewSize"
     for i = 1, count, 1 do
       vim.fn.VSCodeNotify(function_to_call)
     end
   end
 
-  nnoremap("<C-w>=", ":<C-u>call VSCodeNotify('workbench.action.evenEditorWidths')<CR>", { silent = true })
-  xnoremap("<C-w>=", ":<C-u>call VSCodeNotify('workbench.action.evenEditorWidths')<CR>", { silent = true })
+  nnoremap("<C-w>=", ":call VSCodeNotify('workbench.action.evenEditorWidths')<CR>", { silent = true })
+  xnoremap("<C-w>=", ":call VSCodeNotify('workbench.action.evenEditorWidths')<CR>", { silent = true })
   nnoremap("<C-w>>", ":lua manageEditorSize(vim.v.count, 'increase')<CR>", { silent = true })
   xnoremap("<C-w>>", ":lua manageEditorSize(vim.v.count, 'increase')<CR>", { silent = true })
   nnoremap("<C-w><", ":lua manageEditorSize(vim.v.count, 'decrease')<CR>", { silent = true })
@@ -82,17 +85,21 @@ if vim.g.vscode then
 else
   inoremap("jk", "<Esc>")
 
-  -- Open file tree
-  nnoremap("<leader>pv", "<cmd>Ex<CR>")
-  nnoremap("<leader>e", "<cmd>Lex 30<CR>")
+  -- Better scrolling
+  nnoremap("<C-d>", "<C-d>zz")
+  nnoremap("<C-u>", "<C-u>zz")
 
   -- Move text
   vnoremap("J", ":m '>+1<CR>gv=gv")
   vnoremap("K", ":m '<-2<CR>gv=gv")
   inoremap("<C-j>", ":m .+1<CR>==")
-  inoremap("<c-k>", ":m .-2<cr>==")
+  inoremap("<C-k>", ":m .-2<cr>==")
   nnoremap("<leader>j", ":m .+1 <CR>==")
   nnoremap("<leader>k", ":m .-2 <CR>==")
+
+  -- Open file tree
+  nnoremap("<leader>pv", "<cmd>Ex<CR>")
+  nnoremap("<leader>e", "<cmd>Lex 30<CR>")
 
   -- Telescope
   nnoremap("<leader>f",

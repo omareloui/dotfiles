@@ -6,3 +6,5 @@
 [user]
 	name = Omar Eloui
 	email = omareloui@hotmail.com
+[url "https://github.com/"]
+	insteadOf = git://github.com/

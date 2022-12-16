@@ -47,6 +47,13 @@ sudo nala install -y \
   keepassxc \
   vlc
 
+# Fisher
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+
+# NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+fisher install edc/bass
+
 # Deno
 curl -fsSL https://deno.land/x/install/install.sh | sh
 

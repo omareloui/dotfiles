@@ -22,7 +22,6 @@ end
 ### Aliases ###
 ###############
 
-alias g="git"
 alias vim="nvim"
 
 ## Moving
@@ -54,9 +53,9 @@ alias bat="batcat"
 alias clipboard='xclip -sel clip'
 
 # Git
-function gitcommit
+function gitcommitall
     git add .
-    git commit
+    git cz
 end
 
 function gitpush
@@ -64,9 +63,14 @@ function gitpush
     git push
 end
 
+alias g="git"
 alias gs="git status"
-alias gc=gitcommit
+alias ga="git add"
+alias gc="git cz"
+alias gca=gitcommitall
+alias guc="git uncommit"
 alias gp=gitpush
+alias gl="git l"
 
 
 #################################

@@ -97,12 +97,19 @@
   "window.zoomLevel": 1,
   "Lua.telemetry.enable": false,
   "whichkey.sortOrder": "alphabetically",
+  "whichkey.delay": 800,
   "whichkey.bindings": [
     {
       "key": ";",
       "name": "commands",
       "type": "command",
       "command": "workbench.action.showCommands"
+    },
+    {
+      "key": "o",
+      "name": "Open file",
+      "type": "command",
+      "command": "workbench.action.quickOpen"
     },
     {
       "key": "/",
@@ -436,22 +443,9 @@
     },
     {
       "key": "S",
-      "name": "Search...",
-      "type": "bindings",
-      "bindings": [
-        {
-          "key": "f",
-          "name": "files",
-          "type": "command",
-          "command": "workbench.action.quickOpen"
-        },
-        {
-          "key": "t",
-          "name": "text",
-          "type": "command",
-          "command": "workbench.action.findInFiles"
-        }
-      ]
+      "name": "Search",
+      "type": "command",
+      "command": "workbench.action.findInFiles"
     },
     {
       "key": "s",

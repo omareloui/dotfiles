@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-DOTFILES=$HOME/dotfiles
+DOTFILES=$HOME/dotfiles/config
 
 config_in_dot_config="nvim fish starship.toml"
 config_in_home=".gitconfig"

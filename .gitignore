@@ -1,11 +1,12 @@
-nvim/plugin
+# Neovim
+config/nvim/plugin
 
 # Fish
-fish/fish_variables
-fish/fish_plugins
+config/fish/fish_variables
+config/fish/fish_plugins
 
-fish/completions/fisher.fish
+config/fish/completions/fisher.fish
 
-fish/functions/__*
-fish/functions/bass.fish
-fish/functions/fisher.fish
+config/fish/functions/__*
+config/fish/functions/bass.fish
+config/fish/functions/fisher.fish

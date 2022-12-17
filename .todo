@@ -1,0 +1,8 @@
+Todo:
+  ✔ move all config files to /config folder @started(22-12-17 06:52) @done(22-12-17 07:15) @lasted(23m41s)
+  ✔ Update the documentation to work with the new /config folder @started(22-12-17 07:19) @done(22-12-17 07:23) @lasted(4m)
+  Nvim:
+    ☐ make folder for vscode and folder for normal mode
+    ☐ make shortcuts for each filetype.
+      - https://www.reddit.com/r/neovim/comments/tlervj/run_any_language_with_same_macro/
+      - https://www.reddit.com/r/neovim/comments/tlervj/run_any_language_with_same_macro/

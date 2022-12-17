@@ -65,3 +65,8 @@ sudo npm install -g pnpm
 # Set the default shell to be fish
 chsh -s /usr/bin/fish
 sudo echo "/usr/local/bin/fish" >> /etc/shells
+
+
+# Install commitizen to build a standered for git
+# https://bitspeicher.blog/how-to-be-a-good-commitizen/
+pnpm -g add commitizen cz-conventional-changelog devmoji

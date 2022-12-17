@@ -21,6 +21,8 @@ chmod +x scripts/install_config.sh
 ./scripts/install_config.sh
 ```
 
+> To change the config location to install from change `$DOTFILES` env from `config/fish/config.fish`.
+
 ## Included configuration
 
 - VS Code

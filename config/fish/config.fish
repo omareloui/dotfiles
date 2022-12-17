@@ -2,6 +2,7 @@ set fish_greeting
 
 set -Ux EDITOR nvim
 set -Ux VISUAL nvim
+set -Ux DOTFILES $HOME/dotfiles/config
 
 
 ####################
@@ -21,6 +22,7 @@ end
 ### Aliases ###
 ###############
 
+alias g="git"
 alias vim="nvim"
 
 ## Moving

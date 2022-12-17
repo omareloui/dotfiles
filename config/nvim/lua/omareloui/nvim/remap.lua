@@ -25,8 +25,8 @@ nnoremap("<leader>j", "<Cmd>m .+1 <CR>==")
 nnoremap("<leader>k", "<Cmd>m .-2 <CR>==")
 
 -- Duplicate lines
-nnoremap("<C-j>", "yyp")
-nnoremap("<C-k>", "yyP")
+nnoremap("<A-j>", "yyp")
+nnoremap("<A-k>", "yyP")
 
 -- Save the file if there where changes
 nnoremap("<leader>w", "<Cmd>up<CR>")
@@ -66,14 +66,14 @@ nnoremap("<leader>v", "<Cmd>vsplit<CR>")
 nnoremap("<leader>h", "<Cmd>split<CR>")
 
 -- Navigation through windows (was <C-[direction]>)
-nnoremap("<leader>wj", "<C-w>j", { silent = true })
-xnoremap("<leader>wj", "<C-w>j", { silent = true })
-nnoremap("<leader>wk", "<C-w>k", { silent = true })
-xnoremap("<leader>wk", "<C-w>k", { silent = true })
-nnoremap("<leader>wh", "<C-w>h", { silent = true })
-xnoremap("<leader>wh", "<C-w>h", { silent = true })
-nnoremap("<leader>wl", "<C-w>l", { silent = true })
-xnoremap("<leader>wl", "<C-w>l", { silent = true })
+nnoremap("<C-j>", "<C-w>j", { silent = true })
+xnoremap("<C-j>", "<C-w>j", { silent = true })
+nnoremap("<C-k>", "<C-w>k", { silent = true })
+xnoremap("<C-k>", "<C-w>k", { silent = true })
+nnoremap("<C-h>", "<C-w>h", { silent = true })
+xnoremap("<C-h>", "<C-w>h", { silent = true })
+nnoremap("<C-l>", "<C-w>l", { silent = true })
+xnoremap("<C-l>", "<C-w>l", { silent = true })
 
 
 ----------------------------------
@@ -81,7 +81,7 @@ xnoremap("<leader>wl", "<C-w>l", { silent = true })
 ----------------------------------
 
 -- Open file tree
-nnoremap("<leader>e", "<Cmd>Lex 30<CR>")
+nnoremap("<leader>e", "<Cmd>NvimTreeToggle<CR>")
 
 -- UndoTree
 nnoremap("<leader>u", function() return vim.cmd("UndotreeToggle") end)

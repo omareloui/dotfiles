@@ -1,13 +1,9 @@
 local inoremap = require("omareloui.functions.keymap").inoremap
-local nmap     = require("omareloui.functions.keymap").nmap
 local nnoremap = require("omareloui.functions.keymap").nnoremap
 local vnoremap = require("omareloui.functions.keymap").vnoremap
 local xnoremap = require("omareloui.functions.keymap").xnoremap
 local cnoremap = require("omareloui.functions.keymap").cnoremap
 
--- Save the file if there where changes
-nnoremap("<leader>w", ":up<CR>")
-nnoremap("<leader>q", ":q<CR>")
 
 inoremap("jk", "<Esc>")
 cnoremap("jk", "<Esc>")
@@ -21,12 +17,24 @@ nnoremap("n", "nzzzv")
 nnoremap("N", "Nzzzv")
 
 -- Move text
-vnoremap("J", ":m '>+1<CR>gv=gv")
-vnoremap("K", ":m '<-2<CR>gv=gv")
-inoremap("<C-j>", ":m .+1<CR>==")
-inoremap("<C-k>", ":m .-2<cr>==")
-nnoremap("<leader>j", ":m .+1 <CR>==")
-nnoremap("<leader>k", ":m .-2 <CR>==")
+vnoremap("J", "<Cmd>m '>+1<CR>gv=gv")
+vnoremap("K", "<Cmd>m '<-2<CR>gv=gv")
+inoremap("<C-j>", "<Cmd>m .+1<CR>==")
+inoremap("<C-k>", "<Cmd>m .-2<cr>==")
+nnoremap("<leader>j", "<Cmd>m .+1 <CR>==")
+nnoremap("<leader>k", "<Cmd>m .-2 <CR>==")
+
+-- Duplicate lines
+nnoremap("<C-j>", "yyp")
+nnoremap("<C-k>", "yyP")
+
+-- Save the file if there where changes
+nnoremap("<leader>w", "<Cmd>up<CR>")
+nnoremap("<leader>q", "<Cmd>q<CR>")
+
+-- Easier comment
+nnoremap("<leader>/", "<Cmd>CommentToggle<CR>")
+vnoremap("<leader>/", "<Cmd>CommentToggle<CR>")
 
 -- Copy, and paste to/from the system clipboard
 nnoremap("<leader>y", '"+y')
@@ -43,39 +51,30 @@ vnoremap("<leader>d", '"_d')
 nnoremap("<leader>D", '"_D')
 
 -- Replace the word you're on
-nnoremap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+nnoremap("<leader>s", "<Cmd>%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 -- Make the current file executable
-nnoremap("<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+nnoremap("<leader>x", "<Cmd>!chmod +x %<CR>", { silent = true })
 
+-- Open the terminal
+-- TODO: make it toggle
+nnoremap("<leader>t", "<Cmd>split | resize 18 | term<CR>")
 
--- TODO: make this function work with nvim.
--- -- Resize Windows
--- function _G.manageEditorSize(provided_count, to)
---   local count = (provided_count and (provided_count > 0)) and provided_count or 1
---   local function_to_call = (to == "increase") and "workbench.action.increaseViewSize" or
---       "workbench.action.decreaseViewSize"
---   for i = 1, count, 1 do
---     vim.fn.VSCodeNotify(function_to_call)
---   end
--- end
+-- TODO: check if "window, ui toggles, git, debug, buffer editors" in vscode's which key options if there's something I could use.
 
--- nnoremap("<C-w>=", ":call VSCodeNotify('workbench.action.evenEditorWidths')<CR>", { silent = true })
--- xnoremap("<C-w>=", ":call VSCodeNotify('workbench.action.evenEditorWidths')<CR>", { silent = true })
--- nnoremap("<C-w>>", ":lua manageEditorSize(vim.v.count, 'increase')<CR>", { silent = true })
--- xnoremap("<C-w>>", ":lua manageEditorSize(vim.v.count, 'increase')<CR>", { silent = true })
--- nnoremap("<C-w><", ":lua manageEditorSize(vim.v.count, 'decrease')<CR>", { silent = true })
--- xnoremap("<C-w><", ":lua manageEditorSize(vim.v.count, 'decrease')<CR>", { silent = true })
+-- Split Screens
+nnoremap("<leader>v", "<Cmd>vsplit<CR>")
+nnoremap("<leader>h", "<Cmd>split<CR>")
 
--- -- Navigation through windows
--- nnoremap("<C-j>", ":call VSCodeNotify('workbench.action.navigateDown')<CR>", { silent = true })
--- xnoremap("<C-j>", ":call VSCodeNotify('workbench.action.navigateDown')<CR>", { silent = true })
--- nnoremap("<C-k>", ":call VSCodeNotify('workbench.action.navigateUp')<CR>", { silent = true })
--- xnoremap("<C-k>", ":call VSCodeNotify('workbench.action.navigateUp')<CR>", { silent = true })
--- nnoremap("<C-h>", ":call VSCodeNotify('workbench.action.navigateLeft')<CR>", { silent = true })
--- xnoremap("<C-h>", ":call VSCodeNotify('workbench.action.navigateLeft')<CR>", { silent = true })
--- nnoremap("<C-l>", ":call VSCodeNotify('workbench.action.navigateRight')<CR>", { silent = true })
--- xnoremap("<C-l>", ":call VSCodeNotify('workbench.action.navigateRight')<CR>", { silent = true })
+-- Navigation through windows (was <C-[direction]>)
+nnoremap("<leader>wj", "<C-w>j", { silent = true })
+xnoremap("<leader>wj", "<C-w>j", { silent = true })
+nnoremap("<leader>wk", "<C-w>k", { silent = true })
+xnoremap("<leader>wk", "<C-w>k", { silent = true })
+nnoremap("<leader>wh", "<C-w>h", { silent = true })
+xnoremap("<leader>wh", "<C-w>h", { silent = true })
+nnoremap("<leader>wl", "<C-w>l", { silent = true })
+xnoremap("<leader>wl", "<C-w>l", { silent = true })
 
 
 ----------------------------------
@@ -83,8 +82,7 @@ nnoremap("<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 ----------------------------------
 
 -- Open file tree
--- nnoremap("<leader>pv", "<cmd>Ex<CR>")
-nnoremap("<leader>e", "<cmd>Lex 30<CR>")
+nnoremap("<leader>e", "<Cmd>Lex 30<CR>")
 
 -- UndoTree
 nnoremap("<leader>u", function() return vim.cmd("UndotreeToggle") end)

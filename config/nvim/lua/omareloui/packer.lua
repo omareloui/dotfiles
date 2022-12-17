@@ -39,12 +39,12 @@ packer.init {
 
 
 return packer.startup(function(use)
-  use "wbthomason/packer.nvim"     -- Let packer manage itself
-  use "terrortylor/nvim-comment"   -- Commenter
-  use {                            -- Surround
+  use "wbthomason/packer.nvim" -- Let packer manage itself
+  use "terrortylor/nvim-comment" -- Commenter
+  use { -- Surround
     "kylechui/nvim-surround",
-    tag="*",
-    config = function ()
+    tag = "*",
+    config = function()
       require("nvim-surround").setup({
         -- Config here
       })
@@ -52,36 +52,43 @@ return packer.startup(function(use)
   }
 
   if not vim.g.vscode then
-    use "folke/tokyonight.nvim"      -- TokyoNight theme
-    use "nvim-lua/popup.nvim"        -- An implementation of the Popup API from vim in Neovim
-    use "nvim-lua/plenary.nvim"      -- Useful lua functions used ny lots of plugins
-    use "windwp/nvim-autopairs"      -- Complete the (), [], {}, etc...
-    use "mbbill/undotree"            -- Undo history
+    use "folke/tokyonight.nvim" -- TokyoNight theme
+    use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+    use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+    use "windwp/nvim-autopairs" -- Complete the (), [], {}, etc...
+    use "mbbill/undotree" -- Undo history
 
-    use {                            -- Fold
+    use { -- Fold
       "anuvyklack/pretty-fold.nvim",
       config = function()
         require('pretty-fold').setup()
       end
     }
 
+    use { -- Whichkey
+      "folke/which-key.nvim",
+      config = function()
+        require("which-key").setup()
+      end
+    }
+
 
     -- LSP
-    use "neovim/nvim-lspconfig"      -- enable LSP
-    use "williamboman/mason.nvim"    -- simple to use language server installer
+    use "neovim/nvim-lspconfig" -- enable LSP
+    use "williamboman/mason.nvim" -- simple to use language server installer
     use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
 
     -- Completion plugins
-    use "hrsh7th/nvim-cmp"           -- The completion plugin
-    use "hrsh7th/cmp-buffer"         -- buffer completions
-    use "hrsh7th/cmp-path"           -- path completions
-    use "hrsh7th/cmp-cmdline"        -- cmdline completions
-    use "saadparwaiz1/cmp_luasnip"   -- snippet completions
+    use "hrsh7th/nvim-cmp" -- The completion plugin
+    use "hrsh7th/cmp-buffer" -- buffer completions
+    use "hrsh7th/cmp-path" -- path completions
+    use "hrsh7th/cmp-cmdline" -- cmdline completions
+    use "saadparwaiz1/cmp_luasnip" -- snippet completions
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-nvim-lua"
 
     -- Snippets
-    use "L3MON4D3/LuaSnip"           --snippet engine
+    use "L3MON4D3/LuaSnip" --snippet engine
     use "rafamadriz/friendly-snippets" -- A bunch of snippets to use
 
     -- Telescope

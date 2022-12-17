@@ -315,30 +315,36 @@
     },
     {
       "key": "f",
-      "name": "Find & Replace...",
-      "type": "bindings",
-      "bindings": [
-        {
-          "key": "f",
-          "name": "File",
-          "type": "command",
-          "command": "editor.action.startFindReplaceAction"
-        },
-        {
-          "key": "s",
-          "name": "Symbol",
-          "type": "command",
-          "command": "editor.action.rename",
-          "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
-        },
-        {
-          "key": "p",
-          "name": "Project",
-          "type": "command",
-          "command": "workbench.action.replaceInFiles"
-        }
-      ]
+      "name": "Open file",
+      "type": "command",
+      "command": "workbench.action.quickOpen"
     },
+    // {
+    //   "key": "f",
+    //   "name": "Find & Replace...",
+    //   "type": "bindings",
+    //   "bindings": [
+    //     {
+    //       "key": "f",
+    //       "name": "File",
+    //       "type": "command",
+    //       "command": "editor.action.startFindReplaceAction"
+    //     },
+    //     {
+    //       "key": "s",
+    //       "name": "Symbol",
+    //       "type": "command",
+    //       "command": "editor.action.rename",
+    //       "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    //     },
+    //     {
+    //       "key": "p",
+    //       "name": "Project",
+    //       "type": "command",
+    //       "command": "workbench.action.replaceInFiles"
+    //     }
+    //   ]
+    // },
     {
       "key": "g",
       "name": "Git...",
@@ -449,12 +455,6 @@
       "type": "command",
       "command": "vscode-neovim.send",
       "args": ":noh<CR>"
-    },
-    {
-      "key": "o",
-      "name": "Open file",
-      "type": "command",
-      "command": "workbench.action.quickOpen"
     },
     {
       "key": "p",

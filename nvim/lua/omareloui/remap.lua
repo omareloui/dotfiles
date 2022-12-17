@@ -3,20 +3,53 @@ local nmap     = require("omareloui.keymap").nmap
 local nnoremap = require("omareloui.keymap").nnoremap
 local vnoremap = require("omareloui.keymap").vnoremap
 local xnoremap = require("omareloui.keymap").xnoremap
+local cnoremap = require("omareloui.keymap").cnoremap
 
+-- nnoremap(";", ":")
 nnoremap("Y", "y$")
 
 -- Hold the indent mode
 vnoremap("<", "<gv")
 vnoremap(">", ">gv")
 
+-- Keep the cursor on the same position
+nnoremap("J", "mzJ`z")
+
 -- Doens't store the new text on pasting on selected text
 vnoremap("p", '"_dP')
 
+-- Paste last thing that was yanked not deleted
+nmap(",p", '"0p')
+nmap(",P", '"0P')
+
+
+-- Copy, and paste to/from the system clipboard
+-- nnoremap("<leader>y", '"+y')
+-- vnoremap("<leader>y", '"+y')
+-- nnoremap("<leader>Y", '"+Y')
+
+-- nnoremap("<leader>p", '"+p')
+-- vnoremap("<leader>p", '"+p')
+-- nnoremap("<leader>p", '"+p')
+
+-- Delete to void
+-- nnoremap("<leader>d", '"_d')
+-- vnoremap("<leader>d", '"_d')
+-- nnoremap("<leader>D", '"_D')
+
+-- Replace the word you're on
+-- nnoremap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+
+-- Make the current file executable
+-- nnoremap("<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
 if vim.g.vscode then
-  -- Better scrolling
+  -- Set scrolling natively in vscode
   nnoremap("<C-d>", "<NOP>")
   nnoremap("<C-u>", "<NOP>")
+
+  -- nnoremap("<leader>w", ":call VSCodeNotify('workbench.action.files.save')<CR>") -- Save the file if there where changes
+  -- nnoremap("<leader>q", ":call VSCodeNotify('workbench.action.closeActiveEditor')<CR>")
 
   -- Resize Windows
   function _G.manageEditorSize(provided_count, to)
@@ -79,15 +112,24 @@ if vim.g.vscode then
   nnoremap("<Tab>", ":call VSCodeNotify('workbench.action.nextEditorInGroup')<CR>")
   nnoremap("<S-Tab>", ":call VSCodeNotify('workbench.action.previousEditorInGroup')<CR>")
 
-  -- Move text
-  vnoremap("K", ":call VSCodeNotify('editor.action.moveLinesUpAction')<CR>gv=gv")
-  vnoremap("J", ":call VSCodeNotify('editor.action.moveLinesDownAction')<CR>gv=gv")
-else
-  inoremap("jk", "<Esc>")
 
-  -- Better scrolling
+  vnoremap("J", ":call VSCodeNotifyVisual('editor.action.moveLinesDownAction', 0)<CR><Esc>jV")
+  vnoremap("K", ":call VSCodeNotifyVisual('editor.action.moveLinesUpAction', 0)<CR><Esc>kV")
+else
+  nnoremap("<leader>w", ":up<CR>") -- Save the file if there where changes
+  nnoremap("<leader>q", ":q<CR>")
+
+  -- Move text
+  inoremap("jk", "<Esc>")
+  cnoremap("jk", "<Esc>")
+
+  -- Center the screen on moving half pages.
   nnoremap("<C-d>", "<C-d>zz")
   nnoremap("<C-u>", "<C-u>zz")
+
+  -- Keep the cursor in the middle on search
+  nnoremap("n", "nzzzv")
+  nnoremap("N", "Nzzzv")
 
   -- Move text
   vnoremap("J", ":m '>+1<CR>gv=gv")
@@ -100,6 +142,9 @@ else
   -- Open file tree
   nnoremap("<leader>pv", "<cmd>Ex<CR>")
   nnoremap("<leader>e", "<cmd>Lex 30<CR>")
+
+  -- UndoTree
+  nnoremap("<leader>u", function() return vim.cmd("UndotreeToggle") end)
 
   -- Telescope
   nnoremap("<leader>f",

@@ -1,6 +1,31 @@
 [
   // Vim
   {
+    "command": "vscode-neovim.compositeEscape1",
+    "key": "j",
+    "when": "neovim.mode == insert && editorTextFocus",
+    "args": "j"
+  },
+  {
+    "command": "vscode-neovim.compositeEscape2",
+    "key": "k",
+    "when": "neovim.mode == insert && editorTextFocus",
+    "args": "k"
+  },
+  {
+    "key": "shift+ctrl+e",
+    "command": "actions.findWithSelection"
+  },
+  // {
+  //   "key": "ctrl+e",
+  //   "command": "-actions.findWithSelection"
+  // },
+  // {
+  //   "key": "ctrl+e",
+  //   "command": "workbench.view.explorer"
+  // },
+  // Scroll to the middle of the page and center the cursor
+  {
     "key": "ctrl+d",
     "when": "neovim.mode == normal && editorTextFocus",
     "command": "extension.multiCommand.execute",
@@ -46,30 +71,6 @@
       ]
     }
   },
-  {
-    "command": "vscode-neovim.compositeEscape1",
-    "key": "j",
-    "when": "neovim.mode == insert && editorTextFocus",
-    "args": "j"
-  },
-  {
-    "command": "vscode-neovim.compositeEscape2",
-    "key": "k",
-    "when": "neovim.mode == insert && editorTextFocus",
-    "args": "k"
-  },
-  {
-    "key": "shift+ctrl+e",
-    "command": "actions.findWithSelection"
-  },
-  // {
-  //   "key": "ctrl+e",
-  //   "command": "-actions.findWithSelection"
-  // },
-  // {
-  //   "key": "ctrl+e",
-  //   "command": "workbench.view.explorer"
-  // },
   {
     "key": "shift+ctrl+e",
     "command": "-workbench.view.explorer"
@@ -179,11 +180,6 @@
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
   },
-  // {
-  //   "key": "ctrl+shift+t",
-  //   "command": "workbench.action.terminal.focus",
-  //   "when": "!terminalFocus"
-  // },
   {
     "key": "ctrl+j",
     "command": "-editor.action.insertLineAfter",
@@ -194,10 +190,15 @@
     "command": "workbench.action.terminal.focus",
     "when": "!terminalFocus"
   },
-  {
-    "key": "ctrl+shift+t",
-    "command": "workbench.action.togglePanel"
-  },
+  // {
+  //   "key": "ctrl+shift+t",
+  //   "command": "workbench.action.terminal.focus",
+  //   "when": "!terminalFocus"
+  // },
+  // {
+  //   "key": "ctrl+shift+t",
+  //   "command": "workbench.action.togglePanel"
+  // },
   {
     "key": "ctrl+j",
     "command": "-workbench.action.togglePanel"

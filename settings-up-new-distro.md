@@ -17,6 +17,7 @@
 - inkscape
 - keepassxc
 - keepassxc
+- libfuse2
 - neovim
 - nodejs
 - pnpm

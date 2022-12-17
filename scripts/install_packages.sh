@@ -37,6 +37,7 @@ sudo nala install -y \
   nodejs \
   neovim \
   build-essential \
+  libfuse2 \ # For AppImages.
   fzf \
   fd-find \
   wmctrl \

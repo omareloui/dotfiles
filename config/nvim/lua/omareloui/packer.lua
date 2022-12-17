@@ -84,6 +84,9 @@ return packer.startup(function(use)
     use "williamboman/mason.nvim" -- simple to use language server installer
     use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
 
+    -- Coc
+    use "neoclide/coc.nvim"
+
     -- Completion plugins
     use "hrsh7th/nvim-cmp" -- The completion plugin
     use "hrsh7th/cmp-buffer" -- buffer completions

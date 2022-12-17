@@ -24,10 +24,6 @@ inoremap("<C-k>", "<Cmd>m .-2<cr>==")
 nnoremap("<leader>j", "<Cmd>m .+1 <CR>==")
 nnoremap("<leader>k", "<Cmd>m .-2 <CR>==")
 
--- Duplicate lines
-nnoremap("<A-j>", "yyp")
-nnoremap("<A-k>", "yyP")
-
 -- Save the file if there where changes
 nnoremap("<leader>w", "<Cmd>up<CR>")
 nnoremap("<leader>q", "<Cmd>q<CR>")
@@ -35,6 +31,10 @@ nnoremap("<leader>q", "<Cmd>q<CR>")
 -- Easier comment
 nnoremap("<leader>/", "<Cmd>CommentToggle<CR>")
 vnoremap("<leader>/", "<Cmd>CommentToggle<CR>")
+
+-- Duplicate lines
+nnoremap("<A-j>", "yyp")
+nnoremap("<A-k>", "yyP")
 
 -- Copy, and paste to/from the system clipboard
 nnoremap("<leader>y", '"+y')
@@ -58,6 +58,10 @@ nnoremap("<leader>x", "<Cmd>!chmod +x %<CR>", { silent = true })
 
 -- Open the terminal
 nnoremap("<leader>t", "<Cmd>split | resize 18 | term<CR>")
+
+-- Move between tabs
+nnoremap("<Tab>", "gt")
+nnoremap("<S-Tab>", "gT")
 
 -- TODO: check if "window, ui toggles, git, debug, buffer editors" in vscode's which key options if there's something I could use.
 

@@ -1,9 +1,6 @@
-local inoremap = require("omareloui.functions.keymap").inoremap
 local nmap     = require("omareloui.functions.keymap").nmap
 local nnoremap = require("omareloui.functions.keymap").nnoremap
 local vnoremap = require("omareloui.functions.keymap").vnoremap
-local xnoremap = require("omareloui.functions.keymap").xnoremap
-local cnoremap = require("omareloui.functions.keymap").cnoremap
 
 -- nnoremap(";", ":")
 

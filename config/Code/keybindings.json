@@ -1,5 +1,5 @@
 [
-  // Vim
+  // ==== Vim ==== //
   {
     "command": "vscode-neovim.compositeEscape1",
     "key": "j",
@@ -12,10 +12,24 @@
     "when": "neovim.mode == insert && editorTextFocus",
     "args": "k"
   },
+  // Duplicate lines
+  // FIXME: duplication doesn't work right on multi lines
   {
-    "key": "shift+ctrl+e",
-    "command": "actions.findWithSelection"
+    "key": "alt+j",
+    "when": "editorTextFocus && !editorReadonly",
+    "command": "vscode-neovim.send",
+    "args": ":call VSCodeNotifyVisual('editor.action.copyLinesDownAction', 1)<CR>",
   },
+  {
+    "key": "alt+k",
+    "when": "editorTextFocus && !editorReadonly",
+    "command": "vscode-neovim.send",
+    "args": ":call VSCodeNotifyVisual('editor.action.copyLinesUpAction', 1)<CR>",
+  },
+  // {
+  //   "key": "shift+ctrl+e",
+  //   "command": "actions.findWithSelection"
+  // },
   // {
   //   "key": "ctrl+e",
   //   "command": "-actions.findWithSelection"
@@ -190,11 +204,11 @@
     "command": "-editor.action.insertLineAfter",
     "when": "editorTextFocus && neovim.ctrlKeysInsert && !neovim.recording && neovim.mode == 'insert'"
   },
-  {
-    "key": "alt+j",
-    "command": "workbench.action.terminal.focus",
-    "when": "!terminalFocus"
-  },
+  // {
+  //   "key": "alt+j",
+  //   "command": "workbench.action.terminal.focus",
+  //   "when": "!terminalFocus"
+  // },
   // {
   //   "key": "ctrl+shift+t",
   //   "command": "workbench.action.terminal.focus",
@@ -228,7 +242,7 @@
     "command": "-vscode-neovim.ctrl-f",
     "when": "editorTextFocus && neovim.ctrlKeysNormal && neovim.init && neovim.mode != 'insert'"
   },
-  // End vim
+  // ==== End vim ==== //
   {
     "key": "ctrl+n",
     "command": "extension.advancedNewFile"

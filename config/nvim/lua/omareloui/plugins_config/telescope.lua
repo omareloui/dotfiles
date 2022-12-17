@@ -27,7 +27,8 @@ telescope.setup {
         ["<Down>"] = actions.move_selection_next,
         ["<Up>"] = actions.move_selection_previous,
 
-        ["<CR>"] = actions.select_default,
+        ["<CR>"] = actions.select_tab,
+        ["<C-s>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
@@ -48,7 +49,10 @@ telescope.setup {
 
       n = {
         ["<esc>"] = actions.close,
-        ["<CR>"] = actions.select_default,
+        ["q"] = actions.close,
+
+        ["<CR>"] = actions.select_tab,
+        ["<C-s>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,

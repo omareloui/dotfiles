@@ -6,9 +6,13 @@ local xnoremap = require("omareloui.functions.keymap").xnoremap
 local cnoremap = require("omareloui.functions.keymap").cnoremap
 
 
--- Set scrolling natively in vscode
+-- Remove what was set nativally on vscode
 nnoremap("<C-d>", "<NOP>")
 nnoremap("<C-u>", "<NOP>")
+
+-- Open whichkey
+nnoremap("<leader>", ":call VSCodeNotify('whichkey.show')<CR>")
+vnoremap("<leader>", ":call VSCodeNotify('whichkey.show')<CR>")
 
 -- Resize Windows
 function _G.manageEditorSize(provided_count, to)
@@ -46,10 +50,6 @@ nnoremap("zo", ":call VSCodeNotify('editor.unfold')<CR>")
 nnoremap("zO", ":call VSCodeNotify('editor.unfoldRecursively')<CR>")
 nnoremap("za", ":call VSCodeNotify('editor.toggleFold')<CR>")
 
-
--- Open whichkey
-nnoremap("<leader>", ":call VSCodeNotify('whichkey.show')<CR>")
-xnoremap("<leader>", ":call VSCodeNotify('whichkey.show')<CR>")
 
 -- Show suggestions
 nnoremap("K", ":call VSCodeNotify('editor.action.showHover')<CR>")

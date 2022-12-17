@@ -28,6 +28,27 @@ inoremap("<C-k>", ":m .-2<cr>==")
 nnoremap("<leader>j", ":m .+1 <CR>==")
 nnoremap("<leader>k", ":m .-2 <CR>==")
 
+-- Copy, and paste to/from the system clipboard
+nnoremap("<leader>y", '"+y')
+vnoremap("<leader>y", '"+y')
+nnoremap("<leader>Y", '"+Y')
+
+nnoremap("<leader>p", '"+p')
+vnoremap("<leader>p", '"+p')
+nnoremap("<leader>p", '"+p')
+
+-- Delete to void
+nnoremap("<leader>d", '"_d')
+vnoremap("<leader>d", '"_d')
+nnoremap("<leader>D", '"_D')
+
+-- Replace the word you're on
+nnoremap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+
+-- Make the current file executable
+nnoremap("<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+
 -- TODO: make this function work with nvim.
 -- -- Resize Windows
 -- function _G.manageEditorSize(provided_count, to)
@@ -62,7 +83,7 @@ nnoremap("<leader>k", ":m .-2 <CR>==")
 ----------------------------------
 
 -- Open file tree
-nnoremap("<leader>pv", "<cmd>Ex<CR>")
+-- nnoremap("<leader>pv", "<cmd>Ex<CR>")
 nnoremap("<leader>e", "<cmd>Lex 30<CR>")
 
 -- UndoTree

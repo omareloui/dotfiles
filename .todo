@@ -3,7 +3,7 @@ Todo:
   ✔ Update the documentation to work with the new /config folder @started(22-12-17 07:19) @done(22-12-17 07:23) @lasted(4m)
   Nvim:
     ✔ make folder for vscode and folder for normal mode @started(22-12-17 07:43) @done(22-12-17 08:20) @lasted(37m53s)
-    ☐ Match all shortcuts from vscode to nvim and vice versa.
+    ☐ Match all shortcuts from vscode to nvim and vice versa. @started(22-12-17 08:24)
     ☐ make shortcuts for each filetype.
       https://www.reddit.com/r/neovim/comments/tlervj/run_any_language_with_same_macro/
       https://www.youtube.com/watch?v=-Z7Wb4HvTjE&ab_channel=BrodieRobertson

@@ -6,6 +6,7 @@ local xnoremap = require("omareloui.functions.keymap").xnoremap
 local cnoremap = require("omareloui.functions.keymap").cnoremap
 
 -- nnoremap(";", ":")
+
 nnoremap("Y", "y$")
 
 -- Hold the indent mode
@@ -22,26 +23,6 @@ vnoremap("p", '"_dP')
 nmap(",p", '"0p')
 nmap(",P", '"0P')
 
-
--- Copy, and paste to/from the system clipboard
--- nnoremap("<leader>y", '"+y')
--- vnoremap("<leader>y", '"+y')
--- nnoremap("<leader>Y", '"+Y')
-
--- nnoremap("<leader>p", '"+p')
--- vnoremap("<leader>p", '"+p')
--- nnoremap("<leader>p", '"+p')
-
--- Delete to void
--- nnoremap("<leader>d", '"_d')
--- vnoremap("<leader>d", '"_d')
--- nnoremap("<leader>D", '"_D')
-
--- Replace the word you're on
--- nnoremap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
-
--- Make the current file executable
--- nnoremap("<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Maintain the fold on moving
 function _G.moveCursor(direction)

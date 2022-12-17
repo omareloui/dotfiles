@@ -4,9 +4,9 @@ require("omareloui.packer")
 
 if not vim.g.vscode then
   require("omareloui.lsp")
-  require("omareloui.cmp")
-  require("omareloui.telescope")
-  require("omareloui.treesitter")
-  require("omareloui.autopairs")
-  require("omareloui.gitsigns")
+  require("omareloui.plugins_config.autopairs")
+  require("omareloui.plugins_config.cmp")
+  require("omareloui.plugins_config.gitsigns")
+  require("omareloui.plugins_config.telescope")
+  require("omareloui.plugins_config.treesitter")
 end

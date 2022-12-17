@@ -463,20 +463,14 @@
       "command": "vscode-neovim.send",
       "args": "\"+p"
     },
-    // FIXME:
+    // FIXME: The replace word doesn't work as it should.
     {
       "key": "S",
       "name": "Replace word",
       "type": "command",
       "command": "vscode-neovim.send",
-      "args": ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>"
+      "args": ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI"
     },
-    // {
-    //   "key": "S",
-    //   "name": "Search",
-    //   "type": "command",
-    //   "command": "workbench.action.findInFiles"
-    // },
     {
       "key": "s",
       "name": "Show...",

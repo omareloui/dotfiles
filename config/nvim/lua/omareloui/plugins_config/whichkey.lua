@@ -1,6 +1,6 @@
 local wk = require("which-key")
 
--- TODO: to complete this file
+-- TODO: complete this file
 wk.register(
   { ["<leader>"] = { ["/"] = "Comment the line" } },
   { mode = "n" }

@@ -57,7 +57,6 @@ nnoremap("<leader>s", "<Cmd>%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>"
 nnoremap("<leader>x", "<Cmd>!chmod +x %<CR>", { silent = true })
 
 -- Open the terminal
--- TODO: make it toggle
 nnoremap("<leader>t", "<Cmd>split | resize 18 | term<CR>")
 
 -- TODO: check if "window, ui toggles, git, debug, buffer editors" in vscode's which key options if there's something I could use.

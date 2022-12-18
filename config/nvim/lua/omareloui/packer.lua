@@ -73,6 +73,11 @@ return packer.startup(function(use)
       end
     }
 
+    use { -- Status bar
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+
     use { -- Whichkey
       "folke/which-key.nvim",
       config = function()

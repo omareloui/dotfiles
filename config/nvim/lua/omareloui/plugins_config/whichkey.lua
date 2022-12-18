@@ -1,12 +1,11 @@
 local wk = require("which-key")
 
--- TODO: complete this file
 wk.register(
-  { ["<leader>"] = { ["/"] = "Toggle comment" } },
+  { ["<leader>"] = { c = {name = "Toggle comment", l = "Comment line" } } },
   { mode = "n" }
 )
 
 wk.register(
-  { ["<leader>"] = { ["/"] = "Toggle comment" } },
+  { ["<leader>"] = { c = "Toggle comment" } },
   { mode = "v" }
 )

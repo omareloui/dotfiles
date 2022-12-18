@@ -57,3 +57,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.cmd("set iskeyword+=-") -- Considers "-" as a part of a word.
+
+-- To make the sessions work better
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

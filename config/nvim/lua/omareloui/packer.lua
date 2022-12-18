@@ -85,6 +85,14 @@ return packer.startup(function(use)
       end
     }
 
+    use { -- Store sessions
+      'rmagatti/auto-session',
+      config = function()
+        require("auto-session").setup({
+          auto_session_use_git_branch = true,
+        })
+      end
+    }
 
     -- LSP
     use "neovim/nvim-lspconfig" -- enable LSP

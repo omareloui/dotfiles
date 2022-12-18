@@ -50,7 +50,9 @@ return packer.startup(function(use)
   }
 
   if not vim.g.vscode then
-    use "folke/tokyonight.nvim" -- TokyoNight theme
+    -- use "folke/tokyonight.nvim" -- TokyoNight theme
+    use 'bluz71/vim-nightfly-colors' -- nightfly theme
+
     use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
     use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
     use "windwp/nvim-autopairs" -- Complete the (), [], {}, etc...

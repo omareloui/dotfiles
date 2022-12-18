@@ -114,6 +114,12 @@ set -gx PATH "$PNPM_HOME" $PATH
 set -gx DENO_INSTALL "/home/omareloui/.deno"
 set -gx PATH "$DENO_INSTALL/bin:$PATH"
 
+########
+# rust #
+########
+
+set -gx PATH "$HOME/.cargo/bin:$PATH"
+
 ##################
 ## Init Plugins ##
 ##################

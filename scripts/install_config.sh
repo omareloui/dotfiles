@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-config_in_dot_config="nvim fish tmux starship.toml"
+config_in_dot_config="nvim fish alacritty tmux starship.toml"
 # config_in_home=""
 vs_code_config="keybindings.json settings.json"
 

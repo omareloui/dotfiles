@@ -16,12 +16,19 @@ Todo:
     [ ] install todo tree thing.
     [ ] install install lazy git.
     [ ] know how to use LSP in nvim and configure it to work with me.
+    [ ] format on save.
+    [ ] search for title case plugin.
+    [ ] search for sort motion plugin.
 
   Alacritty:
-    [ ] install alacritty.
+    [x] install alacritty.
+      https://linuxtus.com/install-alacritty-terminal-emulator-ubuntu/
+    [x] config it.
     [ ] add config for alacritty and scripts to install it.
+
   Tmux:
     [ ] remap tmux's keys.
+
   i3:
     [ ] install i3
       https://linuxtus.com/install-alacritty-terminal-emulator-ubuntu/

@@ -8,8 +8,8 @@ nnoremap("<C-d>", "<NOP>")
 nnoremap("<C-u>", "<NOP>")
 
 -- Open whichkey
-nnoremap("<leader>", ":call VSCodeNotify('whichkey.show')<CR>")
-vnoremap("<leader>", ":call VSCodeNotify('whichkey.show')<CR>")
+nnoremap("<Space>", ":call VSCodeNotify('whichkey.show')<CR>")
+vnoremap("<Space>", ":call VSCodeNotify('whichkey.show')<CR>")
 
 -- Resize Windows
 function _G.manageEditorSize(provided_count, to)

@@ -1,4 +1,5 @@
-require("lualine").setup({
-  sections = { lualine_c = { require('auto-session-library').current_session_name } }
-})
+local ok, lualine = pcall(require, "lualine")
 
+if not ok or vim.g.vscode then return end
+
+lualine.setup()

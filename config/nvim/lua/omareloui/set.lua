@@ -50,7 +50,9 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.g.mapleader = " "
+if not vim.g.vscode then
+  vim.g.mapleader = " "
+end
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1

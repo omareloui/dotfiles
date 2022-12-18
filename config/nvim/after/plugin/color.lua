@@ -1,5 +1,3 @@
--- vim.g.tokyonight_transparent_sidebar = true
--- vim.g.tokyonight_transparent = true
--- vim.opt.background = "dark"
+if vim.g.vscode then return end
 
-vim.cmd("colorscheme nightfly")
+vim.cmd("silent! colorscheme nightfly")

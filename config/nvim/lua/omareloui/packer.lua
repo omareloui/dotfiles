@@ -37,8 +37,7 @@ packer.init {
   },
 }
 
-
-return packer.startup(function(use)
+local function global_packages(use)
   use "wbthomason/packer.nvim" -- Let packer manage itself
   use "terrortylor/nvim-comment" -- Commenter
   use { -- Surround
@@ -48,94 +47,96 @@ return packer.startup(function(use)
       require("nvim-surround").setup()
     end
   }
+end
 
-  if not vim.g.vscode then
-    -- use "folke/tokyonight.nvim" -- TokyoNight theme
-    use 'bluz71/vim-nightfly-colors' -- nightfly theme
+local function not_vscode_packes(use)
+  use 'bluz71/vim-nightfly-colors' -- nightfly theme
 
-    use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-    use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-    use "windwp/nvim-autopairs" -- Complete the (), [], {}, etc...
-    use "mbbill/undotree" -- Undo history
+  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "windwp/nvim-autopairs" -- Complete the (), [], {}, etc...
+  use "mbbill/undotree" -- Undo history
 
-    use { -- Nerdtree
-      "nvim-tree/nvim-tree.lua",
-      requires = {
-        "nvim-tree/nvim-web-devicons", -- optional, for file icons
-      },
-      tag = "nightly" -- optional, updated every week.
-    }
+  use { -- Nvimtree
+    "nvim-tree/nvim-tree.lua",
+    requires = {
+      "nvim-tree/nvim-web-devicons", -- optional, for file icons
+    },
+    tag = "nightly" -- optional, updated every week.
+  }
 
-    use { -- Fold
-      "anuvyklack/pretty-fold.nvim",
-      config = function()
-        require('pretty-fold').setup()
-      end
-    }
+  use { -- Fold
+    "anuvyklack/pretty-fold.nvim",
+    config = function()
+      require('pretty-fold').setup()
+    end
+  }
 
-    use { -- Status bar
-      'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
+  use { -- Status bar
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
-    use { -- Whichkey
-      "folke/which-key.nvim",
-      config = function()
-        require("which-key").setup()
-      end
-    }
+  use { -- Whichkey
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup()
+    end
+  }
 
-    use { -- Store sessions
-      'rmagatti/auto-session',
-      config = function()
-        require("auto-session").setup({
-          auto_session_use_git_branch = true,
-        })
-      end
-    }
+  use { -- Store sessions
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup()
+    end
+  }
 
-    -- LSP
-    use "neovim/nvim-lspconfig" -- enable LSP
-    use "williamboman/mason.nvim" -- simple to use language server installer
-    use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
+  -- LSP
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/mason.nvim" -- simple to use language server installer
+  use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
 
-    -- Coc
-    use "neoclide/coc.nvim"
+  -- Coc
+  use "neoclide/coc.nvim"
 
-    -- Completion plugins
-    use "hrsh7th/nvim-cmp" -- The completion plugin
-    use "hrsh7th/cmp-buffer" -- buffer completions
-    use "hrsh7th/cmp-path" -- path completions
-    use "hrsh7th/cmp-cmdline" -- cmdline completions
-    use "saadparwaiz1/cmp_luasnip" -- snippet completions
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-nvim-lua"
+  -- Completion plugins
+  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lua"
 
-    -- Snippets
-    use "L3MON4D3/LuaSnip" --snippet engine
-    use "rafamadriz/friendly-snippets" -- A bunch of snippets to use
+  -- Snippets
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "rafamadriz/friendly-snippets" -- A bunch of snippets to use
 
-    -- Telescope
-    use "nvim-telescope/telescope.nvim"
-    use "nvim-telescope/telescope-media-files.nvim"
+  -- Telescope
+  use "nvim-telescope/telescope.nvim"
+  use "nvim-telescope/telescope-media-files.nvim"
 
-    -- Transparent nvim
-    use "xiyaowong/nvim-transparent"
+  -- Transparent nvim
+  use "xiyaowong/nvim-transparent"
 
-    -- Syntax heghlighter
-    use {
-      "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate"
-    }
-    use "p00f/nvim-ts-rainbow"
+  -- Treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate"
+  }
+  use "p00f/nvim-ts-rainbow"
 
-    -- Git
-    use "lewis6991/gitsigns.nvim"
-    use "tpope/vim-fugitive"
+  -- Git
+  use "lewis6991/gitsigns.nvim"
+  use "tpope/vim-fugitive"
+end
+
+return packer.startup(function(use)
+  global_packages(use)
+  if vim.g.vscode then
+    not_vscode_packes(use)
   end
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

@@ -28,6 +28,7 @@ sudo nala install -y \
   gnome-tweaks \
   gnome-shell-extensions \
   zoxide \
+  entr \
   exa \
   bat \
   xclip \
@@ -35,9 +36,10 @@ sudo nala install -y \
   ffmpeg \
   python3-pip \
   nodejs \
+  tmux \
   neovim \
   build-essential \
-  libfuse2 \ # For AppImages.
+  libfuse2 \
   fzf \
   fd-find \
   wmctrl \
@@ -71,3 +73,8 @@ sudo echo "/usr/local/bin/fish" >> /etc/shells
 # Install commitizen to build a standered for git
 # https://bitspeicher.blog/how-to-be-a-good-commitizen/
 pnpm -g add commitizen cz-conventional-changelog devmoji
+
+
+# Install tpm (tmux plugin manager)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+

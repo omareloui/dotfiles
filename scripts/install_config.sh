@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-config_in_dot_config="nvim fish starship.toml"
+config_in_dot_config="nvim fish tmux starship.toml"
 # config_in_home=""
 vs_code_config="keybindings.json settings.json"
 
@@ -31,5 +31,5 @@ done
 
 # Git
 create_sym git/.gitconfig ~/.gitconfig
-mkdir ~/.config/git && create_sym git/templates ~/.config/git/templates
+[ ! -d ~/.config/git ] && mkdir ~/.config/git && create_sym git/templates ~/.config/git/templates
 create_sym git/.czrc ~/.czrc

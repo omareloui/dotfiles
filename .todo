@@ -1,10 +1,29 @@
 Todo:
-  ✔ move all config files to /config folder @started(22-12-17 06:52) @done(22-12-17 07:15) @lasted(23m41s)
-  ✔ Update the documentation to work with the new /config folder @started(22-12-17 07:19) @done(22-12-17 07:23) @lasted(4m)
+  [x] move all config files to /config folder @started(22-12-17 06:52) @done(22-12-17 07:15) @lasted(23m41s)
+  [x] Update the documentation to work with the new /config folder @started(22-12-17 07:19) @done(22-12-17 07:23) @lasted(4m)
   Nvim:
-    ✔ make folder for vscode and folder for normal mode @started(22-12-17 07:43) @done(22-12-17 08:20) @lasted(37m53s)
-    ✔ Match all shortcuts from vscode to nvim and vice versa. @started(22-12-17 08:24) @done(22-12-17 10:44) @lasted(2h20m42s)
-    ☐ make shortcuts for each filetype (create a function).
+    [x] make folder for vscode and folder for normal mode @started(22-12-17 07:43) @done(22-12-17 08:20) @lasted(37m53s)
+    [x] Match all shortcuts from vscode to nvim and vice versa. @started(22-12-17 08:24) @done(22-12-17 10:44) @lasted(2h20m42s)
+    [-] make shortcuts for each filetype (create a function).
       https://www.reddit.com/r/neovim/comments/tlervj/run_any_language_with_same_macro/
       https://www.youtube.com/watch?v=-Z7Wb4HvTjE&ab_channel=BrodieRobertson
       https://alpha2phi.medium.com/neovim-for-beginners-lua-autocmd-and-keymap-functions-3bdfe0bebe42
+    [ ] install harpoon.
+    [ ] update window keymaps.
+      make it match i3 and tmux.
+    [ ] install color highligher.
+    [ ] install that file manager thing.
+    [ ] install todo tree thing.
+    [ ] install install lazy git.
+    [ ] know how to use LSP in nvim and configure it to work with me.
+
+  Alacritty:
+    [ ] install alacritty.
+    [ ] add config for alacritty and scripts to install it.
+  Tmux:
+    [ ] remap tmux's keys.
+  i3:
+    [ ] install i3
+      https://linuxtus.com/install-alacritty-terminal-emulator-ubuntu/
+    [ ] configure it.
+

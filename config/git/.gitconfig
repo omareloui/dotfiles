@@ -16,11 +16,3 @@
 
   l = log --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --graph --date=relative --decorate --all
 
-[hub]
-  protocol = https
-
-[url "https://github.com/"]
-	insteadOf = git://github.com/
-
-[github]
-	user = omareloui

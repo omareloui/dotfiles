@@ -6,6 +6,7 @@
 - bpytop
 - build-essential
 - deno
+- entr
 - exa
 - fd-find
 - ffmpeg
@@ -25,6 +26,8 @@
 - starship-prompt
 - telegram-desktop
 - telegram-desktop
+- tmux
+- tpm
 - ulancher
 - ulauncher
 - vlc

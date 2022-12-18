@@ -10,6 +10,7 @@ if not vim.g.vscode then
   require("omareloui.plugins_config.gitsigns")
   require("omareloui.plugins_config.sessions")
   require("omareloui.plugins_config.telescope")
+  require("omareloui.plugins_config.transparent")
   require("omareloui.plugins_config.treesitter")
   require("omareloui.plugins_config.whichkey")
 end

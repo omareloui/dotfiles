@@ -119,6 +119,9 @@ return packer.startup(function(use)
     use "nvim-telescope/telescope.nvim"
     use "nvim-telescope/telescope-media-files.nvim"
 
+    -- Transparent nvim
+    use "xiyaowong/nvim-transparent"
+
     -- Syntax heghlighter
     use {
       "nvim-treesitter/nvim-treesitter",
@@ -127,6 +130,7 @@ return packer.startup(function(use)
     use "p00f/nvim-ts-rainbow"
 
     -- Git
+    use "lewis6991/gitsigns.nvim"
     use "tpope/vim-fugitive"
   end
 

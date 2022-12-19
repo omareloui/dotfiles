@@ -6,6 +6,9 @@ end
 
 transparent.setup {
   enable = true,
-  extra_groups = { "all" },
+  extra_groups = {
+    "all",
+    "NvimTreeNormal",
+  },
   exclude = {},
 }

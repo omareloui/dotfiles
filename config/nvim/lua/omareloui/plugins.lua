@@ -70,7 +70,6 @@ M = {
 
   -- persist the vim session
   ["rmagatti/auto-session"] = {
-    disable = true,
     config = function()
       require "omareloui.config.auto_session"
     end,
@@ -78,7 +77,6 @@ M = {
 
   -- transparent nvim
   ["xiyaowong/nvim-transparent"] = {
-    disable = true,
     config = function()
       require "omareloui.config.transparent"
     end,

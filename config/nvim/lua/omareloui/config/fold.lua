@@ -4,4 +4,6 @@ if not present then
   return
 end
 
-fold.setup()
+fold.setup {
+  fill_char = "-",
+}

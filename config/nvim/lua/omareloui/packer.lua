@@ -133,7 +133,7 @@ end
 
 return packer.startup(function(use)
   global_packages(use)
-  if vim.g.vscode then
+  if not vim.g.vscode then
     not_vscode_packes(use)
   end
 

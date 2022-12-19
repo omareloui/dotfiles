@@ -1,6 +1,7 @@
 Todo:
   [x] move all config files to /config folder @started(22-12-17 06:52) @done(22-12-17 07:15) @lasted(23m41s)
   [x] Update the documentation to work with the new /config folder @started(22-12-17 07:19) @done(22-12-17 07:23) @lasted(4m)
+
   Nvim:
     [x] make folder for vscode and folder for normal mode @started(22-12-17 07:43) @done(22-12-17 08:20) @lasted(37m53s)
     [x] Match all shortcuts from vscode to nvim and vice versa. @started(22-12-17 08:24) @done(22-12-17 10:44) @lasted(2h20m42s)
@@ -11,15 +12,27 @@ Todo:
     [ ] install harpoon.
     [ ] update window keymaps.
       make it match i3 and tmux.
-    [ ] install color highligher.
+    [x] install color highligher.
     [ ] install that file manager thing.
     [ ] install todo tree thing.
     [ ] install install lazy git.
-    [ ] know how to use LSP in nvim and configure it to work with me.
-    [ ] format on save.
+    [x] know how to use LSP in nvim and configure it to work with me.
+    [x] format on save.
     [ ] search for title case plugin.
     [ ] search for sort motion plugin.
     [ ] search for something like advanced new file.
+    [ ] remove tabufline after setting the key maps back to normal.
+      [ ] make telescope open file on new tab on enter.
+      [ ] make nvim-tree open file on new tab on enter.
+    [ ] add editorconfig plugin.
+      https://github.com/gpanders/editorconfig.nvim
+
+  VSCode:
+    [ ] remove vim settings.
+
+
+  Packages:
+    [ ] add ripgreb to packages installations (nvim uses it).
 
   Alacritty:
     [x] install alacritty.

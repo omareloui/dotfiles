@@ -1,34 +1,41 @@
 local options = {
-  cmdheight = 2, -- more space in the neovim command line for displaying messages
-  colorcolumn = "80", -- color the 80th line.
-  cursorline = true, -- highlight the current line
-  foldexpr = "nvim_treesitter#foldexpr()", -- fold method
-  foldlevel = 20, -- fold level
-  foldmethod = "expr", -- fold type
-  guifont = "3270SemiNarrow Nerd Font Mono:h12", -- the font used in graphical neovim applications
-  hlsearch = false, -- highlight all matches on previous search pattern
-  linebreak = true, -- companion to wrap, don't split words
-  numberwidth = 4, -- set number column width to 2 {default 4}
-  relativenumber = false, -- set relative numbered lines
-  scrolloff = 8, -- is one of my fav
+  cmdheight = 2,
+  colorcolumn = "80",
+  cursorline = true,
+  foldexpr = "nvim_treesitter#foldexpr()",
+  foldlevel = 20,
+  foldmethod = "expr",
+  guifont = "3270SemiNarrow Nerd Font Mono:h12",
+  hlsearch = false,
+  linebreak = true,
+  list = true,
+  listchars = { tab = "▸ ", lead = "·", trail = "·" },
+  numberwidth = 4,
+  relativenumber = true,
+  scrolloff = 8,
   sidescrolloff = 8,
-  undodir = os.getenv "HOME" .. "/.cache/nvim/undodir", -- Set a folder to keep the undo history
-  wrap = false, -- display lines as one long line, or true to wrap within screen
+  spell = true,
+  spelllang = { "en_us" },
+  undodir = os.getenv "HOME" .. "/.cache/nvim/undodir",
+  wrap = false,
 }
-
--- set back the clipboard to neovim
-vim.opt.clipboard:remove "unnamedplus"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- set back the clipboard to neovim
+vim.opt.clipboard:remove "unnamedplus"
 
 -- considers "-" as a part of a word.
 vim.opt.iskeyword:append "-"
 
+-- stop continuous comments
+vim.nvim_create_autocmd(
+  { "BufNewFile", "BufRead" },
+  { command = "setlocal formatoptions-=cro" }
+)
+
 -- To make the sessions work better
--- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions =
+  "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

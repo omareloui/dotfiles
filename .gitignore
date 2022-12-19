@@ -1,5 +1,6 @@
 # Neovim
 config/nvim/plugin
+config/nvim/spell/*.spl
 
 # tmux
 config/tmux/plugins
@@ -13,3 +14,4 @@ config/fish/completions/fisher.fish
 config/fish/functions/__*
 config/fish/functions/bass.fish
 config/fish/functions/fisher.fish
+

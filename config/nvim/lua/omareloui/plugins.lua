@@ -36,7 +36,33 @@ M = {
     },
   },
 
+  -- add config to cmp
+  ["hrsh7th/nvim-cmp"] = {
+    override_options = {
+      sources = {
+        { name = "luasnip" },
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+        { name = "nvim_lua" },
+        { name = "path" },
+        { name = "spell" },
+      },
+    },
+  },
+
+  -- disable tabufline
+  -- ["NvChad/ui"] = {
+  --   override_options = {
+  --     tabufline = {
+  --       enabled = false,
+  --     },
+  --   },
+  -- },
+
   ------- my plugins -----
+
+  -- cmp
+  ["f3fora/cmp-spell"] = {},
 
   -- formatter
   ["jose-elias-alvarez/null-ls.nvim"] = {

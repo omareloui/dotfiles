@@ -3,42 +3,35 @@ local M = {}
 -- disable --
 M.disabled = {
   n = {
-    -- remvoe update nvchad map
+    -- remove update nvchad map
     ["<leader>uu"] = "",
 
     -- remove the old toggle map for nvimtree
-    ["<C-c>"] = { "", "" },
-  },
-}
+    ["<C-c>"] = "",
 
--- plugins --
-M.nvimtree = {
-  n = {
-    -- toggle
-    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
-  },
-}
+    -- remove horizontal and vertical terminal maps
+    ["<leader>h"] = "",
+    ["<leader>v"] = "",
 
-M.undotree = {
-  n = {
-    ["<leader>u"] = {
-      function()
-        return vim.cmd "UndotreeToggle"
-      end,
-      "open Undotree",
-    },
+    -- remove git mappings
+    -- ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
+    -- ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "git status" },
+    -- ["<leader>rh"] = { function() require("gitsigns").reset_hunk() end, "Reset hunk", },
+    -- ["<leader>ph"] = { function() require("gitsigns").preview_hunk() end, "Preview hunk", },
+    -- ["<leader>gb"] = { function() package.loaded.gitsigns.blame_line() end, "Blame line", },
+    -- ["<leader>td"] = { function() require("gitsigns").toggle_deleted() end, "Toggle deleted", },
   },
 }
 
 -- my mappings --
 M.initial = {
   i = {
-    ["jk"] = { "<ESC>", "exit insert mode" },
+    ["jk"] = { "<ESC>", "exit insert mode", opts = { nowait = true } },
   },
 
   n = {
-    -- more accessable keys
-    -- [";"] = { ":", "enter command mode" },
+    -- more accessible keys
+    [";"] = { ":", "command mode", opts = { nowait = true } },
   },
 
   v = {
@@ -117,7 +110,10 @@ M.buffer_manipulation = {
 M.text_manipulation = {
   n = {
     -- replace the word you're on
-    ["<leader>s"] = { "<Cmd>%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "replace current word" },
+    ["<leader>s"] = {
+      "<Cmd>%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+      "replace current word",
+    },
 
     -- duplicate lines
     ["<A-j>"] = { "yyp", "duplicate line down" },
@@ -140,4 +136,23 @@ M.window = {
   },
 }
 
+-- plugins --
+
+M.nvimtree = {
+  n = {
+    -- toggle
+    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
+  },
+}
+
+M.undotree = {
+  n = {
+    ["<leader>u"] = {
+      function()
+        return vim.cmd "UndotreeToggle"
+      end,
+      "open Undotree",
+    },
+  },
+}
 return M

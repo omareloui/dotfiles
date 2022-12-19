@@ -4,4 +4,6 @@ if not present then
   return
 end
 
-auto_session.setup()
+auto_session.setup {
+  auto_restore_enabled = false,
+}

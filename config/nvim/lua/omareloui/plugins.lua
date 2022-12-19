@@ -72,6 +72,9 @@ M = {
     end,
   },
 
+  -- editorconfig
+  ["gpanders/editorconfig.nvim"] = {},
+
   -- surround
   ["kylechui/nvim-surround"] = {
     tag = "*",

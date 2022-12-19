@@ -24,8 +24,10 @@ Todo:
     [ ] remove tabufline after setting the key maps back to normal.
       [ ] make telescope open file on new tab on enter.
       [ ] make nvim-tree open file on new tab on enter.
-    [ ] add editorconfig plugin.
+    [x] add editorconfig plugin.
       https://github.com/gpanders/editorconfig.nvim
+    [ ] add fugitive.
+    [ ] add keymap for telescope to create a file
 
   VSCode:
     [ ] remove vim settings.

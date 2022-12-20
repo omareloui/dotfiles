@@ -14,12 +14,12 @@ M.disabled = {
     ["<leader>v"] = "",
 
     -- remove git mappings
-    -- ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
-    -- ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "git status" },
-    -- ["<leader>rh"] = { function() require("gitsigns").reset_hunk() end, "Reset hunk", },
-    -- ["<leader>ph"] = { function() require("gitsigns").preview_hunk() end, "Preview hunk", },
-    -- ["<leader>gb"] = { function() package.loaded.gitsigns.blame_line() end, "Blame line", },
-    -- ["<leader>td"] = { function() require("gitsigns").toggle_deleted() end, "Toggle deleted", },
+    ["<leader>cm"] = "",
+    ["<leader>gt"] = "",
+    ["<leader>rh"] = "",
+    ["<leader>ph"] = "",
+    ["<leader>gb"] = "",
+    ["<leader>td"] = "",
   },
 }
 
@@ -41,6 +41,9 @@ M.initial = {
 
     -- keep the cursor on the same position
     -- ["J"] = { "mzJ`z", "merge with next line" }
+
+    -- more accessible keys
+    [";"] = { ":", "command mode", opts = { nowait = true } },
   },
 }
 
@@ -155,4 +158,38 @@ M.undotree = {
     },
   },
 }
+
+M.git = {
+  n = {
+    ["<leader>gl"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
+    ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
+
+    ["<leader>gd"] = { "<cmd> Gvdiffsplit <CR>", "git diff" },
+    ["<leader>gb"] = {
+      function()
+        require("gitsigns").preview_hunk()
+      end,
+      "git blame line",
+    },
+    ["<leader>gp"] = {
+      function()
+        require("gitsigns").preview_hunk()
+      end,
+      "preview hunk",
+    },
+    ["<leader>ghr"] = {
+      function()
+        require("gitsigns").reset_hunk()
+      end,
+      "reset hunk",
+    },
+    ["<leader>gsd"] = {
+      function()
+        require("gitsigns").toggle_deleted()
+      end,
+      "toggle show git deleted",
+    },
+  },
+}
+
 return M

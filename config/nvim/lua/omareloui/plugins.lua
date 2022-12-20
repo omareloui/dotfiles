@@ -97,17 +97,13 @@ M = {
     end,
   },
 
+  -- git
+  ["tpope/vim-fugitive"] = {},
+
   -- persist the vim session
   ["rmagatti/auto-session"] = {
     config = function()
       require "omareloui.config.auto_session"
-    end,
-  },
-
-  -- transparent nvim
-  ["xiyaowong/nvim-transparent"] = {
-    config = function()
-      require "omareloui.config.transparent"
     end,
   },
 }

@@ -40,6 +40,7 @@ Todo:
     [x] install alacritty.
       https://linuxtus.com/install-alacritty-terminal-emulator-ubuntu/
     [x] config it.
+    [ ] remove it
     [ ] add config for alacritty and scripts to install it.
 
   Tmux:

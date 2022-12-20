@@ -1,2 +1,2 @@
-require("omareloui.options")
-require("omareloui.auto_commands")
+require "omareloui.options"
+require "omareloui.auto_commands"

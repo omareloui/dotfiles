@@ -2,3 +2,4 @@ config
 configs
 treesitter
 nvim
+utils

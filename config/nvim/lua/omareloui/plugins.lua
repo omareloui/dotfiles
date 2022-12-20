@@ -61,6 +61,22 @@ M = {
 
   ------- my plugins -----
 
+  -- telescope
+  -- ["nvim-telescope/telescope.nvim"] = {
+  --   setup = function()
+  --     require("core.utils").load_mappings "telescope"
+  --     require "omareloui.config.telescope"
+  --     return {
+  --       extensions = {
+  --         file_browser = {},
+  --       },
+  --     }
+  --   end,
+  -- },
+  ["nvim-telescope/telescope-file-browser.nvim"] = {
+    requries = "nvim-telescope/telescope.nvim",
+  },
+
   -- cmp
   ["f3fora/cmp-spell"] = {},
 
@@ -104,6 +120,22 @@ M = {
   ["rmagatti/auto-session"] = {
     config = function()
       require "omareloui.config.auto_session"
+    end,
+  },
+
+  -- for my todos
+  ["folke/todo-comments.nvim"] = {
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require "omareloui.config.todo_comments"
+    end,
+  },
+
+  -- trouble (show problems of the file in a bar)
+  ["folke/trouble.nvim"] = {
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require "omareloui.config.trouble"
     end,
   },
 }

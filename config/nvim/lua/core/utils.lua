@@ -125,7 +125,8 @@ M.load_override = function(options_table, name)
   local plugin_configs, plugin_options = M.load_config().plugins, nil
 
   -- support old plugin syntax for override
-  local user_override = plugin_configs.override and plugin_configs.override[name]
+  local user_override = plugin_configs.override
+    and plugin_configs.override[name]
   if user_override and type(user_override) == "table" then
     plugin_options = user_override
   end
@@ -155,7 +156,11 @@ M.packer_sync = function(...)
     local current_branch_name = git.get_current_branch_name()
 
     -- warn the user if we are on a snapshot branch
-    if current_branch_name:match(defaults.snaps.base_snap_branch_name .. "(.+)" .. "$") then
+    if
+      current_branch_name:match(
+        defaults.snaps.base_snap_branch_name .. "(.+)" .. "$"
+      )
+    then
       vim.api.nvim_echo({
         { "WARNING: You are trying to use ", "WarningMsg" },
         { "PackerSync" },
@@ -182,7 +187,10 @@ M.packer_sync = function(...)
     local plugins = M.load_config().plugins
     local old_style_options = plugins.user or plugins.override or plugins.remove
     if old_style_options then
-      vim.notify_once("NvChad: This plugin syntax is deprecated, use new style config.", "Error")
+      vim.notify_once(
+        "NvChad: This plugin syntax is deprecated, use new style config.",
+        "Error"
+      )
     end
   else
     error "Packer could not be loaded!"

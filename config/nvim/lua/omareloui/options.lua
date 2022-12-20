@@ -1,5 +1,5 @@
 local options = {
-  cmdheight = 2,
+  -- cmdheight = 2,
   colorcolumn = "80",
   cursorline = true,
   foldexpr = "nvim_treesitter#foldexpr()",

@@ -25,30 +25,31 @@ sudo nala update
 curl -sS https://starship.rs/install.sh | sh
 
 sudo nala install -y \
-  gnome-tweaks \
-  gnome-shell-extensions \
-  zoxide \
+  bat \
+  bpytop \
+  build-essential \
   entr \
   exa \
-  bat \
-  xclip \
-  bpytop \
-  ffmpeg \
-  python3-pip \
-  nodejs \
-  tmux \
-  neovim \
-  build-essential \
-  libfuse2 \
-  fzf \
   fd-find \
-  wmctrl \
-  telegram-desktop \
-  inkscape \
-  ulauncher \
+  ffmpeg \
   fish \
+  fzf \
+  gnome-shell-extensions \
+  gnome-tweaks \
+  inkscape \
   keepassxc \
-  vlc
+  libfuse2 \
+  neovim \
+  nodejs \
+  python3-pip \
+  ripgreb \
+  telegram-desktop \
+  tmux \
+  ulauncher \
+  vlc \
+  wmctrl \
+  xclip \
+  zoxide
 
 # Fisher
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher

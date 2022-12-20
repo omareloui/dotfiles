@@ -34,14 +34,14 @@ Todo:
 
 
   Packages:
-    [ ] add ripgreb to packages installations (nvim uses it).
+    [x] add ripgreb to packages installations (nvim telescope uses it).
 
   Alacritty:
     [x] install alacritty.
       https://linuxtus.com/install-alacritty-terminal-emulator-ubuntu/
     [x] config it.
-    [ ] remove it
-    [ ] add config for alacritty and scripts to install it.
+    [-] add config for alacritty and scripts to install it.
+    [x] remove it
 
   Tmux:
     [ ] remap tmux's keys.

@@ -23,6 +23,7 @@
 - nodejs
 - pnpm
 - python3-pip
+- ripgreb
 - starship-prompt
 - telegram-desktop
 - telegram-desktop
@@ -45,7 +46,8 @@
 
 ## Fonts
 
-Install [nerd fonts](https://www.nerdfonts.com/) for exa icons to work and for VSCode font with ligatures.
+Install [nerd fonts](https://www.nerdfonts.com/) for exa icons to work and for
+VSCode font with ligatures.
 
 - [3270 Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/3270.zip).
 - [FiraCode](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/FiraCode.zip).
@@ -63,7 +65,7 @@ Needs to install `wmctrl` to focus on open.
   Requires `pytz`.
 
 - [Translate](https://github.com/manahter/ulauncher-translate)
-- [Files Fuzzy Search](<https://github.com/hillaryychan/ulauncher-fzf>)
+- [Files Fuzzy Search](https://github.com/hillaryychan/ulauncher-fzf)
 
   Requires `fzf` and `fd-find`.
 
@@ -92,13 +94,15 @@ Needs to install `wmctrl` to focus on open.
 ## Walk-through
 
 - [ ] Setup Github
-  - [ ] Create ssh key by running `ssh-keygen -t rsa -b 4096 -C "omareloui@hotmail.com"`.
+  - [ ] Create ssh key by running
+        `ssh-keygen -t rsa -b 4096 -C "omareloui@hotmail.com"`.
   - [ ] Copy the public key and add it to GitHub.
 
 - [ ] Clone this repo
 
 - [ ] Install the packages
-  - [ ] Cd to this repo and give permission to all script files `chmod +x scripts/*.sh`.
+  - [ ] Cd to this repo and give permission to all script files
+        `chmod +x scripts/*.sh`.
   - [ ] Run `./scripts/install.sh` script.
 
     This will place the dotfiles, download the packages and required fonts.
@@ -109,19 +113,29 @@ Needs to install `wmctrl` to focus on open.
     - [ ] [edge](https://www.microsoft.com/en-us/edge/download?form=MA13FJ).
 
 - [ ] Install Gnome extensions.
-  - [ ] Install [Clipboard Indicator](https://extensions.gnome.org/extension/779/clipboard-indicator/)
+  - [ ] Install
+        [Clipboard Indicator](https://extensions.gnome.org/extension/779/clipboard-indicator/)
   - [ ] Install [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
-  - [ ] Install [GSConnect](https://extensions.gnome.org/extension/1319/gsconnect/)
-  - [ ] Install [Open Weather](https://extensions.gnome.org/extension/750/openweather/)
-  - [ ] Install [Auto Select Headset](https://extensions.gnome.org/extension/3928/auto-select-headset/)
+  - [ ] Install
+        [GSConnect](https://extensions.gnome.org/extension/1319/gsconnect/)
+  - [ ] Install
+        [Open Weather](https://extensions.gnome.org/extension/750/openweather/)
+  - [ ] Install
+        [Auto Select Headset](https://extensions.gnome.org/extension/3928/auto-select-headset/)
 
 - [ ] Install ULauncher extensions.
   - [ ] Run `./scripts/install_extensions_requirements.sh`.
-  - [ ] Install [Calculate Anything](https://github.com/tchar/ulauncher-albert-calculate-anything)
+  - [ ] Install
+        [Calculate Anything](https://github.com/tchar/ulauncher-albert-calculate-anything)
   - [ ] Install [Translate](https://github.com/manahter/ulauncher-translate)
-  - [ ] Install [Files Fuzzy Search](<https://github.com/hillaryychan/ulauncher-fzf>)
+  - [ ] Install
+        [Files Fuzzy Search](https://github.com/hillaryychan/ulauncher-fzf)
   - [ ] Install [KeePassXC](https://github.com/pbkhrv/ulauncher-keepassxc)
-  - [ ] Install [Password Generator](https://github.com/rkarami/ulauncher-password-generator)
-  - [ ] Install [VSCode Recent](https://github.com/plibither8/ulauncher-vscode-recent)
-  - [ ] Install [Notion Search](https://github.com/hakonmh/ulauncher-notion-search)
-  - [ ] Install [Terminal Runner](https://ext.ulauncher.io/-/github-lighttigerxiv-ulauncher-terminal-runner-extension)
+  - [ ] Install
+        [Password Generator](https://github.com/rkarami/ulauncher-password-generator)
+  - [ ] Install
+        [VSCode Recent](https://github.com/plibither8/ulauncher-vscode-recent)
+  - [ ] Install
+        [Notion Search](https://github.com/hakonmh/ulauncher-notion-search)
+  - [ ] Install
+        [Terminal Runner](https://ext.ulauncher.io/-/github-lighttigerxiv-ulauncher-terminal-runner-extension)

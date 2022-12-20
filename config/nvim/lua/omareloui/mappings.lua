@@ -183,7 +183,7 @@ M.git = {
       end,
       "reset hunk",
     },
-    ["<leader>gsd"] = {
+    ["<leader>ghd"] = {
       function()
         require("gitsigns").toggle_deleted()
       end,

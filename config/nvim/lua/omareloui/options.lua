@@ -16,6 +16,7 @@ local options = {
   sidescrolloff = 8,
   spell = true,
   spelllang = { "en_us" },
+  spelloptions = "camel",
   undodir = os.getenv "HOME" .. "/.cache/nvim/undodir",
   wrap = false,
 }
@@ -31,7 +32,7 @@ vim.opt.clipboard:remove "unnamedplus"
 vim.opt.iskeyword:append "-"
 
 -- stop continuous comments
-vim.nvim_create_autocmd(
+vim.api.nvim_create_autocmd(
   { "BufNewFile", "BufRead" },
   { command = "setlocal formatoptions-=cro" }
 )

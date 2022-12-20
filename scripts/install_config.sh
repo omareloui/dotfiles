@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-config_in_dot_config="nvim fish alacritty tmux starship.toml"
+config_in_dot_config="nvim fish tmux starship.toml"
 # config_in_home=""
 vs_code_config="keybindings.json settings.json"
 
@@ -19,7 +19,7 @@ done
 
 
 # Files and folders in ~
-# for conf in $config_in_home
+# for config in $config_in_home
 # do
 #   create_sym $DOTFILES/$conf $HOME/$conf
 # done

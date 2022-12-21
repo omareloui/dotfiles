@@ -124,6 +124,7 @@ M = {
     end,
   },
 
+  -- telescope extensions
   ["nvim-telescope/telescope-file-browser.nvim"] = {},
 
   -- toggle terminal

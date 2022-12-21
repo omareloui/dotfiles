@@ -246,6 +246,10 @@ M.files = {
       "<Cmd>Telescope file_browser hidden=true respect_gitignore=false collapse_dirs=true<CR>",
       "open folder browser",
     },
+    ["<leader>fr"] = {
+      "<Cmd>Telescope file_browser cwd=~/repos<CR>",
+      "open all repos",
+    },
   },
 }
 

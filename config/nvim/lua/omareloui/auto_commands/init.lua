@@ -1,4 +1,37 @@
-------------------------------------- nvim -------------------------------------
+------------------------------ reopen closed tabs ------------------------------
+vim.cmd [[
+  " idea to make it better: make that reopen buf a list and on each restore
+  " remove the top of that list.
+
+  let g:reopenbuf = expand('%:p')
+
+  function! ReopenLastTabLeave()
+    let g:lastbuf = expand('%:p')
+    let g:lasttabcount = tabpagenr('$')
+  endfunction
+
+  function! ReopenLastTabEnter()
+    if tabpagenr('$') < g:lasttabcount
+      let g:reopenbuf = g:lastbuf
+    endif
+  endfunction
+
+  function! ReopenLastTab()
+    tabnew
+    execute 'buffer' . g:reopenbuf
+  endfunction
+
+  augroup ReopenLastTab
+    autocmd!
+    autocmd TabLeave * call ReopenLastTabLeave()
+    autocmd TabEnter * call ReopenLastTabEnter()
+  augroup END
+
+  " Tab Restore
+  nnoremap <leader>tr :call ReopenLastTab()<CR>
+]]
+
+---------------------------------- nvim tree ----------------------------------
 -- close nvim tree on all tabs
 -- source: https://github.com/nvim-tree/nvim-tree.lua/wiki/Auto-Close
 -- This will:

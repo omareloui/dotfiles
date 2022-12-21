@@ -24,19 +24,20 @@ Todo:
     [ ] search for title case plugin.
     [ ] search for sort motion plugin.
     [ ] search for something like advanced new file.
-    [ ] remove tabufline after setting the key maps back to normal.
+    [x] remove tabufline after setting the key maps back to normal.
       [x] disable it.
       [x] remove tabufline's maps.
       [x] add my maps.
       [x] make telescope open file on new tab on enter.
       [x] make nvim-tree open file on new tab on enter.
-      [ ] style the new tab bar.
+      [x] style the new tab bar.
     [x] add editorconfig plugin.
       https://github.com/gpanders/editorconfig.nvim.
     [x] add fugitive.
     [ ] add telescope's files browser.
     [x] find alt for neovim for mg979/vim-visual-multi.
     [ ] rename trouble config file as it causes warnings.
+    [ ] add to the starting screen a continue last session option.
 
 
   VSCode:

@@ -32,6 +32,7 @@ vim.opt.clipboard:remove "unnamedplus"
 vim.opt.iskeyword:append "-"
 
 -- stop continuous comments
+-- FIXME: doesn't work on vim start
 vim.api.nvim_create_autocmd(
   { "BufNewFile", "BufRead" },
   { command = "setlocal formatoptions-=cro" }

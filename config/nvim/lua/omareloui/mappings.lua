@@ -26,6 +26,9 @@ M.disabled = {
     ["<Tab>"] = "",
     ["<S-Tab>"] = "",
     ["<Bslash>"] = "",
+
+    -- telescope
+    ["<leader>pt"] = "",
   },
 }
 
@@ -72,6 +75,11 @@ M.tab_navigation = {
 
     -- new tab
     ["<C-n>"] = { "<Cmd>tabnew<CR>", "create new tab" },
+    -- open closed tab
+    ["<C-t>"] = {
+      "<Cmd>call ReopenLastTab()<CR>",
+      "reopen last closed tab",
+    },
   },
 }
 
@@ -82,8 +90,8 @@ M.clipboard = {
     -- system clipboard
     ["<leader>y"] = { '"+y', "yank to system clipboard" },
     ["<leader>Y"] = { '"+Y', "yank to system clipboard" },
-    -- ["<leader>p"] = { '"+p', "paste from system clipboard" },
-    -- ["<leader>P"] = { '"+P', "paste from system clipboard" },
+    ["<leader>p"] = { '"+p', "paste from system clipboard" },
+    ["<leader>P"] = { '"+P', "paste from system clipboard" },
 
     -- delete to void
     ["<leader>d"] = { '"_d', "delete to void" },
@@ -189,7 +197,7 @@ M.undotree = {
 
 M.git = {
   n = {
-    ["<leader>gl"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
+    ["<leader>gl"] = { "<cmd> Telescope git_bcommits <CR>", "git commits" },
     ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
 
     ["<leader>gd"] = { "<cmd> Gvdiffsplit <CR>", "git diff" },
@@ -225,6 +233,14 @@ M.files = {
     ["<leader>ff"] = {
       "<Cmd>Telescope find_files hidden=true<CR>",
       "find files",
+    },
+    ["<leader>fn"] = {
+      "<Cmd>Telescope file_browser files=false hide_parent_dir=true<CR>",
+      "open file browser",
+    },
+    ["<leader>ft"] = {
+      "<Cmd>Telescope file_browser hidden=true respect_gitignore=false collapse_dirs=true<CR>",
+      "open folder browser",
     },
   },
 }

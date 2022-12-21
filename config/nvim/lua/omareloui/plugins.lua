@@ -87,7 +87,23 @@ M = {
   ["nvim-telescope/telescope.nvim"] = {
     override_options = function()
       local actions = require "telescope.actions"
+      local fb_actions = require("telescope").extensions.file_browser.actions
+
       return {
+        extensions_list = { "themes", "terms", "file_browser" },
+        extensions = {
+          file_browser = {
+            hijack_netrw = true,
+            mappings = {
+              n = {
+                ["<CR>"] = actions.select_default,
+              },
+              i = {
+                ["<CR>"] = actions.select_default,
+              },
+            },
+          },
+        },
         defaults = {
           -- initial_mode = "normal",
           mappings = {
@@ -95,11 +111,16 @@ M = {
               ["q"] = actions.close,
               ["<CR>"] = actions.file_tab,
             },
+            i = {
+              ["<CR>"] = actions.file_tab,
+            },
           },
         },
       }
     end,
   },
+
+  ["nvim-telescope/telescope-file-browser.nvim"] = {},
 
   -- cmp
   ["f3fora/cmp-spell"] = {},

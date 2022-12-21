@@ -32,6 +32,10 @@ M.disabled = {
 
     -- telescope
     ["<leader>pt"] = "",
+    ["<leader>tk"] = "",
+
+    -- lsp
+    ["<leader>ra"] = {},
   },
 }
 
@@ -179,6 +183,16 @@ M.window = {
 }
 
 -- plugins --
+M.lsp = {
+  n = {
+    ["<leader>lr"] = {
+      function()
+        require("nvchad_ui.renamer").open()
+      end,
+      "lsp rename",
+    },
+  },
+}
 
 M.nvimtree = {
   n = {
@@ -234,10 +248,20 @@ M.git = {
 
 M.files = {
   n = {
+    ["<leader>fa"] = {
+      "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+      "find all",
+    },
     ["<leader>ff"] = {
       "<Cmd>Telescope find_files hidden=true<CR>",
       "find files",
     },
+    ["<leader>fw"] = { "<Cmd>Telescope live_grep<CR>", "live grep" },
+    ["<leader>fb"] = { "<Cmd>Telescope buffers<CR>", "find buffers" },
+    ["<leader>fh"] = { "<Cmd>Telescope help_tags<CR>", "help page" },
+    ["<leader>fo"] = { "<Cmd>Telescope oldfiles<CR>", "find oldfiles" },
+    ["<leader>fk"] = { "<Cmd>Telescope keymaps<CR>", "show keys" },
+
     ["<leader>fn"] = {
       "<Cmd>Telescope file_browser files=false hide_parent_dir=true<CR>",
       "open file browser",

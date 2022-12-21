@@ -1,3 +1,8 @@
 nvim:
   [x] add a button to alpha to open my repos and select from them.
 
+packages:
+  [ ] add lazygit
+docs:
+  [ ] add lazygit
+

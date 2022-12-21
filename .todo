@@ -23,7 +23,7 @@ Todo:
     [x] format on save.
     [ ] search for title case plugin.
     [ ] search for sort motion plugin.
-    [ ] search for something like advanced new file.
+    [-] search for something like advanced new file.
     [x] remove tabufline after setting the key maps back to normal.
       [x] disable it.
       [x] remove tabufline's maps.
@@ -41,7 +41,7 @@ Todo:
 
 
   VSCode:
-    [ ] remove vim's keybindings.
+    [x] remove vim's keybindings.
 
 
   Packages:

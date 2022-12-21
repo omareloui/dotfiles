@@ -32,7 +32,7 @@ return {
     val = {
       button("SPC r s", "  Last Session  ", ":RestoreSession<CR>"),
       button(
-        "SPC r s",
+        "SPC f r",
         "  Open Repository",
         ":Telescope file_browser cwd=~/repos<CR>"
       ),

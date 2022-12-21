@@ -20,6 +20,12 @@ M.disabled = {
     ["<leader>ph"] = "",
     ["<leader>gb"] = "",
     ["<leader>td"] = "",
+
+    -- tabufline stuff
+    ["<leader>x"] = "",
+    ["<Tab>"] = "",
+    ["<S-Tab>"] = "",
+    ["<Bslash>"] = "",
   },
 }
 
@@ -44,6 +50,28 @@ M.initial = {
 
     -- more accessible keys
     [";"] = { ":", "command mode", opts = { nowait = true } },
+  },
+}
+
+M.tab_navigation = {
+  n = {
+    ["<Tab>"] = { "<Cmd>tabn<CR>", "go to next tab" },
+    ["<S-Tab>"] = { "<Cmd>tabp<CR>", "go to previous tab" },
+
+    -- moving tabs
+    ["<C-S-Right>"] = {
+      "<Cmd>tabm +1<CR>",
+      "move the tab to the right",
+      { silent = true },
+    },
+    ["<C-S-Left>"] = {
+      "<Cmd>tabm -1<CR>",
+      "move the tab to the left",
+      { silent = true },
+    },
+
+    -- new tab
+    ["<C-n>"] = { "<Cmd>tabnew<CR>", "create new tab" },
   },
 }
 
@@ -188,6 +216,15 @@ M.git = {
         require("gitsigns").toggle_deleted()
       end,
       "toggle show git deleted",
+    },
+  },
+}
+
+M.files = {
+  n = {
+    ["<leader>ff"] = {
+      "<Cmd>Telescope find_files hidden=true<CR>",
+      "find files",
     },
   },
 }

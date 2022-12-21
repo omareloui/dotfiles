@@ -11,11 +11,42 @@ M = {
     disable = false,
   },
 
+  -- disable tabufline
+  ["NvChad/ui"] = {
+    override_options = {
+      tabufline = {
+        enabled = false,
+      },
+    },
+  },
+
   -- override nvimtree configs
   ["kyazdani42/nvim-tree.lua"] = {
     override_options = {
+      tab = {
+        sync = {
+          close = true,
+        },
+      },
+      actions = {
+        open_file = {
+          resize_window = true,
+        },
+      },
       view = {
+        adaptive_size = true,
+        width = 25,
+        hide_root_folder = true,
         side = "right",
+        mappings = {
+          list = {
+            {
+              key = { "<CR>", "o", "<2-LeftMouse>" },
+              action = "tabnew",
+              silent = true,
+            },
+          },
+        },
       },
     },
   },
@@ -50,31 +81,24 @@ M = {
     },
   },
 
-  -- disable tabufline
-  -- ["NvChad/ui"] = {
-  --   override_options = {
-  --     tabufline = {
-  --       enabled = false,
-  --     },
-  --   },
-  -- },
-
   ------- my plugins -----
 
   -- telescope
-  -- ["nvim-telescope/telescope.nvim"] = {
-  --   setup = function()
-  --     require("core.utils").load_mappings "telescope"
-  --     require "omareloui.config.telescope"
-  --     return {
-  --       extensions = {
-  --         file_browser = {},
-  --       },
-  --     }
-  --   end,
-  -- },
-  ["nvim-telescope/telescope-file-browser.nvim"] = {
-    requries = "nvim-telescope/telescope.nvim",
+  ["nvim-telescope/telescope.nvim"] = {
+    override_options = function()
+      local actions = require "telescope.actions"
+      return {
+        defaults = {
+          -- initial_mode = "normal",
+          mappings = {
+            n = {
+              ["q"] = actions.close,
+              ["<CR>"] = actions.file_tab,
+            },
+          },
+        },
+      }
+    end,
   },
 
   -- cmp

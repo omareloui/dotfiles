@@ -4,6 +4,7 @@ M = {
   -- enable alpha nvim
   ["goolord/alpha-nvim"] = {
     disable = false,
+    override_options = require "omareloui.config.alpha",
   },
 
   -- enable which key

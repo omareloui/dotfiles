@@ -3,6 +3,9 @@ local M = {}
 -- disable --
 M.disabled = {
   n = {
+    -- remove toggle number
+    ["<leader>rn"] = "",
+
     -- remove update nvchad map
     ["<leader>uu"] = "",
 
@@ -276,6 +279,12 @@ M.trouble = {
       end,
       "jump to next problem",
     },
+  },
+}
+
+M.session = {
+  n = {
+    ["<leader>rs"] = { "<Cmd>RestoreSession<CR>", "restore last session" },
   },
 }
 

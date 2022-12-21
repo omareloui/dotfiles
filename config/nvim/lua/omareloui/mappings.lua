@@ -200,12 +200,12 @@ M.todocomments = {
       end,
       "next todo comment",
     },
-  },
-  ["[t"] = {
-    function()
-      require("todo-comments").jump_prev()
-    end,
-    "previous todo comment",
+    ["[t"] = {
+      function()
+        require("todo-comments").jump_prev()
+      end,
+      "previous todo comment",
+    },
   },
 }
 
@@ -217,7 +217,6 @@ M.trouble = {
       end,
       "jump to next problem",
     },
-
     ["<leader>tp"] = {
       function()
         require("trouble").prev { skip_groups = true, jump = true }

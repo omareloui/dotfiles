@@ -21,6 +21,11 @@ M = {
     },
   },
 
+  -- disable the default terminal
+  ["NvChad/nvterm"] = {
+    disable = true,
+  },
+
   -- override nvimtree configs
   ["kyazdani42/nvim-tree.lua"] = {
     override_options = {
@@ -88,8 +93,6 @@ M = {
   ["nvim-telescope/telescope.nvim"] = {
     override_options = function()
       local actions = require "telescope.actions"
-      local fb_actions = require("telescope").extensions.file_browser.actions
-
       return {
         extensions_list = { "themes", "terms", "file_browser" },
         extensions = {
@@ -122,6 +125,14 @@ M = {
   },
 
   ["nvim-telescope/telescope-file-browser.nvim"] = {},
+
+  -- toggle terminal
+  ["akinsho/toggleterm.nvim"] = {
+    tag = "*",
+    config = function()
+      require "omareloui.config.terminal"
+    end,
+  },
 
   -- cmp
   ["f3fora/cmp-spell"] = {},

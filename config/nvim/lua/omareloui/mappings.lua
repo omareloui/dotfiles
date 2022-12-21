@@ -200,6 +200,7 @@ M.undotree = {
 
 M.git = {
   n = {
+    ["<leader>gg"] = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "open lazygit" },
     ["<leader>gl"] = { "<cmd> Telescope git_bcommits <CR>", "git commits" },
     ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
 

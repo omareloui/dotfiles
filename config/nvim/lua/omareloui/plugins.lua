@@ -143,8 +143,19 @@ M = {
     end,
   },
 
+  -- snazy tabline
+  ["akinsho/bufferline.nvim"] = {
+    tag = "v3.*",
+    requires = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require "omareloui.config.bufferline"
+    end,
+  },
+
   -- git
-  ["tpope/vim-fugitive"] = {},
+  ["tpope/vim-fugitive"] = {
+    disable = true,
+  },
 
   -- persist the vim session
   ["rmagatti/auto-session"] = {

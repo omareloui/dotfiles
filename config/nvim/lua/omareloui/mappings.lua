@@ -25,9 +25,6 @@ M.disabled = {
     ["<leader>td"] = "",
 
     -- tabufline stuff
-    ["<leader>x"] = "",
-    ["<Tab>"] = "",
-    ["<S-Tab>"] = "",
     ["<Bslash>"] = "",
 
     -- telescope
@@ -36,19 +33,29 @@ M.disabled = {
     ["<leader>ff"] = "",
 
     -- lsp
-    ["<leader>ra"] = {},
+    ["<leader>ra"] = "",
+    ["[d"] = "",
+    ["d]"] = "",
+    ["<leader>wa"] = "",
+    ["<leader>wr"] = "",
+    ["<leader>wl"] = "",
+    ["<leader>wk"] = "",
+    ["<leader>wK"] = "",
   },
 }
 
--- my mappings --
+--------------------------------- my mappings ---------------------------------
 M.initial = {
   i = {
     ["jk"] = { "<ESC>", "exit insert mode", opts = { nowait = true } },
+    ["Jk"] = { "<ESC>", "exit insert mode", opts = { nowait = true } },
+    ["jK"] = { "<ESC>", "exit insert mode", opts = { nowait = true } },
+    ["JK"] = { "<ESC>", "exit insert mode", opts = { nowait = true } },
   },
 
   n = {
     -- more accessible keys
-    [";"] = { ":", "command mode", opts = { nowait = true } },
+    -- [";"] = { ":", "command mode", opts = { nowait = true } },
   },
 
   v = {
@@ -60,33 +67,41 @@ M.initial = {
     -- ["J"] = { "mzJ`z", "merge with next line" }
 
     -- more accessible keys
-    [";"] = { ":", "command mode", opts = { nowait = true } },
+    -- [";"] = { ":", "command mode", opts = { nowait = true } },
   },
 }
 
-M.tab_navigation = {
+M.buffers = {
   n = {
-    ["<Tab>"] = { "<Cmd>tabn<CR>", "go to next tab" },
-    ["<S-Tab>"] = { "<Cmd>tabp<CR>", "go to previous tab" },
-
-    -- moving tabs
+    -- moving buffers
     ["<C-S-Right>"] = {
-      "<Cmd>tabm +1<CR>",
+      function()
+        require("nvchad_ui.tabufline").move_buf(1)
+      end,
       "move the tab to the right",
       { silent = true },
     },
     ["<C-S-Left>"] = {
-      "<Cmd>tabm -1<CR>",
+      function()
+        require("nvchad_ui.tabufline").move_buf(-1)
+      end,
       "move the tab to the left",
       { silent = true },
     },
 
-    -- new tab
-    -- ["<C-n>"] = { "<Cmd>tabnew<CR>", "create new tab" },
-    -- open closed tab
-    ["<C-t>"] = {
-      "<Cmd>call ReopenLastTab()<CR>",
-      "reopen last closed tab",
+    -- use up(date) instead of (w)rite to save only when file's changed
+    ["<leader>w"] = { "<Cmd>up<CR>", "save buffer" },
+    ["<leader>x"] = {
+      function()
+        require("nvchad_ui.tabufline").closeAllBufs()
+      end,
+      "close all buffers",
+    },
+    ["<leader>q"] = {
+      function()
+        require("nvchad_ui.tabufline").close_buffer()
+      end,
+      "close buffer",
     },
   },
 }
@@ -102,8 +117,8 @@ M.clipboard = {
     ["<leader>P"] = { '"+P', "paste from system clipboard" },
 
     -- delete to void
-    ["<leader>d"] = { '"_d', "delete to void" },
-    ["<leader>D"] = { '"_D', "delete to void" },
+    -- ["<leader>d"] = { '"_d', "delete to void" },
+    -- ["<leader>D"] = { '"_D', "delete to void" },
   },
 
   v = {
@@ -115,7 +130,7 @@ M.clipboard = {
     ["<leader>y"] = { '"+y', "yank to system clipboard" },
 
     -- delete to void
-    ["<leader>d"] = { '"_d', "delete to void" },
+    -- ["<leader>d"] = { '"_d', "delete to void" },
   },
 }
 
@@ -147,17 +162,10 @@ M.navigation_in_file = {
   },
 }
 
-M.buffer_manipulation = {
-  n = {
-    -- use up(date) instead of (w)rite to save only when file's changed
-    -- ["<leader>w"] = { "<Cmd>up<CR>", "save buffer" },
-  },
-}
-
 M.text_manipulation = {
   n = {
     -- replace the word you're on
-    ["<leader>s"] = {
+    ["<leader>su"] = {
       ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
       "replace current word",
     },
@@ -168,27 +176,20 @@ M.text_manipulation = {
   },
 }
 
-M.utils = {
-  n = {
-    -- make the current file executable
-    -- ["<leader>x"] = { "<Cmd>!chmod +x %<CR>", "make curerent file executable" },
-  },
-}
-
 M.window = {
   n = {
     -- split windows
-    ["<leader>wv"] = { "<Cmd>vsplit<CR>", "split window vertically" },
-    ["<leader>wh"] = { "<Cmd>split<CR>", "split window horizontally" },
-    ["<leader>we"] = { "<C-w>=", "make the splits equal" },
-    ["<leader>wm"] = {
+    ["<leader>sv"] = { "<Cmd>vsplit<CR>", "split window vertically" },
+    ["<leader>sh"] = { "<Cmd>split<CR>", "split window horizontally" },
+    ["<leader>se"] = { "<C-w>=", "make the splits equal" },
+    ["<leader>sm"] = {
       "<Cmd>MaximizerToggle<CR>",
       "toggle maximizing the current window",
     },
   },
 }
 
--- plugins --
+----------------------------------- plugins -----------------------------------
 M.lsp = {
   n = {
     ["<leader>lr"] = {
@@ -196,6 +197,22 @@ M.lsp = {
         require("nvchad_ui.renamer").open()
       end,
       "lsp rename",
+    },
+    ["<leader>dp"] = {
+      function()
+        vim.diagnostic.goto_prev()
+      end,
+      "go to previous diagnostic",
+    },
+    ["<leader>dn"] = {
+      function()
+        vim.diagnostic.goto_next()
+      end,
+      "go to next diagnostic",
+    },
+    ["<leader>da"] = {
+      "<Cmd>Telescope diagnostics<CR>",
+      "show all diagnostics",
     },
 
     -- From the core
@@ -269,19 +286,6 @@ M.lsp = {
     --   "floating diagnostic",
     -- },
     --
-    -- ["[d"] = {
-    --   function()
-    --     vim.diagnostic.goto_prev()
-    --   end,
-    --   "goto prev",
-    -- },
-    --
-    -- ["d]"] = {
-    --   function()
-    --     vim.diagnostic.goto_next()
-    --   end,
-    --   "goto_next",
-    -- },
     --
     -- ["<leader>q"] = {
     --   function()
@@ -379,16 +383,11 @@ M.files = {
       "find all",
     },
 
-    -- ["<leader>ff"] = {
-    --   "<Cmd>Telescope find_files hidden=true<CR>",
-    --   "find files",
-    -- },
-    -- ["<leader>fo"] = { "<Cmd>Telescope oldfiles<CR>", "find oldfiles" },
-
-    ["<leader>fo"] = {
+    ["<leader>ff"] = {
       "<Cmd>Telescope find_files hidden=true<CR>",
-      "open file",
+      "find files",
     },
+    ["<leader>fo"] = { "<Cmd>Telescope oldfiles<CR>", "find oldfiles" },
 
     ["<leader>fw"] = { "<Cmd>Telescope live_grep<CR>", "live grep" },
     ["<leader>fb"] = { "<Cmd>Telescope buffers<CR>", "find buffers" },
@@ -424,29 +423,6 @@ M.todocomments = {
       end,
       "previous todo comment",
     },
-  },
-}
-
-M.trouble = {
-  -- n = {
-  --   ["<leader>tn"] = {
-  --     function()
-  --       require("trouble").next { skip_groups = true, jump = true }
-  --     end,
-  --     "jump to next problem",
-  --   },
-  --   ["<leader>tp"] = {
-  --     function()
-  --       require("trouble").prev { skip_groups = true, jump = true }
-  --     end,
-  --     "jump to next problem",
-  --   },
-  -- },
-}
-
-M.session = {
-  n = {
-    ["<leader>rs"] = { "<Cmd>RestoreSession<CR>", "restore last session" },
   },
 }
 

@@ -12,15 +12,6 @@ M = {
     disable = false,
   },
 
-  -- disable tabufline
-  ["NvChad/ui"] = {
-    override_options = {
-      tabufline = {
-        enabled = false,
-      },
-    },
-  },
-
   -- disable the default terminal
   ["NvChad/nvterm"] = {
     disable = true,
@@ -28,33 +19,9 @@ M = {
 
   -- override nvimtree configs
   ["kyazdani42/nvim-tree.lua"] = {
-    override_options = {
-      tab = {
-        sync = {
-          close = true,
-        },
-      },
-      actions = {
-        open_file = {
-          resize_window = true,
-        },
-      },
-      view = {
-        adaptive_size = true,
-        width = 25,
-        hide_root_folder = true,
-        side = "right",
-        mappings = {
-          list = {
-            {
-              key = { "<CR>", "o", "<2-LeftMouse>" },
-              action = "tabnew",
-              silent = true,
-            },
-          },
-        },
-      },
-    },
+    override_options = function()
+      return require "omareloui.config.nvim_tree"
+    end,
   },
 
   -- override treesitter config
@@ -75,17 +42,11 @@ M = {
 
   -- add config to cmp
   ["hrsh7th/nvim-cmp"] = {
-    override_options = {
-      experimental = { ghost_text = true },
-      sources = {
-        { name = "luasnip" },
-        { name = "nvim_lsp" },
-        { name = "buffer" },
-        { name = "nvim_lua" },
-        { name = "path" },
-        { name = "spell" },
-      },
-    },
+    override_options = function()
+      return require "omareloui.config.cmp"
+    end,
+  },
+
   -- snippets
   ["L3MON4D3/LuaSnip"] = {
     wants = "friendly-snippets",
@@ -152,15 +113,6 @@ M = {
     end,
   },
 
-  -- snazy tabline
-  ["akinsho/bufferline.nvim"] = {
-    tag = "v3.*",
-    requires = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require "omareloui.config.bufferline"
-    end,
-  },
-
   -- git
   ["tpope/vim-fugitive"] = {
     disable = true,
@@ -197,6 +149,7 @@ M = {
     end,
   },
 
+  -- scrollbar
   ["petertriho/nvim-scrollbar"] = {
     config = function()
       require "omareloui.config.scrollbar"

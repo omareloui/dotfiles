@@ -6,9 +6,7 @@ M.ui = {
   theme = "onedark",
   hl_override = hl.override,
   hl_add = hl.add,
-  tabufline = {
-    enable = false,
-  },
+  tabufline = {},
   -- transparency = true,
 }
 

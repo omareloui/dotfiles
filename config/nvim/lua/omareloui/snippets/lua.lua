@@ -5,8 +5,9 @@ return {
     "req",
     u.fmt([[local {} = require "{}"]], {
       u.f(function(import_name)
-        local modules = vim.split(import_name[1][1], ".", true)
-        return modules[#modules] or ""
+        local name_spaces = vim.split(import_name[1][1], ".", true)
+        local last_name = name_spaces[#name_spaces] or ""
+        return last_name:gsub("-", "_")
       end, { 1 }),
       u.i(1, "package_name"),
     })
@@ -21,8 +22,9 @@ if not present then
 end]],
       {
         u.f(function(import_name)
-          local modules = vim.split(import_name[1][1], ".", true)
-          return modules[#modules] or ""
+          local name_spaces = vim.split(import_name[1][1], ".", true)
+          local last_name = name_spaces[#name_spaces] or ""
+          return last_name:gsub("-", "_")
         end, { 1 }),
         u.i(1, "package_name"),
       }

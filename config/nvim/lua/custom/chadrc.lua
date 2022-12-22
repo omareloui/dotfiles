@@ -3,7 +3,7 @@ local M = {}
 local hl = require "omareloui.highlights"
 
 M.ui = {
-  theme = "onedark",
+  theme = "catppuccin",
   hl_override = hl.override,
   hl_add = hl.add,
   tabufline = {},

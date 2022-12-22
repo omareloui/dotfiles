@@ -76,6 +76,7 @@ M = {
   -- add config to cmp
   ["hrsh7th/nvim-cmp"] = {
     override_options = {
+      experimental = { ghost_text = true },
       sources = {
         { name = "luasnip" },
         { name = "nvim_lsp" },

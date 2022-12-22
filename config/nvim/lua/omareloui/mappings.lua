@@ -157,8 +157,8 @@ M.navigation_in_file = {
 
   i = {
     -- move text
-    ["<C-j>"] = { "<Cmd>m '>+1<CR>gv=gv", "move down the line" },
-    ["<C-k>"] = { "<Cmd>m .-2 <CR>==", "move up the line" },
+    -- ["<C-j>"] = { "<Cmd>m '>+1<CR>gv=gv", "move down the line" },
+    -- ["<C-k>"] = { "<Cmd>m .-2 <CR>==", "move up the line" },
   },
 }
 
@@ -424,6 +424,53 @@ M.todocomments = {
       "previous todo comment",
     },
   },
+}
+
+local expand_move_snippet_keys = {
+
+  ["<C-k>"] = {
+    function()
+      local ls = require "luasnip"
+      if ls.expand_or_jumpable() then
+        ls.expand_or_jump()
+      end
+    end,
+    "expand the snippet or jump to the next snippet placeholder",
+    { silent = true },
+  },
+
+  ["<C-j>"] = {
+    function()
+      local ls = require "luasnip"
+      if ls.jumpable(-1) then
+        ls.jump(-1)
+      end
+    end,
+    "jump to the previous placeholder",
+    { silent = true },
+  },
+
+  ["<C-l>"] = {
+    function()
+      local ls = require "luasnip"
+      if ls.choice_active() then
+        ls.change_choice(1)
+      end
+    end,
+    "cycle in snippet's options",
+    { silent = true },
+  },
+}
+
+M.snippets = {
+  n = {
+    ["<leader><leader>s"] = {
+      "<Cmd>source ~/.config/nvim/lua/omareloui/snippets/init.lua<CR>",
+      "source the snippet file",
+    },
+  },
+  i = expand_move_snippet_keys,
+  s = expand_move_snippet_keys,
 }
 
 return M

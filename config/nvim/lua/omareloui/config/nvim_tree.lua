@@ -1,19 +1,4 @@
 return {
-  filters = {
-    dotfiles = false,
-    exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
-  },
-  disable_netrw = true,
-  hijack_netrw = true,
-  open_on_setup = false,
-  ignore_ft_on_setup = { "alpha" },
-  hijack_cursor = true,
-  hijack_unnamed_buffer_when_opening = false,
-  update_cwd = true,
-  update_focused_file = {
-    enable = true,
-    update_cwd = false,
-  },
   git = {
     enable = true,
     ignore = true,

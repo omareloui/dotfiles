@@ -51,13 +51,24 @@ M = {
   ["L3MON4D3/LuaSnip"] = {
     wants = "friendly-snippets",
     after = "nvim-cmp",
+    override_options = function()
+      local types = require "luasnip.util.types"
+      return {
+        enable_autosnippets = true,
+        [types.choiceNode] = {
+          active = {
+            virt_text = { { " Current choice" } },
+          },
+        },
+      }
+    end,
     config = function()
       require("plugins.configs.others").luasnip()
       require "omareloui.snippets"
     end,
   },
 
-  ------- my plugins -----
+  --------------------------------- my plugins ---------------------------------
 
   -- telescope
   ["nvim-telescope/telescope.nvim"] = {

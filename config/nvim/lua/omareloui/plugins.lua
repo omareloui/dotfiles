@@ -165,6 +165,9 @@ M = {
     end,
   },
 
+  -- multi cursor
+  ["mg979/vim-visual-multi"] = {},
+
   -- for my todos
   ["folke/todo-comments.nvim"] = {
     requires = "nvim-lua/plenary.nvim",
@@ -175,6 +178,7 @@ M = {
 
   -- trouble (show problems of the file in a bar)
   ["folke/trouble.nvim"] = {
+    disable = true,
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
       require "omareloui.config.trouble"

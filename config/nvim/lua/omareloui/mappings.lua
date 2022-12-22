@@ -81,7 +81,7 @@ M.tab_navigation = {
     },
 
     -- new tab
-    ["<C-n>"] = { "<Cmd>tabnew<CR>", "create new tab" },
+    -- ["<C-n>"] = { "<Cmd>tabnew<CR>", "create new tab" },
     -- open closed tab
     ["<C-t>"] = {
       "<Cmd>call ReopenLastTab()<CR>",

@@ -176,6 +176,10 @@ M = {
   -- multi cursor
   ["mg979/vim-visual-multi"] = {},
 
+  -- window related plugins
+  ["christoomey/vim-tmux-navigator"] = {},
+  ["szw/vim-maximizer"] = {},
+
   -- for my todos
   ["folke/todo-comments.nvim"] = {
     requires = "nvim-lua/plenary.nvim",

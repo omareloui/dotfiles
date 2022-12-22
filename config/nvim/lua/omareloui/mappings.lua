@@ -33,6 +33,7 @@ M.disabled = {
     -- telescope
     ["<leader>pt"] = "",
     ["<leader>tk"] = "",
+    ["<leader>ff"] = "",
 
     -- lsp
     ["<leader>ra"] = {},
@@ -157,7 +158,7 @@ M.text_manipulation = {
   n = {
     -- replace the word you're on
     ["<leader>s"] = {
-      "<Cmd>%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+      "<Cmd>%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left><CR>",
       "replace current word",
     },
 
@@ -176,9 +177,14 @@ M.utils = {
 
 M.window = {
   n = {
-    -- split screens
-    -- ["<leader>v"] = { "<Cmd>vsplit<CR>", "split window vertically" },
-    -- ["<leader>h"] = { "<Cmd>split<CR>", "split window horizontally" },
+    -- split windows
+    ["<leader>wv"] = { "<Cmd>vsplit<CR>", "split window vertically" },
+    ["<leader>wh"] = { "<Cmd>split<CR>", "split window horizontally" },
+    ["<leader>we"] = { "<C-w>=", "make the splits equal" },
+    ["<leader>wm"] = {
+      "<Cmd>MaximizerToggle<CR>",
+      "toggle maximizing the current window",
+    },
   },
 }
 
@@ -191,6 +197,126 @@ M.lsp = {
       end,
       "lsp rename",
     },
+
+    -- From the core
+    -- ["gD"] = {
+    --   function()
+    --     vim.lsp.buf.declaration()
+    --   end,
+    --   "lsp declaration",
+    -- },
+    --
+    -- ["gd"] = {
+    --   function()
+    --     vim.lsp.buf.definition()
+    --   end,
+    --   "lsp definition",
+    -- },
+    --
+    -- ["K"] = {
+    --   function()
+    --     vim.lsp.buf.hover()
+    --   end,
+    --   "lsp hover",
+    -- },
+    --
+    -- ["gi"] = {
+    --   function()
+    --     vim.lsp.buf.implementation()
+    --   end,
+    --   "lsp implementation",
+    -- },
+    --
+    -- ["<leader>ls"] = {
+    --   function()
+    --     vim.lsp.buf.signature_help()
+    --   end,
+    --   "lsp signature_help",
+    -- },
+    --
+    -- ["<leader>D"] = {
+    --   function()
+    --     vim.lsp.buf.type_definition()
+    --   end,
+    --   "lsp definition type",
+    -- },
+    --
+    -- ["<leader>ra"] = {
+    --   function()
+    --     require("nvchad_ui.renamer").open()
+    --   end,
+    --   "lsp rename",
+    -- },
+    --
+    -- ["<leader>ca"] = {
+    --   function()
+    --     vim.lsp.buf.code_action()
+    --   end,
+    --   "lsp code_action",
+    -- },
+    --
+    -- ["gr"] = {
+    --   function()
+    --     vim.lsp.buf.references()
+    --   end,
+    --   "lsp references",
+    -- },
+    --
+    -- ["<leader>f"] = {
+    --   function()
+    --     vim.diagnostic.open_float()
+    --   end,
+    --   "floating diagnostic",
+    -- },
+    --
+    -- ["[d"] = {
+    --   function()
+    --     vim.diagnostic.goto_prev()
+    --   end,
+    --   "goto prev",
+    -- },
+    --
+    -- ["d]"] = {
+    --   function()
+    --     vim.diagnostic.goto_next()
+    --   end,
+    --   "goto_next",
+    -- },
+    --
+    -- ["<leader>q"] = {
+    --   function()
+    --     vim.diagnostic.setloclist()
+    --   end,
+    --   "diagnostic setloclist",
+    -- },
+    --
+    -- ["<leader>fm"] = {
+    --   function()
+    --     vim.lsp.buf.format { async = true }
+    --   end,
+    --   "lsp formatting",
+    -- },
+    --
+    -- ["<leader>wa"] = {
+    --   function()
+    --     vim.lsp.buf.add_workspace_folder()
+    --   end,
+    --   "add workspace folder",
+    -- },
+    --
+    -- ["<leader>wr"] = {
+    --   function()
+    --     vim.lsp.buf.remove_workspace_folder()
+    --   end,
+    --   "remove workspace folder",
+    -- },
+    --
+    -- ["<leader>wl"] = {
+    --   function()
+    --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    --   end,
+    --   "list workspace folders",
+    -- },
   },
 }
 
@@ -252,14 +378,21 @@ M.files = {
       "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
       "find all",
     },
-    ["<leader>ff"] = {
+
+    -- ["<leader>ff"] = {
+    --   "<Cmd>Telescope find_files hidden=true<CR>",
+    --   "find files",
+    -- },
+    -- ["<leader>fo"] = { "<Cmd>Telescope oldfiles<CR>", "find oldfiles" },
+
+    ["<leader>fo"] = {
       "<Cmd>Telescope find_files hidden=true<CR>",
-      "find files",
+      "open file",
     },
+
     ["<leader>fw"] = { "<Cmd>Telescope live_grep<CR>", "live grep" },
     ["<leader>fb"] = { "<Cmd>Telescope buffers<CR>", "find buffers" },
     ["<leader>fh"] = { "<Cmd>Telescope help_tags<CR>", "help page" },
-    ["<leader>fo"] = { "<Cmd>Telescope oldfiles<CR>", "find oldfiles" },
     ["<leader>fk"] = { "<Cmd>Telescope keymaps<CR>", "show keys" },
 
     ["<leader>fn"] = {
@@ -295,20 +428,20 @@ M.todocomments = {
 }
 
 M.trouble = {
-  n = {
-    ["<leader>tn"] = {
-      function()
-        require("trouble").next { skip_groups = true, jump = true }
-      end,
-      "jump to next problem",
-    },
-    ["<leader>tp"] = {
-      function()
-        require("trouble").prev { skip_groups = true, jump = true }
-      end,
-      "jump to next problem",
-    },
-  },
+  -- n = {
+  --   ["<leader>tn"] = {
+  --     function()
+  --       require("trouble").next { skip_groups = true, jump = true }
+  --     end,
+  --     "jump to next problem",
+  --   },
+  --   ["<leader>tp"] = {
+  --     function()
+  --       require("trouble").prev { skip_groups = true, jump = true }
+  --     end,
+  --     "jump to next problem",
+  --   },
+  -- },
 }
 
 M.session = {

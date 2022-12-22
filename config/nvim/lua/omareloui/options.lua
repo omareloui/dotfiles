@@ -1,6 +1,6 @@
 local options = {
   -- cmdheight = 2,
-  colorcolumn = "80",
+  colorcolumn = "80,120",
   cursorline = true,
   foldexpr = "nvim_treesitter#foldexpr()",
   foldlevel = 20,

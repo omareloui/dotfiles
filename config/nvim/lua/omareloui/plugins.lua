@@ -196,6 +196,12 @@ M = {
       require "omareloui.config.trouble"
     end,
   },
+
+  ["petertriho/nvim-scrollbar"] = {
+    config = function()
+      require "omareloui.config.scrollbar"
+    end,
+  },
 }
 
 return M

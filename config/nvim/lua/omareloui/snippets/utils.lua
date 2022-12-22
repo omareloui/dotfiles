@@ -6,22 +6,15 @@ end
 
 M = {}
 
-local ls = require "luasnip"
-local snip = ls.snippet
-local node = ls.snippet_node
-local text = ls.text_node
-local insert = ls.insert_node
-local func = ls.function_node
-local choice = ls.choice_node
-local dynamicn = ls.dynamic_node
-
-M.ls = ls
-M.snip = snip
-M.node = node
-M.text = text
-M.insert = insert
-M.func = func
-M.choice = choice
-M.dynamicn = dynamicn
+M.ls = require "luasnip"
+M.snip = ls.snippet
+M.node = ls.snippet_node
+M.text = ls.text_node
+M.insert = ls.insert_node
+M.func = ls.function_node
+M.restore = ls.restore_node
+M.choice = ls.choice_node
+M.dynamic = ls.dynamic_node
+M.fmt = require("luasnip.extras.fmt").fmt
 
 return M

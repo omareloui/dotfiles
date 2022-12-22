@@ -158,7 +158,7 @@ M.text_manipulation = {
   n = {
     -- replace the word you're on
     ["<leader>s"] = {
-      "<Cmd>%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left><CR>",
+      ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
       "replace current word",
     },
 

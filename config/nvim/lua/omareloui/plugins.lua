@@ -86,6 +86,14 @@ M = {
         { name = "spell" },
       },
     },
+  -- snippets
+  ["L3MON4D3/LuaSnip"] = {
+    wants = "friendly-snippets",
+    after = "nvim-cmp",
+    config = function()
+      require("plugins.configs.others").luasnip()
+      require "omareloui.snippets"
+    end,
   },
 
   ------- my plugins -----

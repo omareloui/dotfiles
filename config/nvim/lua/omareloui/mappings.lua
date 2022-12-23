@@ -41,6 +41,7 @@ M.disabled = {
     ["<leader>wl"] = "",
     ["<leader>wk"] = "",
     ["<leader>wK"] = "",
+    ["<leader>D"] = "",
   },
 }
 
@@ -56,6 +57,9 @@ M.initial = {
   n = {
     -- more accessible keys
     -- [";"] = { ":", "command mode", opts = { nowait = true } },
+
+    -- remove highlight
+    ["<leader>n"] = { "<Cmd>noh<CR>", "remove search highlight" },
   },
 
   v = {
@@ -191,28 +195,48 @@ M.window = {
 
 ----------------------------------- plugins -----------------------------------
 M.lsp = {
+  -- TODO: load the mappings in the lspconfig file instead of here
   n = {
-    ["<leader>lr"] = {
-      function()
-        require("nvchad_ui.renamer").open()
-      end,
-      "lsp rename",
-    },
     ["<leader>dp"] = {
       function()
         vim.diagnostic.goto_prev()
       end,
       "go to previous diagnostic",
+      { buffer = 0 },
     },
     ["<leader>dn"] = {
       function()
         vim.diagnostic.goto_next()
       end,
       "go to next diagnostic",
+      { buffer = 0 },
     },
-    ["<leader>da"] = {
+    ["<leader>dl"] = { -- after it's open you can use ctrl+q to add them to a quick fix window
       "<Cmd>Telescope diagnostics<CR>",
-      "show all diagnostics",
+      "list all diagnostics",
+      { buffer = 0 },
+    },
+
+    ["gt"] = {
+      function()
+        vim.lsp.buf.type_definition()
+      end,
+      "lsp definition type",
+      { buffer = 0 },
+    },
+    ["gi"] = {
+      function()
+        vim.lsp.buf.diagnostic()
+      end,
+      "got to implementation",
+      { buffer = 0 },
+    },
+    ["<leader>lr"] = {
+      function()
+        require("nvchad_ui.renamer").open()
+      end,
+      "lsp rename",
+      { buffer = 0 },
     },
 
     -- From the core
@@ -427,7 +451,6 @@ M.todocomments = {
 }
 
 local expand_move_snippet_keys = {
-
   ["<C-k>"] = {
     function()
       local ls = require "luasnip"

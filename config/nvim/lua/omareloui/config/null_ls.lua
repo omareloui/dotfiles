@@ -5,18 +5,23 @@ if not present then
 end
 
 local b = null_ls.builtins
+local f = b.formatting
+local d = b.diagnostics
 
 local sources = {
   -- webdev stuff
-  b.formatting.deno_fmt,
-  b.formatting.prettier,
+  f.deno_fmt,
+  f.prettier,
+  d.eslint_d,
 
   -- Lua
-  b.formatting.stylua,
+  f.stylua,
 
   -- Shell
-  b.formatting.shfmt,
-  b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
+  f.shfmt,
+  d.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
+
+  d.fish,
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})

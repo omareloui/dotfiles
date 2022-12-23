@@ -40,6 +40,38 @@ M = {
     },
   },
 
+  -- add lsp config
+  ["williamboman/mason.nvim"] = {
+    override_options = {
+      ensure_installed = {
+        "lua-language-server",
+        "html-lsp",
+        "astro-language-server",
+        "css-lsp",
+        "deno",
+        "eslint-lsp",
+        "eslint_d",
+        "lua-language-server",
+        "luacheck",
+        "luaformatter",
+        "luau-lsp",
+        "markdownlint",
+        "prettier",
+        "stylua",
+        "tailwindcss-language-server",
+        "typescript-language-server",
+        "vue-language-server",
+      },
+    },
+  },
+
+  ["neovim/nvim-lspconfig"] = {
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "omareloui.config.lspconfig"
+    end,
+  },
+
   -- add config to cmp
   ["hrsh7th/nvim-cmp"] = {
     override_options = function()
@@ -90,6 +122,9 @@ M = {
 
   -- cmp
   ["f3fora/cmp-spell"] = {},
+
+  -- lsp
+  ["jose-elias-alvarez/typescript.nvim"] = {},
 
   -- formatter
   ["jose-elias-alvarez/null-ls.nvim"] = {

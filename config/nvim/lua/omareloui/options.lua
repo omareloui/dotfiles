@@ -1,11 +1,9 @@
 local options = {
-  -- cmdheight = 2,
   colorcolumn = "80,120",
   cursorline = true,
   foldexpr = "nvim_treesitter#foldexpr()",
   foldlevel = 20,
   foldmethod = "expr",
-  guifont = "3270SemiNarrow Nerd Font Mono:h12",
   hlsearch = false,
   linebreak = true,
   list = true,
@@ -39,5 +37,9 @@ vim.api.nvim_create_autocmd(
 )
 
 -- To make the sessions work better
-vim.o.sessionoptions =
+vim.opt.sessionoptions =
   "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+if vim.g.neovide then
+  require "omareloui.neovide_config"
+end

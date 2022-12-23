@@ -5,10 +5,7 @@ set -Ux VISUAL nvim
 set -Ux DOTFILES $HOME/dotfiles/config
 
 
-####################
-### KEY BINDINGS ###
-####################
-
+################################# KEY BINDINGS #################################
 function fish_user_key_bindings
     fish_vi_key_bindings
 
@@ -18,13 +15,10 @@ function fish_user_key_bindings
 end
 
 
-###############
-### Aliases ###
-###############
-
+#################################### ALIASES ###################################
 alias vim="nvim"
 
-## Moving
+# Moving
 alias ls="exa -l --no-time --icons --sort=type"
 
 alias ll='ls -alF'
@@ -33,7 +27,7 @@ alias l='ls -CF'
 
 alias ll="ls -lh"
 alias lt="ls --human-readable --size -1 -S --classify"
-## End Moving
+# End Moving
 
 alias edge="/opt/microsoft/msedge/microsoft-edge"
 alias browse="edge"
@@ -41,7 +35,7 @@ alias browse="edge"
 alias h="history"
 alias gh="history | grep" # Find a command in grep history
 
-# Create python vertual environment
+# Create python virtual environment
 alias py="python3"
 alias ve="python3 -m venv ./env"
 alias va="source ./env/bin/activate.fish"
@@ -73,10 +67,7 @@ alias gp=gitpush
 alias gl="git l"
 
 
-#################################
-## Set the cursor for vi modes ##
-#################################
-
+########################## set the cursor for vi modes #########################
 function set_mode_pre_execution --on-event fish_preexec
     set command (expr $argv : '\([^ ]*\).*')
     set -g __last_fish_bind_mode $fish_bind_mode
@@ -99,30 +90,17 @@ set -x fish_cursor_insert line
 set -x fish_cursor_replace_one underscore
 
 
-########
-# pnpm #
-########
-
+##################################### pnpm #####################################
 set -gx PNPM_HOME "/home/omareloui/.local/share/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
 
-
-########
-# deno #
-########
-
+##################################### deno #####################################
 set -gx DENO_INSTALL "/home/omareloui/.deno"
 set -gx PATH "$DENO_INSTALL/bin:$PATH"
 
-########
-# rust #
-########
-
+##################################### rust #####################################
 set -gx PATH "$HOME/.cargo/bin:$PATH"
 
-##################
-## Init Plugins ##
-##################
-
+################################# init plugins #################################
 zoxide init fish | source
 starship init fish | source

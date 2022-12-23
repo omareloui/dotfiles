@@ -7,7 +7,7 @@ local options = {
   hlsearch = false,
   linebreak = true,
   list = true,
-  listchars = { tab = "▸ ", lead = "·", trail = "·" },
+  listchars = { tab = "» ", lead = "·", trail = "·", eol = "↲" },
   numberwidth = 4,
   relativenumber = true,
   scrolloff = 8,
@@ -30,11 +30,7 @@ vim.opt.clipboard:remove "unnamedplus"
 vim.opt.iskeyword:append "-"
 
 -- stop continuous comments
--- FIXME: doesn't work on vim start
-vim.api.nvim_create_autocmd(
-  { "BufNewFile", "BufRead" },
-  { command = "setlocal formatoptions-=cro" }
-)
+vim.api.nvim_create_autocmd("FileType", { command = "set formatoptions-=cro" })
 
 -- To make the sessions work better
 vim.opt.sessionoptions =

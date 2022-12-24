@@ -7,7 +7,7 @@ M.ui = {
   hl_override = hl.override,
   hl_add = hl.add,
   tabufline = {},
-  -- transparency = true,
+  transparency = true,
 }
 
 M.plugins = require "omareloui.plugins"

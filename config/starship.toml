@@ -1,286 +1,68 @@
-'$schema' = 'https://starship.rs/config-schema.json'
+## ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█
+## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
+## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
 
-# command_timeout = 10000
+format = "$directory$all"
+right_format = """$git_branch$git_status$cmd_duration"""
 
-format = """
-$os\
-$username\
-$hostname\
-$localip\
-$singularity\
-$kubernetes\
-$directory\
-$vcsh\
-$git_branch\
-$git_commit\
-$git_state\
-$git_status\
-$git_metrics\
-$hg_branch\
-$fill\
-\
-$docker_context\
-$package\
-$c\
-$cmake\
-$cobol\
-$daml\
-$dart\
-$deno\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$golang\
-$guix_shell\
-$haskell\
-$helm\
-$java\
-$julia\
-$kotlin\
-$lua\
-$nim\
-$nodejs\
-$ocaml\
-$perl\
-$php\
-$pulumi\
-$purescript\
-$python\
-$raku\
-$rlang\
-$red\
-$ruby\
-$rust\
-$scala\
-$swift\
-$terraform\
-$vlang\
-$vagrant\
-$zig\
-$buf\
-$nix_shell\
-$conda\
-$meson\
-$spack\
-\
-$aws\
-$gcloud\
-$openstack\
-$azure\
-$env_var\
-$crystal\
-$custom\
-\
-$memory_usage\
-$cmd_duration\
-$jobs\
-$time\
-$line_break\
-$shlvl\
-$battery\
-$status\
-$container\
-$shell\
-$sudo\
-$character\
-"""
+# Disable the blank line at the start of the prompt
+add_newline = false
 
+[line_break]
+disabled = true
 
-# =============================== #
-# ============ Left ============ #
-# =============================== #
-[os]
-disabled = false
-style = 'bright-red'
-
-[os.symbols]
-Ubuntu = ' '
-
-[username]
-format = '[$user](bright-black bold)'
-disabled = false
-show_always = true
+[character]
+success_symbol = " [](#6791c9)"
+error_symbol = " [](#df5b61)"
+vicmd_symbol = "[  ](#78b892)"
 
 [hostname]
-ssh_only = false
-style = 'white dimmed'
-format = '[@]($style)[$ssh_symbol]($style)[$hostname]($style):'
+ssh_only = true
+format = "[$hostname](bold blue) "
 disabled = false
-
-[directory]
-read_only = " "
-format = '[$path]($style)[$read_only]($read_only_style) '
-
-[git_metrics]
-disabled = false
-format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
-
-[localip]
-disabled = true
-
-
-[fill]
-symbol = ' '
-
-
-# =============================== #
-# ============ Right ============ #
-# =============================== #
-[memory_usage]
-disabled = false
-threshold = -1
-symbol = ''
-format = '$symbol [${ram_pct}]($style) '
-
-[jobs]
-symbol = ''
-style = 'bold red'
-format = '[$symbol ]($style)'
 
 [cmd_duration]
-format = '[$duration ]($style)'
-
-[time]
+min_time = 1
+format = "[](fg:#1c252c bg:none)[$duration]($style)[](fg:#1c252c bg:#1c252c)[](fg:#bc83e3 bg:#1c252c)[ ](fg:#1c252c bg:#bc83e3)[](fg:#bc83e3 bg:none) "
 disabled = false
-style = 'bold white'
-format = '[$time]($style)'
+style = "fg:#d9d7d6 bg:#1c252c"
 
+[directory]
+format = "[](fg:#1c252c bg:none)[$path]($style)[](fg:#1c252c bg:#1c252c)[](fg:#6791c9 bg:#1c252c)[ ](fg:#1c252c bg:#6791c9)[](fg:#6791c9 bg:none)"
+style = "fg:#d9d7d6 bg:#1c252c"
+truncation_length = 3
+truncate_to_repo=false
 
-# ============================== #
-# =========== Prompt =========== #
-# ============================== #
-[shell]
-# disabled = false
-fish_indicator = ''
-style = 'cyan bold'
+[git_branch]
+format = "[](fg:#1c252c bg:none)[$branch]($style)[](fg:#1c252c bg:#1c252c)[](fg:#78b892 bg:#1c252c)[](fg:#282c34 bg:#78b892)[](fg:#78b892 bg:none) "
+style = "fg:#d9d7d6 bg:#1c252c"
 
-[shlvl]
-# disabled = false
-symbol = ''
-format = '[$shlvl]($style) [$symbol](yellow) '
-threshold = 2
+[git_status]
+format="[](fg:#1c252c bg:none)[$all_status$ahead_behind]($style)[](fg:#1c252c bg:#1c252c)[](fg:#67afc1 bg:#1c252c)[ ](fg:#1c252c bg:#67afc1)[](fg:#67afc1 bg:none) "
+style = "fg:#d9d7d6 bg:#1c252c"
+conflicted = "="
+ahead =	"⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+up_to_date = ""
+untracked = "?${count}"
+stashed = ""
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "${count}"
 
-[sudo]
-disabled = false
-symbol = ''
-style = "red"
-format = '[$symbol ]($style)'
+[git_commit]
+format = "[\\($hash\\)]($style) [\\($tag\\)]($style)"
+style = "green"
 
-
-
-# =================================== #
-# ============ Languages ============ #
-# =================================== #
-
-# === Package === #
-[package]
-disabled = true
-# format = '[$symbol($version )]($style) '
-
-
-[bun]
-format = '[$symbol($version )]($style)'
-
-[buf]
-format = '[$symbol($version )]($style)'
-
-[cmake]
-format = '[$symbol($version )]($style)'
-
-[cobol]
-format = '[$symbol($version )]($style)'
-
-[crystal]
-format = '[$symbol($version )]($style)'
-
-[daml]
-format = '[$symbol($version )]($style)'
-
-[dart]
-format = '[$symbol($version )]($style)'
-
-[deno]
-format = '[$symbol($version )]($style)'
-
-[dotnet]
-format = '[$symbol($version )(🎯 $tfm )]($style)'
-
-[elixir]
-format = '[$symbol($version )]($style)'
-
-[elm]
-format = '[$symbol($version )]($style)'
-
-[erlang]
-format = '[$symbol($version )]($style)'
-
-[golang]
-format = '[$symbol($version )]($style)'
-
-[helm]
-format = '[$symbol($version )]($style)'
-
-[julia]
-format = '[$symbol($version )]($style)'
-
-[kotlin]
-format = '[$symbol($version )]($style)'
-
-[lua]
-format = '[$symbol($version )]($style)'
-
-[meson]
-format = '[$symbol($version )]($style)'
-
-[nim]
-format = '[$symbol($version )]($style)'
-
-[nodejs]
-format = '[$symbol($version )]($style)'
-detect_extensions =	[]
-
-[ocaml]
-format = '[$symbol($version )(\($switch_indicator$switch_name\) )]($style)'
-
-[perl]
-format = '[$symbol($version )]($style)'
-
-[php]
-format = '[$symbol($version )]($style)'
-
-[pulumi]
-format = '[$symbol($version )$stack]($style)'
-
-[purescript]
-format = '[$symbol($version )]($style)'
-
-[python]
-format = '[$symbol($version )]($style)'
-
-[raku]
-format = '[$symbol($version )]($style)'
-
-[red]
-format = '[$symbol($version )]($style)'
-
-[rlang]
-format = '[$symbol($version )]($style)'
-
-[ruby]
-format = '[$symbol($version )]($style)'
-
-[rust]
-format = '[$symbol($version )]($style)'
-
-[swift]
-format = '[$symbol($version )]($style)'
-
-[vagrant]
-format = '[$symbol($version )]($style)'
-
-[vlang]
-format = '[$symbol($version )]($style)'
-
-[zig]
-format = '[$symbol($version )]($style)'
+[git_state]
+rebase = "REBASING"
+merge =	"MERGING"
+revert = "REVERTING"
+cherry_pick = "CHERRY-PICKING"
+bisect = "BISECTING"
+am = "AM"
+am_or_rebase = "AM/REBASE"
+style =	"yellow"
+format = '\([$state( $progress_current/$progress_total)]($style)\) '

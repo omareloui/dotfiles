@@ -44,7 +44,9 @@ alias myip="curl ipinfo.io/ip; echo \\"
 
 alias bat="batcat"
 
-alias clipboard='xclip -sel clip'
+alias clipboard="xclip -sel clip"
+
+alias w="variety -n"
 
 # Git
 function gitcommitall

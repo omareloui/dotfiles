@@ -72,7 +72,7 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
 	awful.layout.suit.tile,
-	awful.layout.suit.floating,
+	-- awful.layout.suit.floating,
 	awful.layout.suit.tile.left,
 	awful.layout.suit.tile.bottom,
 	awful.layout.suit.tile.top,
@@ -353,7 +353,8 @@ globalkeys = gears.table.join(
 
 	-- Prompt
 	awful.key({ modkey }, "r", function()
-		awful.screen.focused().mypromptbox:run()
+		awful.spawn("dmenu_run")
+		-- awful.screen.focused().mypromptbox:run()
 	end, { description = "run prompt", group = "launcher" }),
 
 	awful.key({ modkey }, "x", function()
@@ -610,6 +611,16 @@ b.useless_gap = 10
 require("config_touchpad")
 local config_control_keys = require("config_control_keys")
 globalkeys = config_control_keys(globalkeys)
+
+-- setup custom keys
+globalkeys = gears.table.join(
+	globalkeys,
+	awful.key({ modkey }, "b", function()
+		awful.spawn("microsoft-edge")
+	end, { description = "launch browser", group = "launcher" })
+)
+
+-- add the defined keys
 root.keys(globalkeys)
 
 -- startup --

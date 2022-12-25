@@ -4,12 +4,13 @@ nvim:
   [ ] create the new status bar like iamverysimp1e's.
 
 awesome:
-  [ ] add new color for the border for the focused window.
+  [x] add new color for the border for the focused window.
 
   [ ] find something to preview the brightness on change.
   [ ] find something to preview the audio on change.
-  [ ] add a notification center.
   [ ] add something to control my mic.
+
+  [ ] add a notification center.
 
   [ ] add config for firefox/chrome.
 

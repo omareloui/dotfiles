@@ -1,11 +1,11 @@
 local options = {
   colorcolumn = "80,120",
-  cursorcolumn = true,
+  -- cursorcolumn = true,
   cursorline = true,
   foldexpr = "nvim_treesitter#foldexpr()",
   foldlevel = 20,
   foldmethod = "expr",
-  guifont = { "JetBrainsMono Nerd Font", ":h12" },
+  guifont = { "JetBrainsMono Nerd Font", ":h11" },
   hlsearch = false,
   linebreak = true,
   list = true,

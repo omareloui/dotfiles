@@ -1,8 +1,29 @@
 nvim:
   [x] add a button to alpha to open my repos and select from them.
+  [ ] remove the x button in the top bar.
+  [ ] create the new status bar like iamverysimp1e's.
+
+awesome:
+  [ ] add new color for the border for the focused window.
+
+  [ ] find something to preview the brightness on change.
+  [ ] find something to preview the audio on change.
+  [ ] add a notification center.
+  [ ] add something to control my mic.
+
+  [ ] add config for firefox/chrome.
+
+  [ ] get a mouse theme.
+
+  polybar
+    [ ] set it up
+      follow this: https://github.com/iamverysimp1e/dots/blob/main/.config/waybar/config
 
 packages:
-  [ ] add lazygit
+  [ ] add lazygit.
+  [ ] add awesome, polybar, picom, dmenu, variety and whatever I'm forgetting rn.
 docs:
-  [ ] add lazygit
+  [ ] add lazygit.
+  [ ] add awesome and how to set it up with the other plugins.
+
 

@@ -12,4 +12,4 @@ g.neovide_cursor_vfx_mode = "pixiedust"
 g.neovide_cursor_vfx_particle_density = 20
 g.neovide_cursor_vfx_particle_lifetime = 2
 
-g.neovide_fullscreen = true
+-- g.neovide_fullscreen = true

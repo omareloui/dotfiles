@@ -15,3 +15,5 @@ config/fish/functions/__*
 config/fish/functions/bass.fish
 config/fish/functions/fisher.fish
 
+# todo files
+*.todo

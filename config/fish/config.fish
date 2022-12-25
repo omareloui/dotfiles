@@ -69,6 +69,9 @@ alias gp=gitpush
 alias gl="git l"
 
 
+# Fun
+alias matrix="cmatrix -C blue"
+
 ########################## set the cursor for vi modes #########################
 function set_mode_pre_execution --on-event fish_preexec
     set command (expr $argv : '\([^ ]*\).*')

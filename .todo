@@ -2,6 +2,18 @@ nvim:
   [x] add a button to alpha to open my repos and select from them.
   [ ] remove the x button in the top bar.
   [ ] create the new status bar like iamverysimp1e's.
+  [ ] install
+      [treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
+      [neoclip](https://github.com/AckslD/nvim-neoclip.lua) and
+      [zenmode](https://github.com/folke/zen-mode.nvim).
+  [ ] load the mappings in the lspconfig file instead of letting nvchad laod
+      them globally.
+  [ ] recreate [this](https://youtu.be/ub0REXjhpmk?t=1016) for my snippets. it's
+      [here](https://github.com/ziontee113/luasnip-tutorial/blob/main/snippets/boilerplate.lua)
+      but i need to understand it first.
+  [ ] setup a
+      [debugger](https://www.youtube.com/watch?v=0moS8UHupGc&ab_channel=TJDeVries).
+  [ ] remove nvchad
 
 awesome:
   [x] add new color for the border for the focused window.
@@ -14,11 +26,13 @@ awesome:
 
   [ ] add config for firefox/chrome.
 
-  [ ] get a mouse theme.
+  [x] get a cursor theme.
 
   polybar
     [ ] set it up
       follow this: https://github.com/iamverysimp1e/dots/blob/main/.config/waybar/config
+  dmenu
+    [ ] style it or replace it with rofi
 
 packages:
   [ ] add lazygit.

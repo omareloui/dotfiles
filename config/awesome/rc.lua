@@ -13,7 +13,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
+-- local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- Enable hotkeys help widget for VIM and other apps
@@ -131,7 +131,7 @@ else
 end
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
@@ -287,12 +287,12 @@ globalkeys = gears.table.join(
 	-- Prompt
 	awful.key({ modkey }, "r", function()
 		awful.spawn("dmenu_run")
-	end, { description = "run prompt", group = "launcher" }),
+	end, { description = "run prompt", group = "launcher" })
 
 	-- Menubar
-	awful.key({ modkey }, "p", function()
-		menubar.show()
-	end, { description = "show the menubar", group = "launcher" })
+	-- awful.key({ modkey }, "p", function()
+	-- 	menubar.show()
+	-- end, { description = "show the menubar", group = "launcher" })
 )
 
 clientkeys = gears.table.join(
@@ -402,8 +402,8 @@ awful.rules.rules = {
 	{
 		rule = {},
 		properties = {
-			border_width = beautiful.border_width,
-			border_color = beautiful.border_normal,
+			-- border_width = beautiful.border_width,
+			-- border_color = beautiful.border_normal,
 			focus = awful.client.focus.filter,
 			raise = true,
 			keys = clientkeys,
@@ -481,9 +481,12 @@ end)
 ---------------------------------  MY  CONFIG ----------------------------------
 local b = beautiful
 
-b.useless_gap = 10
+b.useless_gap = 8
 
 client.connect_signal("manage", function(c)
+	if c.class == "Polybar" then
+		return
+	end
 	-- add roundness to the client
 	c.shape = function(cr, w, h)
 		gears.shape.rounded_rect(cr, w, h, 10)
@@ -491,9 +494,9 @@ client.connect_signal("manage", function(c)
 
 	-- set the border
 	c.border_width = 1.5
-	b.border_normal = "#4f5572"
-	b.border_focus = "#98B0D3"
-	b.border_marked = "#C79BF0"
+	c.border_normal = "#4f5572"
+	c.border_focus = "#98B0D3"
+	c.border_marked = "#C79BF0"
 end)
 
 -- configure keyboard and touchpad

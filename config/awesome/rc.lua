@@ -620,6 +620,14 @@ globalkeys = gears.table.join(
 	end, { description = "launch browser", group = "launcher" })
 )
 
+-- start the new window as the slave
+client.connect_signal("manage", function(c)
+	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
+		awful.placement.no_offscreen(c)
+	end
+	awful.client.cycle()
+end)
+
 -- add the defined keys
 root.keys(globalkeys)
 

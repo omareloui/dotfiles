@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:3270 Medium Nerd Font Mono 10
+font pango:JetBrainsMono Nerd Font 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -51,7 +51,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+p exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -224,11 +224,18 @@ for_window [class="^.*"] border pixel 1
 
 
 # ---------- keybindings ---------- #
+bindsym $mod+m fullscreen toggle
+
+# resize
+bindsym $mod+Shift+y resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+u resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+i resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+o resize shrink height 10 px or 10 ppt
+
 # launch
 bindsym $mod+b exec microsoft-edge
-bindsym $mod+m exec thunderbird
+# bindsym $mod+e exec thunderbird
 bindsym $mod+v exec neovide
-
 
 # play/pause keys
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -244,8 +251,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10
 # ---------- assigns ---------- #
 assign [class="neovide"] $ws1
 assign [class="Microsoft-edge"] $ws2
-assign [class="thunderbird"] $ws8
-assign [class="TelegramDesktop"] $ws9
+assign [class="thunderbird"] $ws7
+assign [class="TelegramDesktop"] $ws8
+assign [class="Rhythmbox"] $ws9
 
 
 
@@ -260,3 +268,4 @@ exec $HOME/dotfiles/system_scripts/config_touchpad.sh
 exec microsoft-edge
 exec telegram-desktop
 exec thunderbird
+exec rhythmbox

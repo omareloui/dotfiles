@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-config_in_dot_config="nvim kitty awesome polybar fish tmux lazygit starship.toml picom.conf"
+config_in_dot_config="nvim kitty awesome i3 polybar fish tmux lazygit starship.toml picom.conf"
 # config_in_home=""
 vs_code_config="keybindings.json settings.json"
 

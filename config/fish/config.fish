@@ -68,6 +68,8 @@ alias guc="git uncommit"
 alias gp=gitpush
 alias gl="git l"
 
+# Kitty
+alias icat="kitty +kitten icat"
 
 # Fun
 alias matrix="cmatrix -C blue"

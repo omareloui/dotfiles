@@ -213,29 +213,32 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
 	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
 
+	-- {{{ Focus
+	awful.key({ modkey }, "h", function()
+		awful.client.focus.bydirection("left")
+		if client.focus then
+			client.focus:raise()
+		end
+	end, { description = "focus on the right client" }),
 	awful.key({ modkey }, "j", function()
-		awful.client.focus.byidx(1)
-	end, { description = "focus next by index", group = "client" }),
+		awful.client.focus.bydirection("down")
+		if client.focus then
+			client.focus:raise()
+		end
+	end, { description = "focus on the down client" }),
 	awful.key({ modkey }, "k", function()
-		awful.client.focus.byidx(-1)
-	end, { description = "focus previous by index", group = "client" }),
-	awful.key({ modkey }, "w", function()
-		mymainmenu:show()
-	end, { description = "show main menu", group = "awesome" }),
+		awful.client.focus.bydirection("up")
+		if client.focus then
+			client.focus:raise()
+		end
+	end, { description = "focus on the up client" }),
+	awful.key({ modkey }, "l", function()
+		awful.client.focus.bydirection("right")
+		if client.focus then
+			client.focus:raise()
+		end
+	end, { description = "focus on the right client" }),
 
-	-- Layout manipulation
-	awful.key({ modkey, "Shift" }, "j", function()
-		awful.client.swap.byidx(1)
-	end, { description = "swap with next client by index", group = "client" }),
-	awful.key({ modkey, "Shift" }, "k", function()
-		awful.client.swap.byidx(-1)
-	end, { description = "swap with previous client by index", group = "client" }),
-	awful.key({ modkey, "Control" }, "j", function()
-		awful.screen.focus_relative(1)
-	end, { description = "focus the next screen", group = "screen" }),
-	awful.key({ modkey, "Control" }, "k", function()
-		awful.screen.focus_relative(-1)
-	end, { description = "focus the previous screen", group = "screen" }),
 	awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
 	awful.key({ modkey }, "Tab", function()
 		awful.client.focus.history.previous()
@@ -243,6 +246,37 @@ globalkeys = gears.table.join(
 			client.focus:raise()
 		end
 	end, { description = "go back", group = "client" }),
+	-- }}}
+
+	-- {{{ Swap
+	awful.key({ modkey, "Shift" }, "j", function()
+		awful.client.swap.bydirection("down")
+	end, { description = "swap with down client", group = "client" }),
+	awful.key({ modkey, "Shift" }, "k", function()
+		awful.client.swap.bydirection("up")
+	end, { description = "swap with top client", group = "client" }),
+	awful.key({ modkey, "Shift" }, "h", function()
+		awful.client.swap.bydirection("left")
+	end, { description = "swap with left client", group = "client" }),
+	awful.key({ modkey, "Shift" }, "l", function()
+		awful.client.swap.bydirection("right")
+	end, { description = "swap with right client", group = "client" }),
+	-- }}}
+
+	-- {{{ Resize
+	awful.key({ modkey, "Control" }, "l", function()
+		awful.tag.incmwfact(0.05)
+	end, { description = "increase master width factor", group = "layout" }),
+	awful.key({ modkey, "Control" }, "h", function()
+		awful.tag.incmwfact(-0.05)
+	end, { description = "decrease master width factor", group = "layout" }),
+	awful.key({ modkey, "Control" }, "k", function(client)
+		awful.client.incwfact(0.05)
+	end, { description = "increase client height factor", group = "layout" }),
+	awful.key({ modkey, "Control" }, "j", function()
+		awful.client.incwfact(-0.05)
+	end, { description = "decrease client height factor", group = "layout" }),
+	---}}}
 
 	-- Standard program
 	awful.key({ modkey }, "Return", function()
@@ -251,27 +285,10 @@ globalkeys = gears.table.join(
 	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
 
-	awful.key({ modkey }, "l", function()
-		awful.tag.incmwfact(0.05)
-	end, { description = "increase master width factor", group = "layout" }),
-	awful.key({ modkey }, "h", function()
-		awful.tag.incmwfact(-0.05)
-	end, { description = "decrease master width factor", group = "layout" }),
-	awful.key({ modkey, "Shift" }, "h", function()
-		awful.tag.incnmaster(1, nil, true)
-	end, { description = "increase the number of master clients", group = "layout" }),
-	awful.key({ modkey, "Shift" }, "l", function()
-		awful.tag.incnmaster(-1, nil, true)
-	end, { description = "decrease the number of master clients", group = "layout" }),
-	awful.key({ modkey, "Control" }, "h", function()
-		awful.tag.incncol(1, nil, true)
-	end, { description = "increase the number of columns", group = "layout" }),
-	awful.key({ modkey, "Control" }, "l", function()
-		awful.tag.incncol(-1, nil, true)
-	end, { description = "decrease the number of columns", group = "layout" }),
 	awful.key({ modkey }, "space", function()
 		awful.layout.inc(1)
 	end, { description = "select next", group = "layout" }),
+
 	awful.key({ modkey, "Shift" }, "space", function()
 		awful.layout.inc(-1)
 	end, { description = "select previous", group = "layout" }),
@@ -285,14 +302,9 @@ globalkeys = gears.table.join(
 	end, { description = "restore minimized", group = "client" }),
 
 	-- Prompt
-	awful.key({ modkey }, "r", function()
-		awful.spawn("dmenu_run")
-	end, { description = "run prompt", group = "launcher" })
-
-	-- Menubar
-	-- awful.key({ modkey }, "p", function()
-	-- 	menubar.show()
-	-- end, { description = "show the menubar", group = "launcher" })
+	awful.key({ modkey }, "p", function()
+		awful.spawn("$HOME/.config/rofi/bin/launcher")
+	end, { description = "show the menubar", group = "launcher" })
 )
 
 clientkeys = gears.table.join(
@@ -447,6 +459,12 @@ awful.rules.rules = {
 		},
 		properties = { floating = true },
 	},
+
+	----------- My rules -----------
+	{ rule = { class = "TelegramDesktop" }, properties = { tag = "6" } },
+	{ rule = { class = "KeePassXC" }, properties = { tag = "7" } },
+	{ rule = { class = "thunderbird" }, properties = { tag = "8" } },
+	{ rule = { class = "Rhythmbox" }, properties = { tag = "9" } },
 }
 -- }}}
 
@@ -522,3 +540,9 @@ root.keys(globalkeys)
 awful.spawn.once("picom")
 awful.spawn.once("variety --resume")
 awful.spawn.with_shell("/home/omareloui/.config/polybar/launch.sh")
+
+-- applications
+awful.spawn.once("telegram-desktop")
+awful.spawn.once("thunderbird")
+awful.spawn.once("keepassxc")
+awful.spawn.once("rhythmbox")

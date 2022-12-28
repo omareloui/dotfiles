@@ -20,7 +20,8 @@ M.on_attach = function(client, bufnr)
 
 
   if client.server_capabilities.signatureHelpProvider then
-    require("nvchad_ui.signature").setup(client)
+    -- TODO:
+    -- require("nvchad_ui.signature").setup(client)
   end
 end
 

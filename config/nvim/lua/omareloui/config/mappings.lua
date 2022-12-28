@@ -42,88 +42,22 @@ set("v", ">", ">gv", { desc = "indend line forwards" })
 set("v", "J", "mzJ`z", { desc = "merge with next line" })
 
 -- Buffers {{{
-local function nextBuffer()
-  local bufs = M.bufilter() or {}
-  for i, v in ipairs(bufs) do
-    if api.nvim_get_current_buf() == v then
-      vim.cmd(i == #bufs and "b" .. bufs[1] or "b" .. bufs[i + 1])
-      break
-    end
-  end
+local bufferline_buffers = function()
+  set("n", "<C-S-Right>", "<Cmd>BufferLineMoveNext<CR>", { desc = "move the tab to the right", silent = true })
+  set("n", "<C-S-Left>", "<Cmd>BufferLineMovePrev<CR>", { desc = "move the tab to the left", silent = true })
+
+  set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "go to next buffer" })
+  set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "go to previous buffer" })
 end
-
-local function prevBuffer()
-  local bufs = M.bufilter() or {}
-  for i, v in ipairs(bufs) do
-    if api.nvim_get_current_buf() == v then
-      vim.cmd(i == 1 and "b" .. bufs[#bufs] or "b" .. bufs[i - 1])
-      break
-    end
-  end
-end
-
-local function closeBuf()
-  if vim.bo.buftype == "terminal" then
-    vim.cmd(vim.bo.buflisted and "set nobl | enew" or "hide")
-  else
-    local bufnr = bufnr or api.nvim_get_current_buf()
-    prevBuffer()
-    vim.cmd("confirm bd" .. bufnr)
-  end
-end
-
-local function closeOtherBufs(action)
-  if action == "closeTab" then
-    vim.cmd "tabclose"
-  end
-
-  for _, buf in ipairs(vim.t.bufs) do
-    if buf ~= api.nvim_get_current_buf() then
-      vim.cmd("bd " .. buf)
-    end
-  end
-end
-
-local function closeAllBufs()
-  local bufs = vim.t.bufs
-  if action == "closeTab" then vim.cmd "tabclose" end
-  for _, buf in ipairs(bufs) do M.close_buf(buf) end
-  if action ~= "closeTab" then vim.cmd "enew" end
-end
-
-local function move_buf(n)
-  local bufs = vim.t.bufs
-
-  for i, bufnr in ipairs(bufs) do
-    if bufnr == vim.api.nvim_get_current_buf() then
-      if n < 0 and i == 1 or n > 0 and i == #bufs then
-        bufs[1], bufs[#bufs] = bufs[#bufs], bufs[1]
-      else
-        bufs[i], bufs[i + n] = bufs[i + n], bufs[i]
-      end
-
-      break
-    end
-  end
-
-  vim.t.bufs = bufs
-  vim.cmd "redrawtabline"
-end
-
-set("n", "<C-S-Right>", function() move_buf(1) end, { desc = "move the tab to the right", silent = true })
-set("n", "<C-S-Left>", function() move_buf(-1) end, { desc = "move the tab to the left", silent = true })
 
 set("n", "<C-s>", "<Cmd>up<CR>", { desc = "save buffer" })
 set("n", "<leader>w", "<Cmd>up<CR>", { desc = "save buffer" })
 
 set("n", "<C-c>", "<Cmd>%y+<CR>", { desc = "copy the whole file" })
 
-set("n", "<leader>bx", closeAllBufs, { desc = "close all buffers" })
-set("n", "<leader>bo", closeOtherBufs, { desc = "close all other buffers" })
-set("n", "<leader>bq", closeBuf, { desc = "close buffer" })
-
-set("n", "<Tab>", nextBuffer, { desc = "go to next buffer" })
-set("n", "<S-Tab>", prevBuffer, { desc = "go to previous buffer" })
+set("n", "<leader>bx", "<Cmd>%bd<CR>", { desc = "close all buffers", silent = true })
+set("n", "<leader>bo", "<Cmd>%bd|e#<CR>", { desc = "close all other buffers", silent = true })
+set("n", "<leader>q", "<Cmd>bd<CR>", { desc = "close buffer", silent = true })
 -- }}}
 
 -- Clipboard {{{
@@ -260,6 +194,12 @@ M.undotree = function()
 end
 -- }}}
 
+--- BufferLine {{{
+M.bufferline = function() 
+  bufferline_buffers()
+end
+--- }}}
+
 -- Git {{{
 local schedule = vim.schedule
 local diff = vim.wo.diff
@@ -374,7 +314,7 @@ end
 -- Terminal {{{
 M.terminal = function()
   terminal_git()
-  set("n", "<leader>t", "<Cmd>lua _TERMINAL()<CR>", { desc = "toggle the terminal" })
+  set("n", "<leader>tt", "<Cmd>lua _TERMINAL()<CR>", { desc = "toggle the terminal" })
 end
 
 M.terminal_when_active = function()

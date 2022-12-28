@@ -5,7 +5,7 @@ return {
   -- }}}
 
   -- Themes and Styles {{{
-  { "akinsho/bufferline.nvim", tag = "v3.*", config = true },
+  { "akinsho/bufferline.nvim", tag = "v3.*", config = true, init = require("omareloui.config.mappings").bufferline },
   { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000,
     config = function() vim.cmd.colorscheme "catppuccin-mocha" end },
   -- }}}

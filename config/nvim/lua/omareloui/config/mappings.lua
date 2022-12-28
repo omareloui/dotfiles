@@ -43,11 +43,21 @@ set("v", "J", "mzJ`z", { desc = "merge with next line" })
 
 -- Buffers {{{
 local bufferline_buffers = function()
+  local bufferline = require "bufferline"
+
   set("n", "<C-S-Right>", "<Cmd>BufferLineMoveNext<CR>", { desc = "move the tab to the right", silent = true })
   set("n", "<C-S-Left>", "<Cmd>BufferLineMovePrev<CR>", { desc = "move the tab to the left", silent = true })
 
   set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "go to next buffer" })
   set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "go to previous buffer" })
+
+  set("n", "<leader>bo", function()
+    for _, e in ipairs(require("bufferline").get_elements().elements) do
+      if e.id ~= vim.api.nvim_buf_get_number(0) then
+        vim.api.nvim_buf_delete(e.id, {})
+      end
+    end
+  end, { desc = "close all other buffers", silent = true })
 end
 
 set("n", "<C-s>", "<Cmd>up<CR>", { desc = "save buffer" })
@@ -55,10 +65,7 @@ set("n", "<leader>w", "<Cmd>up<CR>", { desc = "save buffer" })
 
 set("n", "<C-c>", "<Cmd>%y+<CR>", { desc = "copy the whole file" })
 
-set("n", "<leader>bx", "<Cmd>%bd<CR>", { desc = "close all buffers", silent = true })
-set("n", "<leader>bo", "<Cmd>%bd|e#<CR>", { desc = "close all other buffers", silent = true })
--- TODO: if it's the last buffer end echo a message to tell me if I wanted to exit with :q if I wanted this
-set("n", "<leader>q", ":BufferLineCycleNext<CR>:bd#<CR>", { desc = "close buffer", silent = true })
+set("n", "<leader>q", function() vim.schedule(function() vim.cmd "bd" end) end, { desc = "close buffer", silent = true })
 -- }}}
 
 -- Clipboard {{{

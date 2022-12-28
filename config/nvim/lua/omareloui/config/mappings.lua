@@ -57,7 +57,8 @@ set("n", "<C-c>", "<Cmd>%y+<CR>", { desc = "copy the whole file" })
 
 set("n", "<leader>bx", "<Cmd>%bd<CR>", { desc = "close all buffers", silent = true })
 set("n", "<leader>bo", "<Cmd>%bd|e#<CR>", { desc = "close all other buffers", silent = true })
-set("n", "<leader>q", "<Cmd>bd<CR>", { desc = "close buffer", silent = true })
+-- TODO: if it's the last buffer end echo a message to tell me if I wanted to exit with :q if I wanted this
+set("n", "<leader>q", ":BufferLineCycleNext<CR>:bd#<CR>", { desc = "close buffer", silent = true })
 -- }}}
 
 -- Clipboard {{{
@@ -245,7 +246,7 @@ end
 M.telescope = function()
   set("n", "<leader>fa", "<Cmd>Telescope find_files follow=truw no_ignore=true hidden=true<CR>", { desc = "find all" })
   set("n", "<leader>ff", "<Cmd>Telescope find_files<CR>", { desc = "find files" })
-  set("n", "<leader>fo", "<Cmd>Telescope old_files<CR>", { desc = "find in recent opened files" })
+  set("n", "<leader>fo", "<Cmd>Telescope oldfiles<CR>", { desc = "find in recent opened files" })
 
   set("n", "<leader>fw", "<Cmd>Telescope live_grep<CR>", { desc = "live grep" })
   set("n", "<leader>fb", "<Cmd>Telescope buffers<CR>", { desc = "search in buffers" })

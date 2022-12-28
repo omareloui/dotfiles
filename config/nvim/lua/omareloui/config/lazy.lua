@@ -48,5 +48,6 @@ if lazy_ok then
       }
     }
   }
+
   lazy.setup("omareloui.plugins", opts)
 end

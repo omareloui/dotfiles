@@ -1,24 +1,29 @@
-local present, gitsigns = pcall(require, "gitsigns")
+M = { "lewis6991/gitsigns.nvim", ft = "gitcommit" }
 
-if not present then
-  return
+M.config = function()
+  local present, gitsigns = pcall(require, "gitsigns")
+
+  if not present then
+    return
+  end
+
+  -- TODO:
+  -- require("base46").load_highlight "git"
+
+  local options = {
+    signs = {
+      add = { hl = "DiffAdd", text = "│", numhl = "GitSignsAddNr" },
+      change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
+      delete = { hl = "DiffDelete", text = "", numhl = "GitSignsDeleteNr" },
+      topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
+      changedelete = { hl = "DiffChangeDelete", text = "~", numhl = "GitSignsChangeNr" },
+    },
+    on_attach = function(bufnr)
+      require("omareloui.config.mappings").gitsings()
+    end
+  }
+
+  gitsigns.setup(options)
 end
 
--- TODO:
--- require("base46").load_highlight "git"
-
-local options = {
-  signs = {
-    add = { hl = "DiffAdd", text = "│", numhl = "GitSignsAddNr" },
-    change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
-    delete = { hl = "DiffDelete", text = "", numhl = "GitSignsDeleteNr" },
-    topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
-    changedelete = { hl = "DiffChangeDelete", text = "~", numhl = "GitSignsChangeNr" },
-  },
-  on_attach = function(bufnr)
-    -- TODO:
-    -- utils.load_mappings("gitsigns", { buffer = bufnr })
-  end
-}
-
-gitsigns.setup(options)
+return M

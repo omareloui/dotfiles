@@ -1,4 +1,4 @@
-local u = require "omareloui.snippets.utils"
+local u = require "omareloui.config.snippets.utils"
 
 local ts_function_fmt = [[
 {doc}

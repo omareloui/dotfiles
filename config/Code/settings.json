@@ -65,7 +65,7 @@
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "right",
-  "workbench.colorTheme": "Aura Dark (Soft Text)",
+  "workbench.colorTheme": "Aura Dark",
   "workbench.colorCustomizations": {
     "editorStickyScroll.background": "#1e1d27"
   },

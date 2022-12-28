@@ -1,4 +1,4 @@
-local u = require "omareloui.snippets.utils"
+local u = require "omareloui.config.snippets.utils"
 
 return {
   u.s(
@@ -19,7 +19,7 @@ return {
 
 if not present then
   return
-end]],
+end]]  ,
       {
         u.f(function(import_name)
           local name_spaces = vim.split(import_name[1][1], ".", true)

@@ -26,4 +26,14 @@ M.indent_backline = function()
   set(0, "IndentBlanklineContextStart", { fg = c.surface0 })
 end
 
+M.gitsings = function()
+  set(0, "DiffAdd", { fg = c.green })
+  set(0, "DiffAdded", { fg = c.green }) -- NOT SURE WHAT THIS IS
+  set(0, "DiffChange", { fg = c.blue })
+  set(0, "DiffChangeDelete", { fg = c.red })
+  set(0, "DiffModified", { fg = c.orange })
+  set(0, "DiffDelete", { fg = c.red })
+  set(0, "DiffRemoved", { fg = c.red })
+end
+
 return M

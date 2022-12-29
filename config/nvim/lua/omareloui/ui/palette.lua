@@ -46,6 +46,8 @@ return {
   blue = c.blue,
   lavender = c.lavender,
 
+  orange = c.peach,
+
   text = c.text,
   subtext1 = c.subtext1,
   subtext0 = c.subtext0,

@@ -7,21 +7,21 @@ M.config = function()
     return
   end
 
-  -- TODO:
-  -- require("base46").load_highlight "git"
-
   local options = {
     signs = {
       add = { hl = "DiffAdd", text = "│", numhl = "GitSignsAddNr" },
       change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
-      delete = { hl = "DiffDelete", text = "", numhl = "GitSignsDeleteNr" },
+      delete = { hl = "DiffDelete", text = "_", numhl = "GitSignsDeleteNr" },
       topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
       changedelete = { hl = "DiffChangeDelete", text = "~", numhl = "GitSignsChangeNr" },
+      untracked = { hl = "DiffAdd" },
     },
-    on_attach = function(bufnr)
+    on_attach = function()
       require("omareloui.config.mappings").gitsings()
-    end
+    end,
   }
+
+  require("omareloui.ui.highlights").gitsings()
 
   gitsigns.setup(options)
 end

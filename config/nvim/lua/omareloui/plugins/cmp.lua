@@ -7,9 +7,6 @@ M.config = function()
     return
   end
 
-  -- TODO:
-  -- require("base46").load_highlight "cmp"
-
   vim.o.completeopt = "menu,menuone,noselect"
 
   local function border(hl_name)
@@ -69,12 +66,6 @@ M.config = function()
       end,
     },
 
-    -- formatting = {
-    --   format = require("lspkind").cmp_format {
-    --     with_text = true,
-    --   },
-    -- },
-
     mapping = require("omareloui.config.mappings").cmp(cmp),
 
     sources = {
@@ -88,6 +79,7 @@ M.config = function()
   }
 
   require("omareloui.ui.highlights").cmp()
+
   cmp.setup(options)
 end
 

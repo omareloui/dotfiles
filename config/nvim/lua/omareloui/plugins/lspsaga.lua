@@ -9,8 +9,6 @@ M.config = function()
 
   local options = {}
 
-  require("omareloui.ui.highlights").lspsaga()
-
   lspsaga.init_lsp_saga(options)
 end
 

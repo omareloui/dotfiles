@@ -4,8 +4,6 @@ if not present then
   return
 end
 
-require("omareloui.ui.highlights").lsp()
-
 M = {}
 
 M.diagnostics_setup = function()

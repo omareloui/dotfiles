@@ -34,8 +34,7 @@ M.config = function()
 
     triggers_blacklist = {
       -- list of mode / prefixes that should never be hooked by WhichKey
-      i = { "j", "k" },
-      i = { "J", "K" },
+      i = { "j", "k", "J", "K" },
       v = { "j", "k" },
     },
   }

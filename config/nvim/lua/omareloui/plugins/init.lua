@@ -7,13 +7,15 @@ return {
   -- Themes and Styles {{{
   { "akinsho/bufferline.nvim", tag = "v3.*", config = true, init = require("omareloui.config.mappings").bufferline },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme "catppuccin-mocha"
-    end,
+    "zbirenbaum/neodim",
+    event = "LspAttach",
+    config = {
+      hide = {
+        virtual_text = false,
+        signs = false,
+        underline = true,
+      },
+    },
   },
   -- }}}
 

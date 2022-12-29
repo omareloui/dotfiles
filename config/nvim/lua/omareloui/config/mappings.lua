@@ -39,7 +39,7 @@ set("v", ">", ">gv", { desc = "indend line forwards" })
 -- }}}
 
 -- keep the cursor on the same position
-set("v", "J", "mzJ`z", { desc = "merge with next line" })
+-- set("v", "J", "mzJ`z", { desc = "merge with next line" })
 
 -- Buffers {{{
 local bufferline_buffers = function()
@@ -103,8 +103,9 @@ set("n", "<leader>su", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", {
 
 set("n", "<leader>j", "<Cmd>m .+1<CR>==", { desc = "move the line down" })
 set("n", "<leader>k", "<Cmd>m .-2<CR>==", { desc = "move the line up" })
-set("v", "J", "<Cmd>m .+1<CR>gv=gv", { desc = "move the line down" })
-set("v", "K", "<Cmd>m .-2<CR>gv=gv", { desc = "move the line up" })
+set("v", "J", "<Cmd>m '>+1<CR>gv=gv", { desc = "move the line down" })
+set("v", "K", "<Cmd>m '<-2<CR>gv=gv", { desc = "move the line up" })
+
 -- set("i", "<C-j>", "<Cmd>m .+1<CR>==", { desc = "move the line down" })
 -- set("i", "<C-k>", "<Cmd>m .-2<CR>==", { desc = "move the line up" })
 
@@ -113,15 +114,19 @@ set("n", "<A-k>", "yyP", { desc = "duplicate line up" })
 -- }}}
 
 -- Window {{{
+set("n", "<C-j>", "<C-w>j", { desc = "go to down window" })
+set("n", "<C-k>", "<C-w>k", { desc = "go to up window" })
+set("n", "<C-h>", "<C-w>h", { desc = "go to left window" })
+set("n", "<C-l>", "<C-w>l", { desc = "go to right window" })
+
 set("n", "<leader>sv", "<Cmd>vsplit<CR>", { desc = "split window vertically" })
 set("n", "<leader>sh", "<Cmd>split<CR>", { desc = "split window horizontally" })
 set("n", "<leader>se", "<C-w>=", { desc = "make the splits equal" })
 set("n", "<leader>sm", "<Cmd>MaximizerToggle", { desc = "toggle maximizing the current window" })
 
-set("n", "<C-j>", "<C-w>j", { desc = "go to down window" })
-set("n", "<C-k>", "<C-w>k", { desc = "go to up window" })
-set("n", "<C-h>", "<C-w>h", { desc = "go to left window" })
-set("n", "<C-l>", "<C-w>l", { desc = "go to right window" })
+set("n", "<leader>s>", "<Cmd>resize +5|vertical resize +5<CR>", { desc = "increase size of current window" })
+set("n", "<leader>s<", "<Cmd>resize -5|vertical resize -5<CR>", { desc = "decrease size of current window" })
+
 -- }}}
 
 ---- }}}

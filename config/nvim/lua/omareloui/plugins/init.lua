@@ -45,6 +45,10 @@ return {
   "szw/vim-maximizer",
   -- }}}
 
+  -- Telescope {{{
+  "nvim-telescope/telescope-file-browser.nvim",
+  --- }}}
+
   -- Sessiosn {{{
   { "rmagatti/auto-session", config = { auto_restore_enabled = false } },
   -- }}}

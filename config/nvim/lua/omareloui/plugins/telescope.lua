@@ -7,7 +7,6 @@ M.config = function()
     return
   end
 
-
   -- TODO:
   -- require("base46").load_highlight "telescope"
 
@@ -62,8 +61,6 @@ M.config = function()
       },
     },
 
-    extensions_list = { "terms", "file_browser" },
-
     extensions = {
       file_browser = {
         hijack_netrw = true,
@@ -74,11 +71,7 @@ M.config = function()
   telescope.setup(options)
 
   -- load extensions
-  pcall(function()
-    for _, ext in ipairs(options.extensions_list) do
-      telescope.load_extension(ext)
-    end
-  end)
+  telescope.load_extension "file_browser"
 end
 
 return M

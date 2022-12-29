@@ -22,7 +22,6 @@ M.config = function()
     },
   }
 
-
   colorizer.setup(options)
 
   -- execute colorizer as soon as possible

@@ -53,12 +53,27 @@ M.config = function()
     },
 
     formatting = {
-      format = function(_, vim_item)
+      format = function(entry, vim_item)
         local icons = require("omareloui.ui.icons").lspkind
+        local menu = {
+          buffer = "buf",
+          nvim_lsp = "LSP",
+          nvim_lua = "api",
+          luasnip = "snip",
+          path = "path",
+          spell = "spell",
+        }
         vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+        vim_item.menu = string.format("[%s]", menu[entry.source.name])
         return vim_item
       end,
     },
+
+    -- formatting = {
+    --   format = require("lspkind").cmp_format {
+    --     with_text = true,
+    --   },
+    -- },
 
     mapping = require("omareloui.config.mappings").cmp(cmp),
 
@@ -66,12 +81,13 @@ M.config = function()
       { name = "nvim_lsp" },
       { name = "nvim_lua" },
       { name = "luasnip" },
-      { name = "buffer" },
       { name = "path" },
       { name = "spell" },
+      { name = "buffer", keyword_length = 5 },
     },
   }
 
+  require("omareloui.ui.highlights").cmp()
   cmp.setup(options)
 end
 

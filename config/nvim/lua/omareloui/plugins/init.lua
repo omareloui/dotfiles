@@ -58,9 +58,11 @@ return {
   {
     "numToStr/Comment.nvim",
     module = "Comment",
-    keys = { "gc", "gb" },
     init = require("omareloui.config.mappings").comments,
-    config = true,
+    config = {
+      mappings = false,
+      ignore = "^(%s*)$", -- ignore empty/spaces only lines
+    },
   },
 
   -- surround

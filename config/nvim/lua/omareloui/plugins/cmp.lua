@@ -54,10 +54,8 @@ M.config = function()
 
     formatting = {
       format = function(_, vim_item)
-        -- TODO:
-        -- local icons = require("nvchad_ui.icons").lspkind
-        -- vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-        -- return vim_item
+        local icons = require("omareloui.ui.icons").lspkind
+        vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
         return vim_item
       end,
     },
@@ -65,8 +63,8 @@ M.config = function()
     mapping = require("omareloui.config.mappings").cmp(cmp),
 
     sources = {
-      { name = "nvim_lua" },
       { name = "nvim_lsp" },
+      { name = "nvim_lua" },
       { name = "luasnip" },
       { name = "buffer" },
       { name = "path" },

@@ -43,8 +43,6 @@ set("v", "J", "mzJ`z", { desc = "merge with next line" })
 
 -- Buffers {{{
 local bufferline_buffers = function()
-  local bufferline = require "bufferline"
-
   set("n", "<C-S-Right>", "<Cmd>BufferLineMoveNext<CR>", { desc = "move the tab to the right", silent = true })
   set("n", "<C-S-Left>", "<Cmd>BufferLineMovePrev<CR>", { desc = "move the tab to the left", silent = true })
 
@@ -58,6 +56,12 @@ local bufferline_buffers = function()
       end
     end
   end, { desc = "close all other buffers", silent = true })
+
+  set("n", "<leader>bx", function()
+    for _, e in ipairs(require("bufferline").get_elements().elements) do
+      vim.api.nvim_buf_delete(e.id, {})
+    end
+  end, { desc = "close all buffers", silent = true })
 end
 
 set("n", "<C-s>", "<Cmd>up<CR>", { desc = "save buffer" })
@@ -65,7 +69,11 @@ set("n", "<leader>w", "<Cmd>up<CR>", { desc = "save buffer" })
 
 set("n", "<C-c>", "<Cmd>%y+<CR>", { desc = "copy the whole file" })
 
-set("n", "<leader>q", function() vim.schedule(function() vim.cmd "bd" end) end, { desc = "close buffer", silent = true })
+set("n", "<leader>q", function()
+  vim.schedule(function()
+    vim.cmd "bd"
+  end)
+end, { desc = "close buffer", silent = true })
 -- }}}
 
 -- Clipboard {{{
@@ -118,8 +126,6 @@ set("n", "<C-l>", "<C-w>l", { desc = "go to right window" })
 
 ---- }}}
 
-
-
 ---- Plugins {{{
 M = {}
 
@@ -148,9 +154,13 @@ M.lsp = function(buffer_number)
   set("n", "<leader>ls", l.buf.signature_help, { desc = "lsp signature_help", buffer = buffer_number })
   set("n", "<leader>la", l.buf.code_action, { desc = "lsp code_action", buffer = buffer_number })
 
-
   set("n", "<leader>lwa", l.buf.add_workspace_folder, { desc = "add lsp workspace folder", buffer = buffer_number })
-  set("n", "<leader>lwr", l.buf.remove_workspace_folder, { desc = "remove lsp workspace folder", buffer = buffer_number })
+  set(
+    "n",
+    "<leader>lwr",
+    l.buf.remove_workspace_folder,
+    { desc = "remove lsp workspace folder", buffer = buffer_number }
+  )
   set("n", "<leader>lwl", l.buf.list_workspace_folders, { desc = "list lsp workspace folders", buffer = buffer_number })
 end
 
@@ -198,12 +208,14 @@ end
 -- UndoTree {{{
 M.undotree = function()
   -- TODO: why did I wrote it like this!! not <Cmd>UndotreeToggle<CR>
-  set("n", "<leader>u", function() return vim.cmd "UndotreeToggle" end, { desc = "open Undotree" })
+  set("n", "<leader>u", function()
+    return vim.cmd "UndotreeToggle"
+  end, { desc = "open Undotree" })
 end
 -- }}}
 
 --- BufferLine {{{
-M.bufferline = function() 
+M.bufferline = function()
   bufferline_buffers()
 end
 --- }}}
@@ -225,29 +237,30 @@ end
 M.gitsings = function()
   set("n", "<leader>gd", "<Cmd>Gvdiffsplit<CR>", { desc = "git diff" })
 
-  set("n", "<leader>gb", function() require("gitsigns").blame_line { full = true } end, { desc = "git blame line" })
+  set("n", "<leader>gb", function()
+    require("gitsigns").blame_line { full = true }
+  end, { desc = "git blame line" })
   set("n", "<leader>gp", require("gitsigns").preview_hunk, { desc = "git preview hunk" })
 
   set("n", "<leader>ghr", require("gitsigns").reset_hunk, { desc = "reset hunk" })
   set("n", "<leader>ghd", require("gitsigns").toggle_deleted, { desc = "toggle show deleted from git" })
 
-  set("n", "<leader>ghn",
-    function()
-      if diff then return "<leader>ghn" end
-      schedule(require("gitsigns").next_hunk)
-      return "<Ignore>"
-    end, { desc = "jump to next hunk", expr = true }
-  )
-  set("n", "<leader>ghp",
-    function()
-      if diff then return "<leader>ghp" end
-      schedule(require("gitsigns").prev_hunk)
-      return "<Ignore>"
-    end, { desc = "jump to previous hunk", expr = true }
-  )
+  set("n", "<leader>ghn", function()
+    if diff then
+      return "<leader>ghn"
+    end
+    schedule(require("gitsigns").next_hunk)
+    return "<Ignore>"
+  end, { desc = "jump to next hunk", expr = true })
+  set("n", "<leader>ghp", function()
+    if diff then
+      return "<leader>ghp"
+    end
+    schedule(require("gitsigns").prev_hunk)
+    return "<Ignore>"
+  end, { desc = "jump to previous hunk", expr = true })
 end
 -- }}}
-
 
 -- Telescope {{{
 M.telescope = function()
@@ -259,10 +272,18 @@ M.telescope = function()
   set("n", "<leader>fb", "<Cmd>Telescope buffers<CR>", { desc = "search in buffers" })
   set("n", "<leader>fh", "<Cmd>Telescope help_tags<CR>", { desc = "find in help tags" })
   set("n", "<leader>fk", "<Cmd>Telescope keymaps<CR>", { desc = "show key mappings" })
-  set("n", "<leader>fn", "<Cmd>Telescope file_browser files=false hide_parent_dir=true<CR>",
-    { desc = "open file browser" })
-  set("n", "<leader>ft", "<Cmd>Telescope file_browser hidden=true repect_gitignore=false collapse_dirs=true<CR>",
-    { desc = "open file browser" })
+  set(
+    "n",
+    "<leader>fn",
+    "<Cmd>Telescope file_browser files=false hide_parent_dir=true<CR>",
+    { desc = "open file browser" }
+  )
+  set(
+    "n",
+    "<leader>ft",
+    "<Cmd>Telescope file_browser hidden=true repect_gitignore=false collapse_dirs=true<CR>",
+    { desc = "open file browser" }
+  )
   set("n", "<leader>fr", "<Cmd>Telescope file_browser cwd=~/repos<CR>", { desc = "open all repos" })
 
   telescope_git()
@@ -279,43 +300,42 @@ end
 
 -- Snippets {{{
 M.snippets = function()
-  set("n", "<leader><leader>s", "<Cmd>source ~/.config/nvim/lua/omareloui/snippets/init.lua<CR>",
-    { desc = "source the snippets file" })
-  set({ "i", "s" }, "<C-k>",
-    function()
-      local ls = require "luasnip"
-      if ls.expand_or_jumpable() then
-        ls.expand_or_jump()
-      end
-    end,
-    { desc = "expand the snippet or jump to the next snippet placeholder", silent = true }
+  set(
+    "n",
+    "<leader><leader>s",
+    "<Cmd>source ~/.config/nvim/lua/omareloui/snippets/init.lua<CR>",
+    { desc = "source the snippets file" }
   )
-  set({ "i", "s" }, "<C-j>",
-    function()
-      local ls = require "luasnip"
-      if ls.jumpable(-1) then
-        ls.jump(-1)
-      end
-    end,
-    { desc = "jump to the previous placeholder", silent = true }
-  )
-  set({ "i", "s" }, "<C-l>",
-    function()
-      local ls = require "luasnip"
-      if ls.choice_active() then
-        ls.change_choice(1)
-      end
-    end,
-    { desc = "cycle in snippet's options", silent = true }
-  )
+  set({ "i", "s" }, "<C-k>", function()
+    local ls = require "luasnip"
+    if ls.expand_or_jumpable() then
+      ls.expand_or_jump()
+    end
+  end, { desc = "expand the snippet or jump to the next snippet placeholder", silent = true })
+  set({ "i", "s" }, "<C-j>", function()
+    local ls = require "luasnip"
+    if ls.jumpable(-1) then
+      ls.jump(-1)
+    end
+  end, { desc = "jump to the previous placeholder", silent = true })
+  set({ "i", "s" }, "<C-l>", function()
+    local ls = require "luasnip"
+    if ls.choice_active() then
+      ls.change_choice(1)
+    end
+  end, { desc = "cycle in snippet's options", silent = true })
 end
 -- }}}
 
 -- Comments {{{
 M.comments = function()
   set("n", "<leader>/", require("Comment.api").toggle.linewise.current, { desc = "toggle comment" })
-  set("v", "<leader>/", "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-    { desc = "toggle comment" })
+  set(
+    "v",
+    "<leader>/",
+    "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+    { desc = "toggle comment" }
+  )
 end
 -- }}}
 

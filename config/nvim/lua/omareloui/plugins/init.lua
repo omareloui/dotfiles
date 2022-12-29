@@ -6,12 +6,19 @@ return {
 
   -- Themes and Styles {{{
   { "akinsho/bufferline.nvim", tag = "v3.*", config = true, init = require("omareloui.config.mappings").bufferline },
-  { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000,
-    config = function() vim.cmd.colorscheme "catppuccin-mocha" end },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme "catppuccin-mocha"
+    end,
+  },
   -- }}}
 
   -- LSP {{{
-  {"williamboman/mason-lspconfig.nvim", dependencies = {"williamboman/mason.nvim"}},
+  { "williamboman/mason-lspconfig.nvim", dependencies = { "williamboman/mason.nvim" } },
   "jose-elias-alvarez/typescript.nvim",
   { "folke/trouble.nvim", config = true },
   -- }}}
@@ -39,13 +46,18 @@ return {
   -- }}}
 
   -- Sessiosn {{{
-  { "rmagatti/auto-session", config = { auto_restore_enabled = false, } },
+  { "rmagatti/auto-session", config = { auto_restore_enabled = false } },
   -- }}}
 
   -- Misc {{{
   -- commment
-  { "numToStr/Comment.nvim", module = "Comment", keys = { "gc", "gb" },
-    init = require("omareloui.config.mappings").comments, config = true },
+  {
+    "numToStr/Comment.nvim",
+    module = "Comment",
+    keys = { "gc", "gb" },
+    init = require("omareloui.config.mappings").comments,
+    config = true,
+  },
 
   -- surround
   { "kylechui/nvim-surround", config = true },
@@ -66,10 +78,9 @@ return {
   { "petertriho/nvim-scrollbar", config = true },
   -- }}}
 
-
-
   -- TODO:
   --   ["NvChad/extensions"] = { module = { "telescope", "nvchad" } },
+
   --   ["NvChad/base46"] = {
   --     config = function()
   --       local ok, base46 = pcall(require, "base46")
@@ -79,7 +90,9 @@ return {
   --       end
   --     end,
   --   },
-  -- --
+
+  -- NOTE: it includes statusline and "bufline"
+
   --   ["NvChad/ui"] = {
   --     dependencies = {"base46"},
   --     config = function()

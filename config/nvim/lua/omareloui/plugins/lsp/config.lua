@@ -10,19 +10,30 @@ end
 
 M = {}
 
+M.diagnostics_setup = function()
+  local signs = require("omareloui.ui.icons").diagnostics
+
+  vim.diagnostic.config {
+    underline = true,
+    update_in_insert = false,
+    virtual_text = { spacing = 4, prefix = "●" },
+    signs = true,
+    severity_sort = true,
+  }
+
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  end
+end
+
 M.lspconfig = lspconfig
 
 M.on_attach = function(client, bufnr)
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
 
-  require "omareloui.config.mappings".lsp(bufnr)
-
-
-  if client.server_capabilities.signatureHelpProvider then
-    -- TODO:
-    -- require("nvchad_ui.signature").setup(client)
-  end
+  require("omareloui.config.mappings").lsp(bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

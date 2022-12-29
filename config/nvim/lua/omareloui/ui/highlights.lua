@@ -13,6 +13,7 @@ M.general = function()
 
   set(0, "CursorLine", { default = true, bg = c.overlay0 })
   set(0, "CursorColumn", { default = true, bg = c.overlay0 })
+  set(0, "CursorMatchWord", { bg = c.surface0, underline = true })
 end
 
 M.lsp = function()

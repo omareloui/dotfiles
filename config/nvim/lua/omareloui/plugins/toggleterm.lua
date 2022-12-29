@@ -39,8 +39,8 @@ M.config = function()
   local Terminal = require("toggleterm.terminal").Terminal
 
   local terminal = Terminal:new { hidden = true }
-  function _TERMINAL()
-    terminal.toggle()
+  function _TERMINAL_TOGGLE()
+    terminal:toggle()
   end
 
   local lazygit = Terminal:new { cmd = "lazygit", hidden = true }

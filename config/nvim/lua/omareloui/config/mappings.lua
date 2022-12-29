@@ -349,18 +349,18 @@ end
 -- Terminal {{{
 M.terminal = function()
   terminal_git()
-  set("n", "<leader>tt", "<Cmd>lua _TERMINAL()<CR>", { desc = "toggle the terminal" })
+  set("n", "<leader>tt", "<Cmd>lua _TERMINAL_TOGGLE()<CR>", { desc = "toggle the terminal" })
 end
 
 M.terminal_when_active = function()
   local set_buf_keymap = vim.api.nvim_buf_set_keymap
 
-  -- set_buf_keymap(0, "t", "<esc>", [[<C-\><C-n>]])
-  -- set_buf_keymap(0, "t", "jk", [[<C-\><C-n>]])
-  set_buf_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]])
-  set_buf_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]])
-  -- set_buf_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]])
-  -- set_buf_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]])
+  -- set_buf_keymap(0, "t", "<esc>", [[<C-\><C-n>]], { desc = "close the terminal" })
+  -- set_buf_keymap(0, "t", "jk", [[<C-\><C-n>]], { desc = "close the terminal" })
+  set_buf_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], { desc = "close the terminal" })
+  set_buf_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], { desc = "close the terminal" })
+  -- set_buf_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], { desc = "close the terminal" })
+  -- set_buf_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], { desc = "close the terminal" })
 end
 -- }}}
 

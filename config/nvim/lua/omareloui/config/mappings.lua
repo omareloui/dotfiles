@@ -141,23 +141,14 @@ M.lsp = function(buffer_number)
   local d = vim.diagnostic
   local l = vim.lsp
 
-  set("n", "<leader>dp", d.goto_prev, { desc = "go to previous diagnostic", buffer = buffer_number })
-  set("n", "<leader>dn", d.goto_next, { desc = "go to next diagnostic", buffer = buffer_number })
   set("n", "<leader>ds", d.setloclist, { desc = "diagnostic setloclist", buffer = buffer_number })
   set("n", "<leader>df", d.open_float, { desc = "floating diagnostic", buffer = buffer_number })
 
   set("n", "gt", l.buf.type_definition, { desc = "lsp definition type", buffer = buffer_number })
   set("n", "gi", l.buf.implementation, { desc = "lsp implementation", buffer = buffer_number })
-  set("n", "gD", l.buf.declaration, { desc = "lsp dclaration", buffer = buffer_number })
-  set("n", "gd", l.buf.definition, { desc = "lsp definition", buffer = buffer_number })
-  set("n", "gr", l.buf.references, { desc = "lsp references", buffer = buffer_number })
+  set("n", "gD", l.buf.declaration, { desc = "lsp declaration", buffer = buffer_number })
 
-  set("n", "K", l.buf.hover, { desc = "lsp hover" })
-
-  -- TODO: uncomment after getting the package
-  -- set("n", "<leader>lr", require("nvchad_ui.rename").open, { desc = "rename the current variable/function", buffer = buffer_number })
   set("n", "<leader>ls", l.buf.signature_help, { desc = "lsp signature_help", buffer = buffer_number })
-  set("n", "<leader>la", l.buf.code_action, { desc = "lsp code_action", buffer = buffer_number })
 
   set("n", "<leader>lwa", l.buf.add_workspace_folder, { desc = "add lsp workspace folder", buffer = buffer_number })
   set(
@@ -169,39 +160,81 @@ M.lsp = function(buffer_number)
   set("n", "<leader>lwl", l.buf.list_workspace_folders, { desc = "list lsp workspace folders", buffer = buffer_number })
 end
 
+M.lspsaga = function()
+  set("n", "gh", "<Cmd>Lspsaga lsp_finder<CR>", { silent = true })
+
+  set({ "n", "v" }, "<leader>la", "<Cmd>Lspsaga code_action<CR>", { silent = true })
+  set("n", "<leader>lr", "<Cmd>Lspsaga rename<CR>", { silent = true })
+
+  set("n", "gd", "<Cmd>Lspsaga peek_definition<CR>", { silent = true })
+
+  set("n", "<leader>df", "<Cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
+  set("n", "<leader>dc", "<Cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
+
+  set("n", "<leader>dp", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+  set("n", "<leader>dn", "<Cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
+
+  set("n", "<leader>dP", function()
+    require("lspsaga.diagnostic").goto_prev { severity = vim.diagnostic.severity.ERROR }
+  end, { silent = true })
+  set("n", "<leader>dN", function()
+    require("lspsaga.diagnostic").goto_next { severity = vim.diagnostic.severity.ERROR }
+  end, { silent = true })
+
+  set("n", "<leader>lo", "<Cmd>LSoutlineToggle<CR>", { silent = true })
+  set("n", "K", "<Cmd>Lspsaga hover_doc<CR>", { silent = true })
+end
+
 local telescope_lsp = function()
   set("n", "<leader>dl", "<Cmd>Telescope diagnostics<CR>", { desc = "list all diagnostics", buffer = 0 })
 end
 -- }}}
 
 --- Cmp {{{
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 M.cmp = function(cmp)
   return {
+    -- see :h ins-completion
+    ["<C-n>"] = cmp.mapping {
+      c = function()
+        if cmp.visible() then
+          cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+        else
+          vim.api.nvim_feedkeys(t "<Down>", "n", true)
+        end
+      end,
+      i = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+        else
+          fallback()
+        end
+      end,
+    },
+    ["<C-p>"] = cmp.mapping {
+      c = function()
+        if cmp.visible() then
+          cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
+        else
+          vim.api.nvim_feedkeys(t "<Up>", "n", true)
+        end
+      end,
+      i = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
+        else
+          fallback()
+        end
+      end,
+    },
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-u>"] = cmp.mapping.scroll_docs(4),
-    ["<C-c>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<C-y>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
     ["<C-Space>"] = cmp.mapping.complete(),
-
-    -- ["<Tab>"] = cmp.mapping(function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_next_item()
-    --   elseif require("luasnip").expand_or_jumpable() then
-    --     vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-    --   else
-    --     fallback()
-    --   end
-    -- end, { "i", "s" }),
-    -- ["<S-Tab>"] = cmp.mapping(function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_prev_item()
-    --   elseif require("luasnip").jumpable(-1) then
-    --     vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-    --   else
-    --     fallback()
-    --   end
-    -- end, { "i", "s" }),
   }
 end
 --- }}}
@@ -360,7 +393,7 @@ M.terminal_when_active = function()
   set_buf_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], { desc = "close the terminal" })
   set_buf_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], { desc = "close the terminal" })
   -- set_buf_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], { desc = "close the terminal" })
-  -- set_buf_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], { desc = "close the terminal" })
+  -- set_buf_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]])
 end
 -- }}}
 

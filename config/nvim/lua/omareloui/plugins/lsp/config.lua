@@ -4,9 +4,7 @@ if not present then
   return
 end
 
--- TODO:
--- require("base46").load_highlight "lsp"
--- require "nvchad_ui.lsp"
+require("omareloui.ui.highlights").lsp()
 
 M = {}
 
@@ -16,7 +14,7 @@ M.diagnostics_setup = function()
   vim.diagnostic.config {
     underline = true,
     update_in_insert = false,
-    virtual_text = { spacing = 4, prefix = "●" },
+    virtual_text = { prefix = "●" },
     signs = true,
     severity_sort = true,
   }

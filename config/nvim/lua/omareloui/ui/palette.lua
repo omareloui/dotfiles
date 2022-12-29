@@ -46,7 +46,15 @@ return {
   blue = c.blue,
   lavender = c.lavender,
 
+  light_green = c.teal,
+  light_blue = c.sapphire,
+  light_yellow = c.rosewater,
+  light_orange = c.flamingo,
   orange = c.peach,
+  purple = c.mauve,
+
+  white = c.text,
+  black = c.crust,
 
   text = c.text,
   subtext1 = c.subtext1,

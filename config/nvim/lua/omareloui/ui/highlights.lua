@@ -1,31 +1,29 @@
-local mocha = require("catppuccin.palettes").get_palette "mocha"
-
-local color_scheme = mocha
+local c = require "omareloui.ui.palette"
+local set = vim.api.nvim_set_hl
 
 M = {}
 
--- TODO:
 M.general = function()
-  vim.api.nvim_set_hl(0, "Comment", { default = true, italic = true })
-  -- :h nvim_set_hl
-  -- vim.api.nvim_set_hl()
+  set(0, "Comment", { default = true, italic = true })
+  set(0, "NonText", { fg = c.surface1 })
 
-  -- M.override = {
-  --   Comment = { italic = true },
-  -- }
+  set(0, "TabLine", { bg = c.overlay1, fg = "gray", italic = true })
+  set(0, "TabLineFill", { default = true, bg = c.overlay1 })
+  set(0, "TabLineSel", { default = true, fg = "white", bold = true })
 
-  -- M.add = {
-  --   TabLine = { bg = "black2", fg = "gray", italic = true },
-  --   TabLineFill = { bg = "black2" },
-  --   TabLineSel = { fg = "white", bold = true },
-
-  --   CursorLine = { bg = "black" },
-  --   CursorColumn = { bg = "black" },
-  -- }
+  set(0, "CursorLine", { default = true, bg = c.overlay0 })
+  set(0, "CursorColumn", { default = true, bg = c.overlay0 })
 end
 
 M.cmp = function()
-  vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = color_scheme.subtext0 })
+  set(0, "CmpItemMenu", { fg = c.subtext0 })
+end
+
+M.indent_backline = function()
+  set(0, "IndentBlanklineChar", { fg = c.surface1 })
+  set(0, "IndentBlanklineSpaceChar", { fg = c.surface0 })
+  set(0, "IndentBlanklineContextChar", { fg = c.surface2 })
+  set(0, "IndentBlanklineContextStart", { fg = c.surface0 })
 end
 
 return M

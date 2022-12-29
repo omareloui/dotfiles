@@ -7,9 +7,6 @@ M.config = function()
     return
   end
 
-  -- TODO:
-  -- require("base46").load_highlight "blankline"
-
   local options = {
     indentLine_enabled = 1,
     filetype_exclude = {
@@ -26,8 +23,10 @@ M.config = function()
     show_trailing_blankline_indent = false,
     show_first_indent_level = false,
     show_current_context = true,
-    show_current_context_start = true,
+    show_current_context_start = false,
   }
+
+  require("omareloui.ui.highlights").indent_backline()
 
   blankline.setup(options)
 end

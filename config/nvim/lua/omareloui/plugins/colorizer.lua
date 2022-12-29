@@ -8,8 +8,7 @@ M.config = function()
   end
 
   local options = {
-    filetypes = { "*" },
-    user_default_options = {
+    ["*"] = {
       RGB = true,
       RRGGBB = true,
       names = true,
@@ -23,11 +22,6 @@ M.config = function()
   }
 
   colorizer.setup(options)
-
-  -- execute colorizer as soon as possible
-  vim.defer_fn(function()
-    require("colorizer").attach_to_buffer(0)
-  end, 0)
 end
 
 return M

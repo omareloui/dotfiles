@@ -21,8 +21,6 @@ M.config = function()
   })
 
   local options = {
-    PATH = "skip",
-
     ui = {
       icons = {
         package_pending = " ",
@@ -43,34 +41,25 @@ M.config = function()
     },
 
     max_concurrent_installers = 10,
-
   }
-
-  local ensure_installed = {
-    "lua-language-server",
-    "html-lsp",
-    "astro-language-server",
-    "css-lsp",
-    "deno",
-    "eslint-lsp",
-    "eslint_d",
-    "lua-language-server",
-    "luacheck",
-    "luaformatter",
-    "luau-lsp",
-    "markdownlint",
-    "prettier",
-    "stylua",
-    "tailwindcss-language-server",
-    "typescript-language-server",
-    "vue-language-server",
-  }
-
-  vim.api.nvim_create_user_command("MasonInstallAll", function()
-    vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
-  end, {})
 
   mason.setup(options)
+
+  require("mason-lspconfig").setup({
+    automatic_installation = true,
+    ensure_installed = {
+      "sumneko_lua",
+      "astro",
+      "volar",
+      "html",
+      "tailwindcss",
+      "tsserver",
+      "cssls",
+      "denols",
+      "eslint",
+      "marksman"
+    }
+  })
 
 end
 

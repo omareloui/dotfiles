@@ -11,6 +11,7 @@ return {
   -- }}}
 
   -- LSP {{{
+  {"williamboman/mason-lspconfig.nvim", dependencies = {"williamboman/mason.nvim"}},
   "jose-elias-alvarez/typescript.nvim",
   { "folke/trouble.nvim", config = true },
   -- }}}

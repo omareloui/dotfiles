@@ -52,6 +52,8 @@ return {
   light_orange = c.flamingo,
   orange = c.peach,
   purple = c.mauve,
+  violet = c.lavender,
+  cyan = c.sky,
 
   white = c.text,
   black = c.crust,

@@ -1,6 +1,21 @@
 local M = {}
 
-M.diagnostics = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+M.separator = {
+  round = { right = "", left = "" },
+  empty_round = { left = "", right = "" },
+}
+
+M.diagnostics = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+
+M.lualine = {
+  --                                            ﲤ      ﴱ   h
+  vim_icon = "",
+  diff = { added = " ", modified = " ", removed = " " },
+  location = "",
+  progress = "",
+  lsp = "",
+  copilot = "",
+}
 
 M.lspkind = {
   Namespace = "",

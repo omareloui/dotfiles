@@ -10,60 +10,53 @@ M.config = function()
     return
   end
 
-  local diagnostics = {
-    "diagnostics",
-    sources = { "nvim_diagnostic" },
-    sections = {
-      "info",
-      "error",
-      "warn",
-      "hint",
-    },
-    symbols = {
-      error = " ",
-      warn = " ",
-      hint = " ",
-      info = " ",
-    },
-    colored = true,
-    always_visible = false,
+  local c = require "omareloui.ui.palette"
+  local i = require "omareloui.ui.icons"
+  local i_lualine = i.lualine
+
+  local mode_color = {
+    n = c.green,
+    i = c.blue,
+    v = c.violet,
+    [""] = c.violet,
+    V = c.violet,
+    c = c.yellow,
+    no = c.green,
+    s = c.orange,
+    S = c.orange,
+    [""] = c.orange,
+    ic = c.yellow,
+    R = c.violet,
+    Rv = c.violet,
+    cv = c.red,
+    ce = c.red,
+    r = c.cyan,
+    rm = c.cyan,
+    ["r?"] = c.cyan,
+    ["!"] = c.red,
+    t = c.red,
   }
 
-  local diff = {
-    "diff",
-    colored = true,
-    symbols = {
-      added = " ",
-      modified = " ",
-      removed = " ",
-    },
-    color = { bg = "#242735" },
-    separator = { left = "", right = "" },
-  }
+  local sep = i.separator.round
 
-  local vim_icons = {
-    function()
-      return ""
+  local conditions = {
+    buffer_not_empty = function()
+      return vim.fn.empty(vim.fn.expand "%:t") ~= 1
     end,
-  }
-
-  local modes = {
-    "mode",
-    separator = { left = "", right = "" },
-  }
-
-  local branch = {
-    "branch",
-    icon = "",
-    color = { bg = "#242735", fg = "#c296eb" },
-    separator = { left = "", right = "" },
+    hide_in_width = function()
+      return vim.fn.winwidth(0) > 80
+    end,
+    check_git_workspace = function()
+      local filepath = vim.fn.expand "%:p:h"
+      local gitdir = vim.fn.finddir(".git", filepath .. ";")
+      return gitdir and #gitdir > 0 and #gitdir < #filepath
+    end,
   }
 
   local lsp_progess = function()
     local msg = "LS Inactive"
     local buf_clients = vim.lsp.buf_get_clients()
     if next(buf_clients) == nil then
-      -- TODO: clean up this if statement
       if type(msg) == "boolean" or #msg == 0 then
         return "LS Inactive"
       end
@@ -127,7 +120,7 @@ M.config = function()
     local language_servers = "" .. table.concat(unique_client_names, ", ") .. ""
 
     if copilot_active then
-      language_servers = language_servers .. "%#SLCopilot#" .. ""
+      language_servers = language_servers .. "%#SLCopilot#" .. i_lualine.copilot
     end
 
     return language_servers
@@ -145,53 +138,86 @@ M.config = function()
     },
     sections = {
       lualine_a = {
-        vim_icons,
-        modes,
+        {
+          function()
+            return ""
+          end,
+          color = function()
+            return { bg = mode_color[vim.fn.mode()] }
+          end,
+          separator = { right = sep.right },
+        },
+        -- {
+        --   "mode",
+        --   color = function()
+        --     return { bg = mode_color[vim.fn.mode()] }
+        --   end,
+        --   separator = { right = sep.right },
+        -- },
       },
-      lualine_b = {},
+
+      lualine_b = {
+        {
+          "branch",
+          icon = "",
+          color = { bg = c.surface0, fg = c.purple },
+          -- separator = { left = sep.left, right = sep.right },
+          separator = { right = sep.right },
+        },
+        {
+          "diff",
+          colored = true,
+          symbols = i_lualine.diff,
+          color = { bg = c.surface0 },
+          separator = { left = sep.left, right = sep.right },
+        },
+      },
+
       lualine_c = {
-        { "filetype", icon_only = true, colored = true },
-        { "filename" },
-        branch,
-        diff,
         {
-          function()
-            return ""
-          end,
-          color = { bg = "#8FCDA9", fg = "#121319" },
-          separator = { left = "", right = "" },
+          "diagnostics",
+          sources = { "nvim_diagnostic" },
+          sections = { "info", "error", "warn", "hint" },
+          symbols = {
+            info = i.diagnostics.Info,
+            error = i.diagnostics.Error,
+            warn = i.diagnostics.Warn,
+            hint = i.diagnostics.Hint,
+          },
+          colored = true,
+          always_visible = false,
         },
-        diagnostics,
       },
+
       lualine_x = {
-        "encoding",
-        lsp_progess,
+        { lsp_progess, color = { bg = c.crust }, separator = { left = sep.left } },
         {
           function()
-            return ""
+            return i_lualine.lsp
           end,
-          separator = { left = "", right = "" },
-          color = { bg = "#C296EB", fg = "#000000" },
+          separator = { left = sep.left, right = sep.right },
+          color = { bg = c.purple, fg = c.black },
         },
-        "progress",
+
+        { "location", color = { bg = c.surface0 } },
         {
           function()
-            return ""
+            return i_lualine.location
           end,
-          separator = { left = "", right = "" },
-          color = { bg = "#ECD3A0", fg = "#000000" },
-        },
-        { "location" },
-        {
-          function()
-            return ""
-          end,
-          separator = { left = "" },
-          color = { bg = "#86AAEC", fg = "#000000" },
+          color = { bg = c.blue, fg = c.black },
+          separator = { left = sep.left },
         },
       },
+
       lualine_y = {},
-      lualine_z = {},
+      lualine_z = {
+        {
+          function()
+            return ""
+          end,
+          color = { bg = c.crust, fg = c.white },
+        },
+      },
     },
   }
 end

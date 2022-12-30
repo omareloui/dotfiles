@@ -530,7 +530,10 @@ globalkeys = gears.table.join(
 	end, { description = "launch browser", group = "launcher" }),
 	awful.key({ modkey }, "v", function()
 		awful.spawn("neovide")
-	end, { description = "launch neovide", group = "launcher" })
+	end, { description = "launch neovide", group = "launcher" }),
+	awful.key({ modkey }, "e", function()
+		awful.spawn("thunderbird")
+	end, { description = "launch thunderbird", group = "launcher" })
 )
 
 -- add the defined keys
@@ -539,11 +542,11 @@ root.keys(globalkeys)
 -- startup --
 awful.spawn.once("picom")
 -- awful.spawn.once("variety --resume")
-aweful.spawn.once("feh --no-fehbg --bg-fill $HOME/Pictures/Wallpaper/vico-pradipta-eeg0WVuCves-unsplash.jpg")
+awful.spawn("feh --no-fehbg --bg-fill /home/omareloui/Pictures/Wallpaper/vico-pradipta-eeg0WVuCves-unsplash.jpg")
 awful.spawn.with_shell("/home/omareloui/.config/polybar/launch.sh")
 
 -- applications
 awful.spawn.once("telegram-desktop")
-awful.spawn.once("thunderbird")
+-- awful.spawn.once("thunderbird")
 awful.spawn.once("keepassxc")
-awful.spawn.once("rhythmbox")
+-- awful.spawn.once("rhythmbox")

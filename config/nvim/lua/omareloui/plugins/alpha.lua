@@ -27,12 +27,6 @@ M.config = function()
 
   dashboard.section.footer.val = footer()
 
-  -- Highlights {{{
-  dashboard.section.footer.opts.hl = "Type"
-  dashboard.section.header.opts.hl = "Include"
-  dashboard.section.buttons.opts.hl = "Keyword"
-  -- }}}
-
   dashboard.opts.opts.noautocmd = true
 
   alpha.setup(dashboard.opts)

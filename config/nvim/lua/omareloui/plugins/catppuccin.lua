@@ -9,9 +9,10 @@ M.config = function()
 
   catppuccin.setup {
     flavour = "mocha",
+    -- transparent_background = true,
     integrations = {
       cmp = true,
-      -- dashboard = true,
+      dashboard = true,
       gitsigns = false,
       -- harpoon = true,
       lsp_saga = true,

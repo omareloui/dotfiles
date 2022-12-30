@@ -11,6 +11,8 @@ M.config = function()
     return
   end
 
+  local text_objects_mappings = require("omareloui.config.mappings").treesitter_text_objects
+
   local options = {
     ensure_installed = "all",
     indent = { enable = true },
@@ -28,6 +30,19 @@ M.config = function()
 
     rainbow = {
       enable = true,
+    },
+
+    textobjects = {
+      select = {
+        enable = true,
+        keymaps = text_objects_mappings.select,
+      },
+
+      swap = {
+        enable = true,
+        swap_next = text_objects_mappings.swap.next,
+        swap_previous = text_objects_mappings.swap.prev,
+      },
     },
   }
 

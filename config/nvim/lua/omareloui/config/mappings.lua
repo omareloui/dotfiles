@@ -251,11 +251,40 @@ M.undotree = function()
 end
 -- }}}
 
---- BufferLine {{{
+-- BufferLine {{{
 M.bufferline = function()
   bufferline_buffers()
 end
---- }}}
+-- }}}
+
+-- TreeSitter TextObjects {{{
+M.treesitter_text_objects = {
+  select = {
+    ["af"] = { query = "@function.outer", desc = "select outer part of a function" },
+    ["if"] = { query = "@function.inner", desc = "select inner part of a function" },
+
+    ["ic"] = { query = "@class.inner", desc = "select inner part of a class" },
+    ["ac"] = { query = "@class.outer", desc = "select outer part of a class" },
+
+    ["il"] = { query = "@loop.inner", desc = "select inner part of a loop" },
+    ["al"] = { query = "@loop.outer", desc = "select outer part of a loop" },
+
+    ["ii"] = { query = "@conditional.inner", desc = "select inner part of a conditional" },
+    ["ai"] = { query = "@conditional.outer", desc = "select outer part of a conditional" },
+
+    ["ib"] = { query = "@block.inner", desc = "select inner part of a block" },
+    ["ab"] = { query = "@block.outer", desc = "select outer part of a block" },
+  },
+  swap = {
+    next = {
+      ["<leader>a"] = { query = "@parameter.inner", desc = "swap with the next parameter" },
+    },
+    prev = {
+      ["<leader>A"] = { query = "@parameter.inner", desc = "swap with the previous parameter" },
+    },
+  },
+}
+-- }}}
 
 -- Git {{{
 local schedule = vim.schedule

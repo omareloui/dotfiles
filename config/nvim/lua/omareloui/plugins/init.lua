@@ -17,13 +17,17 @@ return {
       },
     },
   },
-  "p00f/nvim-ts-rainbow",
   -- }}}
 
   -- LSP {{{
   { "williamboman/mason-lspconfig.nvim", dependencies = { "williamboman/mason.nvim" } },
   "jose-elias-alvarez/typescript.nvim",
   { "folke/trouble.nvim", config = true },
+  -- }}}
+
+  -- Treesitter {{{
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  "p00f/nvim-ts-rainbow",
   -- }}}
 
   -- Snippets {{{

@@ -140,7 +140,7 @@ M.config = function()
       lualine_a = {
         {
           function()
-            return ""
+            return i_lualine.vim_icon
           end,
           color = function()
             return { bg = mode_color[vim.fn.mode()] }
@@ -161,7 +161,6 @@ M.config = function()
           "branch",
           icon = "",
           color = { bg = c.surface0, fg = c.purple },
-          -- separator = { left = sep.left, right = sep.right },
           separator = { right = sep.right },
         },
         {

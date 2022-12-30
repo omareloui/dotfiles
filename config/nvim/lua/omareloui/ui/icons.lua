@@ -9,7 +9,7 @@ M.diagnostics = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 M.lualine = {
   --                                            ﲤ      ﴱ   h
-  vim_icon = "",
+  vim_icon = "",
   diff = { added = " ", modified = " ", removed = " " },
   location = "",
   progress = "",

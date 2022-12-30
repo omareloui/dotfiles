@@ -3,7 +3,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local fn = vim.fn
 
 function HighlightWordUnderCursor()
-  local disable_ft = { "qf", "fugitive", "nerdtree", "gundo", "diff", "fzf", "floaterm" }
+  local disable_ft = { "qf", "fugitive", "nerdtree", "gundo", "diff", "fzf", "floaterm", "alpha" }
   local curr_ft = vim.api.nvim_buf_get_option(0, "filetype")
 
   for _, ft in pairs(disable_ft) do

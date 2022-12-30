@@ -7,12 +7,12 @@ M.config = function()
     return
   end
 
-  local options = {
+  lspsaga.init_lsp_saga {
     code_action_icon = "💡",
     code_action_lightbulb = { virtual_text = false },
+    -- symbol_in_winbar = { in_custom = true },
+    -- border_style = "round",
   }
-
-  lspsaga.init_lsp_saga(options)
 end
 
 return M

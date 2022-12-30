@@ -2,7 +2,7 @@ local g = vim.g
 
 local options = {
   colorcolumn = "80,120",
-  -- cursorcolumn = true,
+  cursorcolumn = true,
   cursorline = true,
   foldexpr = "nvim_treesitter#foldexpr()",
   foldlevel = 20,
@@ -41,7 +41,6 @@ local options = {
   numberwidth = 2,
   ruler = false,
 
-
   signcolumn = "yes",
   splitbelow = true,
   splitright = true,
@@ -72,7 +71,6 @@ vim.api.nvim_create_autocmd("FileType", { command = "set formatoptions-=cro" })
 
 -- to make the sessions work better
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
 
 -- Neovide configs
 if g.neovide then

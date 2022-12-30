@@ -1,7 +1,7 @@
 M = {
   "nvim-treesitter/nvim-treesitter",
   cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
-  build = ":TSUpdate"
+  build = ":TSUpdate",
 }
 
 M.config = function()
@@ -10,9 +10,6 @@ M.config = function()
   if not present then
     return
   end
-
-  -- TODO:
-  -- require("base46").load_highlight "treesitter"
 
   local options = {
     ensure_installed = "all",
@@ -27,6 +24,10 @@ M.config = function()
         node_incremental = "<CR>",
         node_decremental = "<S-TAB>",
       },
+    },
+
+    rainbow = {
+      enable = true,
     },
   }
 

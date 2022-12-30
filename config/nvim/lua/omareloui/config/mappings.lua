@@ -247,10 +247,7 @@ end
 
 -- UndoTree {{{
 M.undotree = function()
-  -- TODO: why did I wrote it like this!! not <Cmd>UndotreeToggle<CR>
-  set("n", "<leader>u", function()
-    return vim.cmd "UndotreeToggle"
-  end, { desc = "open Undotree" })
+  set("n", "<leader>u", "<Cmd>UndotreeToggle<CR>", { desc = "open Undotree" })
 end
 -- }}}
 

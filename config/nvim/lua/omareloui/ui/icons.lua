@@ -5,7 +5,8 @@ M.separator = {
   empty_round = { left = "", right = "" },
 }
 
-M.diagnostics = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- ●
+M.diagnostics = { Error = " ", Warn = " ", Hint = " ", Info = " ", virtual_prefix = " " }
 
 M.lualine = {
   --                                            ﲤ      ﴱ   h

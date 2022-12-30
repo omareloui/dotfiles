@@ -11,14 +11,6 @@ M.config = function()
   end
 
   vim.api.nvim_create_augroup("_mason", { clear = true })
-  vim.api.nvim_create_autocmd("Filetype", {
-    pattern = "mason",
-    callback = function()
-      -- TODO:
-      -- require("base46").load_highlight "mason"
-    end,
-    group = "_mason",
-  })
 
   local options = {
     ui = {
@@ -45,7 +37,7 @@ M.config = function()
 
   mason.setup(options)
 
-  require("mason-lspconfig").setup({
+  require("mason-lspconfig").setup {
     automatic_installation = true,
     ensure_installed = {
       "sumneko_lua",
@@ -57,10 +49,9 @@ M.config = function()
       "cssls",
       "denols",
       "eslint",
-      "marksman"
-    }
-  })
-
+      "marksman",
+    },
+  }
 end
 
 return M

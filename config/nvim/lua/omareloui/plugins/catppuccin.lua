@@ -9,7 +9,7 @@ M.config = function()
 
   catppuccin.setup {
     flavour = "mocha",
-    -- transparent_background = true,
+    transparent_background = true,
     integrations = {
       cmp = true,
       dashboard = true,
@@ -23,6 +23,7 @@ M.config = function()
       telescope = true,
       treesitter = true,
       treesitter_context = true,
+      ts_rainbow = true,
       which_key = true,
       native_lsp = { enabled = true },
     },

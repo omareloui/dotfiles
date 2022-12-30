@@ -12,14 +12,16 @@ M.diagnostics_setup = function()
   vim.diagnostic.config {
     underline = true,
     update_in_insert = false,
-    virtual_text = { prefix = "●" },
+    virtual_text = { prefix = signs.virtual_prefix },
     signs = true,
     severity_sort = true,
   }
 
   for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    if icon ~= signs.virtual_prefix then
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    end
   end
 end
 

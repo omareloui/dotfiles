@@ -7,9 +7,6 @@ M.config = function()
     return
   end
 
-  -- TODO:
-  -- require("base46").load_highlight "telescope"
-
   local options = {
     defaults = {
       vimgrep_arguments = {

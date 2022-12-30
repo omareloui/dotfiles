@@ -2,9 +2,8 @@ M = {
   "kyazdani42/nvim-tree.lua",
   ft = "alpha",
   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-  init = require("omareloui.config.mappings").nvimtree
+  init = require("omareloui.config.mappings").nvimtree,
 }
-
 
 M.config = function()
   local present, nvimtree = pcall(require, "nvim-tree")
@@ -12,9 +11,6 @@ M.config = function()
   if not present then
     return
   end
-
-  -- TODO:
-  -- require("base46").load_highlight "nvimtree"
 
   local options = {
     filters = {

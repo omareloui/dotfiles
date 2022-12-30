@@ -274,6 +274,9 @@ M.treesitter_text_objects = {
 
     ["ib"] = { query = "@block.inner", desc = "select inner part of a block" },
     ["ab"] = { query = "@block.outer", desc = "select outer part of a block" },
+
+    ["ir"] = { query = "@parameter.inner", desc = "select inner part of a parameter" },
+    ["ar"] = { query = "@parameter.outer", desc = "select outer part of a parameter" },
   },
   swap = {
     next = {
@@ -389,7 +392,13 @@ M.snippets = function()
     if ls.choice_active() then
       ls.change_choice(1)
     end
-  end, { desc = "cycle in snippet's options", silent = true })
+  end, { desc = "cycle in snippet's options right", silent = true })
+  set({ "i", "s" }, "<C-h>", function()
+    local ls = require "luasnip"
+    if ls.choice_active() then
+      ls.change_choice(-1)
+    end
+  end, { desc = "cycle in snippet's options left", silent = true })
 end
 -- }}}
 

@@ -1,4 +1,8 @@
-M = { "L3MON4D3/LuaSnip", dependencies = { "friendly-snippets", "nvim-cmp" } }
+M = {
+  "L3MON4D3/LuaSnip",
+  dependencies = { "friendly-snippets", "nvim-cmp" },
+  init = require("omareloui.config.mappings").snippets,
+}
 
 M.config = function()
   local present, luasnip = pcall(require, "luasnip")
@@ -15,9 +19,16 @@ M.config = function()
 
     enable_autosnippets = true,
 
-    [types.choiceNode] = {
-      active = {
-        virt_text = { { " Current choice" } },
+    ext_opts = {
+      [types.insertNode] = {
+        active = {
+          virt_text = { { "    ", "SnippetActiveInsert" } },
+        },
+      },
+      [types.choiceNode] = {
+        active = {
+          virt_text = { { "    ", "SnippetActiveChoice" } },
+        },
       },
     },
   }
@@ -29,16 +40,16 @@ M.config = function()
 
   vim.api.nvim_create_autocmd("InsertLeave", {
     callback = function()
-      if require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-          and not require("luasnip").session.jump_active
+      if
+        require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+        and not require("luasnip").session.jump_active
       then
         require("luasnip").unlink_current()
       end
     end,
   })
 
-
-  require("omareloui.config.snippets")
+  require "omareloui.config.snippets"
 end
 
 return M

@@ -14,6 +14,9 @@ M.general = function()
   set(0, "CursorLine", { default = true, bg = c.mantle })
   set(0, "CursorColumn", { default = true, bg = c.mantle })
   set(0, "CursorMatchWord", { bg = c.surface0, underline = true })
+
+  set(0, "SnippetActiveChoice", { fg = c.blue, bg = c.mantle })
+  set(0, "SnippetActiveInsert", { fg = c.purple, bg = c.mantle })
 end
 
 M.cmp = function()

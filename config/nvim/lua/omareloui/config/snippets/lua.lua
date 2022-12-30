@@ -19,7 +19,7 @@ return {
 
 if not present then
   return
-end]]  ,
+end]],
       {
         u.f(function(import_name)
           local name_spaces = vim.split(import_name[1][1], ".", true)

@@ -538,7 +538,8 @@ root.keys(globalkeys)
 
 -- startup --
 awful.spawn.once("picom")
-awful.spawn.once("variety --resume")
+-- awful.spawn.once("variety --resume")
+aweful.spawn.once("feh --no-fehbg --bg-fill $HOME/Pictures/Wallpaper/vico-pradipta-eeg0WVuCves-unsplash.jpg")
 awful.spawn.with_shell("/home/omareloui/.config/polybar/launch.sh")
 
 -- applications

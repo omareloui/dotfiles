@@ -40,16 +40,13 @@ M.config = function()
   local sep = i.separator.round
 
   local conditions = {
-    buffer_not_empty = function()
-      return vim.fn.empty(vim.fn.expand "%:t") ~= 1
-    end,
-    hide_in_width = function()
-      return vim.fn.winwidth(0) > 80
-    end,
-    check_git_workspace = function()
-      local filepath = vim.fn.expand "%:p:h"
-      local gitdir = vim.fn.finddir(".git", filepath .. ";")
-      return gitdir and #gitdir > 0 and #gitdir < #filepath
+    has_lsp_client = function()
+      local buf_clients = vim.lsp.buf_get_clients()
+      if next(buf_clients) == nil then
+        return false
+      else
+        return true
+      end
     end,
   }
 
@@ -189,16 +186,34 @@ M.config = function()
       },
 
       lualine_x = {
-        { lsp_progess, color = { bg = c.crust }, separator = { left = sep.left } },
+        {
+          lsp_progess,
+          color = { bg = c.crust },
+          separator = { left = sep.left },
+          cond = conditions.has_lsp_client,
+        },
         {
           function()
             return i_lualine.lsp
           end,
           separator = { left = sep.left, right = sep.right },
           color = { bg = c.purple, fg = c.black },
+          cond = conditions.has_lsp_client,
         },
 
-        { "location", color = { bg = c.surface0 } },
+        {
+          "location",
+          color = { bg = c.surface0 },
+          separator = { left = sep.left },
+          cond = function()
+            return not conditions.has_lsp_client()
+          end,
+        },
+        {
+          "location",
+          color = { bg = c.surface0 },
+          cond = conditions.has_lsp_client,
+        },
         {
           function()
             return i_lualine.location

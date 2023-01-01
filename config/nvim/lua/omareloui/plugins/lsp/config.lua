@@ -12,7 +12,7 @@ M.diagnostics_setup = function()
   vim.diagnostic.config {
     underline = true,
     update_in_insert = false,
-    virtual_text = { prefix = signs.virtual_prefix },
+    virtual_text = { prefix = signs.virtual_prefix, source = true },
     signs = true,
     severity_sort = true,
   }

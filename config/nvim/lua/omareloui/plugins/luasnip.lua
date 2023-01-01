@@ -35,7 +35,7 @@ M.config = function()
 
   luasnip.config.set_config(options)
 
-  require("luasnip.loaders.from_vscode").lazy_load { paths = vim.g.luasnippets_path or "" }
+  require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/lua/omareloui/config/snippets/" }
   require("luasnip.loaders.from_vscode").lazy_load()
 
   vim.api.nvim_create_autocmd("InsertLeave", {
@@ -48,8 +48,6 @@ M.config = function()
       end
     end,
   })
-
-  require "omareloui.config.snippets"
 end
 
 return M

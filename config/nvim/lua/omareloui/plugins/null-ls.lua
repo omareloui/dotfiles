@@ -12,6 +12,12 @@ M.config = function()
   local d = b.diagnostics
   local c = b.code_actions
 
+  local function check_if_in_package_json(package_name)
+    local current_dir = vim.fn.expand "%:p:h"
+    local package_json_dir = require("lspconfig").util.root_pattern "package.json"(current_dir)
+    return require("omareloui.plugins.lsp.utils").has_in_package_json(package_json_dir, package_name)
+  end
+
   local sources = {
     -- webdev stuff
     f.deno_fmt.with {
@@ -21,36 +27,14 @@ M.config = function()
     },
 
     f.prettier.with {
-      filetypes = {
-        "markdown",
-        "markdown.mdx",
-        "json",
-        "graphql",
-        "markdown",
-        "css",
-        "sass",
-        "scss",
-        "less",
-        "handlebars",
-        "jsonc",
-        "yaml",
-        "html",
-        "typescriptreact",
-        "typescript",
-        "vue",
-        "javascriptreact",
-        "javascript",
-      },
-
-      condition = function(utils)
-        -- TODO: add a check here to make sure that prettier is installed to package.json
-        return utils.root_has_file_matches "^%.prettierrc.*$"
+      condition = function()
+        return check_if_in_package_json "prettier"
       end,
     },
 
     d.eslint_d.with {
-      condition = function(utils)
-        return utils.root_has_file_matches "^%.eslintrc.*$"
+      condition = function()
+        return check_if_in_package_json "eslint"
       end,
     },
 

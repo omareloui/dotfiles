@@ -30,6 +30,11 @@ M.config = function()
 
     rainbow = {
       enable = true,
+      extended_mode = false,
+    },
+
+    autotag = {
+      enable = true,
     },
 
     textobjects = {

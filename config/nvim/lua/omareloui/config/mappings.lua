@@ -375,13 +375,13 @@ M.snippets = function()
     "<Cmd>source ~/.config/nvim/lua/omareloui/snippets/init.lua<CR>",
     { desc = "source the snippets file" }
   )
-  set({ "i", "s" }, "<C-k>", function()
+  set({ "i", "s" }, "<C-j>", function()
     local ls = require "luasnip"
     if ls.expand_or_jumpable() then
       ls.expand_or_jump()
     end
   end, { desc = "expand the snippet or jump to the next snippet placeholder", silent = true })
-  set({ "i", "s" }, "<C-j>", function()
+  set({ "i", "s" }, "<C-k>", function()
     local ls = require "luasnip"
     if ls.jumpable(-1) then
       ls.jump(-1)

@@ -24,9 +24,32 @@ M.config = function()
       condition = function(utils)
         return utils.root_has_file_matches "^mod%.[jt]s$" or utils.root_has_file_matches "^deno%.json$"
       end,
+      args = function()
+        return { "fmt", "-" }
+      end,
     },
 
-    f.prettier.with {
+    f.prettierd.with {
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "css",
+        "scss",
+        "less",
+        "html",
+        "json",
+        "jsonc",
+        "yaml",
+        "markdown",
+        "markdown.mdx",
+        "graphql",
+        "handlebars",
+
+        "astro",
+      },
       condition = function()
         return check_if_in_package_json "prettier"
       end,

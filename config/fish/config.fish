@@ -108,6 +108,10 @@ set -gx PATH "$DENO_INSTALL/bin:$PATH"
 ##################################### rust #####################################
 set -gx PATH "$HOME/.cargo/bin:$PATH"
 
+###################################### lua #####################################
+set -gx LUA_PATH './?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua;/usr/local/lib/lua/5.1/?.lua;/usr/local/lib/lua/5.1/?/init.lua;/usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;/home/omareloui/.luarocks/share/lua/5.1/?.lua;/home/omareloui/.luarocks/share/lua/5.1/?/init.lua'
+set -gx LUA_CPATH './?.so;/usr/local/lib/lua/5.1/?.so;/usr/lib/x86_64-linux-gnu/lua/5.1/?.so;/usr/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so;/home/omareloui/.luarocks/lib/lua/5.1/?.so'
+
 ################################# init plugins #################################
 zoxide init fish | source
 starship init fish | source

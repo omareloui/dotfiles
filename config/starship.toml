@@ -66,3 +66,7 @@ am = "AM"
 am_or_rebase = "AM/REBASE"
 style =	"yellow"
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
+
+################################## LANGUAGES ##################################
+[nodejs]
+detect_extensions = []

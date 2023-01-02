@@ -56,6 +56,14 @@ M.config = function()
     },
 
     d.eslint_d.with {
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "astro",
+      },
       condition = function()
         return check_if_in_package_json "eslint"
       end,

@@ -7,7 +7,15 @@ M.config = function()
     return
   end
 
-  local options = {}
+  local options = {
+    override = {
+      astro = {
+        icon = "異",
+        color = "#ff5d01",
+        name = "astro",
+      },
+    },
+  }
 
   devicons.setup(options)
 end

@@ -122,7 +122,7 @@ set("n", "<C-l>", "<C-w>l", { desc = "go to right window" })
 set("n", "<leader>sv", "<Cmd>vsplit<CR>", { desc = "split window vertically" })
 set("n", "<leader>sh", "<Cmd>split<CR>", { desc = "split window horizontally" })
 set("n", "<leader>se", "<C-w>=", { desc = "make the splits equal" })
-set("n", "<leader>sm", "<Cmd>MaximizerToggle", { desc = "toggle maximizing the current window" })
+set("n", "<leader>sm", "<Cmd>MaximizerToggle<CR>", { desc = "toggle maximizing the current window" })
 
 set("n", "<leader>s>", "<Cmd>resize +5|vertical resize +5<CR>", { desc = "increase size of current window" })
 set("n", "<leader>s<", "<Cmd>resize -5|vertical resize -5<CR>", { desc = "decrease size of current window" })
@@ -146,6 +146,7 @@ M.lsp = function(buffer_number)
 
   set("n", "gt", l.buf.type_definition, { desc = "lsp definition type", buffer = buffer_number })
   set("n", "gi", l.buf.implementation, { desc = "lsp implementation", buffer = buffer_number })
+  set("n", "gd", l.buf.definition, { desc = "lsp definition", buffer = buffer_number })
   set("n", "gD", l.buf.declaration, { desc = "lsp declaration", buffer = buffer_number })
 
   set("n", "<leader>ls", l.buf.signature_help, { desc = "lsp signature_help", buffer = buffer_number })
@@ -166,7 +167,7 @@ M.lspsaga = function()
   set({ "n", "v" }, "<leader>la", "<Cmd>Lspsaga code_action<CR>", { silent = true })
   set("n", "<leader>lr", "<Cmd>Lspsaga rename<CR>", { silent = true })
 
-  set("n", "gd", "<Cmd>Lspsaga peek_definition<CR>", { silent = true })
+  set("n", "<leader>lp", "<Cmd>Lspsaga peek_definition<CR>", { silent = true })
 
   set("n", "<leader>df", "<Cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
   set("n", "<leader>dc", "<Cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
@@ -333,8 +334,8 @@ end
 
 -- Telescope {{{
 M.telescope = function()
-  set("n", "<leader>fa", "<Cmd>Telescope find_files follow=truw no_ignore=true hidden=true<CR>", { desc = "find all" })
-  set("n", "<leader>ff", "<Cmd>Telescope find_files<CR>", { desc = "find files" })
+  set("n", "<leader>ff", "<Cmd>Telescope find_files follow=true hidden=true<CR>", { desc = "find files" })
+  set("n", "<leader>fa", "<Cmd>Telescope find_files follow=true hidden=true no_ignore=true<CR>", { desc = "find all" })
   set("n", "<leader>fo", "<Cmd>Telescope oldfiles<CR>", { desc = "find in recent opened files" })
 
   set("n", "<leader>fw", "<Cmd>Telescope live_grep<CR>", { desc = "live grep" })

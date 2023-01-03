@@ -10,7 +10,7 @@ M.config = function()
   local options = {
     override = {
       astro = {
-        icon = "異",
+        icon = "",
         color = "#ff5d01",
         name = "astro",
       },

@@ -16,3 +16,5 @@
 
   l = log --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --graph --date=relative --decorate --all
 
+[core]
+	sshCommand = ssh -i ~/.ssh/github_rsa

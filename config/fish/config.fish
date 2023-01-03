@@ -48,6 +48,9 @@ alias clipboard="xclip -sel clip"
 
 alias w="variety -n"
 
+alias dot="cd ~/dotfiles && neovide"
+alias envim="cd ~/dotfiles/config/nvim && neovide"
+
 # Git
 function gitcommitall
     git add .

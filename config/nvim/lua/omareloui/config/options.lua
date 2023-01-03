@@ -48,8 +48,8 @@ local options = {
   timeoutlen = 400,
   undofile = true,
 
-  -- interval for writing swap file to disk, also used by gitsigns
-  updatetime = 250,
+  -- interval for writing swap file to disk, also used by gitsigns, and to highlight the cursor word
+  updatetime = 40,
 }
 
 for k, v in pairs(options) do
@@ -74,15 +74,15 @@ vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpo
 
 -- Neovide configs
 if g.neovide then
-  g.neovide_refresh_rate = 65
-  g.neovide_transparency = 0.60
+  -- g.neovide_refresh_rate = 65
+  g.neovide_transparency = 0.7
   g.neovide_remember_dimensions = false
   g.neovide_remember_window_size = false
 
   g.neovide_cursor_animation_length = 0.13
   g.neovide_cursor_trail_size = 0.1
 
-  g.neovide_cursor_vfx_mode = "pixiedust"
-  g.neovide_cursor_vfx_particle_density = 20
-  g.neovide_cursor_vfx_particle_lifetime = 2
+  -- g.neovide_cursor_vfx_mode = "pixiedust"
+  -- g.neovide_cursor_vfx_particle_density = 20
+  -- g.neovide_cursor_vfx_particle_lifetime = 2
 end

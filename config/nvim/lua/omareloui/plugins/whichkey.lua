@@ -15,8 +15,8 @@ M.config = function()
     },
 
     popup_mappings = {
-      scroll_down = "<c-d>", -- binding to scroll down inside the popup
-      scroll_up = "<c-u>", -- binding to scroll up inside the popup
+      scroll_down = "<C-d>", -- binding to scroll down inside the popup
+      scroll_up = "<C-u>", -- binding to scroll up inside the popup
     },
 
     window = {
@@ -33,6 +33,7 @@ M.config = function()
       -- list of mode / prefixes that should never be hooked by WhichKey
       i = { "j", "k", "J", "K" },
       v = { "j", "k" },
+      c = { "s" },
     },
   }
 

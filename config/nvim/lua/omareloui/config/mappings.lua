@@ -3,10 +3,10 @@ local set = vim.keymap.set
 ---- Basic {{{
 
 -- Navigate Insert Mode {{{
-set("i", "jk", "<Esc>", { desc = "exit insert mode", nowait = true })
-set("i", "Jk", "<Esc>", { desc = "exit insert mode", nowait = true })
-set("i", "jK", "<Esc>", { desc = "exit insert mode", nowait = true })
-set("i", "JK", "<Esc>", { desc = "exit insert mode", nowait = true })
+set({ "i", "c" }, "jk", "<Esc>", { desc = "exit insert mode", nowait = true })
+set({ "i", "c" }, "Jk", "<Esc>", { desc = "exit insert mode", nowait = true })
+set({ "i", "c" }, "jK", "<Esc>", { desc = "exit insert mode", nowait = true })
+set({ "i", "c" }, "JK", "<Esc>", { desc = "exit insert mode", nowait = true })
 
 set("i", "<C-h>", "<Left>", { desc = "move left", nowait = true })
 set("i", "<C-j>", "<Down>", { desc = "move down", nowait = true })
@@ -126,7 +126,11 @@ set("n", "<leader>sm", "<Cmd>MaximizerToggle<CR>", { desc = "toggle maximizing t
 
 set("n", "<leader>s>", "<Cmd>resize +5|vertical resize +5<CR>", { desc = "increase size of current window" })
 set("n", "<leader>s<", "<Cmd>resize -5|vertical resize -5<CR>", { desc = "decrease size of current window" })
+-- }}}
 
+-- Very Magic {{{
+set("n", "/", "/\\v", { desc = "set very magic mode by default", nowait = true })
+set("c", "s#", "s#\\v", { desc = "set very magic mode by default", nowait = true })
 -- }}}
 
 ---- }}}

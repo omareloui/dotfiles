@@ -57,12 +57,12 @@ return {
   "nvim-telescope/telescope-file-browser.nvim",
   --- }}}
 
-  -- Sessiosn {{{
+  -- Session {{{
   { "rmagatti/auto-session", config = { auto_restore_enabled = false } },
   -- }}}
 
   -- Misc {{{
-  -- commment
+  -- comment
   {
     "numToStr/Comment.nvim",
     module = "Comment",
@@ -90,5 +90,8 @@ return {
 
   -- scrollbar
   { "petertriho/nvim-scrollbar", config = true },
+
+  -- tabout
+  { "abecodes/tabout.nvim", dependencies = { "nvim-treesitter", "nvim-cmp" }, config = true },
   -- }}}
 }

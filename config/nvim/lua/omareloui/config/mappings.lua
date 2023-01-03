@@ -433,5 +433,16 @@ M.terminal_when_active = function()
 end
 -- }}}
 
+-- Rexplainer {{{
+function M.regexplainer()
+  return {
+    toggle = "<leader>rp",
+    show_popup = "<leader>rp",
+    show_split = "<leader>rs",
+    hide = "<leader>rq",
+  }
+end
+-- }}}
+
 return M
 ---- }}}

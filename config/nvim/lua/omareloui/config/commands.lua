@@ -2,6 +2,7 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local fn = vim.fn
 
+-- Highlight word under cursor {{{
 function HighlightWordUnderCursor()
   local disable_ft = { "qf", "fugitive", "nerdtree", "gundo", "diff", "fzf", "floaterm", "alpha" }
   local curr_ft = vim.api.nvim_buf_get_option(0, "filetype")
@@ -17,7 +18,24 @@ function HighlightWordUnderCursor()
 end
 
 local match_cursor_word_group = augroup("MatchCursorWord", { clear = true })
-autocmd(
-  { "CursorHold", "CursorHoldI" },
-  { pattern = "*", callback = HighlightWordUnderCursor, group = match_cursor_word_group }
-)
+autocmd({ "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
+  callback = HighlightWordUnderCursor,
+  group = match_cursor_word_group,
+  desc = "Highlight word under cursor",
+})
+-- }}}
+
+-- Highlight yanked text {{{
+function HighlightOnYank()
+  vim.highlight.on_yank { higroup = "IncSearch", timeout = 40 }
+end
+
+local highlight_on_yank = augroup("HighlightOnYank", { clear = true })
+autocmd("TextYankPost", {
+  pattern = "*",
+  callback = HighlightOnYank,
+  group = highlight_on_yank,
+  desc = "Highlight selection on yank",
+})
+-- }}}

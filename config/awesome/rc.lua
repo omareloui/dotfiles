@@ -303,7 +303,7 @@ globalkeys = gears.table.join(
 
 	-- Prompt
 	awful.key({ modkey }, "p", function()
-		awful.spawn("$HOME/.config/rofi/bin/launcher")
+		awful.spawn.with_shell("$HOME/.config/rofi/bin/launcher")
 	end, { description = "show the menubar", group = "launcher" })
 )
 
@@ -499,7 +499,7 @@ end)
 ---------------------------------  MY  CONFIG ----------------------------------
 local b = beautiful
 
-b.useless_gap = 8
+b.useless_gap = 5
 
 client.connect_signal("manage", function(c)
 	if c.class == "Polybar" then
@@ -542,11 +542,12 @@ root.keys(globalkeys)
 -- startup --
 awful.spawn.once("picom")
 -- awful.spawn.once("variety --resume")
-awful.spawn("feh --no-fehbg --bg-fill /home/omareloui/Pictures/Wallpaper/vico-pradipta-eeg0WVuCves-unsplash.jpg")
+awful.spawn.with_shell(
+	"feh --no-fehbg --bg-fill /home/omareloui/Pictures/Wallpaper/emily-morter-1DGD2_CKCbo-unsplash.jpg"
+)
 awful.spawn.with_shell("/home/omareloui/.config/polybar/launch.sh")
 
--- applications
 awful.spawn.once("telegram-desktop")
--- awful.spawn.once("thunderbird")
 awful.spawn.once("keepassxc")
+awful.spawn.with_shell("thunderbird") -- for some reason it throws an error on awful.spawn.once()
 -- awful.spawn.once("rhythmbox")

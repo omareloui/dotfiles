@@ -79,8 +79,8 @@ if g.neovide then
   g.neovide_remember_dimensions = false
   g.neovide_remember_window_size = false
 
-  g.neovide_cursor_animation_length = 0.13
-  g.neovide_cursor_trail_size = 0.1
+  -- g.neovide_cursor_animation_length = 0.13
+  -- g.neovide_cursor_trail_size = 0.1
 
   -- g.neovide_cursor_vfx_mode = "pixiedust"
   -- g.neovide_cursor_vfx_particle_density = 20

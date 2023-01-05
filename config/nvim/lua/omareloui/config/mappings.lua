@@ -4,9 +4,6 @@ local set = vim.keymap.set
 
 -- Navigate Insert Mode {{{
 set({ "i", "c" }, "jk", "<Esc>", { desc = "exit insert mode", nowait = true })
-set({ "i", "c" }, "Jk", "<Esc>", { desc = "exit insert mode", nowait = true })
-set({ "i", "c" }, "jK", "<Esc>", { desc = "exit insert mode", nowait = true })
-set({ "i", "c" }, "JK", "<Esc>", { desc = "exit insert mode", nowait = true })
 
 set("i", "<C-h>", "<Left>", { desc = "move left", nowait = true })
 set("i", "<C-j>", "<Down>", { desc = "move down", nowait = true })
@@ -103,8 +100,8 @@ set("n", "<leader>su", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", {
 
 set("n", "<leader>j", "<Cmd>m .+1<CR>==", { desc = "move the line down" })
 set("n", "<leader>k", "<Cmd>m .-2<CR>==", { desc = "move the line up" })
-set("v", "J", "<Cmd>m '>+1<CR>gv=gv", { desc = "move the line down" })
-set("v", "K", "<Cmd>m '<-2<CR>gv=gv", { desc = "move the line up" })
+set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move the line down" })
+set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move the line up" })
 
 -- set("i", "<C-j>", "<Cmd>m .+1<CR>==", { desc = "move the line down" })
 -- set("i", "<C-k>", "<Cmd>m .-2<CR>==", { desc = "move the line up" })
@@ -130,6 +127,7 @@ set("n", "<leader>s<", "<Cmd>resize -5|vertical resize -5<CR>", { desc = "decrea
 
 -- Very Magic {{{
 set("n", "/", "/\\v", { desc = "set very magic mode by default", nowait = true })
+set("c", "s/", "s/\\v", { desc = "set very magic mode by default", nowait = true })
 set("c", "s#", "s#\\v", { desc = "set very magic mode by default", nowait = true })
 -- }}}
 

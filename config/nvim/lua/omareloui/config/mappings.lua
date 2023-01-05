@@ -242,9 +242,15 @@ M.cmp = function(cmp)
 end
 --- }}}
 
--- NvimTree {{{
+-- File Browsing {{{
 M.nvimtree = function()
   set("n", "<leader>e", "<Cmd>NvimTreeToggle<CR>", { desc = "toggle NvimTree" })
+end
+
+M.lf = function()
+  set("n", "<leader>o", function()
+    require("lf").start { border = "curved" }
+  end, { desc = "open lf" })
 end
 -- }}}
 

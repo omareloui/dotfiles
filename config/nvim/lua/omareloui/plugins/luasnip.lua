@@ -4,12 +4,15 @@ M = {
   init = require("omareloui.config.mappings").snippets,
 }
 
-M.config = function()
+function M.config()
   local present, luasnip = pcall(require, "luasnip")
 
   if not present then
     return
   end
+
+  require("luasnip.loaders.from_vscode").lazy_load()
+  require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/lua/omareloui/config/snippets/" }
 
   local types = require "luasnip.util.types"
 
@@ -22,21 +25,18 @@ M.config = function()
     ext_opts = {
       [types.insertNode] = {
         active = {
-          virt_text = { { "    ", "SnippetActiveInsert" } },
+          virt_text = { { "   﫦", "SnippetActiveInsert" } },
         },
       },
       [types.choiceNode] = {
         active = {
-          virt_text = { { "    ", "SnippetActiveChoice" } },
+          virt_text = { { "   ", "SnippetActiveChoice" } },
         },
       },
     },
   }
 
   luasnip.config.set_config(options)
-
-  require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/lua/omareloui/config/snippets/" }
-  require("luasnip.loaders.from_vscode").lazy_load()
 
   vim.api.nvim_create_autocmd("InsertLeave", {
     callback = function()

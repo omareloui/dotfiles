@@ -1,12 +1,16 @@
 local g = vim.g
 
 local options = {
-  colorcolumn = "80,120",
+  colorcolumn = { "80", "120" },
   cursorcolumn = true,
   cursorline = true,
-  foldexpr = "nvim_treesitter#foldexpr()",
-  foldlevel = 20,
-  foldmethod = "expr",
+
+  foldlevel = 0,
+  -- foldmethod = "expr",
+  -- foldexpr = "nvim_treesitter#foldexpr()",
+  foldmethod = "marker",
+  foldmarker = "{{{,}}}",
+
   guifont = { "JetBrainsMono Nerd Font", ":h10" },
   hlsearch = false,
   linebreak = true,

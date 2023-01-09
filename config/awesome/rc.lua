@@ -533,7 +533,15 @@ globalkeys = gears.table.join(
 	end, { description = "launch neovide", group = "launcher" }),
 	awful.key({ modkey }, "e", function()
 		awful.spawn("thunderbird")
-	end, { description = "launch thunderbird", group = "launcher" })
+	end, { description = "launch thunderbird", group = "launcher" }),
+
+	awful.key({ modkey }, "w", function()
+		awful.spawn.with_shell("variety -n")
+	end, { description = "load the next wallpaper" }),
+
+	awful.key({}, "Print", function()
+		awful.spawn.with_shell("scrot -s ~/Pictures/Screenshots/")
+	end, { description = "Take a screenshot" })
 )
 
 -- add the defined keys

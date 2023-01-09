@@ -33,7 +33,7 @@ M.config = function()
       -- list of mode / prefixes that should never be hooked by WhichKey
       i = { "j", "k", "J", "K" },
       v = { "j", "k" },
-      c = { "s" },
+      c = { "s", "j", "k" },
     },
   }
 

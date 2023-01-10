@@ -17,6 +17,8 @@ M.general = function()
 
   set(0, "SnippetActiveChoice", { fg = c.blue, bg = c.mantle })
   set(0, "SnippetActiveInsert", { fg = c.purple, bg = c.mantle })
+
+  set(0, "Folded", { fg = c.subtext1, bg = c.crust })
 end
 
 M.cmp = function()
@@ -38,6 +40,11 @@ M.gitsings = function()
   set(0, "DiffModified", { fg = c.orange })
   set(0, "DiffDelete", { fg = c.red })
   set(0, "DiffRemoved", { fg = c.red })
+end
+
+function M.ufo()
+  set(0, "UfoFoldedFg", { link = "Comment" })
+  set(0, "UfoFoldedBg", { link = "Folded" })
 end
 
 return M

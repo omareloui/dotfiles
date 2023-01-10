@@ -13,7 +13,9 @@ local rep = require("luasnip.extras").rep --}}}
 
 local snippets_config_factory = require "omareloui.config.snippets.utils"
 local cs, snippets, autosnippets = snippets_config_factory(file_pattern, group_name)
+
 ------------------------------ Start Refactoring ------------------------------
 
 ------------------------------- End Refactoring -------------------------------
+
 return snippets, autosnippets

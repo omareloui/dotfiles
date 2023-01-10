@@ -1,17 +1,18 @@
 local g = vim.g
 
 local options = {
+  -- Columns {{{
   colorcolumn = { "80", "120" },
   cursorcolumn = true,
   cursorline = true,
+  -- }}}
 
-  foldlevel = 0,
-  -- foldmethod = "expr",
-  -- foldexpr = "nvim_treesitter#foldexpr()",
-  foldmethod = "marker",
-  foldmarker = "{{{,}}}",
-
-  guifont = { "JetBrainsMono Nerd Font", ":h10" },
+  -- Folds {{{
+  foldlevel = 99,
+  foldlevelstart = -1,
+  foldenable = true,
+  foldcolumn = "1",
+  -- }}}
   hlsearch = false,
   linebreak = true,
   list = true,
@@ -19,31 +20,38 @@ local options = {
   relativenumber = true,
   scrolloff = 8,
   sidescrolloff = 8,
+
+  -- Spelling {{{
   spell = true,
   spelllang = { "en_us" },
   spelloptions = "camel",
+  -- }}}
+
   undodir = os.getenv "HOME" .. "/.cache/nvim/undodir",
   wrap = false,
 
   laststatus = 3, -- global statusline
   showmode = false,
 
-  -- Indenting,
+  -- Indenting {{{
   expandtab = true,
   shiftwidth = 2,
   smartindent = true,
   softtabstop = 2,
   tabstop = 2,
+  -- }}}
 
-  fillchars = { eob = " " },
+  fillchars = { eob = " ", foldopen = "", foldclose = "" },
+
   ignorecase = true,
   mouse = "a",
   smartcase = true,
 
-  -- Numbers,
+  -- Numbers {{{
   number = true,
   numberwidth = 2,
   ruler = false,
+  -- }}}
 
   signcolumn = "yes",
   splitbelow = true,
@@ -54,12 +62,18 @@ local options = {
 
   -- interval for writing swap file to disk, also used by gitsigns, and to highlight the cursor word
   updatetime = 40,
+
+  -- to make the sessions work better
+  sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
 }
 
+-- {{{
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+-- }}}
 
+-- Append and remove options {{{
 -- disable nvim intro
 vim.opt.shortmess:append "sI"
 
@@ -72,11 +86,9 @@ vim.opt.iskeyword:append "-"
 
 -- stop continuous comments
 vim.api.nvim_create_autocmd("FileType", { command = "set formatoptions-=cro" })
+-- }}}
 
--- to make the sessions work better
-vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
--- Neovide configs
+-- Neovide {{{
 if g.neovide then
   -- g.neovide_refresh_rate = 65
   g.neovide_transparency = 0.7
@@ -90,3 +102,4 @@ if g.neovide then
   -- g.neovide_cursor_vfx_particle_density = 20
   -- g.neovide_cursor_vfx_particle_lifetime = 2
 end
+-- }}}

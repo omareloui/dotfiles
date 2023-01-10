@@ -69,6 +69,8 @@ M.config = function()
       end,
     },
 
+    d.stylelint,
+
     -- Lua
     f.stylua,
 

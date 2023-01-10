@@ -80,7 +80,7 @@ return {
   { "mbbill/undotree", init = require("omareloui.config.mappings").undotree },
 
   -- pretty fold
-  { "anuvyklack/pretty-fold.nvim", config = { fill_char = "-" } },
+  -- { "anuvyklack/pretty-fold.nvim", config = { fill_char = "-" } },
 
   -- multi cursor
   "mg979/vim-visual-multi",

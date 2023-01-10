@@ -14,7 +14,8 @@
 	uc = reset HEAD^ --soft
 	uncommit = reset HEAD^ --soft
 
-  l = log --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --graph --date=relative --decorate --all
+	l = log --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --graph --date=relative --decorate --all
 
 [core]
+	editor = nvim
 	sshCommand = ssh -i ~/.ssh/github_rsa

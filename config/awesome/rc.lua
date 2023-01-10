@@ -499,7 +499,7 @@ end)
 ---------------------------------  MY  CONFIG ----------------------------------
 local b = beautiful
 
-b.useless_gap = 5
+b.useless_gap = 3
 
 client.connect_signal("manage", function(c)
 	if c.class == "Polybar" then
@@ -550,9 +550,7 @@ root.keys(globalkeys)
 -- startup --
 awful.spawn.once("picom")
 -- awful.spawn.once("variety --resume")
-awful.spawn.with_shell(
-	"feh --no-fehbg --bg-fill /home/omareloui/Pictures/Wallpaper/emily-morter-1DGD2_CKCbo-unsplash.jpg"
-)
+awful.spawn.with_shell("feh --no-fehbg --bg-fill /home/omareloui/Pictures/Wallpaper/401129-2x.jpg")
 awful.spawn.with_shell("/home/omareloui/.config/polybar/launch.sh")
 
 awful.spawn.once("telegram-desktop")

@@ -14,6 +14,7 @@
 - fzf
 - gnome-shell-extensions
 - gnome-tweaks
+- go
 - incscape
 - inkscape
 - keepassxc
@@ -34,6 +35,7 @@
 - vlc
 - wmctrl
 - xclip
+- zk
 - zoxide
 
 ## Applications and packages to download manually
@@ -91,7 +93,7 @@ Needs to install `wmctrl` to focus on open.
 
 ---
 
-## Walk-through
+## Setup checklist
 
 - [ ] Setup Github
   - [ ] Create ssh key by running

@@ -13,9 +13,11 @@ local options = {
   foldenable = true,
   foldcolumn = "1",
   -- }}}
+
   hlsearch = false,
   linebreak = true,
   list = true,
+  conceallevel = 2,
   listchars = { tab = "» ", lead = "·", trail = "·", eol = "↲", nbsp = "☠" },
   relativenumber = true,
   scrolloff = 8,

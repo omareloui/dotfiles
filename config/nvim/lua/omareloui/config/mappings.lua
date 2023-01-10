@@ -452,5 +452,51 @@ function M.regexplainer()
 end
 -- }}}
 
+-- ZK {{{
+function M.zk()
+  set("n", "<CR>", function()
+    local buf = vim.api.nvim_get_current_buf()
+    local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+    if ft == "markdown" then
+      vim.lsp.buf.definition()
+    end
+  end, { desc = "go to zk note" })
+
+  -- Create a new note after asking for its title.
+  set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", {
+    desc = "create a new zk note",
+  })
+
+  -- Create a new note in the same directory as the current buffer, using the current selection for title.
+  -- set("v", "<leader>znt", ":'<,'>ZkNewFromTitleSelection { dir = vim.fn.expand('%:p:h') }<CR>")
+  -- Create a new note in the same directory as the current buffer, using the current selection for note content and asking for its title.
+  -- set("v", "<leader>znc", ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>")
+
+  -- Open notes.
+  set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", { desc = "open zk notes" })
+  -- Open notes associated with the selected tags.
+  set("n", "<leader>zt", "<Cmd>ZkTags<CR>", { desc = "open notes zk associated with the selected tags" })
+  -- Search for the notes matching a given query.
+  set(
+    "n",
+    "<leader>zf",
+    "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
+    { desc = "search for the zk notes matching a given query" }
+  )
+  -- Search for the notes matching the current visual selection.
+  set(
+    "v",
+    "<leader>zf",
+    ":'<,'>ZkMatch<CR>",
+    { desc = "search for the zk notes matching the current visual selection" }
+  )
+
+  -- Open notes linking to the current buffer.
+  set("n", "<leader>zb", "<Cmd>ZkBacklinks<CR>", { desc = "open notes linking to the current buffer" })
+  -- Open notes linked by the current buffer.
+  set("n", "<leader>zl", "<Cmd>ZkLinks<CR>", { desc = "open notes linked by the current buffer" })
+end
+-- }}}
+
 return M
 ---- }}}

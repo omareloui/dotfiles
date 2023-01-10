@@ -71,6 +71,9 @@ M.config = function()
 
     d.stylelint,
 
+    -- Markdown
+    d.markdownlint,
+
     -- Lua
     f.stylua,
 
@@ -84,11 +87,11 @@ M.config = function()
     c.gitsigns,
 
     -- Spell
+    d.misspell,
     b.completion.spell,
   }
 
   local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
   null_ls.setup {
     sources = sources,
 

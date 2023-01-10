@@ -18,15 +18,15 @@ M.config = function()
     indent = { enable = true },
     highlight = { enable = true, use_languagetree = true },
 
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<CR>",
-        scope_incremental = "<TAB>",
-        node_incremental = "<CR>",
-        node_decremental = "<S-TAB>",
-      },
-    },
+    -- incremental_selection = {
+    --   enable = true,
+    --   keymaps = {
+    --     init_selection = "<CR>",
+    --     scope_incremental = "<TAB>",
+    --     node_incremental = "<CR>",
+    --     node_decremental = "<S-TAB>",
+    --   },
+    -- },
 
     rainbow = {
       enable = true,

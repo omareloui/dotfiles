@@ -16,6 +16,7 @@ M.config = function()
       changedelete = { hl = "DiffChangeDelete", text = "–" },
       untracked = { hl = "DiffAdd" },
     },
+    -- current_line_blame = true,
     on_attach = function()
       require("omareloui.config.mappings").gitsings()
     end,

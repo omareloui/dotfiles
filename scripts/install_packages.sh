@@ -61,6 +61,7 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 sudo nala update
 sudo nala upgrade
 
+# pnpm
 sudo npm install -g pnpm
 
 # Set the default shell to be fish

@@ -2,7 +2,9 @@ set fish_greeting
 
 set -Ux EDITOR nvim
 set -Ux VISUAL nvim
+
 set -Ux DOTFILES $HOME/dotfiles/config
+set -Ux SYSTEM_SCRIPTS $HOME/scripts
 set -Ux ZK_NOTEBOOK_DIR $HOME/zk
 
 

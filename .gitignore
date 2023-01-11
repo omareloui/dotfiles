@@ -17,3 +17,4 @@ config/fish/functions/fisher.fish
 
 # todo files
 *.todo
+*.todo.md

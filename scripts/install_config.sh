@@ -30,3 +30,6 @@ done
 create_sym git/.gitconfig ~/.gitconfig
 create_sym git/templates ~/.config/git/templates
 create_sym git/.czrc ~/.czrc # Commitizen
+
+# zk
+create_sym zk "$ZK_NOTEBOOK_DIR/.zk"

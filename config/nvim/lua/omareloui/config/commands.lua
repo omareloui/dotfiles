@@ -56,14 +56,32 @@ vim.api.nvim_create_autocmd("FileType", {
       syn region markdownLink matchgroup=markdownLinkDelimiter start="(" end=")" contains=markdownUrl keepend contained conceal
 
       """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+ 
       " Src: https://github.com/prurigro/vim-markdown-concealed/blob/master/syntax/mkdc.vim
+      " Headings
+      syn spell toplevel
+      syn case ignore
+      syn sync linebreaks=1
+
+      syn region htmlH1              matchgroup=mkdDelimiter start="^\s*#"                                  end="\($\|[^\\]#\+\)"                  concealends contains=@Spell,mkdEscapeChar
+      syn region htmlH2              matchgroup=mkdDelimiter start="^\s*##"                                 end="\($\|[^\\]#\+\)"                  concealends contains=@Spell,mkdEscapeChar
+      syn region htmlH3              matchgroup=mkdDelimiter start="^\s*###"                                end="\($\|[^\\]#\+\)"                  concealends contains=@Spell,mkdEscapeChar
+      syn region htmlH4              matchgroup=mkdDelimiter start="^\s*####"                               end="\($\|[^\\]#\+\)"                  concealends contains=@Spell,mkdEscapeChar
+      syn region htmlH5              matchgroup=mkdDelimiter start="^\s*#####"                              end="\($\|[^\\]#\+\)"                  concealends contains=@Spell,mkdEscapeChar
+      syn region htmlH6              matchgroup=mkdDelimiter start="^\s*######"                             end="\($\|[^\\]#\+\)"                  concealends contains=@Spell,mkdEscapeChar
+
+      " Lists
       syn match  mkdListItem                                 "^\s*[-*+]\s\+"                                                                       contains=mkdListTab,mkdListBullet2
       syn match  mkdListItem                                 "^\s*\d\+\.\s\+"                                                                      contains=mkdListTab
       syn match  mkdListTab                                  "^\s*\*"                                                                              contained contains=mkdListBullet1
       syn match  mkdListBullet1                              "\*"                                                                                  contained conceal cchar=•
       syn match  mkdListBullet2                              "[-*+]"                                                                               contained conceal cchar=•
       syn region mkdNonListItemBlock                         start="\n\(\_^\_$\|\s\{4,}[^ ]\|\t+[^\t]\)\@!" end="^\(\s*\([-*+]\|\d\+\.\)\s\+\)\@=" contains=@mkdNonListItem,@Spell
+
+      syn match  mkdEscape                                   "\\[`\*_{}\[\]()#\+-\.\!]"                                                            contained contains=mkdEscapeChar
+      syn match  mkdEscapeChar                               "\\"                                                                                  contained conceal
+
+      syn cluster mkdNonListItem contains=mkdListItem,mkdEscape,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6
     ]]
   end,
   group = sytax_highlight_group,

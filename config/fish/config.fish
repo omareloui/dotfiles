@@ -21,7 +21,7 @@ end
 #################################### ALIASES ###################################
 # alias vim="nvim"
 
-# Moving
+# Moving {{{
 alias ls="exa -l --no-time --icons --sort=type"
 
 alias ll='ls -alF'
@@ -30,13 +30,20 @@ alias l='ls -CF'
 
 alias ll="ls -lh"
 alias lt="ls --human-readable --size -1 -S --classify"
-# End Moving
+# }}}
 
 alias edge="/opt/microsoft/msedge/microsoft-edge"
 alias browse="edge"
 
 alias h="history"
 alias gh="history | grep" # Find a command in grep history
+
+# Wifi {{{
+alias wifiscan="$HOME/scripts/wifi/scan.sh"
+alias wifiup="$HOME/scripts/wifi/connect.sh"
+alias wifidown="$HOME/scripts/wifi/disconnect.sh"
+alias wifimyconnection="$HOME/scripts/wifi/myconnect.sh"
+# }}}
 
 # Create python virtual environment
 alias py="python3"

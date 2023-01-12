@@ -53,7 +53,7 @@ id-case = "mixed"
 # new notes. They are accessible in templates with {{extra.<key>}}
 [extra]
 
-#key = "value"
+author = "Omar Eloui"
 
 
 # GROUP OVERRIDES
@@ -68,11 +68,12 @@ id-case = "mixed"
 # the group. This can be useful to quickly declare a group by the name of the
 # directory it applies to.
 
-#[group."<NAME>"]
-#paths = ["<DIR1>", "<DIR2>"]
-#[group."<NAME>".note]
-#filename = "{{format-date now}}"
-#[group."<NAME>".extra]
+[group.journal]
+paths = ["journal"]
+[group.journal.note]
+filename = "{{format-date now '%Y-%m-%d'}}"
+template = "journal.md"
+# [group."<NAME>".extra]
 #key = "value"
 
 
@@ -168,10 +169,13 @@ recents = "--sort created- --created-after 'last two weeks'"
 # Here are a few aliases to get you started.
 
 # Shortcut to a command.
-ls = "zk list $argv"
+ls = "zk edit --interactive"
 
 # Default flags for an existing command.
 list = "zk list --quiet $argv"
+
+# search notes by tags
+t = "zk edit --interactive --tag $argv"
 
 # Edit the last modified note.
 editlast = "zk edit --limit 1 --sort modified- $argv"
@@ -183,7 +187,7 @@ recent = "zk edit --sort created- --created-after 'last two weeks' --interactive
 # Print paths separated with colons for the notes found with the given
 # arguments. This can be useful to expand a complex search query into a flag
 # taking only paths. For example:
-#   zk list --link-to "`zk path -m potatoe`"
+  # zk list --link-to "`zk path -m potatoe`"
 path = "zk list --quiet --format {{path}} --delimiter , $argv"
 
 # Show a random note.
@@ -195,3 +199,12 @@ hist = "zk list --format path --delimiter0 --quiet $argv | xargs -t -0 git log -
 
 # Edit this configuration file.
 conf = '$EDITOR "$ZK_NOTEBOOK_DIR/.zk/config.toml"'
+
+# new notes
+n  = 'zk new --no-input "$ZK_NOTEBOOK_DIR" --title $argv'
+ni = 'zk new --no-input "$ZK_NOTEBOOK_DIR/ideas" --title $argv'
+j  = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
+
+
+# push zk notes
+push = "cd $ZK_NOTEBOOK_DIR; git add -A; git commit -am 'doc(entries): 📚 new entry/entries'; git push; cd -"

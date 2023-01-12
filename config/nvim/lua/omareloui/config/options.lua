@@ -1,6 +1,8 @@
 local g = vim.g
 
 local options = {
+  guifont = { "", ":h10" },
+
   -- Columns {{{
   colorcolumn = { "80", "120" },
   cursorcolumn = true,

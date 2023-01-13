@@ -18,3 +18,9 @@ config/fish/functions/fisher.fish
 # todo files
 *.todo
 *.todo.md
+
+# zk dbs
+config/zk/notebook.db
+
+# Lazy git
+config/lazygit/state.yml

@@ -500,18 +500,22 @@ end)
 local b = beautiful
 
 b.useless_gap = 3
+-- local outer_padding = 2
+-- awful.screen.connect_for_each_screen(function(s)
+-- 	s.padding = { left = outer_padding, right = outer_padding, top = outer_padding, bottom = outer_padding }
+-- end)
 
 client.connect_signal("manage", function(c)
 	if c.class == "Polybar" then
 		return
 	end
+
 	-- add roundness to the client
 	c.shape = function(cr, w, h)
-		gears.shape.rounded_rect(cr, w, h, 10)
+		gears.shape.rounded_rect(cr, w, h, 4)
 	end
 
-	-- set the border
-	c.border_width = 1.5
+	c.border_width = 1
 	c.border_normal = "#4f5572"
 	c.border_focus = "#98B0D3"
 	c.border_marked = "#C79BF0"
@@ -550,7 +554,7 @@ root.keys(globalkeys)
 -- startup --
 awful.spawn.once("picom")
 -- awful.spawn.once("variety --resume")
-awful.spawn.with_shell("feh --no-fehbg --bg-fill /home/omareloui/Pictures/Wallpaper/401129-2x.jpg")
+awful.spawn.with_shell("feh --no-fehbg --bg-fill /home/omareloui/Pictures/Wallpaper/joe-woods-tLDeO8lTgII-unsplash.jpg")
 awful.spawn.with_shell("/home/omareloui/.config/polybar/launch.sh")
 
 awful.spawn.once("telegram-desktop")

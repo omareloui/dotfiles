@@ -77,6 +77,9 @@ M.config = function()
     -- Lua
     f.stylua,
 
+    -- Rust
+    f.rustfmt,
+
     -- Shell
     f.shfmt,
     d.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },

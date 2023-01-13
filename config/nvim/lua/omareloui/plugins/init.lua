@@ -22,6 +22,7 @@ return {
   -- LSP {{{
   { "williamboman/mason-lspconfig.nvim", dependencies = { "williamboman/mason.nvim" } },
   "jose-elias-alvarez/typescript.nvim",
+  "simrat39/rust-tools.nvim",
   { "folke/trouble.nvim", config = true },
   -- }}}
 
@@ -93,5 +94,9 @@ return {
 
   -- tabout
   { "abecodes/tabout.nvim", dependencies = { "nvim-treesitter", "nvim-cmp" }, config = true },
+  -- }}}
+
+  -- Games {{{
+  "ThePrimeagen/vim-be-good",
   -- }}}
 }

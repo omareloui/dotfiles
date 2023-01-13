@@ -163,6 +163,14 @@ M.lsp = function(buffer_number)
   set("n", "<leader>lwl", l.buf.list_workspace_folders, { desc = "list lsp workspace folders", buffer = buffer_number })
 end
 
+function M.rust_tools(bufnr)
+  local rust_tools = require "rust-tools"
+  bufnr = bufnr or 0
+
+  set("n", "K", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+  set("n", "<Leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+end
+
 M.lspsaga = function()
   set("n", "gh", "<Cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
@@ -342,8 +350,10 @@ end
 
 -- Telescope {{{
 M.telescope = function()
-  set("n", "<leader>ff", "<Cmd>Telescope find_files follow=true hidden=true<CR>", { desc = "find files" })
-  set("n", "<leader>fa", "<Cmd>Telescope find_files follow=true hidden=true no_ignore=true<CR>", { desc = "find all" })
+  set("n", "<leader>fa", "<Cmd>Telescope find_files follow=true hidden=true<CR>", { desc = "find files" })
+  -- set("n", "<leader>ff", "<Cmd>Telescope find_files follow=true hidden=true<CR>", { desc = "find files" })
+  -- set("n", "<leader>fa", "<Cmd>Telescope find_files follow=true hidden=true no_ignore=true<CR>", { desc = "find all" })
+
   set("n", "<leader>fo", "<Cmd>Telescope oldfiles<CR>", { desc = "find in recent opened files" })
 
   set("n", "<leader>fw", "<Cmd>Telescope live_grep<CR>", { desc = "live grep" })

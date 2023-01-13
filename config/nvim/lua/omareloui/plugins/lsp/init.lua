@@ -11,6 +11,7 @@ M.config = function()
   --
   require "omareloui.plugins.lsp.typescript"
   require "omareloui.plugins.lsp.deno"
+  require "omareloui.plugins.lsp.rust"
   require "omareloui.plugins.lsp.lua"
 end
 

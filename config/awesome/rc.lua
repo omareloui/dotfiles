@@ -543,6 +543,15 @@ globalkeys = gears.table.join(
 		awful.spawn.with_shell("variety -n")
 	end, { description = "load the next wallpaper" }),
 
+	awful.key({ modkey }, "x", function()
+		-- awful.spawn("betterlockscreen -l blur")
+		awful.spawn("systemctl suspend")
+	end, { description = "Lock screen" }),
+
+	awful.key({ modkey, "Shift" }, "r", function()
+		awful.spawn("reboot")
+	end, { description = "Reboot" }),
+
 	awful.key({}, "Print", function()
 		awful.spawn.with_shell("scrot -s ~/Pictures/Screenshots/")
 	end, { description = "Take a screenshot" })
@@ -554,7 +563,7 @@ root.keys(globalkeys)
 -- startup --
 awful.spawn.once("picom")
 -- awful.spawn.once("variety --resume")
-awful.spawn.with_shell("feh --no-fehbg --bg-fill /home/omareloui/Pictures/Wallpaper/joe-woods-tLDeO8lTgII-unsplash.jpg")
+awful.spawn.with_shell("~/.fehbg")
 awful.spawn.with_shell("/home/omareloui/.config/polybar/launch.sh")
 
 awful.spawn.once("telegram-desktop")

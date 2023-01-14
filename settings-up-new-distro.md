@@ -3,6 +3,7 @@
 ## Applications and packages included in `scripts/install_packages.sh`
 
 - bat
+- betterlockscreen
 - bpytop
 - build-essential
 - deno
@@ -15,6 +16,8 @@
 - gnome-shell-extensions
 - gnome-tweaks
 - go
+- i3lock-color
+- imagemagick
 - incscape
 - inkscape
 - keepassxc
@@ -30,6 +33,7 @@
 - telegram-desktop
 - tmux
 - tpm
+- tree
 - ulancher
 - ulauncher
 - vlc

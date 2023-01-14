@@ -42,6 +42,7 @@ sudo nala install -y \
 	ripgreb \
 	telegram-desktop \
 	tmux \
+	tree \
 	ulauncher \
 	vlc \
 	wmctrl \
@@ -95,5 +96,50 @@ cd /tmp/zk || exit 1
 sudo make
 sudo mv /tmp/zk/zk /usr/local/bin/
 
-cd ~ || exit 1
+cd - || exit 1
+
+############## Lock Screen (betterlockscreen) ##################
+# Src: https://github.com/betterlockscreen/betterlockscreen
+
+# Install i3lock-color
+# Src: https://github.com/Raymo111/i3lock-color
+sudo nala install autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev
+mkdir /tmp/i3lock-color
+git clone https://github.com/Raymo111/i3lock-color.git /tmp/i3lock-color
+cd /tmp/i3lock-color || exit 1
+./install-i3lock-color.sh
+cd - || exit 1
+
+# Install image magic
+# Src: https://ftp.imagemagick.org/script/install-source.php
+# image_magick_download_dir="$HOME/.local/share/ImageMagick"
+image_magick_download_dir="/tmp/imagemagic/"
+mkdir "$image_magick_download_dir"
+git clone https://github.com/ImageMagick/ImageMagick.git \
+	--depth 1 \
+	--branch main \
+	--single-branch \
+	"$image_magick_download_dir"
+cd "$image_magick_download_dir" || exit 1
+./configure
+make
+sudo make install
+sudo ldconfig /usr/local/lib
+cd - || exit 1
+
+# betterlockscreen
+cd /tmp || exit 1
+wget https://github.com/betterlockscreen/betterlockscreen/archive/refs/heads/main.zip
+unzip main.zip
+
+cd - || exit 1
+cd /tmp/betterlockscreen-main/ || exit 1
+chmod u+x betterlockscreen
+sudo cp betterlockscreen /usr/local/bin/
+
+sudo cp system/betterlockscreen@.service /usr/lib/systemd/system/
+sudo systemctl enable --now "betterlockscreen@$USER"
+cd - || exit 1
+################################################################
+
 exit 0

@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-config_in_dot_config="nvim kitty awesome rofi i3 polybar fish tmux lazygit starship.toml picom.conf"
-config_in_home=""
+config_in_dot_config="nvim kitty betterlockscreenrc awesome rofi i3 polybar fish tmux lazygit starship.toml picom.conf"
+config_in_home=".fehbg"
 vs_code_config="keybindings.json settings.json"
 
 function create_sym {
@@ -18,7 +18,7 @@ done
 
 # Files and folders in ~
 for conf in $config_in_home; do
-	create_sym "$DOTFILES/$conf" "$HOME/$conf"
+	create_sym "$conf" "$HOME/$conf"
 done
 
 for conf in $vs_code_config; do

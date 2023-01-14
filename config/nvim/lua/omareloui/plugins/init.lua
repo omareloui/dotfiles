@@ -5,7 +5,7 @@ return {
   -- }}}
 
   -- Themes and Styles {{{
-  { "akinsho/bufferline.nvim", tag = "v3.*", config = true, init = require("omareloui.config.mappings").bufferline },
+  { "akinsho/bufferline.nvim", config = true, init = require("omareloui.config.mappings").bufferline },
   {
     "zbirenbaum/neodim",
     event = "LspAttach",

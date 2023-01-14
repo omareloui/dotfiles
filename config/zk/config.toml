@@ -76,6 +76,15 @@ template = "journal.md"
 # [group."<NAME>".extra]
 #key = "value"
 
+[group.todo]
+paths = ["todo"]
+[group.todo.note]
+filename = "{{slug title}}"
+template = "todo.md"
+# [group."<NAME>".extra]
+#key = "value"
+
+
 
 # MARKDOWN SETTINGS
 [format.markdown]
@@ -202,6 +211,7 @@ conf = '$EDITOR "$ZK_NOTEBOOK_DIR/.zk/config.toml"'
 
 # new notes
 n  = 'zk new --no-input "$ZK_NOTEBOOK_DIR" --title $argv'
+todo  = 'zk new --no-input "$ZK_NOTEBOOK_DIR/todo" --title $argv'
 ni = 'zk new --no-input "$ZK_NOTEBOOK_DIR/ideas" --title $argv'
 j  = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
 

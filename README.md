@@ -2,6 +2,8 @@
 
 All dotfiles I use and need, and more on [setting up a new distro](./settings-up-new-distro.md).
 
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 ---
 
 ## Download and Install
@@ -12,7 +14,8 @@ Clone this repository in your home directory.
 git clone git@github.com:omareloui/dotfiles.git
 ```
 
-To install the configuration all you have to do is to run the `scripts/install_config.sh` file.
+To install the configuration all you have to do is to run the
+`scripts/install_config.sh` file.
 
 ```bash
 cd ~/dotfiles

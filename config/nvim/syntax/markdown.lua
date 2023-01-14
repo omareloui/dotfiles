@@ -21,6 +21,6 @@ vim.cmd [[
   syn match  MarkdownListBullet2    "[-*+]"           contained conceal cchar=•
 
   " Link
-  syn region MarkdownLink matchgroup=MarkdownDelimiter start="\\\@<!\[" end="\]\ze\s*[[(]" skipwhite concealends cchar=→
+  syn region MarkdownLink matchgroup=MarkdownDelimiter start="\\\@<!\[" end="\]\ze\s*[[(]" skipwhite oneline concealends cchar=→
 ]]
 --

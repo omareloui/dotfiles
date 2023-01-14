@@ -69,7 +69,7 @@ M.config = function()
       end,
     },
 
-    d.stylelint,
+    -- d.stylelint,
 
     -- Markdown
     d.markdownlint,

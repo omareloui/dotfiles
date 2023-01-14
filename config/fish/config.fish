@@ -35,6 +35,8 @@ alias lt="ls --human-readable --size -1 -S --classify"
 alias edge="/opt/microsoft/msedge/microsoft-edge"
 alias browse="edge"
 
+alias cv="open ~/Documents/Omar_Eloui_resume.pdf &"
+
 alias h="history"
 alias gh="history | grep" # Find a command in grep history
 
@@ -73,7 +75,7 @@ function gitpush
 end
 
 alias g="git"
-alias gs="git status"
+alias gst="git status"
 alias ga="git add"
 alias gc="git cz"
 alias gca=gitcommitall

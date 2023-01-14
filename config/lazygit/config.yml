@@ -4,7 +4,7 @@ gui:
 git:
   paging:
     colorArg: always
-    pager: delta --dark --diff-so-fancy --paging=never # TODO:
+    pager: delta --dark --diff-so-fancy --paging=never --line-numbers
 
 customCommands:
   - key: "C"

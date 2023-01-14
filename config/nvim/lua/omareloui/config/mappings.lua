@@ -315,14 +315,11 @@ local terminal_git = function()
 end
 
 local telescope_git = function()
-  set("n", "<leader>gl", "<Cmd>Telescope git_bcommits<CR>", { desc = "git commits" })
   set("n", "<leader>gs", "<Cmd>Telescope git_status<CR>", { desc = "git status" })
   set("n", "<leader>gs", "<Cmd>Telescope git_status<CR>", { desc = "git status" })
 end
 
 M.gitsings = function()
-  set("n", "<leader>gd", "<Cmd>Gvdiffsplit<CR>", { desc = "git diff" })
-
   set("n", "<leader>gb", function()
     require("gitsigns").blame_line { full = true }
   end, { desc = "git blame line" })
@@ -345,6 +342,12 @@ M.gitsings = function()
     schedule(require("gitsigns").prev_hunk)
     return "<Ignore>"
   end, { desc = "jump to previous hunk", expr = true })
+end
+
+function M.fugitive()
+  set("n", "<leader>gd", "<Cmd>Gvdiffsplit<CR>", { desc = "git diff" })
+  set("n", "<leader>gl", "<Cmd>GcLog -10<CR>", { desc = "git logs" })
+  set("n", "<leader>gfl", "<Cmd>Git log -p --follow -- %<CR>", { desc = "git file log" })
 end
 -- }}}
 

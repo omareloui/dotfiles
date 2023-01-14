@@ -18,4 +18,8 @@
 
 [core]
 	editor = nvim
+	pager = delta --diff-so-fancy --line-numbers
 	sshCommand = ssh -i ~/.ssh/github_rsa
+
+[delta]
+	side-by-side = true

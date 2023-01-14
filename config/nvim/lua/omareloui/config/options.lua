@@ -69,6 +69,10 @@ local options = {
 
   -- to make the sessions work better
   sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
+
+  -- Diff {{{
+  diffopt = "vertical",
+  -- }}}
 }
 
 -- {{{

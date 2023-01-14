@@ -566,6 +566,7 @@ awful.spawn.once("picom")
 -- awful.spawn.once("variety --resume")
 awful.spawn.with_shell("~/.fehbg")
 awful.spawn.with_shell("/home/omareloui/.config/polybar/launch.sh")
+awful.spawn.with_shell("/usr/bin/kdeconnect-indicator")
 
 awful.spawn.once("telegram-desktop")
 awful.spawn.once("keepassxc")

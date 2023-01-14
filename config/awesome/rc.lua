@@ -512,7 +512,8 @@ client.connect_signal("manage", function(c)
 
 	-- add roundness to the client
 	c.shape = function(cr, w, h)
-		gears.shape.rounded_rect(cr, w, h, 4)
+		-- gears.shape.rounded_rect(cr, w, h, 4)
+		gears.shape.rounded_rect(cr, w, h, 0)
 	end
 
 	c.border_width = 1

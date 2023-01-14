@@ -10,7 +10,7 @@ set("i", "<C-j>", "<Down>", { desc = "move down", nowait = true })
 set("i", "<C-k>", "<Up>", { desc = "move up", nowait = true })
 set("i", "<C-l>", "<Right>", { desc = "move right", nowait = true })
 
-set("i", "<C-b>", "<Esc>^i>", { desc = "move to the begining of the line" })
+set("i", "<C-b>", "<Esc>^i>", { desc = "move to the beginning of the line" })
 set("i", "<C-e>", "<End>", { desc = "move to the end of the line" })
 -- }}}
 
@@ -64,7 +64,7 @@ end
 set("n", "<C-s>", "<Cmd>up<CR>", { desc = "save buffer" })
 set("n", "<leader>w", "<Cmd>up<CR>", { desc = "save buffer" })
 
-set("n", "<C-c>", "<Cmd>%y+<CR>", { desc = "copy the whole file" })
+-- set("n", "<C-c>", "<Cmd>%y+<CR>", { desc = "copy the whole file" })
 
 set("n", "<leader>q", function()
   vim.schedule(function()
@@ -74,17 +74,17 @@ end, { desc = "close buffer", silent = true })
 -- }}}
 
 -- Clipboard {{{
-set("n", "Y", "y$", { desc = "yank to the end of the line" })
-set({ "n", "v" }, "<leader>y", '"+y', { desc = "yank to the system clipboard" })
-set("n", "<leader>Y", '"+Y', { desc = "yank to the system clipboard" })
-set({ "n", "v" }, "<leader>p", '"+p', { desc = "paste from the system clipboard" })
-set("n", "<leader>P", '"+P', { desc = "paste from the system clipboard" })
--- set({ "n", "v" }, "<leader>d", '"_d', { desc = "delete to void" })
--- set("n", "<leader>D", '"_D', { desc = "delete to void" })
--- set("v", ",p", '"0p', { desc = "paste last yanked" })
+set("n", "Y", "y$", { desc = "yank to the end of the line", remap = true })
+set({ "n", "v" }, "<leader>y", '"+y', { desc = "yank to the system clipboard", remap = true })
+set("n", "<leader>Y", '"+Y', { desc = "yank to the system clipboard", remap = true })
+set({ "n", "v" }, "<leader>p", '"+p', { desc = "paste from the system clipboard", remap = true })
+set("n", "<leader>P", '"+P', { desc = "paste from the system clipboard", remap = true })
+-- set({ "n", "v" }, "<leader>d", '"_d', { desc = "delete to void", remap = true })
+-- set("n", "<leader>D", '"_D', { desc = "delete to void", remap = true })
+-- set("v", ",p", '"0p', { desc = "paste last yanked", remap = true })
 
 -- Don't copy the replaced text after pasting in visual mode
-set({ "x" }, "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { silent = true })
+set("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { silent = true, remap = true })
 -- }}}
 
 -- Navigation in file {{{
@@ -197,7 +197,7 @@ M.lspsaga = function()
 end
 
 local telescope_lsp = function()
-  set("n", "<leader>dl", "<Cmd>Telescope diagnostics<CR>", { desc = "list all diagnostics", buffer = 0 })
+  set("n", "<leader>dl", "<Cmd>Telescope diagnostics<CR>", { desc = "list all diagnostics", buffer = true })
 end
 -- }}}
 
@@ -473,41 +473,42 @@ function M.zk()
     if ft == "markdown" then
       vim.lsp.buf.definition()
     end
-  end, { desc = "go to zk note" })
+  end, { desc = "go to zk note", buffer = true })
 
   -- Create a new note after asking for its title.
   set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", {
     desc = "create a new zk note",
+    buffer = true,
   })
 
   -- Create a new note in the same directory as the current buffer, using the current selection for title.
-  -- set("v", "<leader>znt", ":'<,'>ZkNewFromTitleSelection { dir = vim.fn.expand('%:p:h') }<CR>")
+  -- set("v", "<leader>znt", ":'<,'>ZkNewFromTitleSelection { dir = vim.fn.expand('%:p:h') }<CR>", { desc = "", buffer = true })
   -- Create a new note in the same directory as the current buffer, using the current selection for note content and asking for its title.
-  -- set("v", "<leader>znc", ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>")
+  -- set("v", "<leader>znc", ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>", { desc = "", buffer = true })
 
   -- Open notes.
   set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", { desc = "open zk notes" })
   -- Open notes associated with the selected tags.
-  set("n", "<leader>zt", "<Cmd>ZkTags<CR>", { desc = "open notes zk associated with the selected tags" })
+  set("n", "<leader>zt", "<Cmd>ZkTags<CR>", { desc = "open notes zk associated with the selected tags", buffer = true })
   -- Search for the notes matching a given query.
   set(
     "n",
     "<leader>zf",
     "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
-    { desc = "search for the zk notes matching a given query" }
+    { desc = "search for the zk notes matching a given query", buffer = true }
   )
   -- Search for the notes matching the current visual selection.
   set(
     "v",
     "<leader>zf",
     ":'<,'>ZkMatch<CR>",
-    { desc = "search for the zk notes matching the current visual selection" }
+    { desc = "search for the zk notes matching the current visual selection", buffer = true }
   )
 
   -- Open notes linking to the current buffer.
-  set("n", "<leader>zb", "<Cmd>ZkBacklinks<CR>", { desc = "open notes linking to the current buffer" })
+  set("n", "<leader>zb", "<Cmd>ZkBacklinks<CR>", { desc = "open notes linking to the current buffer", buffer = true })
   -- Open notes linked by the current buffer.
-  set("n", "<leader>zl", "<Cmd>ZkLinks<CR>", { desc = "open notes linked by the current buffer" })
+  set("n", "<leader>zl", "<Cmd>ZkLinks<CR>", { desc = "open notes linked by the current buffer", buffer = true })
 end
 -- }}}
 

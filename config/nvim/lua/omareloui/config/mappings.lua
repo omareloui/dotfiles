@@ -473,42 +473,52 @@ function M.zk()
     if ft == "markdown" then
       vim.lsp.buf.definition()
     end
-  end, { desc = "go to zk note", buffer = true })
+  end, { desc = "go to zk note" })
 
   -- Create a new note after asking for its title.
-  set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", {
-    desc = "create a new zk note",
-    buffer = true,
-  })
-
-  -- Create a new note in the same directory as the current buffer, using the current selection for title.
-  -- set("v", "<leader>znt", ":'<,'>ZkNewFromTitleSelection { dir = vim.fn.expand('%:p:h') }<CR>", { desc = "", buffer = true })
-  -- Create a new note in the same directory as the current buffer, using the current selection for note content and asking for its title.
-  -- set("v", "<leader>znc", ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>", { desc = "", buffer = true })
+  set("n", "<leader>znn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", { desc = "create a new zk note" })
+  set(
+    "n",
+    "<leader>znt",
+    "<Cmd>ZkNew { dir='todo', title = vim.fn.input('Title: ') }<CR>",
+    { desc = "create a new zk todo" }
+  )
+  set(
+    "n",
+    "<leader>znj",
+    "<Cmd>ZkNew { dir='journal' }<CR>",
+    { desc = "create a new zk journal entry (or open if existed)" }
+  )
+  set(
+    "n",
+    "<leader>zni",
+    "<Cmd>ZkNew { dir='ideas', title = vim.fn.input('Title: ') }<CR>",
+    { desc = "create a new zk ideas" }
+  )
 
   -- Open notes.
   set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", { desc = "open zk notes" })
   -- Open notes associated with the selected tags.
-  set("n", "<leader>zt", "<Cmd>ZkTags<CR>", { desc = "open notes zk associated with the selected tags", buffer = true })
+  set("n", "<leader>zt", "<Cmd>ZkTags<CR>", { desc = "open notes zk associated with the selected tags" })
   -- Search for the notes matching a given query.
   set(
     "n",
     "<leader>zf",
     "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
-    { desc = "search for the zk notes matching a given query", buffer = true }
+    { desc = "search for the zk notes matching a given query" }
   )
   -- Search for the notes matching the current visual selection.
   set(
     "v",
     "<leader>zf",
     ":'<,'>ZkMatch<CR>",
-    { desc = "search for the zk notes matching the current visual selection", buffer = true }
+    { desc = "search for the zk notes matching the current visual selection" }
   )
 
   -- Open notes linking to the current buffer.
-  set("n", "<leader>zb", "<Cmd>ZkBacklinks<CR>", { desc = "open notes linking to the current buffer", buffer = true })
+  set("n", "<leader>zb", "<Cmd>ZkBacklinks<CR>", { desc = "open notes linking to the current buffer" })
   -- Open notes linked by the current buffer.
-  set("n", "<leader>zl", "<Cmd>ZkLinks<CR>", { desc = "open notes linked by the current buffer", buffer = true })
+  set("n", "<leader>zl", "<Cmd>ZkLinks<CR>", { desc = "open notes linked by the current buffer" })
 end
 -- }}}
 

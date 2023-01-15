@@ -1,4 +1,7 @@
-M = { "lukas-reineke/indent-blankline.nvim" }
+M = {
+  "lukas-reineke/indent-blankline.nvim",
+  -- enabled = false,
+}
 
 M.config = function()
   local present, blankline = pcall(require, "indent_blankline")

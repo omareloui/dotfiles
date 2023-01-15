@@ -19,11 +19,11 @@ return function(globalkeys)
 
 		-- brightness controll
 		awful.key({}, "XF86MonBrightnessDown", function()
-			awful.spawn.with_shell("brightnessctl set 10-")
+			awful.spawn.with_shell("brightnessctl set 20-")
 		end),
 
 		awful.key({}, "XF86MonBrightnessUp", function()
-			awful.spawn.with_shell("brightnessctl set +10")
+			awful.spawn.with_shell("brightnessctl set +20")
 		end)
 	)
 end

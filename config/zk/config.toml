@@ -25,10 +25,7 @@ extension = "md"
 template = "default.md"
 
 # Path globs ignored while indexing existing notes.
-# ignore = [
-#   "drafts/*",
-#   "log.md"
-# ]
+ignore = ["archive/*"]
 
 # Configure random ID generation.
 

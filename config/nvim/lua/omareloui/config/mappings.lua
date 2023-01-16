@@ -519,6 +519,9 @@ function M.zk()
   set("n", "<leader>zb", "<Cmd>ZkBacklinks<CR>", { desc = "open notes linking to the current buffer" })
   -- Open notes linked by the current buffer.
   set("n", "<leader>zl", "<Cmd>ZkLinks<CR>", { desc = "open notes linked by the current buffer" })
+
+  -- Push the notes
+  set("n", "<leader>zp", "<Cmd>!zk push<CR>", { desc = "push zk notes to github repo" })
 end
 -- }}}
 

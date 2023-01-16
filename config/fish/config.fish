@@ -47,6 +47,10 @@ alias wifidown="$HOME/scripts/wifi/disconnect.sh"
 alias wifimyconnection="$HOME/scripts/wifi/myconnect.sh"
 # }}}
 
+# Scripts {{{
+alias compresspdf="$SYSTEM_SCRIPTS/compress-pdf.sh"
+# }}}
+
 # Create python virtual environment
 alias py="python3"
 alias ve="python3 -m venv ./env"

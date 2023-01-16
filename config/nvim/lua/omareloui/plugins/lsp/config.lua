@@ -1,8 +1,9 @@
 local present, lspconfig = pcall(require, "lspconfig")
-
 if not present then
   return
 end
+
+require("lspconfig.ui.windows").default_options.border = "rounded"
 
 M = {}
 
@@ -15,6 +16,7 @@ M.diagnostics_setup = function()
     virtual_text = { prefix = signs.virtual_prefix, source = true },
     signs = true,
     severity_sort = true,
+    float = { border = "rounded" },
   }
 
   for type, icon in pairs(signs) do

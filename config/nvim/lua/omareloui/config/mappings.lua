@@ -467,15 +467,15 @@ end
 
 -- ZK {{{
 function M.zk()
-  set("n", "<CR>", function()
-    local buf = vim.api.nvim_get_current_buf()
-    local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-    if ft == "markdown" then
-      vim.lsp.buf.definition()
-    elseif ft == "qf" then
-      vim.cmd("cc! " .. vim.fn.line ".")
-    end
-  end, { desc = "go to zk note" })
+  -- set("n", "<CR>", function()
+  --   local buf = vim.api.nvim_get_current_buf()
+  --   local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+  --   if ft == "markdown" then
+  --     vim.lsp.buf.definition()
+  --   elseif ft == "qf" then
+  --     vim.cmd("cc! " .. vim.fn.line ".")
+  --   end
+  -- end, { desc = "go to zk note" })
 
   -- Create a new note after asking for its title.
   set("n", "<leader>znn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", { desc = "create a new zk note" })

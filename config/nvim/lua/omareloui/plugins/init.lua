@@ -24,6 +24,7 @@ return {
   "jose-elias-alvarez/typescript.nvim",
   "simrat39/rust-tools.nvim",
   { "folke/trouble.nvim", config = true },
+  { "ray-x/lsp_signature.nvim", config = { hanler_opts = { border = "rounded" } } },
   -- }}}
 
   -- Treesitter {{{

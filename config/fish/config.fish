@@ -48,7 +48,8 @@ alias wifimyconnection="$HOME/scripts/wifi/myconnect.sh"
 # }}}
 
 # Scripts {{{
-alias compresspdf="$SYSTEM_SCRIPTS/compress-pdf.sh"
+alias pdfcompress="$SYSTEM_SCRIPTS/pdf/compress.sh"
+alias converttowebp="$SYSTEM_SCRIPTS/images/convert_to_webp.sh"
 # }}}
 
 # Create python virtual environment

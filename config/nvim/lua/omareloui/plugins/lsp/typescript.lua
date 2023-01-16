@@ -11,6 +11,7 @@ local utils = require "omareloui.plugins.lsp.utils"
 
 typescript.setup {
   server = {
+    single_file_support = false,
     root_dir = function(startpath)
       local package_json_dir = lspconfig.util.root_pattern "package.json"(startpath)
 

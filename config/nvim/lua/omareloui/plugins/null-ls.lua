@@ -30,26 +30,8 @@ M.config = function()
     },
 
     f.prettierd.with {
-      filetypes = {
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue",
-        "css",
-        "scss",
-        "less",
-        "html",
-        "json",
-        "jsonc",
-        "yaml",
-        "markdown",
-        "markdown.mdx",
-        "graphql",
-        "handlebars",
+      extra_filetypes = { "toml", "astro" },
 
-        "astro",
-      },
       condition = function()
         return check_if_in_package_json "prettier"
       end,
@@ -97,6 +79,10 @@ M.config = function()
   local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
   null_ls.setup {
     sources = sources,
+    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    root_dir = require("null-ls.utils").root_pattern(".null-ls-root", "Makefile", ".git", "Cargo.toml"),
+
+    default_timeout = 5000,
 
     on_attach = function(client, bufnr)
       -- Format on saving

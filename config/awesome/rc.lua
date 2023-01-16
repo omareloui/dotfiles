@@ -554,7 +554,11 @@ globalkeys = gears.table.join(
 	end, { description = "Reboot" }),
 
 	awful.key({}, "Print", function()
-		awful.spawn.with_shell("scrot -s ~/Pictures/Screenshots/")
+		awful.spawn.with_shell("scrot ~/Pictures/Screenshots/ -s -i -f -l mode=edge")
+	end, { description = "Take a screenshot" }),
+
+	awful.key({ "Shift" }, "Print", function()
+		awful.spawn.with_shell("scrot ~/Pictures/Screenshots/")
 	end, { description = "Take a screenshot" })
 )
 

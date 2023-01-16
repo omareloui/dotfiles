@@ -6,6 +6,9 @@ set -Ux VISUAL nvim
 set -Ux DOTFILES $HOME/dotfiles/config
 set -Ux SYSTEM_SCRIPTS $HOME/scripts
 set -Ux ZK_NOTEBOOK_DIR $HOME/zk
+set -Ux REPOS_DIR $HOME/repos
+set -Ux MOVIES_DIR $HOME/Movies
+set -Ux MUSIC_DIR $HOME/Music
 
 
 ################################# KEY BINDINGS #################################
@@ -50,6 +53,7 @@ alias wifimyconnection="$HOME/scripts/wifi/myconnect.sh"
 # Scripts {{{
 alias pdfcompress="$SYSTEM_SCRIPTS/pdf/compress.sh"
 alias converttowebp="$SYSTEM_SCRIPTS/images/convert_to_webp.sh"
+alias movemovies="$MOVIES_DIR/.scripts/rename_downloaded_movies.ts"
 # }}}
 
 # Create python virtual environment

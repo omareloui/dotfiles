@@ -472,6 +472,8 @@ function M.zk()
     local ft = vim.api.nvim_buf_get_option(buf, "filetype")
     if ft == "markdown" then
       vim.lsp.buf.definition()
+    elseif ft == "qf" then
+      vim.cmd("cc! " .. vim.fn.line ".")
     end
   end, { desc = "go to zk note" })
 

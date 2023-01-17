@@ -24,6 +24,7 @@ return {
   "jose-elias-alvarez/typescript.nvim",
   "simrat39/rust-tools.nvim",
   { "folke/trouble.nvim", config = true },
+  { "j-hui/fidget.nvim", config = { text = { spinner = "dots" }, window = { blend = true } } },
   -- }}}
 
   -- Treesitter {{{

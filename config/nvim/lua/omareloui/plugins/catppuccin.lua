@@ -26,6 +26,7 @@ M.config = function()
       ts_rainbow = true,
       which_key = true,
       native_lsp = { enabled = true },
+      fidget = true,
     },
   }
 

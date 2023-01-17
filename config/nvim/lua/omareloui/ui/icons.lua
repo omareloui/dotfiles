@@ -5,12 +5,18 @@ M.separator = {
   empty_round = { left = "", right = "" },
 }
 
--- ●
-M.diagnostics = { Error = " ", Warn = " ", Hint = " ", Info = " ", virtual_prefix = " " }
+M.diagnostics = {
+  Error = " ",
+  Warn = " ",
+  Hint = " ",
+  Info = " ",
+  -- ﱢ       ●
+  virtual_prefix = "",
+}
 
 M.lualine = {
   --                                            ﲤ      ﴱ   h
-  vim_icon = "",
+  vim_icon = "",
   diff = { added = " ", modified = " ", removed = " " },
   location = "",
   progress = "",

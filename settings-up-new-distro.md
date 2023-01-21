@@ -6,6 +6,7 @@
 - betterlockscreen
 - bpytop
 - build-essential
+- cmus
 - deno
 - entr
 - exa

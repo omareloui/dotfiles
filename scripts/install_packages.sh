@@ -26,6 +26,7 @@ sudo nala install -y \
 	bpytop \
 	build-essential \
 	entr \
+	cmus \
 	exa \
 	fd-find \
 	ffmpeg \

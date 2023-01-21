@@ -1,23 +1,23 @@
 local awful = require("awful")
 local gears = require("gears")
 
--- brightness controll
+-- brightness control
 return function(globalkeys)
 	return gears.table.join(
 		globalkeys,
 
 		-- audio control
 		awful.key({}, "XF86AudioRaiseVolume", function()
-			awful.spawn.with_shell("amixer -c 1 set Master 9%+ unmute")
+			awful.spawn.with_shell("volume up")
 		end),
 		awful.key({}, "XF86AudioLowerVolume", function()
-			awful.spawn.with_shell("amixer -c 1 set Master 9%- unmute")
+			awful.spawn.with_shell("volume down")
 		end),
 		awful.key({}, "XF86AudioMute", function()
-			awful.spawn.with_shell("amixer -c 1 set Master togglemute")
+			awful.spawn.with_shell("volume mute")
 		end),
 
-		-- brightness controll
+		-- brightness control
 		awful.key({}, "XF86MonBrightnessDown", function()
 			awful.spawn.with_shell("brightnessctl set 20-")
 		end),

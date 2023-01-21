@@ -69,6 +69,21 @@ function p() {{
   )
 )
 
+cs(
+  "ansi",
+  fmt(
+    [[BOLD="\e[1m"; END_BOLD="\e[22m"
+UNDERLINE="\e[4m"; END_UNDERLINE="\e[24m"
+
+RED="\e[31m"
+GREEN="\e[32m"
+BLUE="\e[34m"
+
+RESET="\e[0m"]],
+    {}
+  )
+)
+
 ------------------------------- End Refactoring -------------------------------
 
 return snippets, autosnippets

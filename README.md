@@ -1,6 +1,6 @@
 # Dotfiles
 
-All dotfiles I use and need, and more on [setting up a new distro](./settings-up-new-distro.md).
+All dotfiles, packages, scripts, and some assets I use and need.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
@@ -11,31 +11,24 @@ All dotfiles I use and need, and more on [setting up a new distro](./settings-up
 Clone this repository in your home directory.
 
 ```bash
-git clone git@github.com:omareloui/dotfiles.git
+git clone git@github.com:omareloui/dotfiles.git ~/.dotfiles
 ```
 
-To install the configuration all you have to do is to run the
-`scripts/install_config.sh` file.
+Checkout the [bootstrap](./bootstrap/README.md) folder to see what you need to run.
+Or follow [this checklist](./docs/setup-checklist.md).
 
-```bash
-cd ~/dotfiles
+## In this repo
 
-chmod +x scripts/install_config.sh
-./scripts/install_config.sh
-```
-
-> To change the config location to install from change `$DOTFILES` env from `config/fish/config.fish`.
-
-## Included configuration
-
-- VS Code
-- `nvim`
-- `fish`
-- `git`
-- `starship`
-- List in `./config/packages.txt` of all installed apt packages.
-
-  To update this list run `./scripts/list_packages.sh`.
+- [Configurations](./config/README.md).
+- [Scripts](./docs/scripts.md).
+- [Bootstrap scripts](./bootstrap/README.md)
+  - Script to link the configurations.
+  - Script to link the scripts.
+  - Script to setup the battery.
+  - [Packages to download and install](./bootstrap/packages/README.md)
+  - [Assets to download](./bootstrap/assets/README.md)
+- [Assets](./assets/README.md).
+- [Setup Checklist](./docs/setup-checklist.md)
 
 ---
 

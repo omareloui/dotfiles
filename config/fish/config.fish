@@ -3,12 +3,16 @@ set fish_greeting
 set -Ux EDITOR nvim
 set -Ux VISUAL nvim
 
-set -Ux DOTFILES $HOME/dotfiles/config
-set -Ux SYSTEM_SCRIPTS $HOME/scripts
+set -Ux DOTFILES        $HOME/.dotfiles
+set -Ux DOTFILES_CONFIG $DOTFILES/config
+set -Ux SCRIPTS         $DOTFILES/scripts
+set -Ux BOOTSTRAP_FILES $DOTFILES/bootstrap
+
+set -Ux REPOS_DIR       $HOME/repos
 set -Ux ZK_NOTEBOOK_DIR $HOME/zk
-set -Ux REPOS_DIR $HOME/repos
-set -Ux MOVIES_DIR $HOME/Movies
-set -Ux MUSIC_DIR $HOME/Music
+
+set -Ux MOVIES_DIR      $HOME/Movies
+set -Ux MUSIC_DIR       $HOME/Music
 
 
 ################################# KEY BINDINGS #################################
@@ -43,18 +47,19 @@ alias cv="open ~/Documents/Omar_Eloui_resume.pdf &"
 alias h="history"
 alias gh="history | grep" # Find a command in grep history
 
-# Wifi {{{
-alias wifiscan="$HOME/scripts/wifi/scan.sh"
-alias wifiup="$HOME/scripts/wifi/connect.sh"
-alias wifidown="$HOME/scripts/wifi/disconnect.sh"
-alias wifimyconnection="$HOME/scripts/wifi/myconnect.sh"
-# }}}
+# # Wifi {{{
+# alias wifiscan="$HOME/scripts/wifi/scan.sh"
+# alias wifiup="$HOME/scripts/wifi/connect.sh"
+# alias wifidown="$HOME/scripts/wifi/disconnect.sh"
+# alias wifimyconnection="$HOME/scripts/wifi/myconnect.sh"
+# # }}}
 
-# Scripts {{{
-alias pdfcompress="$SYSTEM_SCRIPTS/pdf/compress.sh"
-alias converttowebp="$SYSTEM_SCRIPTS/images/convert_to_webp.sh"
-alias movemovies="$MOVIES_DIR/.scripts/rename_downloaded_movies.ts"
-# }}}
+# # Scripts {{{
+# alias pdfcompress="$SCRIPTS/pdf/compress.sh"
+# alias converttowebp="$SCRIPTS/images/convert_to_webp.sh"
+# TODO:
+# alias movemovies="$MOVIES_DIR/.scripts/rename_downloaded_movies.ts"
+# # }}}
 
 # Create python virtual environment
 alias py="python3"

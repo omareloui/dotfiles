@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+case $1 in
+scripts)
+	"$BOOTSTRAP_FILES/scripts.sh" -v
+	;;
+config)
+	"$BOOTSTRAP_FILES/config.sh" -v
+	;;
+battery)
+	"$BOOTSTRAP_FILES/battery.sh" -v
+	;;
+esac

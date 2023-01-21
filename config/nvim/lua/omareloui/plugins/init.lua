@@ -24,7 +24,7 @@ return {
   "jose-elias-alvarez/typescript.nvim",
   "simrat39/rust-tools.nvim",
   { "folke/trouble.nvim", config = true },
-  { "j-hui/fidget.nvim", config = { text = { spinner = "dots" }, window = { blend = true } } },
+  { "j-hui/fidget.nvim", config = { text = { spinner = "dots" }, window = { blend = 0 } } },
   -- }}}
 
   -- Treesitter {{{
@@ -44,6 +44,17 @@ return {
   { "hrsh7th/cmp-buffer", dependencies = { "cmp-nvim-lsp" } },
   { "hrsh7th/cmp-path", dependencies = { "cmp-buffer" } },
   "f3fora/cmp-spell",
+  -- }}}
+
+  -- Previewer {{{
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && yarn install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
   -- }}}
 
   -- Linters and formatters {{{

@@ -461,6 +461,7 @@ awful.rules.rules = {
 	},
 
 	----------- My rules -----------
+	{ rule = { class = "discord" }, properties = { tag = "5" } },
 	{ rule = { class = "TelegramDesktop" }, properties = { tag = "6" } },
 	{ rule = { class = "KeePassXC" }, properties = { tag = "7" } },
 	{ rule = { class = "thunderbird" }, properties = { tag = "8" } },
@@ -574,5 +575,6 @@ awful.spawn.with_shell("/usr/bin/kdeconnect-indicator")
 
 awful.spawn.once("telegram-desktop")
 awful.spawn.once("keepassxc")
+awful.spawn.with_shell("~/Applications/Discord/Discord")
 awful.spawn.with_shell("thunderbird") -- for some reason it throws an error on awful.spawn.once()
 -- awful.spawn.once("rhythmbox")

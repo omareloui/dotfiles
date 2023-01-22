@@ -47,13 +47,6 @@ alias cv="open ~/Documents/Omar_Eloui_resume.pdf &"
 alias h="history"
 alias gh="history | grep" # Find a command in grep history
 
-# # Wifi {{{
-# alias wifiscan="$HOME/scripts/wifi/scan.sh"
-# alias wifiup="$HOME/scripts/wifi/connect.sh"
-# alias wifidown="$HOME/scripts/wifi/disconnect.sh"
-# alias wifimyconnection="$HOME/scripts/wifi/myconnect.sh"
-# # }}}
-
 # # Scripts {{{
 # alias pdfcompress="$SCRIPTS/pdf/compress.sh"
 # alias converttowebp="$SCRIPTS/images/convert_to_webp.sh"
@@ -71,6 +64,8 @@ alias myip="curl ipinfo.io/ip; echo \\"
 alias bat="batcat"
 
 alias clipboard="xclip -sel clip"
+
+alias lf="lfrun"
 
 alias w="variety -n"
 

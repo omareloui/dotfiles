@@ -8,7 +8,7 @@
 # symlinked from $DOTFILES_CONFIG
 declare -A FROM_ROOT=(
 	["$HOME"]=".fehbg"
-	["$HOME/.config"]="nvim kitty betterlockscreenrc awesome rofi i3 polybar fish tmux lazygit starship.toml picom.conf"
+	["$HOME/.config"]="nvim kitty betterlockscreenrc awesome rofi i3 polybar fish tmux lazygit starship.toml picom.conf lf"
 )
 
 ## Not in the root of $DOTFILES_CONFIG or to rename on dest

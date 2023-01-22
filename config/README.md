@@ -14,6 +14,7 @@ This is the root of my configurations.
 - `tmux`.
 - `VSCode`.
 - `zk`.
+- `lf`
 - `git` in `git/.gitconfig`.
 - `git templates` in `git/templates`.
 - `commitizen` in `git/.czrc`.

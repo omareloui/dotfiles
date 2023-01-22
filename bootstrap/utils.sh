@@ -10,6 +10,9 @@ END_UNDERLINE="\e[24m"
 RED="\e[31m"
 GREEN="\e[32m"
 BLUE="\e[34m"
+BLACK="\e[30m"
+
+BLUE_BG="\e[44m"
 
 RESET="\e[0m"
 

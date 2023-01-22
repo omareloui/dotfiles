@@ -15,6 +15,8 @@
 . "$(dirname "$0")/fish.sh"
 . "$(dirname "$0")/starship.sh"
 
+. "$(dirname "$0")/lf.sh"
+
 . "$(dirname "$0")/gnome.sh"
 . "$(dirname "$0")/ulauncher.sh"
 

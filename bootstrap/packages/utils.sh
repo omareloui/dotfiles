@@ -47,14 +47,16 @@ function git_clone {
 	branch_name=$2
 	dest=$3
 
-	[[ -z $dest ]] && branch_name="."
 	[[ -z $branch_name ]] && branch_name="main"
-
-	git clone "$link" \
-		--depth 1 \
-		--branch "$branch_name" \
-		--single-branch \
-		"$dest"
+	if [[ -z $dest ]]; then
+		git clone "$link" --depth 1 --branch "$branch_name" --single-branch
+	else
+		git clone "$link" \
+			--depth 1 \
+			--branch "$branch_name" \
+			--single-branch \
+			"$dest"
+	fi
 }
 
 function install_with_pnpm {

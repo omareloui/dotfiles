@@ -50,7 +50,8 @@ while true; do
 		;;
 	*)
 		echo -e "${RED}You have to provide a file or folder.${RESET}"
-		echo -e "Run '${UNDERLINE}$(basename "$0") --help${END_UNDERLINE}' for more information"
+		echo -e "eg. \"${BOLD}$(basename "$0") -vf <file>${END_BOLD}\""
+		echo -e "Run '$(basename "$0") --help' for more information."
 		exit 1
 		;;
 	esac
@@ -72,10 +73,12 @@ if [[ -z $DOTFILES_CONFIG ]]; then
 	exit 1
 fi
 
+file=$(realpath "$file")
+
 mv "$file" "$DOTFILES_CONFIG/$(basename "$file")"
 p "${GREEN}Moved the file/folder to \"$DOTFILES_CONFIG/$(basename "$file")\".${RESET}"
 
-ln -s "$DOTFILES_CONFIG/$(basename "$file")" "$PWD/$(basename "$file")"
+ln -s "$DOTFILES_CONFIG/$(basename "$file")" "$file"
 p "${GREEN}Created the symlink.${RESET}"
 
 echo -e "${BLUE_BG}${BLACK}REMINDER:${RESET} ${BLUE}don't forget to add this to the bootstrap script at ${BOLD}$BOOTSTRAP_FILES/config.sh${END_BOLD}.${RESET}"

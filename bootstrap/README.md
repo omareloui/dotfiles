@@ -12,8 +12,8 @@ jobs note that you'll need to add the cron jobs yourself [read more](../docs/bat
 
 - `utils.sh`: utilities script used by other scripts.
 
-- Assets scripts: you can read more about them [here](./assets/README.md).
-- Package and application scripts: you can read more about them [here](./packages/README.md).
+- Assets scripts: you can read more about them [here](./assets).
+- Package and application scripts: you can read more about them [here](./packages).
 
 ### Common Arguments
 

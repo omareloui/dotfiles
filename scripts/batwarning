@@ -14,8 +14,7 @@ is_discharging=$(acpi | grep -c "Discharging")
 
 notified_for=$(cat "$LOW_NOTF_FILE")
 
-# same id as on_plug
-NOTIFICATION_ID=80008
+NOTIFICATION_ID=69
 
 # Notification on charged
 if

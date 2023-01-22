@@ -500,7 +500,7 @@ end)
 ---------------------------------  MY  CONFIG ----------------------------------
 local b = beautiful
 
-b.useless_gap = 3
+b.useless_gap = 8
 -- local outer_padding = 2
 -- awful.screen.connect_for_each_screen(function(s)
 -- 	s.padding = { left = outer_padding, right = outer_padding, top = outer_padding, bottom = outer_padding }
@@ -567,7 +567,8 @@ globalkeys = gears.table.join(
 root.keys(globalkeys)
 
 -- startup --
-awful.spawn.once("picom")
+awful.spawn.with_shell("picom --experimental-backends -b")
+
 -- awful.spawn.once("variety --resume")
 awful.spawn.with_shell("~/.fehbg")
 awful.spawn.with_shell("/home/omareloui/.config/polybar/launch.sh")

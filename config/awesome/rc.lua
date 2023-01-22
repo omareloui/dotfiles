@@ -542,7 +542,7 @@ globalkeys = gears.table.join(
 	end, { description = "launch thunderbird", group = "launcher" }),
 
 	awful.key({ modkey }, "w", function()
-		awful.spawn.with_shell("variety -n")
+		awful.spawn.with_shell("feh --no-fehbg --bg-fill --randomize $HOME/Pictures/Wallpaper")
 	end, { description = "load the next wallpaper" }),
 
 	awful.key({ modkey }, "x", function()

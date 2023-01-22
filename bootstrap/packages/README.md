@@ -51,6 +51,7 @@ Scripts to install packages and applications I use.
 - `fish.sh`: installs the `fish` shell and sets it as the default shell.
 - `starship.sh`: install the `starship` prompt.
 
+- `awesomewm`: Awesome Window Manager.
 - `picom`: a compositor.
 
 - `lf`: a file browser.

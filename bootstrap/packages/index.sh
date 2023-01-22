@@ -15,6 +15,7 @@
 . "$(dirname "$0")/fish.sh"
 . "$(dirname "$0")/starship.sh"
 
+. "$(dirname "$0")/awesomewm.sh"
 . "$(dirname "$0")/picom.sh"
 
 . "$(dirname "$0")/lf.sh"

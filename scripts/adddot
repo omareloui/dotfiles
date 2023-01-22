@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+BOLD="\e[1m"
+END_BOLD="\e[22m"
+UNDERLINE="\e[4m"
+END_UNDERLINE="\e[24m"
+
+BLACK="\e[30m"
+RED="\e[31m"
+GREEN="\e[32m"
+BLUE="\e[34m"
+
+BLUE_BG="\e[44m"
+
+RESET="\e[0m"
+
+verbose=0
+file=""
+
+LONGOPTS=file:,verbose,help
+OPTIONS=f:vh
+
+PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
+eval set -- "$PARSED"
+
+while true; do
+	case "$1" in
+	-v | --verbose)
+		verbose=1
+		shift
+		;;
+	-h | --help)
+		echo "Usage: $(basename "$0") [OPTION]..."
+		echo "Add a file/folder to the dotfiles to track it."
+		echo ""
+		echo "-f, --file        the file or folder to include to dotfiles"
+		echo "-v, --verbose     prints out the process state"
+		echo "-h, --help        show this help prompt"
+		echo ""
+		echo "Example"
+		echo "  $(basename "$0") -vf nvim"
+		exit 0
+		;;
+	-f | --file)
+		file="${2//=/}"
+		if [[ -n $file ]]; then
+			shift
+			break
+		fi
+		;;
+	*)
+		echo -e "${RED}You have to provide a file or folder.${RESET}"
+		echo -e "Run '${UNDERLINE}$(basename "$0") --help${END_UNDERLINE}' for more information"
+		exit 1
+		;;
+	esac
+done
+
+function p() {
+	if ((verbose == 1)); then
+		echo -e "$1"
+	fi
+}
+
+if [[ ! -e $file ]]; then
+	echo -e "${RED}Can't find \"$file\", no such file or directory.${RESET}"
+	exit 1
+fi
+
+if [[ -z $DOTFILES_CONFIG ]]; then
+	echo -e "${RED}\$DOTFILES_CONFIG has to be defined to know where to add the file/folder.${RESET}"
+	exit 1
+fi
+
+mv "$file" "$DOTFILES_CONFIG/$(basename "$file")"
+p "${GREEN}Moved the file/folder to \"$DOTFILES_CONFIG/$(basename "$file")\".${RESET}"
+
+ln -s "$DOTFILES_CONFIG/$(basename "$file")" "$PWD/$(basename "$file")"
+p "${GREEN}Created the symlink.${RESET}"
+
+echo -e "${BLUE_BG}${BLACK}REMINDER:${RESET} ${BLUE}don't forget to add this to the bootstrap script at ${BOLD}$BOOTSTRAP_FILES/config.sh${END_BOLD}.${RESET}"

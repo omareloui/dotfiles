@@ -2,6 +2,10 @@
 
 This is for the scripts in `~/.dotfiles/scripts` (linked to `~/.local/bin`).
 
+## [adddot](../scripts/adddot)
+
+Add a file or folder to my dotfiles and symlink them to the original location.
+
 ## [audio-flac-to-mp3](../scripts/audio-flac-to-mp3)
 
 A script to convert all `flac` files in PWD to `mp3`.

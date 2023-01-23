@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version=1.0.0
+version=1.1.0
 
 BOLD="\e[1m"
 END_BOLD="\e[22m"
@@ -12,6 +12,7 @@ RED="\e[31m"
 RED_BG="\e[41m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
+YELLOW_BG="\e[43m"
 BLUE="\e[34m"
 MAGENTA="\e[35m"
 
@@ -23,14 +24,15 @@ BRIGHT_MAGENTA="\e[95m"
 
 RESET="\e[0m"
 
-LONGOPTS=help,no-copy,sleep:
-OPTIONS=h,C,s:
+LONGOPTS=help,no-copy,sleep:,quite
+OPTIONS=h,C,s:,q
 
 PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 eval set -- "$PARSED"
 
 copy=1
 sleep=0
+quite=0
 
 while true; do
 	case "$1" in
@@ -59,6 +61,8 @@ while true; do
 		echo -e "    ${BLUE}-s${RESET}, ${BLUE}--sleep ${YELLOW}<${MAGENTA}int${YELLOW}>${RESET} ${BRIGHT_RED}-${RESET} Milliseconds to sleep before taking the screenshot for ${BLUE}full${RESET} or ${BLUE}window${RESET} modes."
 		echo -e "      ${GREEN}Default:${RESET} ${BRIGHT_MAGENTA}0${RESET}"
 		echo -e ""
+		echo -e "    ${BLUE}-q${RESET}, ${BLUE}--quite${RESET}       ${BRIGHT_RED}-${RESET} Don't notify countdown."
+		echo -e ""
 		echo -e "  ${BOLD}Examples:${RESET}"
 		echo -e ""
 		echo -e "    ${RED}\$${RESET} ${BRIGHT_MAGENTA}$(basename "$0")${RESET} full"
@@ -69,6 +73,10 @@ while true; do
 		;;
 	-C | --no-copy)
 		copy=0
+		shift
+		;;
+	-q | --quite)
+		quite=1
 		shift
 		;;
 	-s | --sleep)
@@ -86,6 +94,7 @@ while true; do
 	esac
 done
 
+NOTIFICATION_ID=669
 time=$(date +%Y-%m-%d-%I-%M-%S)
 geometry=$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current')
 dir="$(xdg-user-dir PICTURES)/Screenshots"
@@ -93,12 +102,12 @@ filename="Screenshot_${time}_${geometry}.png"
 
 sound_file="$HOME/.local/share/sounds/camera-shutter.wav"
 notification_icon="$HOME/.local/share/icons/camera-shutter.png"
+notification_icon2="$HOME/.local/share/icons/stopwatch.png"
 
 if [[ ! -f $sound_file ]]; then
 	source_file="$DOTFILES/assets/sounds/camera-shutter.wav"
 	if [[ ! -f "$source_file" ]]; then
-		echo -e "${RED_BG}${BOLD}${BLACK}Error${RESET} can't find the sound file."
-		exit 1
+		echo -e "${YELLOW_BG}${BOLD}${BLACK}Warning${RESET} can't find the sound file."
 	fi
 	cp "$source_file" "$sound_file"
 fi
@@ -106,15 +115,27 @@ fi
 if [[ ! -f $notification_icon ]]; then
 	source_file="$DOTFILES/assets/icons/camera-shutter.png"
 	if [[ ! -f "$source_file" ]]; then
-		echo -e "${RED_BG}${BOLD}${BLACK}Error${RESET} can't notification icon."
-		exit 1
+		echo -e "${YELLOW_BG}${BOLD}${BLACK}Warning${RESET} can't find the notification icon."
 	fi
 	cp "$source_file" "$notification_icon"
 fi
 
+if [[ ! -f $notification_icon2 ]]; then
+	source_file="$DOTFILES/assets/icons/stopwatch.png"
+	if [[ ! -f "$source_file" ]]; then
+		echo -e "${YELLOW_BG}${BOLD}${BLACK}Warning${RESET} can't find the counter icon."
+	fi
+	cp "$source_file" "$notification_icon2"
+fi
+
 [[ ! -d $dir ]] && mkdir -p "$dir"
 
-function shot() {
+function notify() {
+	paplay "$sound_file"
+	notify-send "Screenshot" "Created $filename" -u low -i "$notification_icon" -t 3000 -r "$NOTIFICATION_ID"
+}
+
+function shot_full() {
 	pushd "$dir" || exit 1
 	{
 		if ((copy == 1)); then
@@ -125,8 +146,7 @@ function shot() {
 			maim -u -f png >"$filename"
 		fi
 	} && {
-		paplay "$sound_file"
-		notify-send "Screenshot" "Created $filename" -u low -i "$notification_icon" -t 3000
+		notify
 	}
 	popd || exit 1
 }
@@ -143,8 +163,7 @@ function shot_area() {
 			maim -u -f png -s -b 2 -c 0.35,0.55,0.85,0.25 -l >"$filename"
 		fi
 	} && {
-		paplay "$sound_file"
-		notify-send "Screenshot" "Created $filename" -u low -i "$notification_icon" -t 3000
+		notify
 	}
 
 	popd || exit 1
@@ -162,20 +181,30 @@ function shot_window() {
 			maim -u -f png -i "$(xdotool getactivewindow)" >"$filename"
 		fi
 	} && {
-		paplay "$sound_file"
-		notify-send "Screenshot" "Created $filename" -u low -i "$notification_icon" -t 3000
+		notify
 	}
 
 	popd || exit 1
 }
 
+countdown() {
+	if (($1 > 0)); then
+		for sec in $(seq "$1" -1 1); do
+			if ((quite == 0)); then
+				notify-send -t 1000 -r "$NOTIFICATION_ID" -i "$notification_icon2" "Taking shot in : $sec"
+			fi
+			sleep 1
+		done
+	fi
+}
+
 case $1 in
 full)
-	sleep "$sleep"
-	shot
+	countdown "$sleep"
+	shot_full
 	;;
 window)
-	sleep "$sleep"
+	countdown "$sleep"
 	shot_window
 	;;
 area)

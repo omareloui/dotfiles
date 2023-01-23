@@ -25,6 +25,8 @@ return {
   "simrat39/rust-tools.nvim",
   { "folke/trouble.nvim", config = true },
   { "j-hui/fidget.nvim", config = { text = { spinner = "dots" }, window = { blend = 0 } } },
+  { "Fymyte/rasi.vim", ft = "rasi" },
+
   -- }}}
 
   -- Treesitter {{{

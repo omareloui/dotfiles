@@ -1,2 +1,3 @@
-#!/bin/sh
-feh --no-fehbg --bg-fill "$HOME/Pictures/Wallpaper/joe-woods-tLDeO8lTgII-unsplash.jpg"
+#!/usr/bin/env bash
+
+feh --no-fehbg --bg-fill "$HOME/Pictures/Wallpaper/archive/digital-landscape/wallhaven-j5v28q_3840x2160.png"

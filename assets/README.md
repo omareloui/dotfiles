@@ -5,6 +5,11 @@ All files here will be copied by other scripts (not symlinked).
 ## Icons
 
 - Icons for battery notification.
+- Icon for screenshot script.
+
+## Sounds
+
+- Sound for screenshot script.
 
 ## Themes
 

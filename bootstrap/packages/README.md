@@ -14,6 +14,9 @@ Scripts to install packages and applications I use.
     - `build-essential`: package that is required by other packages.
     - `libfuse2`: can't remember what this for. But I'm leaving it anyway.
     - `libfuse2`: can't remember what this for. But I'm leaving it anyway.
+  - Scripts depedencies
+    - `maim`: the screenshot script is basically a wrapper for maim.
+    - `xdotool` required for the screenshot script.
 
   - Terminal utilities
     - `bat`: a better `cat` replacment.

@@ -6,7 +6,7 @@ has_nala="$(check_package_installed nala)"
 
 ((has_nala == 0)) && sudo apt install nala
 
-packages_utils=(
+packages_deps=(
 	build-essential
 	libfuse2
 )
@@ -45,4 +45,4 @@ package_managers=(
 	python3-pip
 )
 
-install_package "${packages_utils[*]} ${scripts_deps[*]} ${terminal_utils[*]} ${applications[*]} ${package_managers[*]}"
+install_package "${packages_deps[*]} ${scripts_deps[*]} ${terminal_utils[*]} ${applications[*]} ${package_managers[*]}"

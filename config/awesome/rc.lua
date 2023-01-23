@@ -302,6 +302,9 @@ globalkeys = gears.table.join(
 	end, { description = "restore minimized", group = "client" }),
 
 	-- Prompt
+	awful.key({ modkey }, "r", function()
+		awful.spawn.with_shell("$HOME/.config/rofi/bin/runner")
+	end, { description = "open a runner", group = "launcher" }),
 	awful.key({ modkey }, "p", function()
 		awful.spawn.with_shell("$HOME/.config/rofi/bin/launcher")
 	end, { description = "show the menubar", group = "launcher" })

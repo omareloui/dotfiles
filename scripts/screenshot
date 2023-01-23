@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version=1.1.0
+version=1.2.0
 
 BOLD="\e[1m"
 END_BOLD="\e[22m"
@@ -24,8 +24,8 @@ BRIGHT_MAGENTA="\e[95m"
 
 RESET="\e[0m"
 
-LONGOPTS=help,no-copy,sleep:,quite
-OPTIONS=h,C,s:,q
+LONGOPTS=help,no-copy,sleep:,quite,preview
+OPTIONS=h,C,s:,q,p
 
 PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 eval set -- "$PARSED"
@@ -33,6 +33,7 @@ eval set -- "$PARSED"
 copy=1
 sleep=0
 quite=0
+preview=0
 
 while true; do
 	case "$1" in
@@ -58,16 +59,17 @@ while true; do
 		echo -e ""
 		echo -e "    ${BLUE}-C${RESET}, ${BLUE}--no-copy${RESET}     ${BRIGHT_RED}-${RESET} Don't copy the screenshot to clipboard."
 		echo -e ""
-		echo -e "    ${BLUE}-s${RESET}, ${BLUE}--sleep ${YELLOW}<${MAGENTA}int${YELLOW}>${RESET} ${BRIGHT_RED}-${RESET} Milliseconds to sleep before taking the screenshot for ${BLUE}full${RESET} or ${BLUE}window${RESET} modes."
-		echo -e "      ${GREEN}Default:${RESET} ${BRIGHT_MAGENTA}0${RESET}"
+		echo -e "    ${BLUE}-s${RESET}, ${BLUE}--sleep ${YELLOW}<${MAGENTA}int${YELLOW}>${RESET} ${BRIGHT_RED}-${RESET} Milliseconds to sleep before taking the screenshot for ${BLUE}full${RESET} or ${BLUE}window${RESET} actions."
 		echo -e ""
 		echo -e "    ${BLUE}-q${RESET}, ${BLUE}--quite${RESET}       ${BRIGHT_RED}-${RESET} Don't notify countdown."
 		echo -e ""
+		echo -e "    ${BLUE}-p${RESET}, ${BLUE}--preview${RESET}     ${BRIGHT_RED}-${RESET} preview the screenshot after it's taken."
+		echo -e ""
 		echo -e "  ${BOLD}Examples:${RESET}"
 		echo -e ""
-		echo -e "    ${RED}\$${RESET} ${BRIGHT_MAGENTA}$(basename "$0")${RESET} full"
-		echo -e "    ${RED}\$${RESET} ${BRIGHT_MAGENTA}$(basename "$0")${RESET} -C area"
-		echo -e "    ${RED}\$${RESET} ${BRIGHT_MAGENTA}$(basename "$0")${RESET} --help"
+		echo -e "    ${RED}\$${RESET} ${BRIGHT_MAGENTA}$(basename "$0")${RESET} area"
+		echo -e "    ${RED}\$${RESET} ${BRIGHT_MAGENTA}$(basename "$0")${RESET} -C window"
+		echo -e "    ${RED}\$${RESET} ${BRIGHT_MAGENTA}$(basename "$0")${RESET} -qs 3 full"
 		echo -e ""
 		exit 0
 		;;
@@ -77,6 +79,10 @@ while true; do
 		;;
 	-q | --quite)
 		quite=1
+		shift
+		;;
+	-p | --preview)
+		preview=1
 		shift
 		;;
 	-s | --sleep)
@@ -132,7 +138,18 @@ fi
 
 function notify() {
 	paplay "$sound_file"
-	notify-send "Screenshot" "Created $filename" -u low -i "$notification_icon" -t 3000 -r "$NOTIFICATION_ID"
+	if ((preview == 1)); then
+		viewnior "$dir/$filename"
+	fi
+
+	if [[ -e "$dir/$filename" ]]; then
+		message="Created $filename."
+		((copy == 1)) && message="$message<br>And copied to clipboard."
+		notify-send "Screenshot" "$message" -u low -i "$notification_icon" -t 3000 -r "$NOTIFICATION_ID"
+	else
+		notify-send "Screenshot" "Deleted $filename" -u low -i "$notification_icon" -t 3000 -r "$NOTIFICATION_ID"
+	fi
+
 }
 
 function shot_full() {

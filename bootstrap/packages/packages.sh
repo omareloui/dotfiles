@@ -14,6 +14,7 @@ packages_deps=(
 scripts_deps=(
 	maim
 	xdotool
+	viewnior
 )
 
 terminal_utils=(

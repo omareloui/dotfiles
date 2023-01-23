@@ -14,7 +14,11 @@ is_discharging=$(acpi | grep -c "Discharging")
 
 notified_for=$(cat "$LOW_NOTF_FILE")
 
-NOTIFICATION_ID=69
+NOTIFICATION_ID=0
+
+if [[ -f /tmp/battery_notification_id ]]; then
+	NOTIFICATION_ID=$(cat /tmp/battery_notification_id)
+fi
 
 # Notification on charged
 if
@@ -50,3 +54,4 @@ if [[ "$is_discharging" -eq 0 && "${#notified_for[@]}" -gt 0 ]]; then
 fi
 
 echo "${notified_for[*]}" >"$LOW_NOTF_FILE"
+echo "$NOTIFICATION_ID" >/tmp/battery_notification_id

@@ -501,7 +501,7 @@ end)
 ---------------------------------  MY  CONFIG ----------------------------------
 local b = beautiful
 
-b.useless_gap = 8
+b.useless_gap = 6
 -- local outer_padding = 2
 -- awful.screen.connect_for_each_screen(function(s)
 -- 	s.padding = { left = outer_padding, right = outer_padding, top = outer_padding, bottom = outer_padding }
@@ -523,6 +523,9 @@ client.connect_signal("manage", function(c)
 	c.border_focus = "#98B0D3"
 	c.border_marked = "#C79BF0"
 end)
+
+-- notifications
+require("notification")
 
 -- configure keyboard and touchpad
 require("config_touchpad")
@@ -550,10 +553,6 @@ globalkeys = gears.table.join(
 		-- awful.spawn("betterlockscreen -l blur")
 		awful.spawn("systemctl suspend")
 	end, { description = "Lock screen" }),
-
-	awful.key({ modkey, "Shift" }, "r", function()
-		awful.spawn("reboot")
-	end, { description = "Reboot" }),
 
 	awful.key({}, "Print", function()
 		awful.spawn.with_shell("scrot ~/Pictures/Screenshots/ -s -i -f -l mode=edge")

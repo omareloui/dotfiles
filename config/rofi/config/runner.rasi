@@ -31,7 +31,7 @@ window {
 prompt {
   enabled: true;
   padding: 8px;
-  background-color: @border-col;
+  // background-color: @border-col;
   text-color: @blue;
 }
 
@@ -39,7 +39,7 @@ textbox-prompt-colon {
   expand: false;
   str: "ﲵ";
   border-radius: 100%;
-  background-color: @border-col;
+  // background-color: @border-col;
   text-color: @fg-col;
   padding: 8px 12px 8px 12px;
 }
@@ -52,9 +52,9 @@ entry {
   horizontal-align: 0;
   placeholder: "Run...";
   blink: true;
-  border: 0px 0px 2px 0px;
-  border-color: @border-col;
-  border-radius: 10px;
+  // border: 0px 0px 2px 0px;
+  // border-color: @border-col;
+  // border-radius: 10px;
   padding: 8px;
 }
 
@@ -111,7 +111,6 @@ element-icon {
 }
 
 element-text {
-  background-color: inherit;
   text-color: inherit;
   expand: true;
   horizontal-align: 0;

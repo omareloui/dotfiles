@@ -1,5 +1,1 @@
-#!/usr/bin/env bash
-rofi \
-	-show drun \
-	-terminal kitty \
-	-theme "$HOME"/.config/rofi/config/launcher.rasi
+../adi1090x/launchers/type-3/launcher.sh

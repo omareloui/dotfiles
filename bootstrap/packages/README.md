@@ -43,6 +43,7 @@ Scripts to install packages and applications I use.
     - `telegram-desktop`: messenger.
     - `tmux`: a terminal multiplexer.
     - `vlc`: doesn't need description.
+    - `rofi` a window switcher.
 
   - Package managers
     - `nala`: better `apt`.

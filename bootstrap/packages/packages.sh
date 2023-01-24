@@ -41,6 +41,7 @@ applications=(
 	telegram-desktop
 	tmux
 	vlc
+	rofi
 )
 
 package_managers=(

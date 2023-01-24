@@ -15,6 +15,7 @@ scripts_deps=(
 	maim
 	xdotool
 	viewnior
+	bmon
 )
 
 terminal_utils=(

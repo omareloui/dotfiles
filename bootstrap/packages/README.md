@@ -17,7 +17,9 @@ Scripts to install packages and applications I use.
   - Scripts dependencies
     - `maim`: the screenshot script is basically a wrapper for maim.
     - `xdotool` required for the screenshot script.
-    - `viewnior` required for the screenshot script to preview the image after it's taken.
+    - `viewnior` required for the screenshot script to preview the image after
+      it's taken.
+    - `bmon` used by rofi to preview internet bandwidth.
 
   - Terminal utilities
     - `bat`: a better `cat` replacment.

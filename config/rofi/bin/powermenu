@@ -1,51 +1,29 @@
 #!/usr/bin/env bash
+
 rofi_command="rofi -theme $HOME/.config/rofi/config/powermenu.rasi"
 
 uptime=$(uptime -p | sed -e 's/up //g')
 
 # Options
 if [[ "$DIR" == "powermenus" ]]; then
-	# shutdown=""
-	# reboot=""
-	# lock=""
-	# suspend=""
-	# logout=""
 	shutdown="襤"
-	reboot="ﰇ"
+	reboot=""
 	lock=""
 	suspend="鈴"
 	logout=" "
 	ddir="$HOME/.config/rofi/config"
 else
-
-	# For some reason the Icons are mess up I don't know why but to fix it uncomment section 2 and comment section 1 but if the section 1 icons are mess up uncomment section 2 and comment section 1
-
 	# Buttons
-	layout=$(cat $HOME/.config/rofi/config/powermenu.rasi | grep BUTTON | cut -d'=' -f2 | tr -d '[:blank:],*/')
+	layout=$(grep BUTTON <"$HOME/.config/rofi/config/powermenu.rasi" | cut -d'=' -f2 | tr -d '[:blank:],*/')
 	if [[ "$layout" == "TRUE" ]]; then
-		# Section 1
-		# shutdown=""
-		# reboot=""
-		# lock=""
-		# suspend=""
-		# logout=""
-		# Section 2
 		shutdown="襤"
-		reboot="ﰇ"
+		reboot=""
 		lock=""
 		suspend="鈴"
 		logout=" "
-
 	else
-		# Section 1
-		# shutdown=" Shutdown"
-		# reboot=" Restart"
-		# lock=" Lock"
-		# suspend=" Sleep"
-		# logout=" Logout"
-		# Section 2
 		shutdown="襤Shutdown"
-		reboot="ﰇ Restart"
+		reboot=" Restart"
 		lock=" Lock"
 		suspend="鈴Sleep"
 		logout=" Logout"
@@ -68,8 +46,9 @@ show_msg() {
 options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
 
 chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 0)"
+
 case $chosen in
-$shutdown)
+"$shutdown")
 	ans=$(rdialog &)
 	if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
 		systemctl poweroff
@@ -79,7 +58,7 @@ $shutdown)
 		show_msg
 	fi
 	;;
-$reboot)
+"$reboot")
 	ans=$(rdialog &)
 	if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
 		systemctl reboot
@@ -89,25 +68,26 @@ $reboot)
 		show_msg
 	fi
 	;;
-$lock)
+"$lock")
 	betterlockscreen --lock
 	;;
-$suspend)
+"$suspend")
 	ans=$(rdialog &)
 	if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
 		mpc -q pause
 		amixer set Master mute
-		betterlockscreen --suspend
+		sh "$HOME/.local/bin/lock"
+		systemctl suspend
 	elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
 		exit
 	else
 		show_msg
 	fi
 	;;
-$logout)
+"$logout")
 	ans=$(rdialog &)
 	if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
-		openbox --exit
+		pkill awesome
 	elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
 		exit
 	else

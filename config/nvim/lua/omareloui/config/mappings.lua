@@ -467,6 +467,7 @@ end
 
 -- ZK {{{
 function M.zk()
+  set("n", "gd", vim.lsp.buf.definition, { desc = "go to zk note" })
   -- set("n", "<CR>", function()
   --   local buf = vim.api.nvim_get_current_buf()
   --   local ft = vim.api.nvim_buf_get_option(buf, "filetype")

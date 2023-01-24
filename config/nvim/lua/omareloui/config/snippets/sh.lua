@@ -99,7 +99,7 @@ while true; do
       break
       ;;
     *)
-      echo "Programming error"
+      echo -e "${{RED}}Error:${{RESET}} Programming error"
       exit 3
       ;;
   esac

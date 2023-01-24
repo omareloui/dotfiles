@@ -17,6 +17,7 @@
 
 . "$(dirname "$0")/awesomewm.sh"
 . "$(dirname "$0")/picom.sh"
+. "$(dirname "$0")/rofi.sh"
 
 . "$(dirname "$0")/lf.sh"
 

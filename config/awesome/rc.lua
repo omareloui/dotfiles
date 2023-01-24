@@ -445,7 +445,6 @@ awful.rules.rules = {
 				"Sxiv",
 				"Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
 				"Wpa_gui",
-				"Transmission-gtk",
 				"veromix",
 				"xtightvncviewer",
 			},
@@ -465,6 +464,17 @@ awful.rules.rules = {
 	},
 
 	----------- My rules -----------
+	-- start floating windows in center
+	{
+		rule = { floating = true },
+		properties = {
+			placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen,
+		},
+	},
+	-- start Transmission as a floating window
+	{ rule = { class = "Transmission-gtk" }, properties = { floating = true } },
+
+	-- custom tags for particular apps
 	{ rule = { class = "discord" }, properties = { tag = "5" } },
 	{ rule = { class = "TelegramDesktop" }, properties = { tag = "6" } },
 	{ rule = { class = "KeePassXC" }, properties = { tag = "7" } },

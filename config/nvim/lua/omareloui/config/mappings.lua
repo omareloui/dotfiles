@@ -126,9 +126,9 @@ set("n", "<leader>s<", "<Cmd>resize -5|vertical resize -5<CR>", { desc = "decrea
 -- }}}
 
 -- Very Magic {{{
-set("n", "/", "/\\v", { desc = "set very magic mode by default", nowait = true })
-set("c", "s/", "s/\\v", { desc = "set very magic mode by default", nowait = true })
-set("c", "s#", "s#\\v", { desc = "set very magic mode by default", nowait = true })
+-- set("n", "/", "/\\v", { desc = "set very magic mode by default", nowait = true })
+-- set("c", "s/", "s/\\v", { desc = "set very magic mode by default", nowait = true })
+-- set("c", "s#", "s#\\v", { desc = "set very magic mode by default", nowait = true })
 -- }}}
 
 ---- }}}

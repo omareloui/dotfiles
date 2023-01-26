@@ -51,6 +51,8 @@ M.config = function()
       end,
     },
 
+    b.formatting.prismaFmt,
+
     -- d.stylelint,
 
     -- Markdown

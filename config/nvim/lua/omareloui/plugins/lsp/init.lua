@@ -1,6 +1,6 @@
 M = { "neovim/nvim-lspconfig", dependencies = { "williamboman/mason.nvim" }, event = "BufReadPre" }
 
-M.config = function()
+function M.config()
   require "mason"
   require("omareloui.plugins.lsp.config").diagnostics_setup()
 
@@ -13,6 +13,9 @@ M.config = function()
   require "omareloui.plugins.lsp.deno"
   require "omareloui.plugins.lsp.rust"
   require "omareloui.plugins.lsp.lua"
+
+  require "omareloui.plugins.lsp.bashls"
+  require "omareloui.plugins.lsp.prisma"
 end
 
 return M

@@ -6,10 +6,16 @@ M.separator = {
 }
 
 M.diagnostics = {
-  Error = " ",
-  Warn = " ",
-  Hint = " ",
-  Info = " ",
+  -- Error = " ",
+  -- Warn = " ",
+  -- Hint = " ",
+  -- Info = " ",
+
+  Error = "●",
+  Warn = "●",
+  Hint = "●",
+  Info = "●",
+
   -- ﱢ       ●
   virtual_prefix = "",
 }

@@ -29,3 +29,5 @@
 . "$(dirname "$0")/tpm.sh"
 
 . "$(dirname "$0")/zk.sh"
+
+. "$(dirname "$0")/glyr.sh"

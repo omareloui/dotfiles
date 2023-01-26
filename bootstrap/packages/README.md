@@ -78,3 +78,5 @@ Scripts to install packages and applications I use.
 - `tpm.sh`: a package manager for `tmux`.
 
 - `zk.sh`: zettelkasten notes manager.
+
+- `glyr.sh`: get music metadata.

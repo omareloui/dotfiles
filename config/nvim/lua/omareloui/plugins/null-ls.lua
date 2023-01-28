@@ -52,6 +52,7 @@ M.config = function()
     },
 
     b.formatting.prismaFmt,
+    -- b.formatting.prismaFmt.with { command = { "prisma", "format" } },
 
     -- d.stylelint,
 

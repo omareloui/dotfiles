@@ -5,16 +5,21 @@ M.separator = {
   empty_round = { left = "", right = "" },
 }
 
+M.bufferline = {
+  modefied = " ",
+  diagnostics = " ",
+}
+
 M.diagnostics = {
   -- Error = " ",
   -- Warn = " ",
   -- Hint = " ",
   -- Info = " ",
 
-  Error = "●",
-  Warn = "●",
-  Hint = "●",
-  Info = "●",
+  Error = " ",
+  Warn = " ",
+  Hint = " ",
+  Info = " ",
 
   -- ﱢ       ●
   virtual_prefix = "",

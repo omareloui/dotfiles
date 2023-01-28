@@ -3,7 +3,7 @@ M = {
   dependencies = { "kyazdani42/nvim-web-devicons" },
 }
 
-M.config = function()
+function M.config()
   local present, lualine = pcall(require, "lualine")
 
   if not present then
@@ -136,12 +136,13 @@ M.config = function()
     sections = {
       lualine_a = {
         {
-          function()
-            return i_lualine.vim_icon
-          end,
-          color = function()
-            return { bg = mode_color[vim.fn.mode()] }
-          end,
+          -- function()
+          --   return i_lualine.vim_icon
+          -- end,
+          "mode",
+          -- color = function()
+          --   return { bg = mode_color[vim.fn.mode()] }
+          -- end,
           separator = { right = sep.right },
         },
         -- {
@@ -188,7 +189,7 @@ M.config = function()
       lualine_x = {
         {
           lsp_progess,
-          color = { bg = c.crust },
+          color = { bg = c.surface0 },
           separator = { left = sep.left },
           cond = conditions.has_lsp_client,
         },
@@ -196,41 +197,42 @@ M.config = function()
           function()
             return i_lualine.lsp
           end,
-          separator = { left = sep.left, right = sep.right },
+          -- separator = { left = sep.left, right = sep.right },
+          separator = { left = sep.left },
           color = { bg = c.purple, fg = c.black },
           cond = conditions.has_lsp_client,
         },
-
-        {
-          "location",
-          color = { bg = c.surface0 },
-          separator = { left = sep.left },
-          cond = function()
-            return not conditions.has_lsp_client()
-          end,
-        },
-        {
-          "location",
-          color = { bg = c.surface0 },
-          cond = conditions.has_lsp_client,
-        },
-        {
-          function()
-            return i_lualine.location
-          end,
-          color = { bg = c.blue, fg = c.black },
-          separator = { left = sep.left },
-        },
+        -- {
+        --   "location",
+        --   color = { bg = c.surface0 },
+        --   separator = { left = sep.left },
+        --   cond = function()
+        --     return not conditions.has_lsp_client()
+        --   end,
+        -- },
+        -- {
+        --   "location",
+        --   color = { bg = c.surface0 },
+        --   cond = conditions.has_lsp_client,
+        -- },
+        -- {
+        --   function()
+        --     return i_lualine.location
+        --   end,
+        --   color = { bg = c.blue, fg = c.black },
+        --   separator = { left = sep.left },
+        -- },
       },
 
       lualine_y = {},
+
       lualine_z = {
-        {
-          function()
-            return ""
-          end,
-          color = { bg = c.crust, fg = c.white },
-        },
+        -- {
+        --   function()
+        --     return ""
+        --   end,
+        --   color = { bg = c.crust, fg = c.white },
+        -- },
       },
     },
   }

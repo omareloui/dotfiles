@@ -99,7 +99,7 @@ vim.api.nvim_create_autocmd("FileType", { command = "set formatoptions-=cro" })
 -- Neovide {{{
 if g.neovide then
   -- g.neovide_refresh_rate = 65
-  g.neovide_transparency = 0.7
+  g.neovide_transparency = 0.3
   g.neovide_remember_dimensions = false
   g.neovide_remember_window_size = false
 

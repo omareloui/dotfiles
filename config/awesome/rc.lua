@@ -475,11 +475,13 @@ awful.rules.rules = {
 	{ rule = { class = "Transmission-gtk" }, properties = { floating = true } },
 
 	-- custom tags for particular apps
-	{ rule = { class = "discord" }, properties = { tag = "5" } },
-	{ rule = { class = "TelegramDesktop" }, properties = { tag = "6" } },
-	{ rule = { class = "KeePassXC" }, properties = { tag = "7" } },
-	{ rule = { class = "thunderbird" }, properties = { tag = "8" } },
-	{ rule = { class = "Rhythmbox" }, properties = { tag = "9" } },
+	{ rule = { class = "TelegramDesktop" }, properties = { tag = "8" } },
+	{ rule = { class = "Polybar" }, properties = { focusable = false } },
+	-- { rule = { class = "discord" }, properties = { tag = "5" } },
+	-- { rule = { class = "TelegramDesktop" }, properties = { tag = "6" } },
+	-- { rule = { class = "KeePassXC" }, properties = { tag = "7" } },
+	-- { rule = { class = "thunderbird" }, properties = { tag = "8" } },
+	-- { rule = { class = "Rhythmbox" }, properties = { tag = "9" } },
 }
 -- }}}
 
@@ -568,11 +570,12 @@ globalkeys = gears.table.join(
 	end, { description = "Lock screen" }),
 
 	awful.key({}, "Print", function()
-		awful.spawn.with_shell("scrot ~/Pictures/Screenshots/ -s -i -f -l mode=edge")
+		-- awful.spawn.with_shell("scrot ~/Pictures/Screenshots/ -s -i -f -l mode=edge")
+		awful.spawn.with_shell("screenshot full")
 	end, { description = "Take a screenshot" }),
 
 	awful.key({ "Shift" }, "Print", function()
-		awful.spawn.with_shell("scrot ~/Pictures/Screenshots/")
+		awful.spawn.with_shell("screenshot area")
 	end, { description = "Take a screenshot" })
 )
 
@@ -588,7 +591,7 @@ awful.spawn.with_shell("/home/omareloui/.config/polybar/launch.sh")
 awful.spawn.with_shell("/usr/bin/kdeconnect-indicator")
 
 awful.spawn.once("telegram-desktop")
-awful.spawn.once("keepassxc")
-awful.spawn.with_shell("~/Applications/Discord/Discord")
-awful.spawn.with_shell("thunderbird") -- for some reason it throws an error on awful.spawn.once()
+-- awful.spawn.once("keepassxc")
+-- awful.spawn.with_shell("~/Applications/Discord/Discord")
+-- awful.spawn.with_shell("thunderbird") -- for some reason it throws an error on awful.spawn.once()
 -- awful.spawn.once("rhythmbox")

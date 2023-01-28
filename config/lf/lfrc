@@ -6,6 +6,10 @@ set icons ~/.config/lf/icons
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
 
+# misc
+set info size
+
+
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
 # exit on error and option '-u' is used to give error for unset variables.
@@ -65,11 +69,12 @@ cmd trash ${{
 
 # define a custom 'delete' command
 cmd delete ${{
-    set -f
-    printf "$fx\n"
-    printf "delete?[y/n]"
-    read ans
-    [[ "$ans" == "y" ]] && rm -rf $fx
+    # set -f
+    # printf "$fx\n"
+    # printf "delete?[y/n]"
+    # read ans
+    # [[ "$ans" == "y" ]] && rm -rf $fx
+    rm -rf $fx
 }}
 
 # use '<delete>' key for either 'trash' or 'delete' command
@@ -95,12 +100,42 @@ map A newfold
 cmd extract ${{
     set -f
     case $f in
-        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f -C $(basename "${f%%.*}");;
-        *.tar.gz|*.tgz) tar xzvf $f -C $(basename "${f%%.*}");;
-        *.tar.xz|*.txz) tar xJvf $f -C $(basename "${f%%.*}");;
-        *.zip) unzip $f;;
-        *.rar) unrar x $f;;
-        *.7z) 7z x $f;;
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
+          for file in $fx; do
+            tar xjvf "$file" -C $(basename "${f%%.*}")
+          done
+          lf -remote "send $id unselect"
+        ;;
+        *.tar.gz|*.tgz)
+          for file in $fx; do
+            tar xzvf "$file" -C $(basename "${f%%.*}")
+          done
+          lf -remote "send $id unselect"
+        ;;
+        *.tar.xz|*.txz)
+          for file in $fx; do
+            tar xJvf "$file" -C $(basename "${f%%.*}")
+          done
+          lf -remote "send $id unselect"
+        ;;
+        *.zip)
+          for file in $fx; do
+            unzip "$file"
+          done
+          lf -remote "send $id unselect"
+        ;;
+        *.rar)
+          for file in $fx; do
+            unrar x "$file"
+          done
+          lf -remote "send $id unselect"
+        ;;
+        *.7z)
+          for file in $fx; do
+            7z x "$file"
+          done
+          lf -remote "send $id unselect"
+        ;;
     esac
 }}
 
@@ -157,23 +192,33 @@ cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboar
 
 cmd yank-basename-without-extension ${{
     echo "$fx" |
-      xargs -r -d '\n' basename -a |
-      awk -e '{
-        for (i=length($0); i > 0; i--) {
-          if (substr($0, i, 1) == ".") {
-            if (i == 1) print $0
-            else print substr($0, 0, i-1)
+    xargs -r -d '\n' basename -a |
+    awk -e '{
+      for (i=length($0); i > 0; i--) {
+        if (substr($0, i, 1) == ".") {
+          if (i == 1) print $0
+          else print substr($0, 0, i-1)
 
-            break
-          }
+          break
         }
+      }
 
-        if (i == 0)
-          print $0
-      }' |
-      if [ -n "$fs" ]; then cat; else tr -d '\n'; fi |
-      xclip -i -selection clipboard
+      if (i == 0)
+        print $0
+    }' |
+    if [ -n "$fs" ]; then cat; else tr -d '\n'; fi |
+    xclip -i -selection clipboard
 }}
 
 # set as wallpaper
-map w %(($(echo "$f" | rg -c '\.(?:png|je?pg)$') > 0)) && feh --no-fehbg --bg-fill "$f" 
+map w %(($(echo "$f" | rg -c '\.(?:png|jpe?g)$') > 0)) && feh --no-fehbg --bg-fill "$f" 
+
+# flatten folder to current directory
+cmd flatten ${{
+  for folder in $fx; do
+    if [[ -d $folder ]]; then
+      mv $folder/* .
+      rm -rf $folder
+    fi
+  done
+}}

@@ -61,7 +61,7 @@ alias va="source ./env/bin/activate.fish"
 
 alias myip="curl ipinfo.io/ip; echo \\"
 
-alias bat="batcat"
+# alias bat="batcat"
 alias fd="fdfind"
 
 alias clipboard="xclip -sel clip"

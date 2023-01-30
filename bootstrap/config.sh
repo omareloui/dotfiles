@@ -8,7 +8,7 @@
 # symlinked from $DOTFILES_CONFIG
 declare -A FROM_ROOT=(
 	["$HOME"]=".fehbg"
-	["$HOME/.config"]="nvim kitty betterlockscreenrc awesome rofi i3 polybar fish tmux lazygit starship.toml picom.conf lf"
+	["$HOME/.config"]="nvim kitty betterlockscreenrc awesome rofi i3 polybar fish tmux lazygit starship.toml picom.conf lf cmus"
 )
 
 ## Not in the root of $DOTFILES_CONFIG or to rename on dest
@@ -25,6 +25,10 @@ declare -A NOT_FROM_ROOT=(
 	# VS Code
 	["$DOTFILES_CONFIG/VSCode/settings.json"]="$HOME/.config/Code/User/settings.json"
 	["$DOTFILES_CONFIG/VSCode/keybindings.json"]="$HOME/.config/Code/User/keybindings.json"
+
+	# CMus
+	["$DOTFILES_CONFIG/cmus/scripts/cmus-lyrics"]="/usr/local/bin/cmus-lyrics"
+	["$DOTFILES_CONFIG/cmus/scripts/cmus-artwork"]="/usr/local/bin/cmus-artwork"
 )
 
 ##### Folders to make sure exist #####

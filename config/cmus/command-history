@@ -1,0 +1,37 @@
+cd Music/.scripts/files/
+cd Music/.scripts/
+fset mp3=filename="*.mp3"
+pl-rename main
+pl-create work
+pl-create
+cd .scripts/files/
+colorscheme main
+q
+pl-create 
+cd .scripts/
+add ~/Music/.scripts/files/
+shell cmus_format " %d %6{bitrate} kbps "
+cmus_format " %d %6{bitrate} kbps "
+:shell cmus_format " %d %6{bitrate} kbps "
+set color_win_fg=default`
+bind -f common 0 shell /usr/local/bin/cmus-lyrics
+colorscheme xterm-white
+colorscheme spotify
+colorscheme night
+colorscheme gray-88
+colorscheme default
+colorscheme cyan
+colorscheme amazon
+colorscheme green
+ls
+pause
+cd .scripts
+save
+w
+player-p
+colorscheme
+set softvol=true
+add ~/Music/
+paus
+p
+play

@@ -32,15 +32,20 @@ declare -A NOT_FROM_ROOT=(
 
 ############### Parse options ###############
 verbose=0
+ignore_existing=0
 
-LONGOPTS=verbose,help
-OPTIONS=vh
+LONGOPTS=ignore-existing,verbose,help
+OPTIONS=ivh
 
 PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 eval set -- "$PARSED"
 
 while true; do
 	case "$1" in
+	-i | --ignore-existing)
+		ignore_existing=1
+		shift
+		;;
 	-v | --verbose)
 		verbose=1
 		shift
@@ -49,8 +54,9 @@ while true; do
 		echo "Usage: $(basename "$0") [OPTION]..."
 		echo "Symlink the config to their location"
 		echo ""
-		echo "-v, --verbose     prints out the process state"
-		echo "-h, --help        show this help prompt"
+		echo "-i, --ignore-existing  ignores the already existing configs"
+		echo "-v, --verbose          prints out the process state"
+		echo "-h, --help             show this help prompt"
 		echo ""
 		exit 0
 		;;
@@ -75,11 +81,15 @@ function p() {
 for dir in "${!FROM_ROOT[@]}"; do
 	configs=${FROM_ROOT[$dir]}
 	for config in $configs; do
-		create_sym "$DOTFILES_CONFIG/$config" "$dir/$config" "$verbose"
+		dest="$dir/$config"
+		[[ -e $dest && ignore_existing -eq 1 ]] && continue
+
+		create_sym "$DOTFILES_CONFIG/$config" "$dest" "$verbose"
 	done
 done
 
 for src in "${!NOT_FROM_ROOT[@]}"; do
 	dest=${NOT_FROM_ROOT[$src]}
+	[[ -e $dest && ignore_existing -eq 1 ]] && continue
 	create_sym "$src" "$dest" "$verbose"
 done

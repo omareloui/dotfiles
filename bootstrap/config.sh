@@ -29,6 +29,9 @@ declare -A NOT_FROM_ROOT=(
 	# CMus
 	["$DOTFILES_CONFIG/cmus/scripts/cmus-lyrics"]="/usr/local/bin/cmus-lyrics"
 	["$DOTFILES_CONFIG/cmus/scripts/cmus-artwork"]="/usr/local/bin/cmus-artwork"
+  
+  # ly
+	["$DOTFILES_CONFIG/ly/config.ini"]="/etc/ly/config.ini"
 )
 
 ##### Folders to make sure exist #####

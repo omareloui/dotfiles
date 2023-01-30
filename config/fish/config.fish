@@ -121,6 +121,8 @@ set -x fish_cursor_visual block
 set -x fish_cursor_insert line
 set -x fish_cursor_replace_one underscore
 
+################################## my scripts ##################################
+set -gx PATH "/home/omareloui/.local/bin:$PATH"
 
 ##################################### pnpm #####################################
 set -gx PNPM_HOME "/home/omareloui/.local/share/pnpm"

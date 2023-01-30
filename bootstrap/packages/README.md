@@ -32,6 +32,7 @@ Scripts to install packages and applications I use.
     - `ffmpeg`: I can't live without it.
     - `fzf`: fuzzy finder.
     - `ripgrep`: better `grep`.
+    - `tldl`: simpler man pages.
     - `tree`: file structure previewer.
     - `wmctrl`: don't know what is it for either.
     - `xclip`: to send test to clipboard.

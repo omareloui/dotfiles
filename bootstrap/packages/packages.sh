@@ -29,6 +29,7 @@ terminal_utils=(
 	ffmpeg
 	fzf
 	ripgrep
+	tldr
 	tree
 	wmctrl
 	xclip

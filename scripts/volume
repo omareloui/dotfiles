@@ -3,20 +3,24 @@
 # TODO: notify
 
 function play_sound {
-	paplay "/usr/share/sounds/Yaru/stereo/audio-volume-change.oga"
+	sound_file="$HOME/.local/share/sounds/audio-volume-change.oga"
+	[[ ! -f $sound_file ]] && cp "$DOTFILES_ASSETS/sounds/audio-volume-change.oga" "$sound_file"
+	paplay "$sound_file"
 }
 
 case $1 in
 up)
-	amixer -c 1 set Master 9%+ unmute
+	pactl set-sink-mute @DEFAULT_SINK@ 0
 	play_sound
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
 	;;
 down)
-	amixer -c 1 set Master 9%- unmute
+	pactl set-sink-mute @DEFAULT_SINK@ 0
 	play_sound
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
 	;;
 mute)
-	amixer -c 1 set Master togglemute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
 	play_sound
 	;;
 esac

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+wp="$(fd . -p "$HOME/.wallpaper" -It f -d 1 | shuf --random-source=/dev/urandom -n 1)"
+
+hyperpaper_file="$HOME/.config/hypr/hyprpaper.conf"
+
+echo -e "preload = $wp\n\nwallpaper =,$wp" >"$hyperpaper_file"
+
+old_pids="$(ps -a | awk '/hyprpaper/ {print $1}')"
+
+hyprpaper &>/dev/null &
+
+sleep 2
+
+for id in $old_pids; do
+	kill "$id"
+done

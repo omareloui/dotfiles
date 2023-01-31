@@ -3,8 +3,7 @@
 . "$(dirname "$0")/../utils.sh"
 
 # Font from Nerd Fonts
-FONTS=(3270 FiraCode)
-
+FONTS=(3270 FiraCode JetBrainsMono)
 verbose=0
 
 LONGOPTS=verbose,help
@@ -52,7 +51,7 @@ tmp_folder=/tmp/install_fonts
 
 for font in "${FONTS[@]}"; do
 	p "${BLUE}Fetching ${UNDERLINE}$font${END_UNDERLINE}.${RESET}"
-	wget -P $tmp_folder "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/$font.zip"
+	wget -P $tmp_folder "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/$font.zip"
 
 	if [[ ! -e "$tmp_folder/$font.zip" ]]; then
 		p "${RED}Something went wrong while downloading ${UNDERLINE}$font${END_UNDERLINE}.${RESET}"

@@ -7,8 +7,8 @@
 # The key is the dest and the value is the config files/folders that will be
 # symlinked from $DOTFILES_CONFIG
 declare -A FROM_ROOT=(
-	["$HOME"]=".fehbg"
-	["$HOME/.config"]="nvim kitty betterlockscreenrc awesome rofi i3 polybar fish tmux lazygit starship.toml picom.conf lf cmus hypr"
+	["$HOME"]=".zshrc .autostart"
+	["$HOME/.config"]="nvim kitty fish lazygit starship.toml lf hypr neofetch mpd cava"
 )
 
 ## Not in the root of $DOTFILES_CONFIG or to rename on dest
@@ -22,15 +22,7 @@ declare -A NOT_FROM_ROOT=(
 	# ZK
 	["$DOTFILES_CONFIG/zk"]="$ZK_NOTEBOOK_DIR/.zk"
 
-	# VS Code
-	["$DOTFILES_CONFIG/VSCode/settings.json"]="$HOME/.config/Code/User/settings.json"
-	["$DOTFILES_CONFIG/VSCode/keybindings.json"]="$HOME/.config/Code/User/keybindings.json"
-
-	# CMus
-	["$DOTFILES_CONFIG/cmus/scripts/cmus-lyrics"]="/usr/local/bin/cmus-lyrics"
-	["$DOTFILES_CONFIG/cmus/scripts/cmus-artwork"]="/usr/local/bin/cmus-artwork"
-  
-  # ly
+	# ly
 	["$DOTFILES_CONFIG/ly/config.ini"]="/etc/ly/config.ini"
 )
 

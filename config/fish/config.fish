@@ -4,6 +4,7 @@ set -Ux EDITOR nvim
 set -Ux VISUAL nvim
 
 set -Ux DOTFILES        $HOME/.dotfiles
+set -Ux DOTFILES_ASSETS $DOTFILES/assets
 set -Ux DOTFILES_CONFIG $DOTFILES/config
 set -Ux SCRIPTS         $DOTFILES/scripts
 set -Ux BOOTSTRAP_FILES $DOTFILES/bootstrap
@@ -62,11 +63,9 @@ alias va="source ./env/bin/activate.fish"
 alias myip="curl ipinfo.io/ip; echo \\"
 
 # alias bat="batcat"
-alias fd="fdfind"
+# alias fd="fdfind"
 
 alias clipboard="xclip -sel clip"
-
-alias lf="lfrun"
 
 alias w="variety -n"
 
@@ -92,6 +91,8 @@ alias gca=gitcommitall
 alias guc="git uncommit"
 alias gp=gitpush
 alias gl="git l"
+
+# alias imagemagick="magick"
 
 # Kitty
 alias icat="kitty +kitten icat"

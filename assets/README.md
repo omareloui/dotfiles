@@ -19,6 +19,8 @@ All files here will be copied by other scripts (not symlinked).
 ## UDev rules
 
 - `99-power.rules`: to notify plug and unplug the power supply.
+- `99-backlight.rules`: to allow all the users in `video` group to change backlight.
+  - to add a user to video group `sudo usermod -aG video <user>`
 
 ## Fonts
 

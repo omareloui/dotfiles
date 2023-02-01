@@ -49,8 +49,6 @@ alias h="history"
 alias gh="history | grep" # Find a command in grep history
 
 # # Scripts {{{
-# alias pdfcompress="$SCRIPTS/pdf/compress.sh"
-# alias converttowebp="$SCRIPTS/images/convert_to_webp.sh"
 # TODO:
 # alias movemovies="$MOVIES_DIR/.scripts/rename_downloaded_movies.ts"
 # # }}}
@@ -61,6 +59,8 @@ alias ve="python3 -m venv ./env"
 alias va="source ./env/bin/activate.fish"
 
 alias myip="curl ipinfo.io/ip; echo \\"
+
+alias paru="paru --color always"
 
 # alias bat="batcat"
 # alias fd="fdfind"
@@ -91,8 +91,6 @@ alias gca=gitcommitall
 alias guc="git uncommit"
 alias gp=gitpush
 alias gl="git l"
-
-# alias imagemagick="magick"
 
 # Kitty
 alias icat="kitty +kitten icat"

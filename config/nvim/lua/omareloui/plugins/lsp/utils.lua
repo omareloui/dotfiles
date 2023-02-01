@@ -13,9 +13,12 @@ return {
     local json_str = file:read "*a"
     file:close()
 
-    -- parse json
     local lunajson = require "lunajson"
     local parsed_json = lunajson.decode(json_str)
+
+    if not parsed_json then
+      return false
+    end
 
     -- check for package in dependencies and devDependencies
     if parsed_json.dependencies then

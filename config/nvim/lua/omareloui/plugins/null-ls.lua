@@ -59,6 +59,10 @@ M.config = function()
     -- Markdown
     d.markdownlint,
 
+    -- yaml
+    d.yamllint,
+    f.yamlfmt,
+
     -- Lua
     f.stylua,
 
@@ -72,7 +76,9 @@ M.config = function()
     d.fish,
 
     -- Git
-    c.gitsigns,
+    -- c.gitsigns,
+    d.gitlint,
+    d.actionlint,
 
     -- Spell
     d.misspell,

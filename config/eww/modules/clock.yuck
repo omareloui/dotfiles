@@ -1,5 +1,14 @@
 (defvar date_rev false)
 
+(include "./modules/closer.yuck")
+
+(defwindow calendar-closer
+  :monitor 0
+  :geometry (geometry :width "100%" :height "100%")
+    :stacking "fg"
+    :focusable false
+  (closer :window "calendar"))
+
 (defwidget clock_module []
   (eventbox
     :onhover "${EWW_CMD} update date_rev=true"
@@ -20,5 +29,5 @@
         :reveal date_rev
         (button
           :class "date"
-          :onclick "${EWW_CMD} open --toggle calendar"
+          :onclick "${EWW_CMD} open calendar-closer && ${EWW_CMD} open --toggle calendar"
           {time.date})))))

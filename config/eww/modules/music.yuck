@@ -1,3 +1,12 @@
+(include "./modules/closer.yuck")
+
+(defwindow music-closer
+  :monitor 0
+  :geometry (geometry :width "100%" :height "100%")
+    :stacking "fg"
+    :focusable false
+  (closer :window "music"))
+
 (defwidget music-module []
   (eventbox
     :onhover "${EWW_CMD} update music_reveal=true"
@@ -10,7 +19,7 @@
         :style "background-image: url(\"${music_cover}\");")
       (button
         :class "module"
-        :onclick "${EWW_CMD} open --toggle music"
+        :onclick "${EWW_CMD} open music-closer && ${EWW_CMD} open --toggle music"
         :style "font-family: ProductSans;"
         {music.title})
       (revealer

@@ -208,7 +208,7 @@
         (button
           :halign "end"
           :class "power-button icon"
-          :onclick "wlogout -p layer-shell &"
+          :onclick "wlogout -b 5 -T 400 -B 400 &"
           "")))))
 
 ;; windows

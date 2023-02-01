@@ -1,26 +1,47 @@
 #!/usr/bin/env bash
 
-# TODO: notify
-
 function play_sound {
-	sound_file="$HOME/.local/share/sounds/audio-volume-change.oga"
-	[[ ! -f $sound_file ]] && cp "$DOTFILES_ASSETS/sounds/audio-volume-change.oga" "$sound_file"
-	paplay "$sound_file"
+	canberra-gtk-play -i audio-volume-change -d "changevolume"
+	# sound_file="$HOME/.local/share/sounds/audio-volume-change.oga"
+	# [[ ! -f $sound_file ]] && cp "$DOTFILES_ASSETS/sounds/audio-volume-change.oga" "$sound_file"
+	# paplay "$sound_file"
+}
+
+icons=(volume_low volume_medium volume_high)
+
+NOTF_ID=2593
+
+function notify {
+	volume=$(pamixer --get-volume)
+	muted=$(pamixer --get-mute)
+	if [[ $muted == "true" ]]; then
+		icon=volume_muted
+	elif ((volume == 0)); then
+		icon=volume_off
+	else
+		index="$(echo "($volume / 34)" | bc)"
+		icon="${icons[$index]}"
+		[[ -z $icon ]] && icon="${icons[2]}"
+	fi
+	dunstify -a "VOLUME" "Volume" "$volume %" -h int:value:"$volume" -i "$HOME/.config/dunst/assets/ui/${icon}.svg" -r $NOTF_ID -u normal
 }
 
 case $1 in
 up)
 	pactl set-sink-mute @DEFAULT_SINK@ 0
-	play_sound
 	pactl set-sink-volume @DEFAULT_SINK@ +5%
+	notify
+	play_sound
 	;;
 down)
 	pactl set-sink-mute @DEFAULT_SINK@ 0
-	play_sound
 	pactl set-sink-volume @DEFAULT_SINK@ -5%
+	notify
+	play_sound
 	;;
 mute)
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
+	notify
 	play_sound
 	;;
 esac

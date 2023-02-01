@@ -1,3 +1,5 @@
+; TODO: the on scroll script
+
 (defwidget volume-module []
   (eventbox
     :class "module icon"

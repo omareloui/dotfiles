@@ -6,7 +6,9 @@ export GTK_THEME=Adwaita:dark
 
 # pcloud1 & # cloud service
 # xss-lock gtklock & # locking app
-swaync & # notif center
+
+dunst &
+
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & # polkit authentication
 # wl-clip-persist --clipboard regular & #persistent clipboard?
 # wl-paste --watch cliphist store &

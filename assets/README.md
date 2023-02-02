@@ -22,6 +22,9 @@ All files here will be copied by other scripts (not symlinked).
 - `99-backlight.rules`: to allow all the users in `video` group to change backlight.
   - to add a user to video group `sudo usermod -aG video <user>`
 
+You mostly won't need this, but if you want to manually reload udev rules
+`sudo udevadm control --reload-rules && sudo udevadm trigger`
+
 ## Fonts
 
 - Fonts for rofi [check install script for more info](../bootstrap/packages/rofi.sh).

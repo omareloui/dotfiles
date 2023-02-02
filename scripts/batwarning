@@ -1,33 +1,35 @@
 #!/usr/bin/env bash
 
-# for the cron
+# for the cron job
 export XDG_RUNTIME_DIR="/run/user/1000"
 
-LOW_NOTF_FILE="/tmp/battery_low"
-CHARGED_FILE="/tmp/battery_full"
+BAT_CACHE_DIR=/tmp/battery
+LOW_NOTF_FILE="$BAT_CACHE_DIR/low"
+CHARGED_FILE="$BAT_CACHE_DIR/full"
 
 WARNING_LEVELS=(20 5 3)
-CHARGED_ON=99
+# CHARGED_ON=95
+CHARGED_ON=9
+
+[[ ! -d "$BAT_CACHE_DIR" ]] && mkdir "$BAT_CACHE_DIR"
+[[ ! -f "$LOW_NOTF_FILE" ]] && touch "$LOW_NOTF_FILE"
 
 current_percentage=$(acpi | grep -Po '[0-9]{1,3}(?=%)')
 is_discharging=$(acpi | grep -c "Discharging")
 
 notified_for=$(cat "$LOW_NOTF_FILE")
 
-NOTIFICATION_ID=0
+NOTIFICATION_ID=4215
 
-if [[ -f /tmp/battery_notification_id ]]; then
-	NOTIFICATION_ID=$(cat /tmp/battery_notification_id)
-fi
-
-# Notification on charged
 if
 	[[ "$current_percentage" -gt "$CHARGED_ON" &&
 		"$is_discharging" -eq 0 &&
 		! -f "$CHARGED_FILE" ]]
 then
-	notify-send "Battery Charged" "Battery is fully charged." -i "$HOME/.local/share/icons/battery-charging.png" -r "$NOTIFICATION_ID"
-	paplay "/usr/share/sounds/Yaru/stereo/complete.oga"
+	dunstify "Battery Charged" "$current_percentage% you can unplug the charger" \
+		-i "$HOME/.local/share/icons/battery-charging.png" \
+		-r "$NOTIFICATION_ID"
+	canberra-gtk-play -i complete.oga
 	touch "$CHARGED_FILE"
 elif [[ "$is_discharging" -eq 1 && -f "$CHARGED_FILE" ]]; then
 	rm "$CHARGED_FILE"
@@ -43,8 +45,11 @@ for warning_level in "${WARNING_LEVELS[@]}"; do
 	if [[ "$is_discharging" -eq 1 &&
 		"$current_percentage" -le $warning_level &&
 		$should_notify -eq 1 ]]; then
-		notify-send "Low battery" "$current_percentage% of battery remaining" -i "$HOME/.local/share/icons/battery-alert.png" -u critical -r "$NOTIFICATION_ID"
-		paplay "/usr/share/sounds/Yaru/stereo/battery-low.oga"
+		dunstify "Low battery" "$current_percentage% of battery remaining" \
+			-i "$HOME/.local/share/icons/battery-alert.png" \
+			-u critical \
+			-r "$NOTIFICATION_ID"
+		canberra-gtk-play -i dialog-error --volume 25.0
 		notified_for+=("$warning_level")
 	fi
 done
@@ -54,4 +59,3 @@ if [[ "$is_discharging" -eq 0 && "${#notified_for[@]}" -gt 0 ]]; then
 fi
 
 echo "${notified_for[*]}" >"$LOW_NOTF_FILE"
-echo "$NOTIFICATION_ID" >/tmp/battery_notification_id

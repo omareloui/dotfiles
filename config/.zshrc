@@ -21,6 +21,18 @@ export ZK_NOTEBOOK_DIR=$HOME/zk
 export MUSIC_DIR=$HOME/Music
 export MOVIES_DIR=$HOME/Movies
 
+# History settings
+export HISTFILE=~/.cache/zsh_history
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
+export HISTTIMEFORMAT="[%F %T] "
+
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+
+
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -33,6 +45,7 @@ fi
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # insenstive completion
 ### End of Zinit's installer chunk
 
 # Required by zinit
@@ -44,19 +57,20 @@ zinit light-mode for \
 
 
 # Plugins
-zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+zinit light zdharma-continuum/fast-syntax-highlighting 
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
 zinit light jeffreytse/zsh-vi-mode
 
 
 ### Plugins configs
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-fast-theme base16
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+# run this to configure the theme for syntax highlighting
+# fast-theme base16
+
+# Bindings
+bindkey '^ ' autosuggest-accept
 
 # Aliases
 alias zshconfig="$EDITOR ~/.zshrc"
@@ -71,6 +85,37 @@ alias l='ls -CF'
 alias ll="ls -lh"
 alias lt="ls --human-readable --size -1 -S --classify"
 
+# Functions
+extract() {
+  if [[ -f $1 ]]; then
+    case $1 in
+      *.tar.{bz,bz2,tbz,tbz2})
+        foldername="$(basename "${1%%.*}")"
+        [[ ! -d foldername ]]
+        tar xjvf "$1" -C "$foldername"
+        ;;
+      *.tar.{gz,tgz})
+        foldername="$(basename "${1%%.*}")"
+        [[ ! -d foldername ]]
+        tar xzvf "$1" -C "$foldername"
+        ;;
+      *.tar.{xz,txz})
+        foldername="$(basename "${1%%.*}")"
+        [[ ! -d foldername ]]
+        tar xJvf "$1" -C "$foldername"
+        ;;
+      *.zip)
+        unzip "$1"
+        ;;
+      *.rar)
+        unrar x "$1"
+        ;;
+      *.7z)
+        7z x "$1"
+        ;;
+    esac
+  fi
+}
 
 
 ### Init plugins

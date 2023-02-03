@@ -57,9 +57,14 @@ zinit light-mode for \
 
 
 # Plugins
-zinit light zdharma-continuum/fast-syntax-highlighting 
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+
 zinit light jeffreytse/zsh-vi-mode
 
 
@@ -70,7 +75,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # fast-theme base16
 
 # Bindings
-bindkey '^ ' autosuggest-accept
+# bindkey '^ ' autosuggest-accept
 
 # Aliases
 alias zshconfig="$EDITOR ~/.zshrc"

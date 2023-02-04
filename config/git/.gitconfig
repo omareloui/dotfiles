@@ -1,10 +1,10 @@
 [init]
 	defaultBranch = main
-	templatedir = ~/.config/git/templates/
+	; templatedir = ~/.config/git/templates/
 
 [author]
 	name = Omar Eloui
-	email = omareloui@hotmail.com
+	email = contact@omareloui.com
 
 [user]
 	name = Omar Eloui
@@ -19,7 +19,7 @@
 [core]
 	editor = nvim
 	pager = delta --diff-so-fancy --line-numbers
-	sshCommand = ssh -i ~/.ssh/github_rsa
+	sshCommand = ssh -i ~/.ssh/github_id_rsa
 
 [delta]
 	side-by-side = true

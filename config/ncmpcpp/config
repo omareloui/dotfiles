@@ -1,0 +1,9 @@
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_in_stereo = "yes"
+visualizer_type = "wave_filled"
+visualizer_look = "+|"
+
+# TODO: add the image (create a folder in .cache and cache all the images)
+execute_on_song_change = notify-send -u normal -r 48219 "Now Playing" "$(mpc --format '%title% \n%artist% - %album%' current)"
+

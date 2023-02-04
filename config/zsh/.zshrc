@@ -22,7 +22,7 @@ export MUSIC_DIR=$HOME/Music
 export MOVIES_DIR=$HOME/Movies
 
 # History settings
-export HISTFILE=~/.cache/zsh_history
+export HISTFILE=~/.cache/zsh/zsh_history
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
 export HISTTIMEFORMAT="[%F %T] "

@@ -27,3 +27,7 @@ config/mpd/*
 
 # log files
 *.log
+
+# Zsh
+config/zsh/*
+!config/zsh/.zshrc

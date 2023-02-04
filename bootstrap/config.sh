@@ -7,8 +7,8 @@
 # The key is the dest and the value is the config files/folders that will be
 # symlinked from $DOTFILES_CONFIG
 declare -A FROM_ROOT=(
-	["$HOME"]=".zshrc .autostart"
-	["$HOME/.config"]="nvim kitty fish lazygit starship.toml lf hypr neofetch mpd cava libinput-gestures.conf wlogout dunst rofi ncmpcpp"
+	["$HOME"]=".zshenv .autostart"
+	["$HOME/.config"]="nvim kitty fish lazygit starship.toml lf hypr neofetch mpd cava libinput-gestures.conf wlogout dunst rofi ncmpcpp zsh"
 )
 
 ## Not in the root of $DOTFILES_CONFIG or to rename on dest

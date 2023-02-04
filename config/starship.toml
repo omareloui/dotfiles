@@ -1,10 +1,13 @@
 add_newline = false
 
+format = """
+$directory\
+$git_branch\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$character"""
+
 [line_break]
-# disabled = true
-
-[git_status]
-disabled = true
-
-[package]
 disabled = true

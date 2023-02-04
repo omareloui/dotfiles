@@ -159,7 +159,7 @@
     min_icon_size = 32
 
 	# Scale larger icons down to this size, set to 0 to disable
-	max_icon_size = 48
+	max_icon_size = 128
 
 	# Define the corner radius of the notification window
 	# in pixel size. If the radius is 0, you have no rounded

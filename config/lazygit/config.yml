@@ -1,15 +1,6 @@
 gui:
   showIcons: true
-
 git:
   paging:
     colorArg: always
     pager: delta --dark --diff-so-fancy --paging=never --line-numbers
-
-customCommands:
-  - key: "C"
-    command: "git cz"
-    description: "commit with commitizen"
-    context: "files"
-    loadingText: "opening commitizen commit tool"
-    subprocess: true

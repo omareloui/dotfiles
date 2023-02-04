@@ -206,7 +206,7 @@ cmd yank-basename-without-extension ${{
 }}
 
 # set as wallpaper
-map w %(($(echo "$f" | rg -c '\.(?:png|jpe?g)$') > 0)) && feh --no-fehbg --bg-fill "$f" 
+map w %(($(echo "$f" | rg -c '\.(?:png|jpe?g)$') > 0)) && wallpaper "$f" 1;
 
 # flatten folder to current directory
 cmd flatten ${{

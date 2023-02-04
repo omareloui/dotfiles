@@ -21,6 +21,9 @@ config/zk/notebook.db
 # Lazy git
 config/lazygit/state.yml
 
+# MPD
+config/mpd/*
+!config/mpd/mpd.conf
 
 # log files
 *.log

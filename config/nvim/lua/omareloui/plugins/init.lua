@@ -8,7 +8,7 @@ return {
   {
     "zbirenbaum/neodim",
     event = "LspAttach",
-    config = {
+    opts = {
       hide = {
         virtual_text = false,
         signs = false,
@@ -23,10 +23,9 @@ return {
   "jose-elias-alvarez/typescript.nvim",
   "simrat39/rust-tools.nvim",
   { "folke/trouble.nvim", config = true },
-  { "j-hui/fidget.nvim", config = { text = { spinner = "dots" }, window = { blend = 0 } } },
+  { "j-hui/fidget.nvim", opts = { text = { spinner = "dots" }, window = { blend = 0 } } },
   { "Fymyte/rasi.vim", ft = "rasi" },
   { "elkowar/yuck.vim" },
-
   -- }}}
 
   -- Treesitter {{{
@@ -52,7 +51,7 @@ return {
   {
     "iamcco/markdown-preview.nvim",
     build = "cd app && yarn install",
-    setup = function()
+    config = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
@@ -73,7 +72,7 @@ return {
   --- }}}
 
   -- Session {{{
-  { "rmagatti/auto-session", config = { auto_restore_enabled = false } },
+  { "rmagatti/auto-session", opts = { auto_restore_enabled = false } },
   -- }}}
 
   -- Misc {{{
@@ -82,7 +81,7 @@ return {
     "numToStr/Comment.nvim",
     module = "Comment",
     init = require("omareloui.config.mappings").comments,
-    config = {
+    opts = {
       mappings = false,
       ignore = "^(%s*)$", -- ignore empty/spaces only lines
     },
@@ -108,6 +107,9 @@ return {
 
   -- tabout
   { "abecodes/tabout.nvim", dependencies = { "nvim-treesitter", "nvim-cmp" }, config = true },
+
+  -- context vt
+  { "haringsrob/nvim_context_vt", opts = { prefix = " »" } },
   -- }}}
 
   -- Games {{{

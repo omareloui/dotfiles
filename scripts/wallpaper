@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
-wp="$(fd . -p "$HOME/.wallpaper" -It f -d 1 | shuf --random-source=/dev/urandom -n 1)"
+wp="$1"
+skip_wait="$2"
+
+if [[ -z $wp ]]; then
+	wp="$(fd . -p "$HOME/.wallpaper" -It f -d 1 | shuf --random-source=/dev/urandom -n 1)"
+fi
+
+if [[ -z "$skip_wait" ]]; then
+	skip_wait=0
+fi
 
 hyperpaper_file="$HOME/.config/hypr/hyprpaper.conf"
 
@@ -10,7 +19,9 @@ old_pids="$(ps -a | awk '/hyprpaper/ {print $1}')"
 
 hyprpaper &>/dev/null &
 
-sleep 2
+if ((skip_wait == 0)); then
+	sleep 1
+fi
 
 for id in $old_pids; do
 	kill "$id"

@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+. "$HOME/.dotfiles/palettes/__current.sh"
+
+# Wait till the power menu closes
+sleep 0.3
+
+swaylock \
+	--screenshots \
+	--clock \
+	--timestr "%I:%M %P" \
+	--datestr "" \
+	\
+	--indicator \
+	--indicator-radius 50 \
+	--indicator-thickness 3 \
+	\
+	--text-color "$foreground" \
+	--text-clear-color "$yellow" \
+	--text-ver-color "$blue" \
+	--text-wrong-color "$red" \
+	\
+	--ring-clear-color "$yellow" \
+	--ring-ver-color "$blue" \
+	--ring-wrong-color "$red" \
+	--inside-clear-color "#00000000" \
+	--inside-ver-color "#00000000" \
+	--inside-wrong-color "#00000000" \
+	\
+	--bs-hl-color "$red" \
+	--caps-lock-key-hl-color "$red" \
+	--caps-lock-bs-hl-color "$red" \
+	\
+	--indicator-x-position 100 \
+	--indicator-y-position 1000 \
+	--effect-blur 7x5 \
+	--effect-vignette 0.5:0.5 \
+	\
+	--ring-color "$foreground" \
+	--key-hl-color "$magenta" \
+	--line-color 00000000 \
+	--inside-color 00000000 \
+	--separator-color 00000000 \
+	\
+	--grace 2 \
+	--fade-in 0.2

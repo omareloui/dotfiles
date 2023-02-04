@@ -12,7 +12,7 @@ function notify {
 		icon="${icons[$(awk -v n="$(light)" 'BEGIN{print int(n/34)}')]}"
 		[[ -z $icon ]] && icon="${icons[3]}"
 	fi
-	dunstify -a "BRIGHTNESS" "$brightness %" -h int:value:"$brightness" -i "$HOME/.config/dunst/assets/ui/${icon}.svg" -r "$NOTIF_ID" -u normal
+	dunstify -a "BRIGHTNESS" "Brightness" "$brightness %" -h int:value:"$brightness" -i "$HOME/.config/dunst/assets/ui/${icon}.svg" -r "$NOTIF_ID" -u normal
 }
 
 case "$1" in

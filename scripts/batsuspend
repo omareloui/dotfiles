@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+SUSPEND_ON=4
+
+# for the cron job
+export XDG_RUNTIME_DIR="/run/user/1000"
+
+is_charging="$(acpi | grep -c "Charging")"
+current_percentage="$(acpi | grep -Po '[0-9]{1,3}(?=%)')"
+
+if [[ $is_charging -eq 0 && $current_percentage -le $SUSPEND_ON ]]; then
+	dunstify \
+		"Going to sleep..." \
+		"$current_percentage% of battery remaining." \
+		-i "$HOME/.local/share/icons/sleep.png" \
+		-u critical
+	sleep 3
+	systemd-run --user systemctl hybrid-sleep
+fi

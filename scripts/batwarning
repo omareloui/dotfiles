@@ -21,7 +21,7 @@ notified_for=$(cat "$LOW_NOTF_FILE")
 NOTIFICATION_ID=4215
 
 if
-	[[ "$current_percentage" -gt "$CHARGED_ON" &&
+	[[ "$current_percentage" -ge "$CHARGED_ON" &&
 		"$is_discharging" -eq 0 &&
 		! -f "$CHARGED_FILE" ]]
 then

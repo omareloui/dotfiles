@@ -196,7 +196,7 @@
 
 [urgency_critical]
 	script = ~/.config/dunst/scripts/playNotificationSound.sh
-	timeout = 6
+	timeout = 0
 	background = "#0d0f16"
 	foreground = "#CDD6F4"
 	frame_color = "#0d0f16"

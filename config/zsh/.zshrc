@@ -92,6 +92,10 @@ alias lt="ls --human-readable --size -1 -S --classify"
 
 alias neovide="env -u WAYLAND_DISPLAY neovide"
 
+alias py="python3"
+alias ve="python3 -m venv ./env"
+alias va="source ./env/bin/activate"
+
 # Functions
 extract() {
   case $1 in

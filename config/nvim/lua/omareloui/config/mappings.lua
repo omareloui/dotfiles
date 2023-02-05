@@ -252,7 +252,7 @@ end
 
 -- File Browsing {{{
 M.nvimtree = function()
-  set("n", "<leader>e", "<Cmd>NvimTreeToggle<CR>", { desc = "toggle NvimTree" })
+  set("n", "<leader>e", require("nvim-tree.api").tree.toggle, { desc = "toggle NvimTree" })
 end
 
 M.lf = function()

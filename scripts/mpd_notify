@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 
-music_dir="$HOME/Music"
-previewdir="$HOME/.cache/ncmpcpp/previews"
+cover="$("$HOME/.local/bin/mpd_get_artwork")"
 
-[[ ! -d $previewdir ]] && mkdir -p "$previewdir"
-
-filename="$(mpc --format "$music_dir"/%file% current)"
-previewname="$previewdir/$(echo "$filename" | base64).png"
-
-[[ -e "$previewname" ]] ||
-	ffmpeg -y -i "$filename" -an -vf scale=128:128 "$previewname" >/dev/null 2>&1
-
-notify-send -r 27072 "Now Playing" "$(mpc --format "%title% \n%artist%" current)" -i "$previewname"
+notify-send \
+	"Now Playing" \
+	"$(mpc --format "%title% \n%artist%" current)" \
+	-r 27072 \
+	-i "$cover"

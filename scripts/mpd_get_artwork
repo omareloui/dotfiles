@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+music_dir="$HOME/Music"
+previewdir="$HOME/.cache/ncmpcpp/previews"
+
+[[ ! -d $previewdir ]] && mkdir -p "$previewdir"
+
+filename="$(mpc --format "$music_dir"/%file% current)"
+
+previewname="$previewdir/$(echo "$filename" | base64).png"
+[[ -e "$previewname" ]] ||
+	ffmpeg -y -i "$filename" -an -vf scale=128:128 "$previewname" >/dev/null 2>&1
+
+echo "$previewname"

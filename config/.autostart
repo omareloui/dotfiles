@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-[[ ! -s ~/.config/mpd/pid ]] && mpd
+[[ ! -s ~/.config/mpd/pid ]] && mpd &
+mpDris2 &
 
 export GTK_THEME=Adwaita:dark
 

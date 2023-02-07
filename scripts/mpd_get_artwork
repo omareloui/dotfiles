@@ -7,7 +7,9 @@ previewdir="$HOME/.cache/ncmpcpp/previews"
 
 filename="$(mpc --format "$music_dir"/%file% current)"
 
-previewname="$previewdir/$(echo "$filename" | base64).png"
+encrypted_name="$(echo "$filename" | base64)"
+sanatized_name="${encrypted_name:s/\\/\\\\}"
+previewname="$previewdir/${sanatized_name}.png"
 [[ -e "$previewname" ]] ||
 	ffmpeg -y -i "$filename" -an -vf scale=128:128 "$previewname" >/dev/null 2>&1
 

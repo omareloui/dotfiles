@@ -54,16 +54,16 @@ get_cover() {
 
 	IMGPATH="$HOME/.cache/eww_covers/cover_art.png"
 
-	# TODO:
-	# STATUS="$(mpc status)"
-	# ffmpeg -i "$MUSIC_DIR/$(mpc current -f %file%)" "${IMAGEPATH}" -y &>/dev/null
-	# STATUS=$?
-	# if ((STATUS == 0)); then
-	# 	echo "$IMAGEPATH"
-	# fi
+	while true; do
+		MPD_IS_PLAYING="$(mpc | rg -c "\playing\]")"
+		COVER_URL="$(playerctl metadata mpris:artUrl 2>/dev/null)"
 
-	playerctl -F metadata mpris:artUrl 2>/dev/null | while read -r COVER_URL; do
-		if [[ "$COVER_URL" = https* ]]; then
+		if ((MPD_IS_PLAYING == 1)); then
+			ART_WORK="$("$HOME/.local/bin/mpd_get_artwork")"
+			echo "${ART_WORK}"
+		elif [[ -n "$COVER_URL" ]]; then
+			echo "$COVER_URL"
+		elif [[ "$COVER_URL" = https* ]]; then
 			if [ ! -e "$HOME/.cache/eww_covers/$(basename "$COVER_URL")" ]; then
 				wget -N "$COVER_URL" -o /dev/null
 			fi
@@ -72,11 +72,11 @@ get_cover() {
 			ln -s "$(basename "$COVER_URL")" "$IMGPATH"
 
 			echo "$IMGPATH"
-		elif [[ -n "$COVER_URL" ]]; then
-			echo "$COVER_URL"
 		else
 			echo "assets/music.png"
 		fi
+
+		sleep 1
 	done
 }
 

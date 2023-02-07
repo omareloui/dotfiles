@@ -63,12 +63,13 @@ zinit wait lucid for \
  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
  blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-completions
 
 zinit light jeffreytse/zsh-vi-mode
+zinit light zsh-users/zsh-autosuggestions
 
+# lfcd
+source "$HOME/.config/lf/lfcd.sh"
 
 ### Plugins configs
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
@@ -77,7 +78,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # fast-theme base16
 
 # Bindings
-# bindkey '^ ' autosuggest-accept
+bindkey '^ ' autosuggest-accept
+bindkey -s "^O" "lfcd^M"
 
 # Aliases
 alias zshconfig="$EDITOR ~/.zshrc"

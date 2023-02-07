@@ -44,9 +44,10 @@ map O $mimeopen --ask $f
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
 # text files and a file opener for the rest.
-cmd open &{{
+cmd open %{{
     case $(file --mime-type -Lb $f) in
         text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        video/*) lf -remote "send $id \$vlc \$fx >/dev/null 2>/dev/null";;
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
@@ -216,4 +217,15 @@ cmd flatten ${{
       rm -rf $folder
     fi
   done
+}}
+
+# Change directory
+cmd z %{{
+	result="$(zoxide query --exclude $PWD $@)"
+	lf -remote "send $id cd $result"
+}}
+
+cmd zi ${{
+	result="$(zoxide query -i)"
+	lf -remote "send $id cd $result"
 }}

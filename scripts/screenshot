@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version=1.2.0
+version=2.0.0
 
 BOLD="\e[1m"
 END_BOLD="\e[22m"
@@ -100,11 +100,10 @@ while true; do
 	esac
 done
 
-NOTIFICATION_ID=669
+NOTIFICATION_ID=6699
 time=$(date +%Y-%m-%d-%I-%M-%S)
-geometry=$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current')
-dir="$(xdg-user-dir PICTURES)/Screenshots"
-filename="Screenshot_${time}_${geometry}.png"
+dir="$HOME/Pictures/Screenshots"
+filename="Screenshot_${time}.png"
 
 sound_file="$HOME/.local/share/sounds/camera-shutter.wav"
 notification_icon="$HOME/.local/share/icons/camera-shutter.png"
@@ -136,34 +135,42 @@ fi
 
 [[ ! -d $dir ]] && mkdir -p "$dir"
 
+function preview() {
+	if ((preview == 1)); then
+		eog "$dir/$filename"
+	fi
+}
+
 function notify() {
 	paplay "$sound_file"
-	if ((preview == 1)); then
-		viewnior "$dir/$filename"
-	fi
 
 	if [[ -e "$dir/$filename" ]]; then
 		message="Created $filename."
-		((copy == 1)) && message="$message<br>And copied to clipboard."
-		notify-send "Screenshot" "$message" -u low -i "$notification_icon" -t 3000 -r "$NOTIFICATION_ID"
-	else
-		notify-send "Screenshot" "Deleted $filename" -u low -i "$notification_icon" -t 3000 -r "$NOTIFICATION_ID"
+		actions=""
+		((copy == 1)) && message+="<br>And copied to clipboard."
+		((preview == 0)) && actions+="preview,Preview"
+		ACTION="$(dunstify "Screenshot" "$message" -u low -i "$dir/$filename" -t 3000 -r "$NOTIFICATION_ID" --action="$actions" --action="test,Test")"
+		case "$ACTION" in
+		preview)
+			eog "$dir/$filename"
+			;;
+		esac
 	fi
-
 }
 
 function shot_full() {
 	pushd "$dir" || exit 1
 	{
+		action=""
 		if ((copy == 1)); then
-			maim -u -f png |
-				tee "$filename" |
-				xclip -selection clipboard -t image/png
-		else
-			maim -u -f png >"$filename"
+			action+="copy"
 		fi
+		action+="save"
+
+		grimblast "$action" screen "$filename"
 	} && {
 		notify
+		preview
 	}
 	popd || exit 1
 }
@@ -172,15 +179,16 @@ function shot_area() {
 	pushd "$dir" || exit 1
 
 	{
+		action=""
 		if ((copy == 1)); then
-			maim -u -f png -s -b 2 -c 0.35,0.55,0.85,0.25 -l |
-				tee "$filename" |
-				xclip -selection clipboard -t image/png
-		else
-			maim -u -f png -s -b 2 -c 0.35,0.55,0.85,0.25 -l >"$filename"
+			action+="copy"
 		fi
+		action+="save"
+
+		grimblast "$action" area "$filename"
 	} && {
 		notify
+		preview
 	}
 
 	popd || exit 1
@@ -190,13 +198,13 @@ function shot_window() {
 	pushd "$dir" || exit 1
 
 	{
+		action=""
 		if ((copy == 1)); then
-			maim -u -f png -i "$(xdotool getactivewindow)" |
-				tee "$filename" |
-				xclip -selection clipboard -t image/png
-		else
-			maim -u -f png -i "$(xdotool getactivewindow)" >"$filename"
+			action+="copy"
 		fi
+		action+="save"
+
+		grimblast "$action" area "$filename"
 	} && {
 		notify
 	}
@@ -208,7 +216,7 @@ countdown() {
 	if (($1 > 0)); then
 		for sec in $(seq "$1" -1 1); do
 			if ((quite == 0)); then
-				notify-send -t 1000 -r "$NOTIFICATION_ID" -i "$notification_icon2" "Taking shot in : $sec"
+				dunstify -t 1000 -r "$NOTIFICATION_ID" -i "$notification_icon2" "Taking shot in : $sec"
 			fi
 			sleep 1
 		done

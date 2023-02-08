@@ -528,5 +528,14 @@ function M.zk()
 end
 -- }}}
 
-return M
+-- Rest {{{
+function M.rest()
+  set("n", "<leader>ro", "<Plug>RestNvim", { desc = "run the request under the cursor" })
+  set("n", "<leader>rv", "<Plug>RestNvimPreview", { desc = "preview the request cURL command" })
+  set("n", "<leader>rl", "<Plug>RestNvimLast", { desc = "re-run the last request" })
+end
+-- }}}
+
 ---- }}}
+
+return M

@@ -58,6 +58,20 @@ return {
   },
   -- }}}
 
+  -- Backend helpers {{{
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      highlight = {
+        enabled = true,
+        timeout = 50,
+      },
+    },
+    init = require("omareloui.config.mappings").rest,
+  },
+  -- }}}
+
   -- Linters and formatters {{{
   -- editorconfig
   "gpanders/editorconfig.nvim",

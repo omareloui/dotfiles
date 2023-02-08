@@ -39,3 +39,7 @@ autocmd("TextYankPost", {
   desc = "Highlight selection on yank",
 })
 -- }}}
+
+-- Execute sh files and preview the result {{{
+vim.cmd "command Exec set splitright | vnew | set filetype=sh | read !sh #"
+-- }}}

@@ -19,7 +19,7 @@ local options = {
   hlsearch = false,
   linebreak = true,
   list = true,
-  conceallevel = 2,
+  -- conceallevel = 2,
   listchars = { tab = "» ", lead = "·", trail = "·", eol = "↲", nbsp = "☠" },
   relativenumber = true,
   scrolloff = 8,

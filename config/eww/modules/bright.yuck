@@ -15,5 +15,5 @@
       :duration "350ms"
         (label
           :text "${round(brightness.level, 0)} %   "
-          :style "font-family: ProductSans;"
+          :style "font-family: Product Sans;"
           :tooltip "brightness ${round(brightness.level, 0)} %")))))

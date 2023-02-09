@@ -17,6 +17,6 @@
         :duration "350ms"
         (label
           :class "vol-text"
-          :style "font-family: ProductSans;"
+          :style "font-family: Product Sans;"
           :text "${net.essid}     ")
         ))))

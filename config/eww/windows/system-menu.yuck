@@ -8,18 +8,18 @@
       :space-evenly false
       (label
         :class "time"
-        :style "font-family:ProductSans;"
+        :style "font-family: Product Sans;"
         :text "${time.hour}:${time.minute}")
       (box
         :class "date-box"
         :space-evenly false
         (label
           :class "date"
-          :style "font-family:ProductSans;"
+          :style "font-family: Product Sans;"
           :text {time.date})
         (label
           :class "day"
-          :style "font-family:ProductSans;"
+          :style "font-family: Product Sans;"
           :text {time.day})))
 
     (centerbox
@@ -94,7 +94,7 @@
         :class "volume-slider-box"
         :space-evenly false
         (button
-          :style "font-family:ProductSans;"
+          :style "font-family: Product Sans;"
           :class "volume-icon icon"
           :onclick "scripts/volume mute SINK"
           {volume.icon})
@@ -109,7 +109,7 @@
         (button
           :class "volume-icon icon"
           :onclick "scripts/volume mute SOURCE"
-          :style "font-family:ProductSans;"
+          :style "font-family: Product Sans;"
           "")
         (scale
           :class "volume-bar"
@@ -121,7 +121,7 @@
         :space-evenly false
         (button
           :class "brightness-slider-icon icon"
-          :style "font-family:ProductSans;"
+          :style "font-family: Product Sans;"
           {brightness.icon})
         (scale
           :class "brightness-slider" 
@@ -179,7 +179,7 @@
             :halign "start"
             :class "sys-text-mem")
           (label
-            :style "font-family:ProductSans;"
+            :style "font-family: Product Sans;"
             :text "${memory.used} | ${memory.total}"
             :halign "start"
             :class "sys-text-sub"))))
@@ -192,11 +192,11 @@
         :halign "start"
         (label
           :class "battery-icon icon"
-          :style "color: ${battery.color}; font-family:ProductSans;"
+          :style "color: ${battery.color}; font-family: Product Sans;"
           :text {battery.icon})
         (label
           :class "battery-percentage"
-          :style "font-family:ProductSans;"
+          :style "font-family: Product Sans;"
           :text {EWW_BATTERY["BAT1"].capacity})
         (label
           :class "battery-status"

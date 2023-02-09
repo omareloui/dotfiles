@@ -3,7 +3,7 @@
 ########################## GENERAL ##########################
 ######### FONTS #########
 export monospace_font="Iosevka Nerd Font"
-export san_serif_font="ProductSans"
+export san_serif_font="Product Sans"
 
 ######### COLORS #########
 export foreground="#d4be98"

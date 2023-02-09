@@ -52,7 +52,7 @@ else
 
 	if [ "$ismuted" = 1 ]; then
 		icon="${volicons[$lvl]}"
-		[[ -z $icon ]] && icon="${volicons[3]}"
+		[[ -z $icon ]] && icon="${volicons[2]}"
 	else
 		icon=""
 	fi
@@ -65,7 +65,7 @@ else
 
 		if ((ismuted == 1)); then
 			icon="${volicons[$lvl]}"
-			[[ -z $icon ]] && icon="${volicons[3]}"
+			[[ -z $icon ]] && icon="${volicons[2]}"
 		else
 			icon=""
 		fi

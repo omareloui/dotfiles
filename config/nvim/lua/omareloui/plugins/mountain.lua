@@ -1,4 +1,9 @@
-M = { "omareloui/mountain.nvim", name = "mountain", lazy = false, priority = 1000 }
+M = {
+  "omareloui/mountain.nvim",
+  name = "mountain",
+  lazy = false,
+  priority = 1001,
+}
 
 function M.config()
   local present, mountain = pcall(require, "mountain")

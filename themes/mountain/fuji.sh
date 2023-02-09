@@ -36,7 +36,7 @@ export white="#e7e7e7"
 export b_white="#f0f0f0"
 
 ########################## KITTY ##########################
-export kitty_opacity=0.95
+export kitty_opacity=0.85
 
 export kitty_selection_foreground="#262626"
 export kitty_selection_background="#f0f0f0"
@@ -50,10 +50,10 @@ export kitty_inactive_tab_background="#4c4c4c"
 export kitty_mark3_background="#8f8aac"
 
 ########################## HYPRLAND ##########################
-export hyprland_gaps_in=5
-export hyprland_gaps_out=10
+export hyprland_gaps_in=10
+export hyprland_gaps_out=15
 export hyprland_border_size=4
-export hyprland_active_border="rgba(f0f0f0aa)"
+export hyprland_active_border="rgba(ac8aacaa)"
 export hyprland_inactive_border="rgba(0f0f0fee)"
 
 export hyprland_border_radius=0

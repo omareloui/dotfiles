@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-. "/home/omareloui/.dotfiles/themes/gruvbox/material.sh"
+. "/home/omareloui/.dotfiles/themes/mountain/fuji.sh"

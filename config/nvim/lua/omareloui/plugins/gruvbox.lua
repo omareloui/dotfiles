@@ -1,4 +1,4 @@
-M = { "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 }
+M = { "ellisonleao/gruvbox.nvim", lazy = false, priority = 1001 }
 
 function M.config()
   local present, gruvbox = pcall(require, "gruvbox")

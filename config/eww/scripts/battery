@@ -2,6 +2,8 @@
 
 icons=("󰂎" "󰁺" "󰁼" "󰁾" "󰂀" "󰂁" "󰂀" "󰁹")
 
+. "$HOME/.dotfiles/themes/current.sh"
+
 geticon() {
 	if [ "$STATE" = "Charging" ]; then
 		level=$(awk -v n="$CAPACITY" 'BEGIN{print int((n-1)/12)}')
@@ -30,9 +32,9 @@ status() {
 
 color() {
 	if [ "$CAPACITY" -le 20 ]; then
-		echo '#f38ba8'
+		echo "$b_red"
 	else
-		echo '#a6e3a1'
+		echo "$b_green"
 	fi
 }
 

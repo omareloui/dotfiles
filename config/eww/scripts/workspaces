@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-colors=("#89b4fa")
-dimmed=("#b4befe")
-empty="#313244"
+. "$HOME/.dotfiles/themes/current.sh"
+
+colors=("$b_cyan")
+dimmed=("$blue")
+empty="$black"
 
 # get initial focused workspace
 focusedws=$(hyprctl -j monitors | jaq -r '.[] | select(.focused == true) | .activeWorkspace.id')

@@ -1,7 +1,7 @@
-@import 'css/colors';
+@import 'css/theme';
 
 @mixin rounding {
-  border-radius: 16px;
+  border-radius: $widgets-border-radius;
 }
 
 @mixin window {
@@ -26,7 +26,7 @@
 .bar {
   background-color: $bg;
   color: $fg;
-  border-radius: 12.5px;
+  border-radius: $bar-border-radius;
   label {
     font-size: 1.3rem;
   }
@@ -72,7 +72,7 @@ tooltip {
 }
 
 .sys-text-sub {
-  font-family: ProductSans;
+  font-family: $font-family;
 }
 
 .launcher_module {

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "$HOME/.dotfiles/palettes/__current.sh"
+. "$HOME/.dotfiles/themes/current.sh"
 
 # Wait till the power menu closes
 sleep 0.3

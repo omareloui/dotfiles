@@ -113,14 +113,14 @@
 }
 
 .bt-connected {
-  background-color: #89b4fa;
-  color: #11111b;
-  button:hover { background-color: #7ba2e1; }
+  background-color: $blue;
+  color: $crust;
+  button:hover { background-color: $dark-blue; }
 }
 
 .wifi-connected {
-  background-color: #cba6f7;  
-  color: #11111b;
+  background-color: $mauve;  
+  color: $crust;
 
-  button:hover { background-color: #b695de; }
+  button:hover { background-color: $dark-mauve; }
 }

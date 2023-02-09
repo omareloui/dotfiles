@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
-######### STANDARDS #########
+######### FONTS #########
+export monospace_font=""
+export san-serif_font=""
+
+
+######### MISC #########
+export border_radius_hyprland=""
+export wallpaper=""
+export kitty_opacity=
+
+
+######### COLORS #########
 export foreground=""
 export background=""
 
@@ -51,3 +62,4 @@ export color15=""
 export color7=""
 export white="$color15"
 export b_white="$color7"
+

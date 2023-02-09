@@ -1,0 +1,112 @@
+#!/usr/bin/env bash
+
+RED="\e[31m"
+RESET="\e[0m"
+
+theme=$1
+
+created_sanatized_config=0
+function get_sanitized_config_file {
+	location=$1
+	dotfiles="$DOTFILES" || "$HOME/.dotfiles"
+	tmp="$HOME/.cache/themes/$location.sh"
+	# if [[ ! -f "$tmp" ]]; then
+	if ((created_sanatized_config == 0)); then
+		rm -rf "$tmp"
+		mkdir -p "${tmp:h}"
+		[[ -d "$tmp" ]] && rm -rf "$tmp"
+		cp "$dotfiles/themes/$location.sh" "$tmp"
+		sed -i -e '/^$/d' -e '/^#/d' -e 's/^export //' "$tmp"
+		created_sanatized_config=1
+	fi
+	echo "$tmp"
+}
+
+function generate_from_template {
+	template=$1
+	dest=$2
+	location=$3
+
+	cache="$HOME/.cache/themes/$location/$(basename "$template")"
+
+	if [[ -f $cache ]]; then
+		cp -f "$cache" "$dest"
+		return
+	fi
+
+	config="$(get_sanitized_config_file "$location")"
+	cp -f "$template" "$dest"
+
+	while read -r line; do
+		setting="$(echo "$line" | cut -d '=' -f 1)"
+		value="$(echo "$line" | cut -d '=' -f 2- | sed 's/"//g')"
+		sed -i -e "s;\[\[${setting}\]\];${value};g" "$dest"
+	done <"$config"
+
+	mkdir -p "$(dirname "$cache")"
+	cp -f "$dest" "$cache"
+}
+
+function change {
+	location=$1
+	dotfiles="$DOTFILES" || "$HOME/.dotfiles"
+	current_theme="$dotfiles/themes/current.sh"
+
+	# Used by swaylock
+	echo -e "#!/usr/bin/env bash\n\n. \"$dotfiles/themes/$location.sh\"" \
+		>"$current_theme"
+
+	. "$current_theme"
+
+	# Wallpaper
+	wallpaper "$(find "$dotfiles/themes/.wallpapers" -name "$(basename "$location")*" -type f)"
+
+	# Kitty
+	generate_from_template "$dotfiles/themes/.templates/kitty.template" "$HOME/.config/kitty/theme.conf" "$location"
+
+	# Hyprland
+	generate_from_template "$dotfiles/themes/.templates/hyprland.template" "$HOME/.config/hypr/conf/theme.conf" "$location"
+	hyprctl reload >/dev/null
+
+	# Cava
+	generate_from_template "$dotfiles/themes/.templates/cava.template" "$HOME/.config/cava/config" "$location"
+
+	# wlogout
+	generate_from_template "$dotfiles/themes/.templates/wlogout.template" "$HOME/.config/wlogout/style.css" "$location"
+
+	# EWW
+	pkill eww
+	# TODO: change the icons
+	# TODO: change workspace icons
+	generate_from_template "$dotfiles/themes/.templates/eww.scss.template" "$HOME/.config/eww/css/_theme.scss" "$location"
+	generate_from_template "$dotfiles/themes/.templates/eww.yuck.template" "$HOME/.config/eww/eww.yuck" "$location"
+	eww open bar &>/dev/null
+
+	# Neovim
+	generate_from_template "$dotfiles/themes/.templates/nvim.theme.template" "$HOME/.config/nvim/lua/omareloui/config/theme.lua" "$location"
+	generate_from_template "$dotfiles/themes/.templates/nvim.palette.template" "$HOME/.config/nvim/lua/omareloui/ui/palette.lua" "$location"
+	generate_from_template "$dotfiles/themes/.templates/nvim.lualine.template" "$HOME/.config/nvim/lua/omareloui/plugins/lualine.lua" "$location"
+
+	# TODO: neofetch
+	# TODO: gtk
+	# TODO: rofi
+	# TODO: dunst
+	# TODO: firefox
+
+	# TODO: icons (dunst,battery,backlight,gtk,eww)
+}
+
+case $theme in
+catppuccin | catppuccin-mocha | mocha)
+	change "catppuccin/mocha"
+	;;
+mountain | mountain-fuji | fuji)
+	change "mountain/fuji"
+	;;
+gruvbox | gruvbox-material | material)
+	change "gruvbox/material"
+	;;
+*)
+	echo -e "${RED}Error:${RESET} invalid theme name"
+	;;
+esac

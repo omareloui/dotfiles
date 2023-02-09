@@ -5,7 +5,7 @@ local options = {
 
   -- Columns {{{
   colorcolumn = { "80", "120" },
-  cursorcolumn = true,
+  -- cursorcolumn = true,
   cursorline = true,
   -- }}}
 

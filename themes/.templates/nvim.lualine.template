@@ -134,36 +134,11 @@ function M.config()
     },
     sections = {
       lualine_a = {
-        {
-          function()
-            return '󰧱'
-          end,
-          color = function()
-            return { bg = mode_color[vim.fn.mode()] }
-          end,
-        },
-        {
-          'mode',
-          color = function()
-            return { bg = mode_color[vim.fn.mode()] }
-          end,
-        },
-
+        [[nvim_lualine_a]]
       },
 
       lualine_b = {
-        {
-          'branch',
-          icon = '',
-          color = { bg = c.surface0, fg = c.purple },
-        },
-        {
-          'diff',
-          colored = true,
-          symbols = i_lualine.diff,
-          color = { bg = c.surface0 },
-        },
-
+        [[nvim_lualine_b]]
       },
 
       lualine_c = {
@@ -183,19 +158,7 @@ function M.config()
       },
 
       lualine_x = {
-        {
-          lsp_progess,
-          color = { bg = c.surface0 },
-          cond = conditions.has_lsp_client,
-        },
-        {
-          function()
-            return '󰘦'
-          end,
-          color = { bg = c.purple, fg = c.black },
-          cond = conditions.has_lsp_client,
-        },
-
+        [[nvim_lualine_x]]
       },
 
       lualine_y = {},

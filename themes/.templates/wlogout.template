@@ -1,8 +1,8 @@
 window {
-    font-family: Iosevka Nerd Font;
+    font-family: [[monospace_font]];
     font-size: 14pt;
-    color: #333e34;
-    background-color: rgba(29, 32, 33, 0.2);
+    color: [[wlogout_color]];
+    background-color: [[wlogout_background]];
 }
 
 button {
@@ -10,19 +10,19 @@ button {
     background-position: center 40%;
     background-size: 25%;
     border: none;
-    background-color: rgba(29, 32, 33, 0);
+    background-color: [[wlogout_button_background]];
     margin: 30px;
-    border-radius: 2px;
+    border-radius: [[wlogout_button_border_radius]];
     transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 button:hover {
-    background-color: rgba(234, 105, 98, 0.1);
+    background-color: [[wlogout_button_background_hover]];
 }
 
 button:focus {
-    background-color:#89b482;
-    color: #665c54;
+    background-color:[[wlogout_button_background_focus]];
+    color: [[wlogout_button_foreground_focus]];
 }
 
 #lock {

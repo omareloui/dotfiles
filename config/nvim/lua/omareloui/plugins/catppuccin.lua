@@ -30,7 +30,7 @@ M.config = function()
     },
   }
 
-  vim.cmd.colorscheme "catppuccin"
+  require "omareloui.config.theme"
 end
 
 return M

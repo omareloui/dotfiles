@@ -22,3 +22,5 @@ alias :q="exit"
 
 alias cat="bat --color always --plain"
 alias grep="grep --color=auto"
+
+alias neovide="env -u WAYLAND_DISPLAY neovide"

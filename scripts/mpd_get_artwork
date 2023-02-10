@@ -3,16 +3,20 @@
 music_dir="$HOME/Music"
 previewdir="$HOME/.cache/ncmpcpp/previews"
 
+size=$1
+
+[[ -z "$size" ]] && size=128
+
 [[ ! -d $previewdir ]] && mkdir -p "$previewdir"
 
 filename="$(mpc --format "$music_dir"/%file% current)"
 
-encrypted_name="$(echo "$filename" | base64)"
+encrypted_name="$(echo "${filename}_${size}" | base64)"
 
 sanatized_name="$(echo "$encrypted_name" | tr -d "\n" | tr -d "\n\r")"
 
 previewname="$previewdir/${sanatized_name}.png"
 [[ -e "$previewname" ]] ||
-	ffmpeg -y -i "$filename" -an -vf scale=128:128 "$previewname" >/dev/null 2>&1
+	ffmpeg -y -i "$filename" -an -vf scale="$size:$size" "$previewname" >/dev/null 2>&1
 
 echo "$previewname"

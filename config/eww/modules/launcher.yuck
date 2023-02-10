@@ -6,5 +6,5 @@
       (image
         :class "launcher-icon"
         :path "assets/arch-linux.png"
-      :image-width 28))
+      :image-width 20))
 ))

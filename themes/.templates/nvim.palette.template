@@ -1,6 +1,5 @@
 return {
   rosewater = "[[rosewater]]",
-  pink = "[[pink]]",
   flamingo = "[[flamingo]]",
   mauve = "[[mauve]]",
   red = "[[red]]",

@@ -116,3 +116,8 @@ export nvim_theme="catppuccin"
 export nvim_lualine_a='{\n          "mode",\n          color = function()\n            return { bg = mode_color[vim.fn.mode()] }\n          end,\n          separator = { right = sep.right },\n        },\n'
 export nvim_lualine_b='{\n          "branch",\n          icon = "",\n          color = { bg = c.surface0, fg = c.purple },\n          separator = { right = sep.right },\n        },\n        {\n          "diff",\n          colored = true,\n          symbols = i_lualine.diff,\n          color = { bg = c.surface0 },\n          separator = { left = sep.left, right = sep.right },\n        },\n'
 export nvim_lualine_x='{\n          lsp_progess,\n          color = { bg = c.surface0 },\n          separator = { left = sep.left },\n          cond = conditions.has_lsp_client,\n        },\n        {\n          function()\n            return i_lualine.lsp\n          end,\n          -- separator = { left = sep.left, right = sep.right },\n          separator = { left = sep.left },\n          color = { bg = c.purple, fg = c.black },\n          cond = conditions.has_lsp_client,\n        },\n'
+
+########################## DUNST ##########################
+export dunst_low_frame_color="#191d24"
+export dunst_normal_frame_color="#0d0f16"
+export dunst_critical_frame_color="#0d0f16"

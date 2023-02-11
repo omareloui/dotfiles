@@ -65,7 +65,7 @@
 	origin = top-right
 
 	# Offset from the origin
-	offset = 15x15
+	offset = [[hyprland_gaps_out]]x[[hyprland_gaps_out]]
 
     # Turn on the progess bar. It appears when a progress hint is passed with
     # for example dunstify -h int:value:12
@@ -86,7 +86,7 @@
 
 	# Frame
 	frame_width = 3
-	frame_color = "#0f0f0f"
+	frame_color = "[[background]]"
 
 	# The transparency of the window. range: [0; 100]
 	# This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
@@ -166,7 +166,7 @@
 	# corners.
 	# The radius will be automatically lowered if it exceeds half of the
 	# notification height to avoid clipping text and/or icons.
-	corner_radius = 0
+	corner_radius = [[hyprland_border_radius]]
 
 	# Always run rule-defined scripts, even if the notification is suppressed
 	always_run_script = true
@@ -178,23 +178,23 @@
 
 [urgency_low]
 	timeout = 6
-	background = "#0f0f0f"
-	foreground = "#f0f0f0"
-	frame_color = "#8aacab"
-	highlight = "#8f8aac"
+	background = "[[background]]"
+	foreground = "[[foreground]]"
+	frame_color = "[[dunst_low_frame_color]]"
+	highlight = "[[blue]]"
 
 [urgency_normal]
 	# script = ~/.config/dunst/scripts/playNotificationSound.sh
 	timeout = 6
-	background = "#0f0f0f"
-	foreground = "#f0f0f0"
-	frame_color = "#8f8aac"
-	highlight = "#8f8aac"
+	background = "[[background]]"
+	foreground = "[[foreground]]"
+	frame_color = "[[dunst_normal_frame_color]]"
+	highlight = "[[blue]]"
 
 [urgency_critical]
 	script = ~/.config/dunst/scripts/playNotificationSound.sh
 	timeout = 0
-	background = "#0f0f0f"
-	foreground = "#f0f0f0"
-	frame_color = "#ac8a8c"
-	highlight = "#ac8a8c"
+	background = "[[background]]"
+	foreground = "[[foreground]]"
+	frame_color = "[[dunst_critical_frame_color]]"
+	highlight = "[[red]]"

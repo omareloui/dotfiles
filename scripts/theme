@@ -87,10 +87,13 @@ function change {
 	generate_from_template "$dotfiles/themes/.templates/nvim.palette.template" "$HOME/.config/nvim/lua/omareloui/ui/palette.lua" "$location"
 	generate_from_template "$dotfiles/themes/.templates/nvim.lualine.template" "$HOME/.config/nvim/lua/omareloui/plugins/lualine.lua" "$location"
 
+	# dunst
+	pkill dunst
+	generate_from_template "$dotfiles/themes/.templates/dunst.template" "$HOME/.config/dunst/dunstrc" "$location"
+
 	# TODO: neofetch
 	# TODO: gtk
 	# TODO: rofi
-	# TODO: dunst
 	# TODO: firefox
 
 	# TODO: icons (dunst,battery,backlight,gtk,eww)

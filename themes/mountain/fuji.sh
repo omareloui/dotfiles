@@ -117,3 +117,8 @@ export nvim_theme="mountain"
 export nvim_lualine_a='{\n          function()\n            return ""\n          end,\n          color = function()\n            return { bg = mode_color[vim.fn.mode()] }\n          end,\n        },\n        {\n          "mode",\n          color = function()\n            return { bg = mode_color[vim.fn.mode()] }\n          end,\n        },\n'
 export nvim_lualine_b='{\n          "branch",\n          icon = "",\n          color = { bg = c.surface0, fg = c.purple },\n        },\n        {\n          "diff",\n          colored = true,\n          symbols = i_lualine.diff,\n          color = { bg = c.surface0 },\n        },\n'
 export nvim_lualine_x='{\n          lsp_progess,\n          color = { bg = c.surface0 },\n          cond = conditions.has_lsp_client,\n        },\n        {\n          function()\n            return "󰘦"\n          end,\n          color = { bg = c.purple, fg = c.black },\n          cond = conditions.has_lsp_client,\n        },\n'
+
+########################## DUNST ##########################
+export dunst_low_frame_color="#8aacab"
+export dunst_normal_frame_color="#8f8aac"
+export dunst_critical_frame_color="#ac8a8c"

@@ -12,7 +12,7 @@ M.general = function()
   set(0, "TabLineSel", { default = true, fg = "white", bold = true })
 
   set(0, "CursorLine", { default = true, bg = c.mantle })
-  set(0, "CursorMatchWord", { bg = c.surface0, underline = true })
+  set(0, "CursorMatchWord", { bg = c.surface0 })
 
   set(0, "SnippetActiveChoice", { fg = c.blue, bg = c.mantle })
   set(0, "SnippetActiveInsert", { fg = c.purple, bg = c.mantle })

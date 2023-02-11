@@ -25,21 +25,3 @@ autocmd({ "CursorHold", "CursorHoldI" }, {
   desc = "Highlight word under cursor",
 })
 -- }}}
-
--- Highlight yanked text {{{
-function HighlightOnYank()
-  vim.highlight.on_yank { higroup = "IncSearch", timeout = 40 }
-end
-
-local highlight_on_yank = augroup("HighlightOnYank", { clear = true })
-autocmd("TextYankPost", {
-  pattern = "*",
-  callback = HighlightOnYank,
-  group = highlight_on_yank,
-  desc = "Highlight selection on yank",
-})
--- }}}
-
--- Execute sh files and preview the result {{{
-vim.cmd "command Exec set splitright | vnew | set filetype=sh | read !sh #"
--- }}}

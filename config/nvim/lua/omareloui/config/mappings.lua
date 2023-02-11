@@ -254,12 +254,6 @@ end
 M.nvimtree = function()
   set("n", "<leader>e", require("nvim-tree.api").tree.toggle, { desc = "toggle NvimTree" })
 end
-
-M.lf = function()
-  set("n", "<leader>o", function()
-    require("lf").start { border = "curved" }
-  end, { desc = "open lf" })
-end
 -- }}}
 
 -- UndoTree {{{
@@ -439,7 +433,6 @@ end
 -- Terminal {{{
 M.terminal = function()
   terminal_git()
-  set("n", "<leader>tt", "<Cmd>lua _TERMINAL_TOGGLE()<CR>", { desc = "toggle the terminal" })
 end
 
 M.terminal_when_active = function()
@@ -533,6 +526,36 @@ function M.rest()
   set("n", "<leader>ro", "<Plug>RestNvim", { desc = "run the request under the cursor" })
   set("n", "<leader>rv", "<Plug>RestNvimPreview", { desc = "preview the request cURL command" })
   set("n", "<leader>rl", "<Plug>RestNvimLast", { desc = "re-run the last request" })
+end
+-- }}}
+
+-- toggler {{{
+function M.toggler()
+  set(
+    { "n", "v" },
+    "<leader>i",
+    require("nvim-toggler").toggle,
+    { desc = "toggle the cursor word (eg. from true to false)" }
+  )
+end
+-- }}}
+
+-- Yank {{{
+function M.yanky()
+  set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+  set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+  set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+  set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+
+  set("n", "<c-n>", "<Plug>(YankyCycleForward)")
+  set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+end
+-- }}}
+
+-- Portal {{{
+function M.portal()
+  set("n", "<leader>o", require("portal").jump_backward, { desc = "jump backward using portal" })
+  set("n", "<leader>i", require("portal").jump_forward, { desc = "jump forward using portal" })
 end
 -- }}}
 

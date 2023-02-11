@@ -2,8 +2,6 @@
 
 All dotfiles, packages, scripts, and some assets I use and need.
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-
 ---
 
 ## Download and Install

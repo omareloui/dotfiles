@@ -120,3 +120,7 @@ export nvim_lualine_x='{\n          lsp_progess,\n          color = { bg = c.sur
 export dunst_low_frame_color="#7daea3"
 export dunst_normal_frame_color="#89b482"
 export dunst_critical_frame_color="#ea6962"
+
+########################## GTK ##########################
+export gtk_is_dark=1
+export gtk_theme_name="Gruvbox-Material-Dark"

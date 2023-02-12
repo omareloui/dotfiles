@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+old="$(get_current)"
+sleep_duration=1
+
+function update_lyrics {
+	kitty +kitten icat --silent --align left "$(mpd_get_artwork 400)"
+
+}
+
+while true; do
+	printf "\ec" # clear the terminal
+	/home/omareloui/repos/MusicLyrics/dist/lib/mpd-api.js
+	mpc current --wait
+done

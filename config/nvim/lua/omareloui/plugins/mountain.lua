@@ -2,7 +2,7 @@ M = {
   "omareloui/mountain.nvim",
   name = "mountain",
   lazy = false,
-  priority = 1001,
+  priority = 1000,
 }
 
 function M.config()
@@ -12,6 +12,6 @@ function M.config()
     return
   end
 
-  require "omareloui.config.theme"
+  pcall(require, "omareloui.config.theme")
 end
 return M

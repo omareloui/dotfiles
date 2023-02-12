@@ -1,4 +1,8 @@
-M = { "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 }
+M = {
+  "ellisonleao/gruvbox.nvim",
+  lazy = false,
+  priority = 1000,
+}
 
 function M.config()
   local present, gruvbox = pcall(require, "gruvbox")
@@ -12,7 +16,7 @@ function M.config()
     contrast = "hard",
   }
 
-  require "omareloui.config.theme"
+  pcall(require, "omareloui.config.theme")
 end
 
 return M

@@ -30,7 +30,7 @@ M.config = function()
     },
   }
 
-  require "omareloui.config.theme"
+  pcall(require, "omareloui.config.theme")
 end
 
 return M

@@ -16,10 +16,11 @@ M.diagnostics = {
   -- Hint = " ",
   -- Info = " ",
 
-  Error = " ",
-  Warn = " ",
-  Hint = " ",
-  Info = " ",
+  --    
+  Error = " ",
+  Warn = " ",
+  Hint = " ",
+  Info = " ",
 
   -- ﱢ         ●
   virtual_prefix = "ﱢ",

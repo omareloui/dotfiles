@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version=1.1.0
+version=1.0.0
 
 . "$(dirname "$0")/utils.sh"
 
@@ -37,7 +37,7 @@ while true; do
 		echo -e ""
 		echo -e "  ${BOLD}Description:${RESET}"
 		echo -e ""
-		echo -e "    ${B_GRAY}Copy required udev rules to their location.${RESET}"
+		echo -e "    ${B_GRAY}Copy required services to their location.${RESET}"
 		echo -e ""
 		echo -e "  ${BOLD}Options:${RESET}"
 		echo -e ""
@@ -70,19 +70,34 @@ function p() {
 	fi
 }
 
-udef_files="$(fd ".*\.rules" "$BOOTSTRAP_FILES/assets/udev")"
+services="$(fd ".*\.service" "$BOOTSTRAP_FILES/assets/services")"
 
 override="$( ((ignore_existing == 1)) && echo 0 || echo 1)"
 
-for rule in $udef_files; do
-	dest="/etc/udev/rules.d/$(basename "$rule")"
-
-	prompt_confirmation "${BOLD}Copy ${UNDERLINE}$rule${END_UNDERLINE}${B_MAGENTA}?${END_BOLD}"
-	confirmed="$(confirm)"
-
-	if ((confirmed == 1)); then
-		copy "$rule" "$dest" "$override" "$verbose"
+function enable {
+	service=$1
+	service_name="$(basename "$service")"
+	service_title="${service_name%.service}"
+	should_include_username="$(echo "$service_title" | grep -Pc '@$')"
+	((should_include_username == 1)) && service_title+=$USER
+	prompt_confirmation "${BOLD}Enable ${UNDERLINE}$service_title${END_UNDERLINE}${B_MAGENTA}?${END_BOLD}"
+	confirm_enable="$(confirm)"
+	if ((confirm_enable == 1)); then
+		sudo systemctl enable --now "$service_title"
 	else
-		p "${BLUE}Info${YELLOW}:${RESET} skipping ${UNDERLINE}$rule${END_UNDERLINE}"
+		p "${BLUE}Info${YELLOW}:${RESET} didn't enable ${UNDERLINE}$service_name${END_UNDERLINE}"
+	fi
+}
+
+for service in $services; do
+	service_name="$(basename "$service")"
+	dest="/etc/systemd/system/$service_name"
+	prompt_confirmation "${BOLD}Copy ${UNDERLINE}$service_name${END_UNDERLINE}${B_MAGENTA}?${END_BOLD}"
+	confirmed="$(confirm)"
+	if ((confirmed == 1)); then
+		copy "$service" "$dest" "$override" "$verbose"
+		enable "$service"
+	else
+		p "${BLUE}Info${YELLOW}:${RESET} skipping copying ${UNDERLINE}$service${END_UNDERLINE}"
 	fi
 done

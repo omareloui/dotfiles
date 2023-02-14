@@ -145,9 +145,25 @@ function copy {
 	} || echo -e "${RED_BG}${BLACK}Error${RESET}${YELLOW}:${RESET} something went wrong while copying ${UNDERLINE}$src${END_UNDERLINE}.${RESET}"
 }
 
-function is_root {
-	if (("$(id -u)" != 0)); then
-		echo -e "${RED}Please run as root.${RESET}"
-		exit 1
+function prompt_confirmation {
+	prompt=$1
+	if ((should_confirm == 1)); then
+		echo -en "$prompt ${YELLOW}[${BLUE}yN${YELLOW}]${RESET} "
+	fi
+}
+
+function confirm {
+	if ((should_confirm == 1)); then
+		read -r res
+		if [[ -z $res || $res = "n" || $res = "N" || $res = "no" ]]; then
+			echo 0
+		elif [[ $res = "y" || $res = "Y" || $res = "yes" ]]; then
+			echo 1
+		else
+			echo -e "${RED_BG}${BLACK}Error${RESET}${YELLOW}:${RESET} invalid input"
+			exit 1
+		fi
+	else
+		echo 1
 	fi
 }

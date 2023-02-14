@@ -86,7 +86,7 @@
 
 	# Frame
 	frame_width = 3
-	frame_color = "#0f0f0f"
+	frame_color = "#1d2021"
 
 	# The transparency of the window. range: [0; 100]
 	# This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
@@ -166,7 +166,7 @@
 	# corners.
 	# The radius will be automatically lowered if it exceeds half of the
 	# notification height to avoid clipping text and/or icons.
-	corner_radius = 0
+	corner_radius = 5
 
 	# Always run rule-defined scripts, even if the notification is suppressed
 	always_run_script = true
@@ -178,23 +178,23 @@
 
 [urgency_low]
 	timeout = 6
-	background = "#0f0f0f"
-	foreground = "#f0f0f0"
-	frame_color = "#8aacab"
-	highlight = "#8f8aac"
+	background = "#1d2021"
+	foreground = "#d4be98"
+	frame_color = "#7daea3"
+	highlight = "#7daea3"
 
 [urgency_normal]
 	# script = ~/.config/dunst/scripts/playNotificationSound.sh
 	timeout = 6
-	background = "#0f0f0f"
-	foreground = "#f0f0f0"
-	frame_color = "#8f8aac"
-	highlight = "#8f8aac"
+	background = "#1d2021"
+	foreground = "#d4be98"
+	frame_color = "#89b482"
+	highlight = "#7daea3"
 
 [urgency_critical]
 	script = ~/.config/dunst/scripts/playNotificationSound.sh
 	timeout = 0
-	background = "#0f0f0f"
-	foreground = "#f0f0f0"
-	frame_color = "#ac8a8c"
-	highlight = "#ac8a8c"
+	background = "#1d2021"
+	foreground = "#d4be98"
+	frame_color = "#ea6962"
+	highlight = "#ea6962"

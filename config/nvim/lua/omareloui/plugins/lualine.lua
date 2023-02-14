@@ -136,7 +136,7 @@ function M.config()
       lualine_a = {
         {
           function()
-            return ""
+            return "󰧱"
           end,
           color = function()
             return { bg = mode_color[vim.fn.mode()] }

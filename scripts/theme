@@ -211,8 +211,11 @@ function change {
 		p "${GREEN}Success${YELLOW}:${RESET} done wlogout"
 
 	# eww
-	p "${BLUE}Info${YELLOW}:${RESET} killing eww"
-	pkill eww
+	restart_eww=0
+	((restart_eww == 1)) && {
+		p "${BLUE}Info${YELLOW}:${RESET} killing eww"
+		pkill eww
+	}
 	# TODO: change workspace icons
 	# TODO: add music.png to the assests
 	p "${BLUE}Info${YELLOW}:${RESET} copying eww assets"
@@ -220,8 +223,10 @@ function change {
 	generate_config "eww.scss" "$HOME/.config/eww/css/_theme.scss" 1
 	generate_config "eww.yuck" "$HOME/.config/eww/eww.yuck"
 	p "${BLUE}Info${YELLOW}:${RESET} opening eww's main bar"
-	eww open bar &>/dev/null
-	p "${GREEN}Success${YELLOW}${YELLOW}:${RESET} done eww"
+	((restart_eww == 1)) && {
+		eww open bar &>/dev/null
+		p "${GREEN}Success${YELLOW}${YELLOW}:${RESET} done eww"
+	}
 
 	# neovim
 	# TODO: icons

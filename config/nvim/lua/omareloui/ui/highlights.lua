@@ -15,7 +15,7 @@ M.general = function()
   set(0, "CursorMatchWord", { bg = c.surface0 })
 
   set(0, "SnippetActiveChoice", { fg = c.blue, bg = c.mantle })
-  set(0, "SnippetActiveInsert", { fg = c.purple, bg = c.mantle })
+  set(0, "SnippetActiveInsert", { fg = c.magenta, bg = c.mantle })
 
   set(0, "Folded", { fg = c.subtext1, bg = c.crust })
 end
@@ -36,7 +36,7 @@ M.gitsings = function()
   set(0, "DiffAdded", { fg = c.green })
   set(0, "DiffChange", { fg = c.blue })
   set(0, "DiffChangeDelete", { fg = c.red })
-  set(0, "DiffModified", { fg = c.orange })
+  set(0, "DiffModified", { fg = c.light_yellow })
   set(0, "DiffDelete", { fg = c.red })
   set(0, "DiffRemoved", { fg = c.red })
 end

@@ -4,7 +4,7 @@ wp="$1"
 skip_wait="$2"
 
 if [[ -z $wp ]]; then
-	wp="$(fd . -p "$HOME/.wallpaper" -It f -d 1 | shuf --random-source=/dev/urandom -n 1)"
+	wp="$(fd . -p "$HOME/.wallpaper/current" -It f -d 1 | shuf --random-source=/dev/urandom -n 1)"
 fi
 
 if [[ -z "$skip_wait" ]]; then

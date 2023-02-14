@@ -71,7 +71,7 @@ while true; do
       ;;
     -h | --help)
       echo -e ""
-      echo -e "  ${{BOLD}}Usage:${{END_BOLD}}    $(basename "$0") ${{YELLOW}}[${{BRIGHT_RED}}OPTIONS${{DARK_GRAY}}...${{YELLOW}}]${{RESET}}" # ${{GREEN}}ARGUMENTS${{WHITE}}${{RESET}}"
+      echo -e "  ${{BOLD}}Usage:${{END_BOLD}}    $(basename "$0") ${{YELLOW}}[${{BRIGHT_RED}}options${{DARK_GRAY}}...${{YELLOW}}]${{RESET}}" # ${{YELLOW}}<${{GREEN}}action${{YELLOW}}>${{RESET}}"
       echo -e "  ${{BOLD}}Version:${{RESET}}  ${{YELLOW}}$version${{RESET}}"
       echo -e ""
       echo -e "  ${{BOLD}}Description:${{RESET}}"
@@ -80,7 +80,7 @@ while true; do
       # echo -e ""
       # echo -e "  ${{BOLD}}Args:${{RESET}}"
       # echo -e ""
-      # echo -e "    ${{BOLD}}${{GREEN}}ACTION${{WHITE}} ${{YELLOW}}{{${{BLUE}}full${{YELLOW}}|${{BLUE}}area${{YELLOW}}|${{BLUE}}window${{YELLOW}}}}${{RESET}}"
+      # echo -e "    ${{BOLD}}${{GREEN}}action${{WHITE}} ${{YELLOW}}{{${{BLUE}}full${{YELLOW}}|${{BLUE}}area${{YELLOW}}|${{BLUE}}window${{YELLOW}}}}${{RESET}}"
       # echo -e "      ${{BLUE}}full${{RESET}}      ${{BRIGHT_RED}}-${{RESET}} Take a screenshot of the full screen."
       # echo -e "      ${{BLUE}}area${{RESET}}      ${{BRIGHT_RED}}-${{RESET}} Take a screenshot of an area you select."
       # echo -e "      ${{BLUE}}window${{RESET}}    ${{BRIGHT_RED}}-${{RESET}} Take a screenshot of a window."
@@ -90,6 +90,12 @@ while true; do
       echo -e "    ${{BLUE}}-h${{RESET}}, ${{BLUE}}--help${{RESET}}       ${{BRIGHT_RED}}-${{RESET}} Show this help."
       echo -e "    ${{BLUE}}-v${{RESET}}, ${{BLUE}}--verbose${{RESET}}    ${{BRIGHT_RED}}-${{RESET}} Prints out the process state."
       echo -e ""
+      # echo -e "  ${{BOLD}}Examples:${{RESET}}"
+      # echo -e ""
+      # echo -e "    ${{RED}}\$${{RESET}} ${{BRIGHT_MAGENTA}}$(basename "$0")${{RESET}} area"
+      # echo -e "    ${{RED}}\$${{RESET}} ${{BRIGHT_MAGENTA}}$(basename "$0")${{RESET}} -C window"
+      # echo -e "    ${{RED}}\$${{RESET}} ${{BRIGHT_MAGENTA}}$(basename "$0")${{RESET}} -qs 3 full"
+      # echo -e ""
       exit 0
       ;;
     --)
@@ -113,8 +119,7 @@ function p() {{
       ansi
     ),
     { i(1, "Script description") }
-  ),
-  "auto"
+  )
 )
 
 cs("ansi", fmt(ansi, {}))

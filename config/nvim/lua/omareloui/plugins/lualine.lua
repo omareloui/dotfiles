@@ -136,14 +136,14 @@ function M.config()
       lualine_a = {
         {
           function()
-            return ''
+            return ""
           end,
           color = function()
             return { bg = mode_color[vim.fn.mode()] }
           end,
         },
         {
-          'mode',
+          "mode",
           color = function()
             return { bg = mode_color[vim.fn.mode()] }
           end,
@@ -153,12 +153,12 @@ function M.config()
 
       lualine_b = {
         {
-          'branch',
-          icon = '',
-          color = { bg = c.surface0, fg = c.purple },
+          "branch",
+          icon = "",
+          color = { bg = c.surface0, fg = c.magenta },
         },
         {
-          'diff',
+          "diff",
           colored = true,
           symbols = i_lualine.diff,
           color = { bg = c.surface0 },
@@ -190,9 +190,9 @@ function M.config()
         },
         {
           function()
-            return '󰘦'
+            return "󰘦"
           end,
-          color = { bg = c.purple, fg = c.black },
+          color = { bg = c.magenta, fg = c.black },
           cond = conditions.has_lsp_client,
         },
 
@@ -206,4 +206,3 @@ function M.config()
 end
 
 return M
-

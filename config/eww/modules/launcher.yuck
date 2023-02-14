@@ -5,6 +5,6 @@
     (button
       (image
         :class "launcher-icon"
-        :path "assets/arch-linux.png"
+        :path "assets/launcher.png"
       :image-width 20))
 ))

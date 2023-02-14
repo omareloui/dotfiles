@@ -3,22 +3,22 @@ $widgets-border-radius: [[eww_widgets_border_radius]];
 
 $font-family:  [[san_serif_font]];
 
-$rosewater:    [[rosewater]];
-$flamingo:     [[flamingo]];
+$rosewater:    [[b_yellow]];
+$flamingo:     [[red]];
 $pink:         [[magenta]];
-$mauve:        [[mauve]];
-$dark-mauve:   [[dark_mauve]];
+$mauve:        [[b_magenta]];
+$dark-mauve:   [[magenta]];
 $red:          [[red]];
-$maroon:       [[maroon]];
-$peach:        [[peach]];
+$maroon:       [[red]];
+$peach:        [[b_yellow]];
 $yellow:       [[yellow]];
 $green:        [[green]];
 $teal:         [[cyan]];
-$sky:          [[sky]];
-$sapphire:     [[sapphire]];
+$sky:          [[blue]];
+$sapphire:     [[blue]];
 $blue:         [[blue]];
-$dark-blue:    [[dark_blue]];
-$lavender:     [[lavender]];
+$dark-blue:    [[cyan]];
+$lavender:     [[blue]];
 $white:        [[foreground]];
 
 $text:        [[foreground]];

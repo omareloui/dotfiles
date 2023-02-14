@@ -15,5 +15,5 @@ Bootstrap scripts to setup the dot files
 ## Asset files
 
 - `packages.lst`: used by the `install_packages.sh` script. To recreate it you
-  can run `update_packageslist` it should exist on your path (after runing `sym_config.sh`).
+  can run `update_packageslist` it should exist on your path (after running `sym_config.sh`).
 - `udev/`: udev rules used by the `cp_udev.sh` script.

@@ -27,7 +27,7 @@ while true; do
 		echo -e ""
 		echo -e "  ${BOLD}Description:${RESET}"
 		echo -e ""
-		echo -e "    ${B_GRAY}Script to install packages from "$BOOTSTRAP_FILES/assets/packages.lst".${RESET}"
+		echo -e "    ${B_GRAY}Script to install packages from \"$BOOTSTRAP_FILES/assets/packages.lst\".${RESET}"
 		echo -e ""
 		echo -e "  ${BOLD}Options:${RESET}"
 		echo -e ""

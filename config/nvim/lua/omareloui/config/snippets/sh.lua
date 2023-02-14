@@ -46,12 +46,10 @@ RESET="\e[0m"]]
 cs("#!", t "#!/usr/bin/env bash", "auto")
 
 cs(
-  "!#",
+  "parseargs",
   fmt(
     string.format(
-      [[#!/usr/bin/env bash
-
-version=1.0.0
+      [[version=1.0.0
 
 %8s
 
@@ -117,57 +115,6 @@ function p() {{
     { i(1, "Script description") }
   ),
   "auto"
-)
-
-cs(
-  "parseargs",
-  fmt(
-    [[
-verbose=0
-
-LONGOPTS=verbose,help
-OPTIONS=vh
-
-PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
-eval set -- "$PARSED"
-
-while true; do
-	case "$1" in
-	-v | --verbose)
-		verbose=1
-		shift
-		;;
-	-h | --help)
-		echo "Usage: $(basename "$0") [OPTION]..."
-		echo "{}"
-		echo ""
-		echo "-v, --verbose     prints out the process state"
-		echo "-h, --help        show this help prompt"
-		echo ""
-		exit 0
-		;;
-	--)
-		shift
-		break
-		;;
-	*)
-		echo "Programming error"
-		exit 3
-		;;
-  esac
-done
-
-function p() {{
-	if ((verbose == 1)); then
-		echo -e "$1"
-	fi
-}}
-
-]],
-    {
-      i(1, "What the script do"),
-    }
-  )
 )
 
 cs("ansi", fmt(ansi, {}))

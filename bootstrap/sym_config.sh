@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version=2.0.0
+version=2.0.1
 
 . "$(dirname "$0")/utils.sh"
 
@@ -118,7 +118,8 @@ for src in "${!NOT_FROM_ROOT[@]}"; do
 done
 
 # scripts
-for src in $(fd -t f ".*[^(sh)]\$" "$SCRIPTS"); do
+for src in $(fd -tx '^[^.]+$' "$SCRIPTS"); do
+	echo $src
 	dest="$HOME/.local/bin/$(basename "$src")"
 	[[ -e $dest && ignore_existing -eq 1 ]] && {
 		p "${BLUE}Info${YELLOW}:${RESET} ${UNDERLINE}$dest${END_UNDERLINE} already exists, ignoring creating new symlink."

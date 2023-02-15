@@ -1,24 +1,13 @@
 #!/usr/bin/env bash
 
-BOLD="\e[1m"
-END_BOLD="\e[22m"
-UNDERLINE="\e[4m"
-END_UNDERLINE="\e[24m"
+. "$SCRIPTS/utils.sh"
 
-BLACK="\e[30m"
-RED="\e[31m"
-GREEN="\e[32m"
-BLUE="\e[34m"
-
-BLUE_BG="\e[44m"
-
-RESET="\e[0m"
+version=2.0.0
 
 verbose=0
-file=""
 
-LONGOPTS=file:,verbose,help
-OPTIONS=f:vh
+LONGOPTS=verbose,help
+OPTIONS=vh
 
 PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 eval set -- "$PARSED"
@@ -30,29 +19,40 @@ while true; do
 		shift
 		;;
 	-h | --help)
-		echo "Usage: $(basename "$0") [OPTION]..."
-		echo "Add a file/folder to the dotfiles to track it."
-		echo ""
-		echo "-f, --file        the file or folder to include to dotfiles"
-		echo "-v, --verbose     prints out the process state"
-		echo "-h, --help        show this help prompt"
-		echo ""
-		echo "Example"
-		echo "  $(basename "$0") -vf nvim"
+		echo -e "" echo -e "  ${BOLD}Usage:${END_BOLD}    $(basename "$0") ${YELLOW}[${B_RED}options${DARK_GRAY}...${YELLOW}]${RESET} ${YELLOW}<${GREEN}file${YELLOW}>${RESET}"
+		echo -e "  ${BOLD}Version:${RESET}  ${YELLOW}$version${RESET}"
+		echo -e ""
+		echo -e "  ${BOLD}Description:${RESET}"
+		echo -e ""
+		echo -e "    ${B_GRAY}Add a file/folder to the dotfiles to track it.${RESET}"
+		echo -e ""
+		echo -e "  ${BOLD}Args:${RESET}"
+		echo -e ""
+		echo -e "    ${BOLD}${GREEN}file${WHITE}"
+		echo -e "      ${B_RED}-${RESET} The file or folder to track."
+		echo -e ""
+		echo -e "  ${BOLD}Options:${RESET}"
+		echo -e ""
+		echo -e "    ${BLUE}-h${RESET}, ${BLUE}--help${RESET}       ${B_RED}-${RESET} Show this help and exit."
+		echo -e "    ${BLUE}-v${RESET}, ${BLUE}--verbose${RESET}    ${B_RED}-${RESET} Explain what is being done."
+		echo -e ""
+		echo -e "  ${BOLD}Examples:${RESET}"
+		echo -e ""
+		echo -e "    ${DARK_GRAY}# if you're in the same folder containing the config${RESET}"
+		echo -e "    ${RED}\$${RESET} ${B_MAGENTA}$(basename "$0")${RESET} nvim"
+		echo -e ""
+		echo -e "    ${DARK_GRAY}# you can provide the absolute path${RESET}"
+		echo -e "    ${RED}\$${RESET} ${B_MAGENTA}$(basename "$0")${RESET} -v ~/.config/neovim"
+		echo -e ""
 		exit 0
 		;;
-	-f | --file)
-		file="${2//=/}"
-		if [[ -n $file ]]; then
-			shift
-			break
-		fi
+	--)
+		shift
+		break
 		;;
 	*)
-		echo -e "${RED}You have to provide a file or folder.${RESET}"
-		echo -e "eg. \"${BOLD}$(basename "$0") -vf <file>${END_BOLD}\""
-		echo -e "Run '$(basename "$0") --help' for more information."
-		exit 1
+		echo -e "${RED}Error:${RESET} Programming error"
+		exit 3
 		;;
 	esac
 done
@@ -63,22 +63,55 @@ function p() {
 	fi
 }
 
+if [[ -z $1 ]]; then
+	echo -e "${RED_BG}${BLACK}Error${RESET}${YELLOW}:${RESET} you have to provide a file or folder."
+	echo -e "${BOLD}${CYAN}Eg${YELLOW}:${RESET} ${RED}\$${RESET} ${B_MAGENTA}$(basename "$0")${RESET} nvim"
+	exit 1
+fi
+
+file=$(realpath "$1")
+
 if [[ ! -e $file ]]; then
-	echo -e "${RED}Can't find \"$file\", no such file or directory.${RESET}"
+	echo -e "${RED_BG}${BLACK}Error${RESET}${YELLOW}:${RESET} can't find ${UNDERLINE}$1${END_UNDERLINE}."
 	exit 1
 fi
 
 if [[ -z $DOTFILES_CONFIG ]]; then
-	echo -e "${RED}\$DOTFILES_CONFIG has to be defined to know where to add the file/folder.${RESET}"
-	exit 1
+	DOTFILES_CONFIG="$HOME/.dotfiles/config"
 fi
 
-file=$(realpath "$file")
+function add_to_bootstrap {
+	config_folder=$(basename $file)
 
-mv "$file" "$DOTFILES_CONFIG/$(basename "$file")"
-p "${GREEN}Moved the file/folder to \"$DOTFILES_CONFIG/$(basename "$file")\".${RESET}"
+	in_dot_config=$(echo "$file" | grep -Pc "^$HOME/.config/$config_folder$")
+	in_root=$(echo "$file" | grep -Pc "^$HOME/$config_folder$")
 
-ln -s "$DOTFILES_CONFIG/$(basename "$file")" "$file"
-p "${GREEN}Created the symlink.${RESET}"
+	bootstrap_file="$BOOTSTRAP_FILES/sym_config.sh"
 
-echo -e "${BLUE_BG}${BLACK}REMINDER:${RESET} ${BLUE}don't forget to add this to the bootstrap script at ${BOLD}$BOOTSTRAP_FILES/config.sh${END_BOLD}.${RESET}"
+	if ((in_dot_config == 0)) && ((in_root == 0)); then
+		echo -e "${YELLOW}Warning${B_RED}:${RESET} can't location where to put in symconfig script, ignoring updating the bootstrap script."
+		return
+	fi
+
+	if ((in_dot_config == 1)); then
+		sed -i "s#^\(\s*\[\"\$HOME/.config\"\]=\"\)\(.*\)\(\"\)\$#\1\2 $config_folder\3#g" "$bootstrap_file"
+	elif ((in_root == 1)); then
+		sed -i "s#^\(\s*\[\"\$HOME\"\]=\"\)\(.*\)\(\"\)\$#\1\2 $config_folder\3#g" "$bootstrap_file"
+	fi
+
+	p "${BLUE}Info${YELLOW}:${RESET} add the config to the bootstrap file.${RESET}"
+}
+
+function init {
+	{
+		mv "$file" "$DOTFILES_CONFIG/$(basename "$file")" &&
+			p "${BLUE}Info${YELLOW}:${RESET} moved the file/folder to \"$DOTFILES_CONFIG/$(basename "$file")\"."
+
+		ln -s "$DOTFILES_CONFIG/$(basename "$file")" "$file" &&
+			p "${BLUE}Info${YELLOW}:${RESET} created the symlink.${RESET}"
+
+		add_to_bootstrap
+	} && p "${GREEN}Success${YELLOW}:${RESET} done creating the symlink for ${UNDERLINE}$(basename "$file")${END_UNDERLINE}.${RESET}"
+}
+
+init

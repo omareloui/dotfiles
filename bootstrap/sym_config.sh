@@ -19,8 +19,6 @@ declare -A FROM_ROOT=(
 ## Not in the root of $DOTFILES_CONFIG or to rename on dest
 # Here it's the key is the src and the dest is the value
 declare -A NOT_FROM_ROOT=(
-	# Scripts
-	["$SCRIPTS"]="$HOME/.local/bin"
 	# Git
 	["$DOTFILES_CONFIG/git/.gitconfig"]="$HOME/.gitconfig"
 	# ["$DOTFILES_CONFIG/git/templates"]="$HOME/.config/git/templates"
@@ -35,6 +33,7 @@ declare -A NOT_FROM_ROOT=(
 
 ##### Folders to make sure exist #####
 [[ ! -d ~/.config/git ]] && mkdir ~/.config/git
+[[ ! -d ~/.local/bin ]] && mkdir ~/.local/bin
 
 ############### Parse options ###############
 verbose=0
@@ -111,6 +110,16 @@ done
 
 for src in "${!NOT_FROM_ROOT[@]}"; do
 	dest=${NOT_FROM_ROOT[$src]}
+	[[ -e $dest && ignore_existing -eq 1 ]] && {
+		p "${BLUE}Info${YELLOW}:${RESET} ${UNDERLINE}$dest${END_UNDERLINE} already exists, ignoring creating new symlink."
+		continue
+	}
+	create_sym "$src" "$dest" "$verbose"
+done
+
+# scripts
+for src in $(fd -t f ".*[^(sh)]\$" "$SCRIPTS"); do
+	dest="$HOME/.local/bin/$(basename "$src")"
 	[[ -e $dest && ignore_existing -eq 1 ]] && {
 		p "${BLUE}Info${YELLOW}:${RESET} ${UNDERLINE}$dest${END_UNDERLINE} already exists, ignoring creating new symlink."
 		continue

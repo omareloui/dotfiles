@@ -2,7 +2,7 @@
 
 . "$SCRIPTS/utils.sh"
 
-version=1.0.0
+version=1.0.1
 
 LONGOPTS=ignore-existing,confirm,verbose,help
 OPTIONS=icvh
@@ -68,12 +68,6 @@ while true; do
 		;;
 	esac
 done
-
-function p() {
-	if ((verbose == 1)); then
-		echo -e "$1"
-	fi
-}
 
 [[ -n $options ]] && options="-$options"
 

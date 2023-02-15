@@ -5,7 +5,7 @@ ACTION=="change", \
   ATTR{online}=="0", \
   ENV{DISPLAY}=":0", \
   ENV{XDG_RUNTIME_DIR}="/run/user/1000" \
-  RUN+="/usr/bin/su omareloui -c \"/home/omareloui/.local/bin/batplug 0\""
+  RUN+="/usr/bin/su omareloui -c \"/home/omareloui/.local/bin/batplug disconnected\""
 
 ACTION=="change", \
   SUBSYSTEM=="power_supply", \
@@ -13,4 +13,4 @@ ACTION=="change", \
   ATTR{online}=="1", \
   ENV{DISPLAY}=":0", \
   ENV{XDG_RUNTIME_DIR}="/run/user/1000" \
-  RUN+="/usr/bin/su omareloui -c \"/home/omareloui/.local/bin/batplug 1\""
+  RUN+="/usr/bin/su omareloui -c \"/home/omareloui/.local/bin/batplug connected\""

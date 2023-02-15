@@ -1,13 +1,97 @@
 #!/usr/bin/env bash
 
+. "$SCRIPTS/utils.sh"
+
+version=1.0.0
+
+LONGOPTS=ignore-existing,confirm,verbose,help
+OPTIONS=icvh
+
+PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
+eval set -- "$PARSED"
+
+declare options
+
+while true; do
+	case "$1" in
+	-c | --confirm)
+		options+=c
+		shift
+		;;
+	-i | --ignore-existing)
+		options+=i
+		shift
+		;;
+	-v | --verbose)
+		options+=v
+		shift
+		;;
+	-h | --help)
+		echo -e ""
+		echo -e "  ${BOLD}Usage:${END_BOLD}    $(basename "$0") ${YELLOW}[${B_RED}options${DARK_GRAY}...${YELLOW}]${RESET} ${YELLOW}<${GREEN}script${YELLOW}>${RESET}"
+		echo -e "  ${BOLD}Version:${RESET}  ${YELLOW}$version${RESET}"
+		echo -e ""
+		echo -e "  ${BOLD}Description:${RESET}"
+		echo -e ""
+		echo -e "    ${B_GRAY}A script to run bootstrap scripts.${RESET}"
+		echo -e ""
+		echo -e "  ${BOLD}Args:${RESET}"
+		echo -e ""
+		echo -e "    ${BOLD}${GREEN}script${WHITE} ${YELLOW}{${BLUE}packages${YELLOW}|${BLUE}sym${YELLOW}|${BLUE}udev${YELLOW}|${BLUE}services${YELLOW}}${RESET}"
+		echo -e "      ${BLUE}packages${RESET}  ${B_RED}-${RESET} Make sure the packages in ${UNDERLINE}$BOOTSTRAP_FILES/assets/packages.lst${END_UNDERLINE} are installed."
+		echo -e "      ${BLUE}sym${RESET}       ${B_RED}-${RESET} Create symlinks for configurations and scripts."
+		echo -e "      ${BLUE}udev${RESET}      ${B_RED}-${RESET} Copy udev rules from bootstrap assets to their location."
+		echo -e "      ${BLUE}services${RESET}  ${B_RED}-${RESET} Copy services files from bootstrap assets to their location."
+		echo -e ""
+		echo -e "  ${BOLD}Options:${RESET}"
+		echo -e ""
+		echo -e "    ${BLUE}-h${RESET}, ${BLUE}--help${RESET}             ${B_RED}-${RESET} Show this help and exit."
+		echo -e "    ${BLUE}-v${RESET}, ${BLUE}--verbose${RESET}          ${B_RED}-${RESET} Explain what is being done."
+		echo -e "    ${BLUE}-i${RESET}, ${BLUE}--ignore-existing${RESET}  ${B_RED}-${RESET} Ignores already existing files (for ${YELLOW}{${BLUE}sym${YELLOW}|${BLUE}udev${YELLOW}|${BLUE}services${YELLOW}}${RESET})."
+		echo -e "    ${BLUE}-c${RESET}, ${BLUE}--confirm${RESET}          ${B_RED}-${RESET} Ask before copying (for ${YELLOW}{${BLUE}udev${YELLOW}|${BLUE}services${YELLOW}}${RESET})."
+		echo -e ""
+		echo -e "  ${BOLD}Examples:${RESET}"
+		echo -e ""
+		echo -e "    ${RED}\$${RESET} ${B_MAGENTA}$(basename "$0")${RESET} -vi sym"
+		echo -e "    ${RED}\$${RESET} ${B_MAGENTA}$(basename "$0")${RESET} -vc udev"
+		echo -e "    ${RED}\$${RESET} ${B_MAGENTA}$(basename "$0")${RESET} packages"
+		echo -e ""
+		exit 0
+		;;
+	--)
+		shift
+		break
+		;;
+	*)
+		echo -e "${RED}Error:${RESET} Programming error"
+		exit 3
+		;;
+	esac
+done
+
+function p() {
+	if ((verbose == 1)); then
+		echo -e "$1"
+	fi
+}
+
+[[ -n $options ]] && options="-$options"
+
 case $1 in
-scripts)
-	"$BOOTSTRAP_FILES/scripts.sh" -v
+sym)
+	"$BOOTSTRAP_FILES/sym_config.sh" "$options"
 	;;
-config)
-	"$BOOTSTRAP_FILES/config.sh" -v
+packages)
+	"$BOOTSTRAP_FILES/install_packages.sh" "$options"
 	;;
-battery)
-	"$BOOTSTRAP_FILES/battery.sh" -v
+udev)
+	"$BOOTSTRAP_FILES/cp_udev.sh" "$options"
+	;;
+services)
+	"$BOOTSTRAP_FILES/cp_services.sh" "$options"
+	;;
+*)
+	echo -e "${RED}Error${YELLOW}:${RESET} invalid option."
+	echo -e "${RED}\$${RESET} ${B_MAGENTA}$(basename "$0")${RESET} --help ${DARK_GRAY}# for more information${RESET}"
 	;;
 esac

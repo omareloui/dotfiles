@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version=2.0.1
+version=2.0.2
 
 . "$(dirname "$0")/utils.sh"
 
@@ -108,6 +108,8 @@ for dir in "${!FROM_ROOT[@]}"; do
 	done
 done
 
+p "${GREEN}Success${YELLOW}:${RESET} done symlinking from .dotfiles/config root files."
+
 for src in "${!NOT_FROM_ROOT[@]}"; do
 	dest=${NOT_FROM_ROOT[$src]}
 	[[ -e $dest && ignore_existing -eq 1 ]] && {
@@ -117,9 +119,10 @@ for src in "${!NOT_FROM_ROOT[@]}"; do
 	create_sym "$src" "$dest" "$verbose"
 done
 
+p "${GREEN}Success${YELLOW}:${RESET} done symlinking not from .dotfiles/config root files."
+
 # scripts
 for src in $(fd -tx '^[^.]+$' "$SCRIPTS"); do
-	echo $src
 	dest="$HOME/.local/bin/$(basename "$src")"
 	[[ -e $dest && ignore_existing -eq 1 ]] && {
 		p "${BLUE}Info${YELLOW}:${RESET} ${UNDERLINE}$dest${END_UNDERLINE} already exists, ignoring creating new symlink."
@@ -127,3 +130,5 @@ for src in $(fd -tx '^[^.]+$' "$SCRIPTS"); do
 	}
 	create_sym "$src" "$dest" "$verbose"
 done
+
+p "${GREEN}Success${YELLOW}:${RESET} done symlinking scripts."

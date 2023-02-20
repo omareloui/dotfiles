@@ -8,4 +8,4 @@ export NOTIFICATION_ID=4215
 export SUSPEND_ON=4
 
 export WARNING_LEVELS=(20 5 3)
-export CHARGED_ON=95
+export CHARGED_ON=80

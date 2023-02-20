@@ -48,12 +48,7 @@ cs("#!", t "#!/usr/bin/env bash", "auto")
 cs(
   "parseargs",
   fmt(
-    string.format(
-      [[version=1.0.0
-
-%8s
-
-
+    [[version=1.0.0
 
 verbose=0
 
@@ -109,15 +104,47 @@ while true; do
   esac
 done
 
+function print() {{
+	declare _preset
+	_text=$1
+
+	if [ -n "$2" ]; then
+		_text=$2
+		_level=$1
+
+		case "$_level" in
+		info)
+			_preset="${{CYAN}}Info${{YELLOW}}:${{RESET}} "
+			;;
+		success)
+			_preset="${{GREEN}}Success${{YELLOW}}:${{RESET}} "
+			;;
+		warning)
+			_preset="${{YELLOW}}Warning${{B_RED}}:${{RESET}} "
+			;;
+		error)
+			_preset="${{RED}}Error${{YELLOW}}:${{RESET}} "
+			;;
+		error_bg)
+			_preset="${{B_RED_BG}}Error${{RESET}}${{YELLOW}}:${{RESET}} "
+			;;
+		*)
+			print error "Invalid print option"
+			exit 3
+			;;
+		esac
+	fi
+
+  echo -e "$_preset$_text"
+}}
+
 function p() {{
   if ((verbose == 1)); then
-    echo -e "$1"
+    print "$1" "$2"
   fi
 }}
 
 ]],
-      ansi
-    ),
     { i(1, "Script description") }
   )
 )

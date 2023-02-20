@@ -2,7 +2,7 @@
 
 # to get this list run `$SCRIPTS/update_packageslist`
 
-version=1.0.0
+version=1.0.1
 
 . "$(dirname "$0")/utils.sh"
 
@@ -80,7 +80,7 @@ function ensure_paru {
 
 function install {
 	p "${BLUE}Info${YELLOW}:${RESET} updating the system"
-	paru -Syu &&
+	paru -Syu --noconfirm &&
 		p "${GREEN}Success${YELLOW}:${RESET} updated the system" ||
 		echo -e "${RED}Error${YELLOW}:${RESET} something went wrong while updating the system"
 

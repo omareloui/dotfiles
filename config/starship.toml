@@ -7,7 +7,11 @@ $cmd_duration\
 $line_break\
 $jobs\
 $battery\
+$python\
 $character"""
 
 [line_break]
 disabled = true
+
+[python]
+format = '[(\($virtualenv\) )]($style)'

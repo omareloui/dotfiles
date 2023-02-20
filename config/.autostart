@@ -14,3 +14,5 @@ dunst &
 # wl-clip-persist --clipboard regular & #persistent clipboard?
 # wl-paste --watch cliphist store &
 /usr/lib/kdeconnectd & #kdeconnect daemon
+
+udiskie &

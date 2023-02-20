@@ -1,6 +1,7 @@
 acpi
 android-file-transfer
 archlinux-keyring
+ario
 autoconf
 autoconf-archive
 automake
@@ -9,6 +10,7 @@ bat
 bc
 binutils
 bison
+blueman
 bottom
 brillo
 catdoc
@@ -73,12 +75,14 @@ libtool
 light
 linux
 linux-firmware
+lollypop-stable-git
 luarocks
 ly
 m4
 mailspring
 make
 man-db
+microsoft-edge-stable-bin
 mpc
 mpd
 ncmpcpp
@@ -88,6 +92,7 @@ nerd-fonts-jetbrains-mono-160
 netstandard-targeting-pack
 net-tools
 networkmanager
+network-manager-applet
 nodejs
 noto-fonts
 noto-fonts-cjk
@@ -114,12 +119,14 @@ python-markupsafe
 python-pip
 python-suntime
 ripgrep
+rofi-bluetooth-git
 rofi-lbonn-wayland-git
 rsync
 samba
 sed
 socat
 sof-firmware
+stalonetray
 sudo
 swaylock-effects-git
 telegram-desktop
@@ -131,6 +138,7 @@ thunar-archive-plugin
 tldr
 tree
 tty-clock-git
+udiskie
 ueberzug
 ufw
 unrar
@@ -148,6 +156,8 @@ wlogout-git
 wlr-randr
 wmctrl
 yay
+ymuse
+yt-dlp
 zk
 zoxide
 zsh

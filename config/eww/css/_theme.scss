@@ -1,43 +1,43 @@
-$bar-border-radius:     10px;
-$widgets-border-radius: 5px;
+$bar-border-radius:     12.5px;
+$widgets-border-radius: 16px;
 
 $font-family:  Product Sans;
 
-$rosewater:    #d8a657;
-$flamingo:     #ea6962;
-$pink:         #d3869b;
-$mauve:        #d3869b;
-$dark-mauve:   #d3869b;
-$red:          #ea6962;
-$maroon:       #ea6962;
-$peach:        #d8a657;
-$yellow:       #e78a4e;
-$green:        #a9b665;
-$teal:         #89b482;
-$sky:          #7daea3;
-$sapphire:     #7daea3;
-$blue:         #7daea3;
-$dark-blue:    #89b482;
-$lavender:     #7daea3;
-$white:        #d4be98;
+$rosewater:    #F9E2AF;
+$flamingo:     #F38BA8;
+$pink:         #F5C2E7;
+$mauve:        #F5C2E7;
+$dark-mauve:   #F5C2E7;
+$red:          #F38BA8;
+$maroon:       #F38BA8;
+$peach:        #F9E2AF;
+$yellow:       #F9E2AF;
+$green:        #A6E3A1;
+$teal:         #94E2D5;
+$sky:          #89B4FA;
+$sapphire:     #89B4FA;
+$blue:         #89B4FA;
+$dark-blue:    #94E2D5;
+$lavender:     #89B4FA;
+$white:        #CDD6F4;
 
-$text:        #d4be98;
-$subtext1:    #d4be98;
-$subtext0:    #d4be98;
-$overlay2:    #7c6f64;
-$overlay1:    #928374;
-$overlay0:    #a89984;
+$text:        #CDD6F4;
+$subtext1:    #BAC2DE;
+$subtext0:    #A6ADC8;
+$overlay2:    #9399b2;
+$overlay1:    #7f849c;
+$overlay0:    #6c7086;
 
-$surface2:    #928374;
-$surface1:    #665c54;
-$surface0:    #32302f;
+$surface2:    #585B70;
+$surface1:    #45475A;
+$surface0:    #313244;
 
-$base:   #1d2021;
-$mantle: #928374;
-$crust:  #665c54;
+$base:   #141521;
+$mantle: #181825;
+$crust:  #11111b;
 
 $fg: $text;
 $bg: $base;
 $bg1: $surface0;
-$border: #32361a;
+$border: #28283d;
 $shadow: $crust;

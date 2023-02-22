@@ -65,7 +65,7 @@
 	origin = top-right
 
 	# Offset from the origin
-	offset = 15x15
+	offset = 20x20
 
     # Turn on the progess bar. It appears when a progress hint is passed with
     # for example dunstify -h int:value:12
@@ -86,7 +86,7 @@
 
 	# Frame
 	frame_width = 3
-	frame_color = "#1d2021"
+	frame_color = "#1E1E2E"
 
 	# The transparency of the window. range: [0; 100]
 	# This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
@@ -166,7 +166,7 @@
 	# corners.
 	# The radius will be automatically lowered if it exceeds half of the
 	# notification height to avoid clipping text and/or icons.
-	corner_radius = 5
+	corner_radius = 10
 
 	# Always run rule-defined scripts, even if the notification is suppressed
 	always_run_script = true
@@ -178,23 +178,23 @@
 
 [urgency_low]
 	timeout = 6
-	background = "#1d2021"
-	foreground = "#d4be98"
-	frame_color = "#7daea3"
-	highlight = "#7daea3"
+	background = "#1E1E2E"
+	foreground = "#CDD6F4"
+	frame_color = "#191d24"
+	highlight = "#89B4FA"
 
 [urgency_normal]
 	# script = ~/.config/dunst/scripts/playNotificationSound.sh
 	timeout = 6
-	background = "#1d2021"
-	foreground = "#d4be98"
-	frame_color = "#89b482"
-	highlight = "#7daea3"
+	background = "#1E1E2E"
+	foreground = "#CDD6F4"
+	frame_color = "#0d0f16"
+	highlight = "#89B4FA"
 
 [urgency_critical]
 	script = ~/.config/dunst/scripts/playNotificationSound.sh
 	timeout = 0
-	background = "#1d2021"
-	foreground = "#d4be98"
-	frame_color = "#ea6962"
-	highlight = "#ea6962"
+	background = "#1E1E2E"
+	foreground = "#CDD6F4"
+	frame_color = "#0d0f16"
+	highlight = "#F38BA8"

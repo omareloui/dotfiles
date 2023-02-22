@@ -1,6 +1,6 @@
 M = { "ray-x/lsp_signature.nvim" }
 
-M.config = {
+M.opts = {
   hanler_opts = { border = "rounded" },
   doc_lines = 0,
   max_height = 2,

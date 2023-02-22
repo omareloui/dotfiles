@@ -51,8 +51,8 @@ M.config = function()
       end,
     },
 
-    b.formatting.prismaFmt,
-    -- b.formatting.prismaFmt.with { command = { "prisma", "format" } },
+    -- b.formatting.prismaFmt,
+    b.formatting.prismaFmt.with { command = "prisma", args = { "format", "--schema", "$FILENAME" } },
 
     -- d.stylelint,
 

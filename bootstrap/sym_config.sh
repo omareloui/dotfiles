@@ -26,9 +26,6 @@ declare -A NOT_FROM_ROOT=(
 
 	# ZK
 	["$DOTFILES_CONFIG/zk"]="$ZK_NOTEBOOK_DIR/.zk"
-
-	# ly
-	["$DOTFILES_CONFIG/ly/config.ini"]="/etc/ly/config.ini"
 )
 
 ##### Folders to make sure exist #####

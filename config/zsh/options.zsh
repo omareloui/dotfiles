@@ -4,6 +4,9 @@ export HISTSIZE=1000000000
 export SAVEHIST=1000000000
 export HISTTIMEFORMAT="[%F %T] "
 
+# make sure the zsh cache folder exists for the history
+[[ ! -d ~/.cache/zsh ]] && mkdir ~/.cache/zsh
+
 while read -r opt
 do 
   setopt $opt

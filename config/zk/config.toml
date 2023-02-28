@@ -81,6 +81,11 @@ template = "todo.md"
 # [group."<NAME>".extra]
 #key = "value"
 
+[group.work]
+paths = ["work"]
+[group.work.note]
+filename = "{{id}}-{{slug title}}"
+template = "work.md"
 
 
 # MARKDOWN SETTINGS
@@ -211,6 +216,7 @@ n  = 'zk new --no-input "$ZK_NOTEBOOK_DIR" --title $argv'
 todo  = 'zk new --no-input "$ZK_NOTEBOOK_DIR/todo" --title $argv'
 ni = 'zk new --no-input "$ZK_NOTEBOOK_DIR/ideas" --title $argv'
 j  = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
+nwork = 'zk new --no-input "$ZK_NOTEBOOK_DIR/work --title $argv"'
 
 
 # push zk notes

@@ -1,5 +1,4 @@
 # Aliases
-
 alias zshconfig="$EDITOR ~/.config/zsh/.zshrc"
 
 alias ls="exa -l --no-time --icons --sort=type"
@@ -24,3 +23,5 @@ alias cat="bat --color always --plain"
 alias grep="grep --color=auto"
 
 alias neovide="env -u WAYLAND_DISPLAY neovide"
+alias du="dust"
+alias reload="source $ZDOTDIR/.zshrc"

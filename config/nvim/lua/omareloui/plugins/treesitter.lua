@@ -14,7 +14,7 @@ M.config = function()
   local text_objects_mappings = require("omareloui.config.mappings").treesitter_text_objects
 
   local options = {
-    ensure_installed = "all",
+    -- ensure_installed = "all",
     indent = { enable = true },
     highlight = {
       enable = true,

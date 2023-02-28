@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version=1.0.0
+version=1.0.1
 
 BOLD="\e[1m" END_BOLD="\e[22m"
 
@@ -68,6 +68,8 @@ function p() {
 		echo -e "$1"
 	fi
 }
+
+[[ -z $BOOTSTRAP_FILES ]] && BOOTSTRAP_FILES="$HOME/.dotfiles/bootstrap"
 
 file="$BOOTSTRAP_FILES/assets/packages.lst"
 tmp="$file.tmp"

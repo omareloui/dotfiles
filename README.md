@@ -4,6 +4,8 @@ All dotfiles, packages, scripts, and some assets I use and need.
 
 ---
 
+⚠️ ⚠️ ⚠️  This README is outdated. ⚠️ ⚠️ ⚠️
+
 ## Download and Install
 
 Clone this repository in your home directory.

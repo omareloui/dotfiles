@@ -40,16 +40,20 @@ M.config = function()
   require("mason-lspconfig").setup {
     automatic_installation = true,
     ensure_installed = {
-      "sumneko_lua",
       "astro",
-      "volar",
-      "html",
-      "tailwindcss",
-      "tsserver",
+      "bashls",
       "cssls",
       "denols",
+      "emmet_ls",
       "eslint",
+      "html",
+      "lua_ls",
       "marksman",
+      "prismals",
+      "tailwindcss",
+      "tsserver",
+      "volar",
+      "yamlls",
     },
   }
 end

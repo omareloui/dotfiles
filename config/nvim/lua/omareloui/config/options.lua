@@ -1,5 +1,13 @@
 local g = vim.g
 
+local HOME = os.getenv "HOME"
+
+local undodir = nil
+
+if HOME ~= nil then
+  undodir = HOME .. "/.cache/nvim/undodir"
+end
+
 local options = {
   guifont = { "", ":h10" },
 
@@ -31,7 +39,7 @@ local options = {
   spelloptions = "camel",
   -- }}}
 
-  undodir = os.getenv "HOME" .. "/.cache/nvim/undodir",
+  undodir = undodir,
   wrap = false,
 
   laststatus = 3, -- global statusline

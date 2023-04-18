@@ -29,7 +29,6 @@ M.config = function()
     view = {
       adaptive_size = true,
       width = 25,
-      hide_root_folder = true,
       side = "right",
     },
     git = {
@@ -45,6 +44,7 @@ M.config = function()
       },
     },
     renderer = {
+      root_folder_label = false,
       highlight_git = true,
       highlight_opened_files = "none",
 

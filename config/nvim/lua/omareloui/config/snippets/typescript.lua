@@ -16,6 +16,92 @@ local cs, snippets, autosnippets = snippets_config_factory("*.ts", "TypeScriptSn
 
 ------------------------------ Start Refactoring ------------------------------
 
+local function duplicate(import_name)
+  return import_name[1][1]
+end
+
+local function duplicate_one()
+  return f(duplicate, { 1 })
+end
+
+cs(
+  "mongoosetypes",
+  fmt(
+    [[import type {{ Types }} from "mongoose";
+import type {{
+  MongooseDehydratedInstance,
+  MongooseHydratedInstance,
+  MongoosePojoInstance,
+}} from "~/server/types";
+
+type Dehydrated{}Fields<ID extends string | Types.ObjectId> = {{
+  // eg.
+  // images: ID[];
+}};
+
+type {}Virtuals = {{}};
+
+type {}PopulatedFields<
+  O extends {{ isPojo: boolean }} = {{ isPojo: false }},
+  P = O extends {{ isPojo: true }} ? true : false,
+> = {{
+  // eg.
+  // images: P extends true ? FilePojo[] : FileInstance[];
+}};
+
+export type Dehydrated{} = MongooseDehydratedInstance<
+  Dehydrated{}Fields<Types.ObjectId>,
+  {}Virtuals
+>;
+
+export type {}Instance = MongooseHydratedInstance<
+  Dehydrated{}Fields<Types.ObjectId>,
+  {}Virtuals
+>;
+
+export type {}Pojo = MongoosePojoInstance<
+  Dehydrated{}Fields<string>,
+  {}Virtuals
+>;
+
+export type Populated{}Instance = MongooseHydratedInstance<
+  Dehydrated{}Fields<Types.ObjectId> & {}PopulatedFields,
+  {}Virtuals
+>;
+
+export type Populated{}Pojo = MongoosePojoInstance<
+  Omit<Dehydrated{}Fields<Types.ObjectId>, keyof {}PopulatedFields> &
+    {}PopulatedFields<{{ isPojo: true }}>,
+  {}Virtuals
+>;]],
+
+    {
+      i(1, "InstanceName"),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+    }
+  ),
+  "auto"
+)
+
 ------------------------------- End Refactoring -------------------------------
 
 return snippets, autosnippets

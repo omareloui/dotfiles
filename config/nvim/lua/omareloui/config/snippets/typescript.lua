@@ -36,7 +36,7 @@ import type {{
 
 type Dehydrated{}Fields<ID extends string | Types.ObjectId> = {{
   // eg.
-  // images: ID[];
+  // user: ID;
 }};
 
 type {}Virtuals = {{}};
@@ -46,7 +46,7 @@ type {}PopulatedFields<
   P = O extends {{ isPojo: true }} ? true : false,
 > = {{
   // eg.
-  // images: P extends true ? FilePojo[] : FileInstance[];
+  // user: P extends true ? UserPojo : UserInstance;
 }};
 
 export type Dehydrated{} = MongooseDehydratedInstance<
@@ -98,8 +98,7 @@ export type Populated{}Pojo = MongoosePojoInstance<
       duplicate_one(),
       duplicate_one(),
     }
-  ),
-  "auto"
+  )
 )
 
 ------------------------------- End Refactoring -------------------------------

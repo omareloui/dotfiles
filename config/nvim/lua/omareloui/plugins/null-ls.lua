@@ -71,7 +71,11 @@ M.config = function()
 
     -- Shell
     f.shfmt,
-    d.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
+    d.shellcheck.with {
+      condition = function()
+        return not string.find(vim.fn.expand "%:t", "^%.env")
+      end,
+    },
 
     -- d.fish,
 

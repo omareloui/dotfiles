@@ -5,7 +5,7 @@ end
 
 require("lspconfig.ui.windows").default_options.border = "rounded"
 
-M = {}
+local M = {}
 
 M.diagnostics_setup = function()
   local signs = require("omareloui.ui.icons").diagnostics

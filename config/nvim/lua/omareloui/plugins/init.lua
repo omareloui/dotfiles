@@ -23,7 +23,7 @@ return {
   "jose-elias-alvarez/typescript.nvim",
   "simrat39/rust-tools.nvim",
   { "folke/trouble.nvim", config = true },
-  { "j-hui/fidget.nvim", opts = { text = { spinner = "dots" }, window = { blend = 0 } } },
+  { "j-hui/fidget.nvim", tag = "legacy", opts = { text = { spinner = "dots" }, window = { blend = 0 } } },
   { "Fymyte/rasi.vim", ft = "rasi" },
   { "elkowar/yuck.vim" },
   -- }}}

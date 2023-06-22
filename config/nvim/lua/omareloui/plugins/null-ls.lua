@@ -69,6 +69,11 @@ M.config = function()
     -- Rust
     f.rustfmt,
 
+    -- Elixir
+    -- f.mix.with { command = "mix", args = { "format", "--stdin-filename", "$FILENAME" } },
+    -- f.surface,
+    d.credo,
+
     -- Shell
     f.shfmt,
     d.shellcheck.with {

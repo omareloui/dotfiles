@@ -23,3 +23,4 @@ export ZK_NOTEBOOK_DIR=$HOME/zk
 export MUSIC_DIR=$HOME/Music
 export MOVIES_DIR=$HOME/Movies
 
+export NVM_DIR="$HOME/.nvm"

@@ -3,7 +3,7 @@
 . "$HOME/.dotfiles/themes/current.sh"
 
 # Wait till the power menu closes
-sleep 0.3
+sleep 0.8
 
 swaylock \
 	--screenshots \

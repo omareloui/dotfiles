@@ -30,3 +30,18 @@ config/mpd/*
 
 # Zsh
 config/zsh/.zcompdump
+
+# Theme files
+config/cava/config
+config/dunst/dunstrc
+config/eww/assets/launcher.png
+config/eww/css/_theme.scss
+config/eww/eww.yuck
+config/hypr/conf/theme.conf
+config/hypr/hyprpaper.conf
+config/kitty/theme.conf
+config/nvim/lua/omareloui/config/theme.lua
+config/nvim/lua/omareloui/plugins/lualine.lua
+config/nvim/lua/omareloui/ui/palette.lua
+config/wlogout/style.css
+themes/current.sh

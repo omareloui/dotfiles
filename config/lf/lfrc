@@ -1,8 +1,8 @@
 # interpreter for shell commands
-set shell zsh
+set shell bash
 
 # the image previewer
-set icons ~/.config/lf/icons
+set icons
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
 
@@ -70,17 +70,12 @@ cmd trash ${{
 
 # define a custom 'delete' command
 cmd delete ${{
-    # set -f
-    # printf "$fx\n"
-    # printf "delete?[y/n]"
-    # read ans
-    # [[ "$ans" == "y" ]] && rm -rf $fx
+    set -f
     rm -rf $fx
 }}
 
 # use '<delete>' key for either 'trash' or 'delete' command
 map <delete> trash
-# map <delete> delete
 
 # create a new directory
 cmd mkdir %mkdir "$@"
@@ -214,18 +209,18 @@ cmd flatten ${{
   for folder in $fx; do
     if [[ -d $folder ]]; then
       mv $folder/* .
-      rm -rf $folder
+      rmdir $folder
     fi
   done
 }}
 
 # Change directory
 cmd z %{{
-	result="$(zoxide query --exclude $PWD $@)"
-	lf -remote "send $id cd $result"
+	result="$(zoxide query --exclude $PWD $@ | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
 }}
 
 cmd zi ${{
-	result="$(zoxide query -i)"
-	lf -remote "send $id cd $result"
+	result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
 }}

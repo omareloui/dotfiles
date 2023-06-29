@@ -45,33 +45,33 @@ map O $mimeopen --ask $f
 # use either file extensions and/or mime types here. Below uses an editor for
 # text files and a file opener for the rest.
 cmd open %{{
-    case $(file --mime-type -Lb $f) in
-        text/*) lf -remote "send $id \$$EDITOR \$fx";;
-        video/*) lf -remote "send $id \$vlc \$fx >/dev/null 2>/dev/null";;
-        *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
-    esac
+  case $(file --mime-type -Lb $f) in
+    text/*) lf -remote "send $id \$$EDITOR \$fx";;
+    video/*) lf -remote "send $id \$vlc \$fx >/dev/null 2>/dev/null";;
+    *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+  esac
 }}
 
 # define a custom 'rename' command without prompt for overwrite
-# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
-# map r push :rename<space>
+cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+map r push :rename<space>
 
 # move current file or selected files to trash folder
 # (also see 'man mv' for backup/overwrite options)
 cmd trash ${{
-    set -f
-    if gio trash 2>/dev/null; then
-        gio trash $fx
-    else
-        mkdir -p ~/.trash
-        mv -- $fx ~/.trash
-    fi
+  set -f
+  if gio trash 2>/dev/null; then
+    gio trash $fx
+  else
+    mkdir -p ~/.trash
+    mv -- $fx ~/.trash
+  fi
 }}
 
 # define a custom 'delete' command
 cmd delete ${{
-    set -f
-    rm -rf $fx
+  set -f
+  rm -rf $fx
 }}
 
 # use '<delete>' key for either 'trash' or 'delete' command
@@ -83,70 +83,70 @@ map a push :mkdir<space>
 
 # create a directory and move all selected to this new directory
 cmd newfold ${{
-    set -f
-    printf "Directory name: "
-    read newd
-    mkdir -- "$newd"
-    mv -- $fx "$newd"
+  set -f
+  printf "Directory name: "
+  read newd
+  mkdir -- "$newd"
+  mv -- $fx "$newd"
 }}
 map A newfold
 
 # extract the current file with the right command
 # (xkcd link: https://xkcd.com/1168/)
-# cmd extract ${{
-#     set -f
+cmd extract ${{
+  for file in $fx; do
 
-#     for file in $fx; do
+    case $file in
+      *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
+        foldername="$(basename "${file%%.*}")"
+        [[ ! -d foldername ]]
+        tar xjvf "$file" -C "$foldername"
+      ;;
+      *.tar.gz|*.tgz)
+        foldername="$(basename "${file%%.*}")"
+        [[ ! -d foldername ]]
+        tar xzvf "$file" -C "$foldername"
+      ;;
+      *.tar.xz|*.txz)
+        foldername="$(basename "${file%%.*}")"
+        [[ ! -d foldername ]]
+        tar xJvf "$file" -C "$foldername"
+      ;;
+      *.zip)
+        unzip "$file"
+      ;;
+      *.rar)
+          unrar x "$file"
+      ;;
+      *.7z)
+        7z x "$file"
+      ;;
+    esac
 
-#       case $file in
-#         *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
-#           foldername="$(basename "${file%%.*}")"
-#           [[ ! -d foldername ]]
-#           tar xjvf "$file" -C "$foldername"
-#         ;;
-#         *.tar.gz|*.tgz)
-#           foldername="$(basename "${file%%.*}")"
-#           [[ ! -d foldername ]]
-#           tar xzvf "$file" -C "$foldername"
-#         ;;
-#         *.tar.xz|*.txz)
-#           foldername="$(basename "${file%%.*}")"
-#           [[ ! -d foldername ]]
-#           tar xJvf "$file" -C "$foldername"
-#         ;;
-#         *.zip)
-#           unzip "$file"
-#         ;;
-#         *.rar)
-#             unrar x "$file"
-#         ;;
-#         *.7z)
-#           7z x "$file"
-#         ;;
-#       esac
+  done
 
-#     done
-
-#     lf -remote "send $id unselect"
-# }}
+  lf -remote "send $id unselect"
+}}
 
 # compress current file or selected files with tar and gunzip
-# cmd tar ${{
-#     set -f
-#     mkdir $1
-#     cp -r $fx $1
-#     tar czf $1.tar.gz $1
-#     rm -rf $1
-# }}
+cmd tar ${{
+  set -f
+  mkdir $1
+  cp -r $fx $1
+  tar czf $1.tar.gz $1
+  rm -rf $1
+  lf -remote "send $id unselect"
+}}
 
 # compress current file or selected files with zip
-# cmd zip ${{
-#     set -f
-#     mkdir $1
-#     cp -r $fx $1
-#     zip -r $1.zip $1
-#     rm -rf $1
-# }}
+cmd zip ${{
+  set -f
+  mkdir $1
+  cp -r $fx $1
+  zip -r $1.zip $1
+  rm -rf $1
+  lf -remote "send $id unselect"
+}}
 
 
 # Bulk rename

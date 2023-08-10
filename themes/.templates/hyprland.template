@@ -10,10 +10,10 @@ general {
 
 decoration {
     rounding = [[hyprland_border_radius]]
-    blur = [[hyprland_has_blur]]
-    blur_size = [[hyprland_blur_size]]
-    blur_passes = [[hyprland_blur_passes]]
-    blur_new_optimizations = on
+    # blur = [[hyprland_has_blur]]
+    # blur_size = [[hyprland_blur_size]]
+    # blur_passes = [[hyprland_blur_passes]]
+    # blur_new_optimizations = on
 
     drop_shadow = [[hyrpland_has_shadow]]
     shadow_range = [[hyrpland_shadow_range]]

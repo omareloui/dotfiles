@@ -40,6 +40,8 @@ lspconfig.emmet_ls.setup {
     "sass",
     "scss",
     "less",
+    "vue",
+    "astro",
   },
   init_options = {
     html = {

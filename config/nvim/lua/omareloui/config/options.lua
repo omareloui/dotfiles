@@ -56,7 +56,7 @@ local options = {
   fillchars = { eob = " ", foldopen = "", foldclose = "" },
 
   ignorecase = true,
-  mouse = "a",
+  mouse = "",
   smartcase = true,
 
   -- Numbers {{{

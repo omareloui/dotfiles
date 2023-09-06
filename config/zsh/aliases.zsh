@@ -25,3 +25,5 @@ alias grep="grep --color=auto"
 alias neovide="env -u WAYLAND_DISPLAY neovide"
 alias du="dust"
 alias reload="source $ZDOTDIR/.zshrc"
+
+alias synctime="sudo ntpdate pool.ntp.org"

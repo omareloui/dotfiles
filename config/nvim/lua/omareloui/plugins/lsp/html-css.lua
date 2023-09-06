@@ -36,6 +36,7 @@ lspconfig.emmet_ls.setup {
     "html",
     "typescriptreact",
     "javascriptreact",
+    "handlebars",
     "css",
     "sass",
     "scss",

@@ -1,4 +1,4 @@
-M = { "nvim-telescope/telescope.nvim", cmd = "Telescope", init = require("omareloui.config.mappings").telescope }
+local M = { "nvim-telescope/telescope.nvim", cmd = "Telescope", init = require("omareloui.config.mappings").telescope }
 
 M.config = function()
   local present, telescope = pcall(require, "telescope")

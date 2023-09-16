@@ -1,4 +1,4 @@
-M = { "goolord/alpha-nvim" }
+local M = { "goolord/alpha-nvim", enabled = false }
 
 M.config = function()
   local present, alpha = pcall(require, "alpha")

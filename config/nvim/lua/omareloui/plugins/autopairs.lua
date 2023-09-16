@@ -1,4 +1,4 @@
-M = { "windwp/nvim-autopairs", dependencies = "nvim-cmp" }
+local M = { "windwp/nvim-autopairs", dependencies = "nvim-cmp", enabled = false }
 
 M.config = function()
   local present1, autopairs = pcall(require, "nvim-autopairs")

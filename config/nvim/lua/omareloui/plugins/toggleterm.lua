@@ -1,4 +1,4 @@
-M = { "akinsho/toggleterm.nvim", init = require("omareloui.config.mappings").terminal }
+local M = { "akinsho/toggleterm.nvim", init = require("omareloui.config.mappings").terminal }
 
 M.config = function()
   local present, toggleterm = pcall(require, "toggleterm")

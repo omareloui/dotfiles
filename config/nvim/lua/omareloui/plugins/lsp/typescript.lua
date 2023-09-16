@@ -21,9 +21,9 @@ typescript.setup {
 
       if
         not package_json_dir
-        or lspconfig.util.root_pattern("nuxt.config*", "vue.config*")(startpath)
-        or utils.has_in_package_json(package_json_dir, "vue")
-        or utils.has_in_package_json(package_json_dir, "nuxt")
+        -- or lspconfig.util.root_pattern("nuxt.config*", "vue.config*")(startpath)
+        -- or utils.has_in_package_json(package_json_dir, "vue")
+        -- or utils.has_in_package_json(package_json_dir, "nuxt")
       then
         return
       end

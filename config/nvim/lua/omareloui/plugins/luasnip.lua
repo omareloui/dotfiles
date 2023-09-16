@@ -1,4 +1,4 @@
-M = {
+local M = {
   "L3MON4D3/LuaSnip",
   dependencies = { "friendly-snippets", "nvim-cmp" },
   init = require("omareloui.config.mappings").snippets,

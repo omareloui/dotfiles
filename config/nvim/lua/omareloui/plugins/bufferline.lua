@@ -1,4 +1,4 @@
-M = {
+local M = {
   "akinsho/bufferline.nvim",
   config = true,
   init = require("omareloui.config.mappings").bufferline,

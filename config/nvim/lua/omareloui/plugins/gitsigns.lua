@@ -1,4 +1,4 @@
-M = { "lewis6991/gitsigns.nvim" }
+local M = { "lewis6991/gitsigns.nvim" }
 
 M.config = function()
   local present, gitsigns = pcall(require, "gitsigns")

@@ -1,4 +1,4 @@
-M = { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lspconfig" } }
+local M = { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lspconfig" } }
 
 M.config = function()
   local present, null_ls = pcall(require, "null-ls")

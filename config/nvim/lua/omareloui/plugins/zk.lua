@@ -1,4 +1,4 @@
-M = { "mickael-menu/zk-nvim", init = require("omareloui.config.mappings").zk() }
+local M = { "mickael-menu/zk-nvim", init = require("omareloui.config.mappings").zk(), enabled = false }
 
 function M.config()
   local present, zk = pcall(require, "zk")

@@ -22,16 +22,22 @@ return {
   { "williamboman/mason-lspconfig.nvim", dependencies = { "williamboman/mason.nvim" } },
   "jose-elias-alvarez/typescript.nvim",
   "simrat39/rust-tools.nvim",
-  { "folke/trouble.nvim", config = true },
-  { "j-hui/fidget.nvim", tag = "legacy", opts = { text = { spinner = "dots" }, window = { blend = 0 } } },
-  { "Fymyte/rasi.vim", ft = "rasi" },
-  { "elkowar/yuck.vim" },
+  { "folke/trouble.nvim", config = true, enabled = false },
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    opts = { text = { spinner = "dots" }, window = { blend = 0 } },
+    enabled = false,
+  },
+  { "Fymyte/rasi.vim", ft = "rasi", enabled = false },
+  { "elkowar/yuck.vim", enabled = false },
   -- }}}
 
   -- Treesitter {{{
-  "nvim-treesitter/nvim-treesitter-textobjects",
-  "windwp/nvim-ts-autotag",
   "p00f/nvim-ts-rainbow",
+  "windwp/nvim-ts-autotag",
+  "JoosepAlviste/nvim-ts-context-commentstring",
+  "nvim-treesitter/nvim-treesitter-textobjects",
   -- }}}
 
   -- Snippets {{{
@@ -55,6 +61,7 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
+    enabled = false,
   },
   -- }}}
 
@@ -69,6 +76,7 @@ return {
       },
     },
     init = require("omareloui.config.mappings").rest,
+    enabled = false,
   },
   -- }}}
 
@@ -86,14 +94,13 @@ return {
   --- }}}
 
   -- Session {{{
-  { "rmagatti/auto-session", opts = { auto_restore_enabled = false } },
+  { "rmagatti/auto-session", opts = { auto_restore_enabled = false }, enabled = false },
   -- }}}
 
   -- Misc {{{
   -- comment
   {
     "numToStr/Comment.nvim",
-    module = "Comment",
     init = require("omareloui.config.mappings").comments,
     opts = {
       mappings = false,
@@ -108,25 +115,25 @@ return {
   { "mbbill/undotree", init = require("omareloui.config.mappings").undotree },
 
   -- pretty fold
-  -- { "anuvyklack/pretty-fold.nvim", config = { fill_char = "-" } },
+  -- { "anuvyklack/pretty-fold.nvim", config = { fill_char = "-" }, enabled = false },
 
   -- multi cursor
-  "mg979/vim-visual-multi",
+  { "mg979/vim-visual-multi", enabled = false },
 
   -- todo comments
   { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, config = true },
 
   -- scrollbar
-  { "petertriho/nvim-scrollbar", config = true },
+  { "petertriho/nvim-scrollbar", config = true, enabled = false },
 
   -- tabout
-  { "abecodes/tabout.nvim", dependencies = { "nvim-treesitter", "nvim-cmp" }, config = true },
+  { "abecodes/tabout.nvim", dependencies = { "nvim-treesitter", "nvim-cmp" }, config = true, enabled = false },
 
   -- context vt
-  { "haringsrob/nvim_context_vt", opts = { prefix = " »" } },
+  { "haringsrob/nvim_context_vt", opts = { prefix = " »" }, enabled = false },
   -- }}}
 
   -- Games {{{
-  "ThePrimeagen/vim-be-good",
+  { "ThePrimeagen/vim-be-good", enabled = false },
   -- }}}
 }

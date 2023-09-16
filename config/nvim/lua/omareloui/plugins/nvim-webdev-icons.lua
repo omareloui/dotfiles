@@ -1,4 +1,4 @@
-M = { "kyazdani42/nvim-web-devicons" }
+local M = { "kyazdani42/nvim-web-devicons" }
 
 M.config = function()
   local present, devicons = pcall(require, "nvim-web-devicons")

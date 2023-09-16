@@ -1,7 +1,8 @@
-M = {
+local M = {
   "ellisonleao/gruvbox.nvim",
   lazy = false,
   priority = 1000,
+  enabled = false,
 }
 
 function M.config()

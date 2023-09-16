@@ -1,8 +1,9 @@
-M = {
+local M = {
   "glacambre/firenvim",
   build = function()
     vim.fn["firenvim#install"](0)
   end,
+  enabled = false,
 }
 
 vim.g.firenvim_config = {

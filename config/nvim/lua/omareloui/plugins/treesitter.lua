@@ -1,7 +1,10 @@
-M = {
+local M = {
   "nvim-treesitter/nvim-treesitter",
   cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
   build = ":TSUpdate",
+  dependencies = {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+  },
 }
 
 M.config = function()
@@ -14,7 +17,7 @@ M.config = function()
   local text_objects_mappings = require("omareloui.config.mappings").treesitter_text_objects
 
   local options = {
-    -- ensure_installed = "all",
+    ensure_installed = "all",
     indent = { enable = true },
     highlight = {
       enable = true,
@@ -31,10 +34,7 @@ M.config = function()
     --   },
     -- },
 
-    rainbow = {
-      enable = true,
-      extended_mode = false,
-    },
+    -- rainbow = { enable = true, extended_mode = false },
 
     autotag = {
       enable = true,
@@ -71,6 +71,8 @@ M.config = function()
         swap_previous = text_objects_mappings.swap.prev,
       },
     },
+
+    context_commentstring = { enable = true },
   }
 
   treesitter.setup(options)

@@ -3,6 +3,7 @@ local M = {
   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   event = "BufReadPre",
   filetypes = { "elixir" },
+  enabled = false,
 }
 
 M.config = function()

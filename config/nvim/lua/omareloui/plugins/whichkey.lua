@@ -1,4 +1,4 @@
-M = { "folke/which-key.nvim", module = "which-key", keys = { "<leader>", '"', "'", "`" } }
+local M = { "folke/which-key.nvim", module = "which-key", keys = { "<leader>", '"', "'", "`" } }
 
 M.config = function()
   local present, wk = pcall(require, "which-key")

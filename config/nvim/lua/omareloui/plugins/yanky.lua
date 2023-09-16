@@ -1,6 +1,7 @@
 local M = {
   "gbprod/yanky.nvim",
   dependencies = { "kkharji/sqlite.lua" },
+  enabled = false,
 }
 
 M.config = function()

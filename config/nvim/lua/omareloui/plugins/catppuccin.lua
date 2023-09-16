@@ -1,4 +1,4 @@
-M = { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000 }
+local M = { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000 }
 
 M.config = function()
   local present, catppuccin = pcall(require, "catppuccin")

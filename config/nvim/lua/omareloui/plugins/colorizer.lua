@@ -1,4 +1,4 @@
-M = { "norcalli/nvim-colorizer.lua" }
+local M = { "norcalli/nvim-colorizer.lua", enabled = false }
 
 M.config = function()
   local present, colorizer = pcall(require, "colorizer")

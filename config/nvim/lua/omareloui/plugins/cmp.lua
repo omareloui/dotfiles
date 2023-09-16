@@ -1,4 +1,4 @@
-M = { "hrsh7th/nvim-cmp", dependencies = { "friendly-snippets" } }
+local M = { "hrsh7th/nvim-cmp", dependencies = { "friendly-snippets" } }
 
 M.config = function()
   local present, cmp = pcall(require, "cmp")

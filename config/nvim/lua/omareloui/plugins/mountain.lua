@@ -1,8 +1,9 @@
-M = {
+local M = {
   "omareloui/mountain.nvim",
   name = "mountain",
   lazy = false,
   priority = 1000,
+  enabled = false,
 }
 
 function M.config()

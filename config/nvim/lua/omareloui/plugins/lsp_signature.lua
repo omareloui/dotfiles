@@ -1,4 +1,4 @@
-M = { "ray-x/lsp_signature.nvim" }
+local M = { "ray-x/lsp_signature.nvim", enabled = false }
 
 M.opts = {
   hanler_opts = { border = "rounded" },

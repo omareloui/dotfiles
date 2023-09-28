@@ -134,7 +134,7 @@ set("n", "<leader>s<", "<Cmd>resize -5|vertical resize -5<CR>", { desc = "decrea
 ---- }}}
 
 ---- Plugins {{{
-M = {}
+local M = {}
 
 -- LSP {{{
 M.lsp = function(buffer_number)
@@ -314,26 +314,28 @@ local telescope_git = function()
 end
 
 M.gitsings = function()
+  local gs = require "gitsigns"
+
   set("n", "<leader>gb", function()
-    require("gitsigns").blame_line { full = true }
+    gs.blame_line { full = true }
   end, { desc = "git blame line" })
-  set("n", "<leader>gp", require("gitsigns").preview_hunk, { desc = "git preview hunk" })
+  set("n", "<leader>gp", gs.preview_hunk, { desc = "git preview hunk" })
 
-  set("n", "<leader>ghr", require("gitsigns").reset_hunk, { desc = "reset hunk" })
-  set("n", "<leader>ghd", require("gitsigns").toggle_deleted, { desc = "toggle show deleted from git" })
+  set("n", "<leader>hr", gs.reset_hunk, { desc = "reset hunk" })
+  set("n", "<leader>hd", gs.toggle_deleted, { desc = "toggle show deleted from git" })
 
-  set("n", "<leader>ghn", function()
+  set("n", "<leader>hn", function()
     if diff then
-      return "<leader>ghn"
+      return "<leader>hn"
     end
-    schedule(require("gitsigns").next_hunk)
+    schedule(gs.next_hunk)
     return "<Ignore>"
   end, { desc = "jump to next hunk", expr = true })
-  set("n", "<leader>ghp", function()
+  set("n", "<leader>hp", function()
     if diff then
       return "<leader>ghp"
     end
-    schedule(require("gitsigns").prev_hunk)
+    schedule(gs.prev_hunk)
     return "<Ignore>"
   end, { desc = "jump to previous hunk", expr = true })
 end

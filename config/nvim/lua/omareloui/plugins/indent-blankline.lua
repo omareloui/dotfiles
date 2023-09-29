@@ -1,10 +1,11 @@
 local M = {
   "lukas-reineke/indent-blankline.nvim",
+  main = "ibl",
   enabled = true,
 }
 
 M.config = function()
-  local present, blankline = pcall(require, "indent_blankline")
+  local present, blankline = pcall(require, "ibl")
 
   if not present then
     return

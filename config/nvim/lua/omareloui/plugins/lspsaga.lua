@@ -1,5 +1,5 @@
 local M =
-  { "glepnir/lspsaga.nvim", branch = "main", init = require("omareloui.config.mappings").lspsaga, enabled = false }
+  { "glepnir/lspsaga.nvim", branch = "main", init = require("omareloui.config.mappings").lspsaga, enabled = true }
 
 function M.config()
   local present, lspsaga = pcall(require, "lspsaga")

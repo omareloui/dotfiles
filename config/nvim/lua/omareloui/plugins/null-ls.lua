@@ -46,9 +46,9 @@ M.config = function()
         "vue",
         "astro",
       },
-      condition = function()
-        return check_if_in_package_json "eslint"
-      end,
+      -- condition = function()
+      --   return check_if_in_package_json "eslint"
+      -- end,
     },
 
     -- b.formatting.prismaFmt,

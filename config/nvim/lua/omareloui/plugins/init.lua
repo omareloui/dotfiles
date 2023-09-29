@@ -22,7 +22,7 @@ return {
   { "williamboman/mason-lspconfig.nvim", dependencies = { "williamboman/mason.nvim" } },
   "jose-elias-alvarez/typescript.nvim",
   "simrat39/rust-tools.nvim",
-  { "folke/trouble.nvim", config = true, enabled = false },
+  { "folke/trouble.nvim", config = true, enabled = true },
   {
     "j-hui/fidget.nvim",
     tag = "legacy",
@@ -76,7 +76,7 @@ return {
       },
     },
     init = require("omareloui.config.mappings").rest,
-    enabled = false,
+    enabled = true,
   },
   -- }}}
 

@@ -5,14 +5,28 @@ local M = {
 }
 
 M.config = function()
-  local present, blankline = pcall(require, "ibl")
+  local present, ibl = pcall(require, "ibl")
 
   if not present then
     return
   end
 
+  local highlight = {
+    "RainbowRed",
+    "RainbowYellow",
+    "RainbowBlue",
+    "RainbowOrange",
+    "RainbowGreen",
+    "RainbowViolet",
+    "RainbowCyan",
+  }
+
+  local hooks = require "ibl.hooks"
+
+  hooks.register(hooks.type.HIGHLIGHT_SETUP, require("omareloui.ui.highlights").indent_backline)
+
   local options = {
-    indentLine_enabled = 1,
+    scope = { highlight = highlight, show_start = false, show_end = false },
     filetype_exclude = {
       "help",
       "terminal",
@@ -30,9 +44,7 @@ M.config = function()
     show_current_context_start = false,
   }
 
-  require("omareloui.ui.highlights").indent_backline()
-
-  blankline.setup(options)
+  ibl.setup(options)
 end
 
 return M

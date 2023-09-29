@@ -25,10 +25,13 @@ M.cmp = function()
 end
 
 M.indent_backline = function()
-  set(0, "IndentBlanklineChar", { fg = c.surface1 })
-  set(0, "IndentBlanklineSpaceChar", { fg = c.surface0 })
-  set(0, "IndentBlanklineContextChar", { fg = c.surface2 })
-  set(0, "IndentBlanklineContextStart", { fg = c.surface0 })
+  set(0, "RainbowRed", { fg = c.red })
+  set(0, "RainbowYellow", { fg = c.light_yellow })
+  set(0, "RainbowBlue", { fg = c.light_blue })
+  set(0, "RainbowOrange", { fg = c.yellow })
+  set(0, "RainbowGreen", { fg = c.light_green })
+  set(0, "RainbowViolet", { fg = c.magenta })
+  set(0, "RainbowCyan", { fg = c.cyan })
 end
 
 M.gitsings = function()

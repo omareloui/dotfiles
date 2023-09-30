@@ -11,6 +11,8 @@ end
 local options = {
   guifont = { "", ":h10" },
 
+  swapfile = false,
+
   -- Columns {{{
   colorcolumn = { "80", "120" },
   -- cursorcolumn = true,

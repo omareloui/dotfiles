@@ -9,7 +9,7 @@
       (label
         :class "time"
         :style "font-family: Product Sans;"
-        :text "${time.hour}:${time.minute}")
+        :text "${time.time}")
       (box
         :class "date-box"
         :space-evenly false

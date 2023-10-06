@@ -26,22 +26,27 @@ M.config = function()
   hooks.register(hooks.type.HIGHLIGHT_SETUP, require("omareloui.ui.highlights").indent_backline)
 
   local options = {
-    scope = { highlight = highlight, show_start = false, show_end = false },
-    filetype_exclude = {
-      "help",
-      "terminal",
-      "alpha",
-      "packer",
-      "lspinfo",
-      "TelescopePrompt",
-      "TelescopeResults",
-      "mason",
+    exclude = {
+      buftypes = { "terminal" },
+      filetypes = {
+        "help",
+        "terminal",
+        "alpha",
+        "packer",
+        "lspinfo",
+        "TelescopePrompt",
+        "TelescopeResults",
+        "mason",
+      },
     },
-    buftype_exclude = { "terminal" },
-    show_trailing_blankline_indent = false,
-    show_first_indent_level = false,
-    show_current_context = true,
-    show_current_context_start = false,
+
+    scope = {
+      enabled = true,
+      highlight = highlight,
+      show_start = true,
+      priority = 500,
+      show_end = true,
+    },
   }
 
   ibl.setup(options)

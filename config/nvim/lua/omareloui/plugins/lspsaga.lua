@@ -8,7 +8,7 @@ function M.config()
     return
   end
 
-  lspsaga.setup {
+  local options = {
     lightbulb = {
       enable = false,
       virtual_text = false,
@@ -33,6 +33,8 @@ function M.config()
       },
     },
   }
+
+  lspsaga.setup(options)
 end
 
 return M

@@ -52,7 +52,11 @@ M.config = function()
       "vim",
       "xml",
     },
+
+    auto_install = true,
+
     indent = { enable = true },
+
     highlight = { enable = true },
 
     -- incremental_selection = {
@@ -65,7 +69,7 @@ M.config = function()
     --   },
     -- },
 
-    rainbow = { enable = false, extended_mode = false },
+    -- rainbow = { enable = false, extended_mode = false },
 
     autotag = {
       enable = true,

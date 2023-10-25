@@ -12,13 +12,13 @@ M.config = function()
   end
 
   local highlight = {
-    "RainbowRed",
-    "RainbowYellow",
     "RainbowBlue",
-    "RainbowOrange",
     "RainbowGreen",
     "RainbowViolet",
     "RainbowCyan",
+    "RainbowOrange",
+    "RainbowRed",
+    "RainbowYellow",
   }
 
   local hooks = require "ibl.hooks"

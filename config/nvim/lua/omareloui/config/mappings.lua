@@ -172,7 +172,7 @@ function M.rust_tools(bufnr)
 end
 
 M.lspsaga = function()
-  set("n", "gh", "<Cmd>Lspsaga lsp_finder<CR>", { silent = true })
+  set("n", "gh", "<Cmd>Lspsaga finder def+ref<CR>", { silent = true })
 
   set({ "n", "v" }, "<leader>la", "<Cmd>Lspsaga code_action<CR>", { silent = true })
   set("n", "<leader>lr", "<Cmd>Lspsaga rename<CR>", { silent = true })

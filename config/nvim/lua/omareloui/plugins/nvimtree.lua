@@ -23,7 +23,7 @@ M.config = function()
     hijack_unnamed_buffer_when_opening = false,
     update_cwd = true,
     update_focused_file = {
-      enable = true,
+      enable = false,
       update_cwd = false,
     },
     view = {

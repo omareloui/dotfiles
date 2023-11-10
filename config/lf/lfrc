@@ -99,17 +99,17 @@ cmd extract ${{
     case $file in
       *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
         foldername="$(basename "${file%%.*}")"
-        [[ ! -d foldername ]]
+        [[ ! -d foldername ]] && mkdir $foldername
         tar xjvf "$file" -C "$foldername"
       ;;
       *.tar.gz|*.tgz)
         foldername="$(basename "${file%%.*}")"
-        [[ ! -d foldername ]]
+        [[ ! -d foldername ]] && mkdir $foldername
         tar xzvf "$file" -C "$foldername"
       ;;
       *.tar.xz|*.txz)
         foldername="$(basename "${file%%.*}")"
-        [[ ! -d foldername ]]
+        [[ ! -d foldername ]] && mkdir $foldername
         tar xJvf "$file" -C "$foldername"
       ;;
       *.zip)

@@ -13,23 +13,26 @@ function M.config()
       enable = false,
       virtual_text = false,
     },
-    symbol_in_winbar = { enable = false },
+    -- symbol_in_winbar = { enable = false },
     rename = {
-      quit = "<Esc>",
-      exec = "<CR>",
-      in_select = true,
+      in_select = false,
+      auto_save = true,
+      keys = {
+        quit = "<Esc>",
+      },
     },
     code_action = {
       num_shortcut = true,
-      keys = {
-        quit = "<Esc>",
-        exec = "<CR>",
-      },
     },
     ui = {
       border = "rounded",
       colors = {
         normal_bg = "",
+      },
+    },
+    finder = {
+      methods = {
+        tyd = "textDocument/typeDefinition",
       },
     },
   }

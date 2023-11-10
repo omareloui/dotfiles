@@ -3,7 +3,7 @@ local set = vim.keymap.set
 ---- Basic {{{
 
 -- Navigate Insert Mode {{{
-set({ "i", "c" }, "jk", "<Esc>", { desc = "exit insert mode", nowait = true })
+set({ "i", "c", "v" }, "jk", "<Esc>", { desc = "exit insert mode", nowait = true })
 
 set("i", "<C-h>", "<Left>", { desc = "move left", nowait = true })
 set("i", "<C-j>", "<Down>", { desc = "move down", nowait = true })
@@ -172,7 +172,7 @@ function M.rust_tools(bufnr)
 end
 
 M.lspsaga = function()
-  set("n", "gh", "<Cmd>Lspsaga finder def+ref<CR>", { silent = true })
+  set("n", "gh", "<Cmd>Lspsaga finder ref<CR>", { silent = true })
 
   set({ "n", "v" }, "<leader>la", "<Cmd>Lspsaga code_action<CR>", { silent = true })
   set("n", "<leader>lr", "<Cmd>Lspsaga rename<CR>", { silent = true })

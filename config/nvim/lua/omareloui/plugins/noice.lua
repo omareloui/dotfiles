@@ -1,21 +1,63 @@
-local M = {
-  "folke/noice.nvim",
-  dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-  enabled = false,
+return {
+  {
+    "rcarriga/nvim-notify",
+    keys = {
+      {
+        "<leader>un",
+        function()
+          require("notify").dismiss { silent = true, pending = true }
+        end,
+        desc = "Dismiss all Notifications",
+      },
+    },
+    opts = {
+      timeout = 3000,
+      render = "compact",
+      -- stages = "fade_in",
+      max_height = function()
+        return math.floor(vim.o.lines * 0.75)
+      end,
+      max_width = function()
+        return math.floor(vim.o.columns * 0.75)
+      end,
+      on_open = function(win)
+        vim.api.nvim_win_set_config(win, { zindex = 100 })
+      end,
+    },
+  },
+
+  { "MunifTanjim/nui.nvim", lazy = true },
+
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+      },
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            any = {
+              { find = "%d+L, %d+B" },
+              { find = "; after #%d+" },
+              { find = "; before #%d+" },
+            },
+          },
+          view = "mini",
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = true,
+      },
+    },
+  },
 }
-
-function M.config()
-  local present, noice = pcall(require, "noice")
-
-  if not present then
-    return
-  end
-
-  require("notify").setup { background_colour = "#00000000" }
-
-  local opts = { lsp = { signature = { enabled = false } } }
-
-  noice.setup(opts)
-end
-
-return M

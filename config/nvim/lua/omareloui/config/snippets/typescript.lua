@@ -101,6 +101,91 @@ export type Populated{}Pojo = MongoosePojoInstance<
   )
 )
 
+cs(
+  "mongoosemodel",
+  fmt(
+    [[import {{ Schema, model, type FlattenMaps }} from "mongoose";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanGetters from "mongoose-lean-getters";
+import {{ accessibleRecordsPlugin, accessibleFieldsPlugin, AccessibleModel }} from "@casl/mongoose";
+
+import type {{ FinalType, ObjectId, ReplaceValueType, Timestamp }} from "~/types";
+
+
+type I{} = {{}};
+
+type I{}Virtuals = {{}};
+
+type I{}Methods = {{}};
+
+const {}Schema = new Schema<I{}>(
+  {{}},
+  {{
+    timestamps: true,
+    versionKey: false,
+    toJSON: {{
+      virtuals: true,
+      getters: true,
+      transform(_doc, ret) {{
+        delete ret.id;
+        delete ret.__t;
+      }},
+    }},
+    toObject: {{
+      virtuals: true,
+      getters: true,
+      transform(_doc, ret) {{
+        delete ret.id;
+        delete ret.__t;
+      }},
+    }},
+  }},
+);
+
+[mongooseLeanVirtuals, mongooseLeanGetters, accessibleRecordsPlugin, accessibleFieldsPlugin].forEach(p =>
+  {}Schema.plugin(p),
+);
+
+export const {} = model<I{}, AccessibleModel<I{}, unknown, I{}Methods, I{}Virtuals>>("{}", {}Schema);
+
+export type {}Doc = FinalType<ReturnType<(typeof {})["hydrate"]> & Timestamp>;
+export type {}Lean = FlattenMaps<{{ _id: ObjectId }} & I{} & I{}Virtuals & Timestamp>;
+export type {}Pojo = ReplaceValueType<{}Lean, ObjectId, string>;
+export type {}PopulatedFields = {{}};
+
+declare module "@casl/mongoose" {{
+  interface RecordTypes {{
+    {}: true;
+  }}
+}}
+]],
+    {
+      i(1, "Model"),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+      duplicate_one(),
+    }
+  )
+)
+
 ------------------------------- End Refactoring -------------------------------
 
 return snippets, autosnippets

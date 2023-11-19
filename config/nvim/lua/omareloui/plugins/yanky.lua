@@ -1,23 +1,25 @@
-local M = {
+return {
   "gbprod/yanky.nvim",
   dependencies = { "kkharji/sqlite.lua" },
-  enabled = true,
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+
+  config = function()
+    local present, yanky = pcall(require, "yanky")
+
+    if not present then
+      return
+    end
+
+    local opts = {
+      highlight = { timer = 60 },
+
+      system_clipboard = {
+        sync_with_ring = true,
+      },
+    }
+
+    M.keys = require("omareloui.config.mappings").yanky()
+
+    yanky.setup(opts)
+  end,
 }
-
-M.config = function()
-  local present, yanky = pcall(require, "yanky")
-
-  if not present then
-    return
-  end
-
-  yanky.setup {
-    highlight = { timer = 50 },
-
-    system_clipboard = {
-      sync_with_ring = true,
-    },
-  }
-end
-
-return M

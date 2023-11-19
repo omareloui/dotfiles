@@ -11,17 +11,20 @@ function M.config()
     return
   end
 
-  local icons = require("omareloui.ui.icons").bufferline
-
-  bufferline.setup {
+  local icons = require("omareloui.config.ui.icons").bufferline
+  local opts = {
     options = {
       modified_icon = icons.modefied,
       diagnostics = "nvim_lsp",
+      component_separators = "|",
+      section_separators = "",
       diagnostics_indicator = function(count)
         return " " .. icons.diagnostics .. count
       end,
     },
   }
+
+  bufferline.setup(opts)
 end
 
 return M

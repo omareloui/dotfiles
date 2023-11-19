@@ -1,6 +1,6 @@
 local M = {
   "kyazdani42/nvim-tree.lua",
-  ft = "alpha",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
   init = require("omareloui.config.mappings").nvimtree,
 }

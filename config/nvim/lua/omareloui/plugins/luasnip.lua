@@ -1,5 +1,6 @@
 local M = {
   "L3MON4D3/LuaSnip",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   dependencies = { "friendly-snippets", "nvim-cmp" },
   init = require("omareloui.config.mappings").snippets,
 }

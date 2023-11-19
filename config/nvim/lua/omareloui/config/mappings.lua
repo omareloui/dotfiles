@@ -1,50 +1,35 @@
 local set = vim.keymap.set
 
----- Basic {{{
+-- Navigate insert mode
+set({ "i" }, "jk", "<Esc>", { desc = "Exit insert mode", nowait = true })
 
--- Navigate Insert Mode {{{
-set({ "i", "c", "v" }, "jk", "<Esc>", { desc = "exit insert mode", nowait = true })
+set("i", "<C-h>", "<Left>", { desc = "Move left", nowait = true })
+set("i", "<C-j>", "<Down>", { desc = "Move down", nowait = true })
+set("i", "<C-k>", "<Up>", { desc = "Move up", nowait = true })
+set("i", "<C-l>", "<Right>", { desc = "Move right", nowait = true })
 
-set("i", "<C-h>", "<Left>", { desc = "move left", nowait = true })
-set("i", "<C-j>", "<Down>", { desc = "move down", nowait = true })
-set("i", "<C-k>", "<Up>", { desc = "move up", nowait = true })
-set("i", "<C-l>", "<Right>", { desc = "move right", nowait = true })
+set("i", "<C-b>", "<Esc>^i>", { desc = "Move to the beginning of the line" })
+set("i", "<C-e>", "<End>", { desc = "Move to the end of the line" })
 
-set("i", "<C-b>", "<Esc>^i>", { desc = "move to the beginning of the line" })
-set("i", "<C-e>", "<End>", { desc = "move to the end of the line" })
--- }}}
+set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+set({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Navigate Normal Mode {{{
--- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
--- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
--- empty mode is same as using <cmd> :map
--- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
-set({ "n", "x" }, "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
-set({ "n", "x" }, "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
-set({ "n", "v" }, "<Up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
-set({ "n", "v" }, "<Down>", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
--- }}}
-
--- Highlight {{{
-set("n", "<leader>n", "<Cmd>noh<CR>", { desc = "remove highlight" })
-set("n", "<Esc>", "<Cmd>noh<CR>", { desc = "remove highlight" })
--- }}}
-
--- Indenting {{{
-set("v", "<", "<gv", { desc = "indend line backwards" })
-set("v", ">", ">gv", { desc = "indend line forwards" })
--- }}}
+-- Indenting
+set("v", "<", "<gv", { desc = "Indend line backwards" })
+set("v", ">", ">gv", { desc = "Indend line forwards" })
 
 -- keep the cursor on the same position
--- set("v", "J", "mzJ`z", { desc = "merge with next line" })
+set("n", "J", "mzJ`z", { desc = "Merge with next line" })
 
--- Buffers {{{
+-- Buffers
 local bufferline_buffers = function()
-  set("n", "<C-S-Right>", "<Cmd>BufferLineMoveNext<CR>", { desc = "move the tab to the right", silent = true })
-  set("n", "<C-S-Left>", "<Cmd>BufferLineMovePrev<CR>", { desc = "move the tab to the left", silent = true })
+  set("n", "<C-S-Right>", "<Cmd>BufferLineMoveNext<CR>", { desc = "Move the tab to the right", silent = true })
+  set("n", "<C-S-Left>", "<Cmd>BufferLineMovePrev<CR>", { desc = "Move the tab to the left", silent = true })
 
-  set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "go to next buffer" })
-  set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "go to previous buffer" })
+  set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Go to next buffer" })
+  set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous buffer" })
 
   set("n", "<leader>bo", function()
     for _, e in ipairs(require("bufferline").get_elements().elements) do
@@ -52,123 +37,164 @@ local bufferline_buffers = function()
         vim.api.nvim_buf_delete(e.id, {})
       end
     end
-  end, { desc = "close all other buffers", silent = true })
+  end, { desc = "Close all other buffers", silent = true })
 
   set("n", "<leader>bx", function()
     for _, e in ipairs(require("bufferline").get_elements().elements) do
       vim.api.nvim_buf_delete(e.id, {})
     end
-  end, { desc = "close all buffers", silent = true })
+  end, { desc = "Close all buffers", silent = true })
 end
 
-set("n", "<C-s>", "<Cmd>up<CR>", { desc = "save buffer" })
-set("n", "<leader>w", "<Cmd>up<CR>", { desc = "save buffer" })
-
--- set("n", "<C-c>", "<Cmd>%y+<CR>", { desc = "copy the whole file" })
+set("n", "<C-s>", "<Cmd>up<CR>", { desc = "Save buffer" })
+set("n", "<leader>w", "<Cmd>up<CR>", { desc = "Save buffer" })
 
 set("n", "<leader>q", function()
   vim.schedule(function()
     vim.cmd "bd"
   end)
-end, { desc = "close buffer", silent = true })
--- }}}
+end, { desc = "Close buffer", silent = true })
 
--- Clipboard {{{
-set("n", "Y", "y$", { desc = "yank to the end of the line", remap = true })
-set({ "n", "v" }, "<leader>y", '"+y', { desc = "yank to the system clipboard", remap = true })
-set("n", "<leader>Y", '"+Y', { desc = "yank to the system clipboard", remap = true })
-set({ "n", "v" }, "<leader>p", '"+p', { desc = "paste from the system clipboard", remap = true })
-set("n", "<leader>P", '"+P', { desc = "paste from the system clipboard", remap = true })
--- set({ "n", "v" }, "<leader>d", '"_d', { desc = "delete to void", remap = true })
--- set("n", "<leader>D", '"_D', { desc = "delete to void", remap = true })
--- set("v", ",p", '"0p', { desc = "paste last yanked", remap = true })
+-- Clipboard
+set("n", "Y", "y$", { desc = "Yank to the end of the line", remap = true })
+set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to the system clipboard", remap = true })
+set("n", "<leader>Y", '"+Y', { desc = "Yank to the system clipboard", remap = true })
+set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from the system clipboard", remap = true })
+set("n", "<leader>P", '"+P', { desc = "Paste from the system clipboard", remap = true })
 
 -- Don't copy the replaced text after pasting in visual mode
 set("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { silent = true, remap = true })
--- }}}
 
--- Navigation in file {{{
+-- Navigation in file
 -- keep the cursor in the center of the screen
-set("n", "<C-d>", "<C-d>zz", { desc = "move down half a page" })
-set("n", "<C-u>", "<C-u>zz", { desc = "move up half a page" })
-set("n", "n", "nzzzv", { desc = "find next" })
-set("n", "N", "Nzzzv", { desc = "find previous" })
--- }}}
+set("n", "<C-d>", "<C-d>zz", { desc = "Move down half a page" })
+set("n", "<C-u>", "<C-u>zz", { desc = "Move up half a page" })
+set("n", "n", "nzzzv", { desc = "Find next" })
+set("n", "N", "Nzzzv", { desc = "Find previous" })
 
--- Text Manipulation {{{
-set("n", "<leader>su", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "replace current word" })
+-- Text Manipulation
+set("n", "<leader>su", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Replace current word" })
 
-set("n", "<leader>j", "<Cmd>m .+1<CR>==", { desc = "move the line down" })
-set("n", "<leader>k", "<Cmd>m .-2<CR>==", { desc = "move the line up" })
-set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move the line down" })
-set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move the line up" })
+set("n", "<leader>j", "<Cmd>m .+1<CR>==", { desc = "Move the line down" })
+set("n", "<leader>k", "<Cmd>m .-2<CR>==", { desc = "Move the line up" })
+set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move the line down" })
+set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move the line up" })
 
--- set("i", "<C-j>", "<Cmd>m .+1<CR>==", { desc = "move the line down" })
--- set("i", "<C-k>", "<Cmd>m .-2<CR>==", { desc = "move the line up" })
+set("n", "<A-j>", "yyp", { desc = "Duplicate line down" })
+set("n", "<A-k>", "yyP", { desc = "Duplicate line up" })
 
-set("n", "<A-j>", "yyp", { desc = "duplicate line down" })
-set("n", "<A-k>", "yyP", { desc = "duplicate line up" })
--- }}}
+-- Window
+set("n", "<C-j>", "<C-w>j", { desc = "Go to down window" })
+set("n", "<C-k>", "<C-w>k", { desc = "Go to up window" })
+set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
--- Window {{{
-set("n", "<C-j>", "<C-w>j", { desc = "go to down window" })
-set("n", "<C-k>", "<C-w>k", { desc = "go to up window" })
-set("n", "<C-h>", "<C-w>h", { desc = "go to left window" })
-set("n", "<C-l>", "<C-w>l", { desc = "go to right window" })
+set("n", "<leader>sv", "<Cmd>vsplit<CR>", { desc = "Split window vertically" })
+set("n", "<leader>sh", "<Cmd>split<CR>", { desc = "Split window horizontally" })
+set("n", "<leader>se", "<C-w>=", { desc = "Make the splits equal" })
+set("n", "<leader>sm", "<Cmd>MaximizerToggle<CR>", { desc = "Toggle maximizing the current window" })
 
-set("n", "<leader>sv", "<Cmd>vsplit<CR>", { desc = "split window vertically" })
-set("n", "<leader>sh", "<Cmd>split<CR>", { desc = "split window horizontally" })
-set("n", "<leader>se", "<C-w>=", { desc = "make the splits equal" })
-set("n", "<leader>sm", "<Cmd>MaximizerToggle<CR>", { desc = "toggle maximizing the current window" })
+-- map("n", "<C-Up>", "<Cmd>resize +2<CR>", { desc = "Increase window height" })
+-- map("n", "<C-Down>", "<Cmd>resize -2<CR>", { desc = "Decrease window height" })
+-- map("n", "<C-Left>", "<Cmd>vertical resize -2<CR>", { desc = "Decrease window width" })
+-- map("n", "<C-Right>", "<Cmd>vertical resize +2<CR>", { desc = "Increase window width" })
 
-set("n", "<leader>s>", "<Cmd>resize +5|vertical resize +5<CR>", { desc = "increase size of current window" })
-set("n", "<leader>s<", "<Cmd>resize -5|vertical resize -5<CR>", { desc = "decrease size of current window" })
--- }}}
+set("n", "<leader>s>", "<Cmd>resize +5|vertical resize +5<CR>", { desc = "Increase size of current window" })
+set("n", "<leader>s<", "<Cmd>resize -5|vertical resize -5<CR>", { desc = "Decrease size of current window" })
 
--- Very Magic {{{
--- set("n", "/", "/\\v", { desc = "set very magic mode by default", nowait = true })
--- set("c", "s/", "s/\\v", { desc = "set very magic mode by default", nowait = true })
--- set("c", "s#", "s#\\v", { desc = "set very magic mode by default", nowait = true })
--- }}}
-
----- }}}
-
----- Plugins {{{
+---- Plugins
 local M = {}
 
--- LSP {{{
+-- LSP
 M.lsp = function(buffer_number)
   buffer_number = buffer_number or 0
 
   local d = vim.diagnostic
   local l = vim.lsp
 
-  set("n", "<leader>ds", d.setloclist, { desc = "diagnostic setloclist", buffer = buffer_number })
-  set("n", "<leader>df", d.open_float, { desc = "floating diagnostic", buffer = buffer_number })
+  local opts = { desc = "Diagnostic setloclist", buffer = buffer_number }
 
-  set("n", "gt", l.buf.type_definition, { desc = "lsp definition type", buffer = buffer_number })
-  set("n", "gi", l.buf.implementation, { desc = "lsp implementation", buffer = buffer_number })
-  set("n", "gd", l.buf.definition, { desc = "lsp definition", buffer = buffer_number })
-  set("n", "gD", l.buf.declaration, { desc = "lsp declaration", buffer = buffer_number })
+  opts.desc = "Diagnostic setloclist"
+  set("n", "<leader>ds", d.setloclist, opts)
 
-  set("n", "<leader>ls", l.buf.signature_help, { desc = "lsp signature_help", buffer = buffer_number })
+  opts.desc = "Floating diagnostic"
+  set("n", "<leader>df", d.open_float, opts)
 
-  set("n", "<leader>lwa", l.buf.add_workspace_folder, { desc = "add lsp workspace folder", buffer = buffer_number })
+  opts.desc = "Lsp definition type"
+  set("n", "gt", l.buf.type_definition, opts)
+
+  opts.desc = "Lsp definition type"
+  set("n", "gi", l.buf.implementation, opts)
+
+  opts.desc = "Lsp definition"
+  set("n", "gd", l.buf.definition, opts)
+
+  opts.desc = "Go to declaration"
+  set("n", "gD", l.buf.declaration, opts)
+
+  opts.desc = "Show LSP references"
+  set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+
+  opts.desc = "See available code actions"
+  set({ "n", "v" }, "<leader>ca", l.buf.code_action, opts)
+
+  opts.desc = "Smart rename"
+  set("n", "<leader>rn", l.buf.rename, opts)
+
+  opts.desc = "Show buffer diagnostics"
+  set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+
+  opts.desc = "Go to previous diagnostic"
+  set("n", "[d", vim.diagnostic.goto_prev, opts)
+
+  opts.desc = "Go to next diagnostic"
+  set("n", "]d", vim.diagnostic.goto_next, opts)
+
+  opts.desc = "Show documentation for what is under cursor"
+  set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+
+  set("n", "<leader>ls", l.buf.signature_help, { desc = "Lsp signature_help", buffer = buffer_number })
+
+  set("n", "<leader>lwa", l.buf.add_workspace_folder, { desc = "Add lsp workspace folder", buffer = buffer_number })
   set(
     "n",
     "<leader>lwr",
     l.buf.remove_workspace_folder,
-    { desc = "remove lsp workspace folder", buffer = buffer_number }
+    { desc = "Remove lsp workspace folder", buffer = buffer_number }
   )
-  set("n", "<leader>lwl", l.buf.list_workspace_folders, { desc = "list lsp workspace folders", buffer = buffer_number })
+  set("n", "<leader>lwl", l.buf.list_workspace_folders, { desc = "List lsp workspace folders", buffer = buffer_number })
+
+  set("n", "<leader>rs", "<Cmd>LspRestart<CR>", { desc = "Restart the lsp server", buffer = buffer_number })
 end
 
-function M.rust_tools(bufnr)
+M.rust_tools = function(bufnr)
   local rust_tools = require "rust-tools"
   bufnr = bufnr or 0
 
   set("n", "K", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
   set("n", "<Leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+end
+
+M.tsserver = function()
+  set("n", "<leader>co", function()
+    vim.lsp.buf.code_action {
+      apply = true,
+      context = {
+        only = { "source.organizeImports.ts" },
+        diagnostics = {},
+      },
+    }
+  end, { desc = "Organize Imports" })
+
+  set("n", "<leader>cR", function()
+    vim.lsp.buf.code_action {
+      apply = true,
+      context = {
+        only = { "source.removeUnused.ts" },
+        diagnostics = {},
+      },
+    }
+  end, { desc = "Remove Unused Imports" })
 end
 
 M.lspsaga = function()
@@ -182,8 +208,8 @@ M.lspsaga = function()
   set("n", "<leader>df", "<Cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
   set("n", "<leader>dc", "<Cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
 
-  set("n", "<leader>dp", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
-  set("n", "<leader>dn", "<Cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
+  set("n", "[d", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+  set("n", "]d", "<Cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
 
   set("n", "<leader>dP", function()
     require("lspsaga.diagnostic").goto_prev { severity = vim.diagnostic.severity.ERROR }
@@ -197,78 +223,65 @@ M.lspsaga = function()
 end
 
 local telescope_lsp = function()
-  set("n", "<leader>dl", "<Cmd>Telescope diagnostics<CR>", { desc = "list all diagnostics", buffer = true })
-end
--- }}}
-
---- Cmp {{{
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
+  set("n", "<leader>dl", "<Cmd>Telescope diagnostics<CR>", { desc = "List all diagnostics", buffer = true })
 end
 
+-- Formatting
+M.conform = function(conform, opts)
+  set({ "n", "v" }, "<leader>mp", function()
+    conform.format(opts)
+  end, { desc = "Format file or range (in visual mode)" })
+end
+
+-- Linting
+M.lint = function(lint)
+  set("n", "<leader>ll", function()
+    lint.try_lint()
+  end, { desc = "Trigger linting for current file." })
+end
+
+--- Cmp
 M.cmp = function(cmp)
   return {
-    -- see :h ins-completion
-    ["<C-n>"] = cmp.mapping {
-      c = function()
-        if cmp.visible() then
-          cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
-        else
-          vim.api.nvim_feedkeys(t "<Down>", "n", true)
-        end
-      end,
-      i = function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
-        else
-          fallback()
-        end
-      end,
-    },
-    ["<C-p>"] = cmp.mapping {
-      c = function()
-        if cmp.visible() then
-          cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
-        else
-          vim.api.nvim_feedkeys(t "<Up>", "n", true)
-        end
-      end,
-      i = function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
-        else
-          fallback()
-        end
-      end,
-    },
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-u>"] = cmp.mapping.scroll_docs(4),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<C-y>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
+    ["<C-k>"] = cmp.mapping.select_prev_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<C-y>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
   }
 end
---- }}}
 
--- File Browsing {{{
+-- Spectre
+M.spectre = function()
+  return {
+    {
+      "<leader>sr",
+      function()
+        require("spectre").open()
+      end,
+      desc = "Replace in files (Spectre)",
+    },
+  }
+end
+
+-- File Browsing
 M.nvimtree = function()
   set("n", "<leader>e", require("nvim-tree.api").tree.toggle, { desc = "toggle NvimTree" })
 end
--- }}}
 
--- UndoTree {{{
+-- UndoTree
 M.undotree = function()
   set("n", "<leader>u", "<Cmd>UndotreeToggle<CR>", { desc = "open Undotree" })
 end
--- }}}
 
--- BufferLine {{{
+-- BufferLine
 M.bufferline = function()
   bufferline_buffers()
 end
--- }}}
 
--- TreeSitter TextObjects {{{
+-- TreeSitter TextObjects
 M.treesitter_text_objects = {
   select = {
     ["af"] = { query = "@function.outer", desc = "select outer part of a function" },
@@ -297,13 +310,17 @@ M.treesitter_text_objects = {
       ["<leader>A"] = { query = "@parameter.inner", desc = "swap with the previous parameter" },
     },
   },
+  goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+  goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+  goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+  goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
+
+  init_selection = "<C-Space><C-Space>",
+  node_incremental = "<C-Space>",
+  node_decremental = "<BS>",
 }
--- }}}
 
--- Git {{{
-local schedule = vim.schedule
-local diff = vim.wo.diff
-
+-- Git
 local terminal_git = function()
   set("n", "<leader>gg", "<Cmd>lua _LAZYGIT_TOGGLE()<CR>", { desc = "open lazygit" })
 end
@@ -316,28 +333,21 @@ end
 M.gitsings = function()
   local gs = require "gitsigns"
 
-  set("n", "<leader>gb", function()
-    gs.blame_line { full = true }
-  end, { desc = "git blame line" })
-  set("n", "<leader>gp", gs.preview_hunk, { desc = "git preview hunk" })
+  -- stylua: ignore start
+  set({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", { desc = "Stage Hunk" })
+  set({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", { desc = "Reset Hunk" })
 
-  set("n", "<leader>hr", gs.reset_hunk, { desc = "reset hunk" })
-  set("n", "<leader>hd", gs.toggle_deleted, { desc = "toggle show deleted from git" })
+  set("n", "<leader>ghS", gs.stage_buffer, { desc = "Stage Buffer" })
+  set("n", "<leader>ghu", gs.undo_stage_hunk, { desc = "Undo Stage Hunk" })
+  set("n", "<leader>ghR", gs.reset_buffer, { desc = "Reset Buffer" })
+  set("n", "<leader>ghp", gs.preview_hunk, { desc = "Preview Hunk" })
+  set("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, { desc = "Blame Line" })
+  set("n", "<leader>ghd", gs.diffthis, { desc = "Diff This" })
+  set("n", "<leader>ghD", function() gs.diffthis("~") end, { desc = "Diff This ~" })
+  set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "GitSigns Select Hunk" })
 
-  set("n", "<leader>hn", function()
-    if diff then
-      return "<leader>hn"
-    end
-    schedule(gs.next_hunk)
-    return "<Ignore>"
-  end, { desc = "jump to next hunk", expr = true })
-  set("n", "<leader>hp", function()
-    if diff then
-      return "<leader>ghp"
-    end
-    schedule(gs.prev_hunk)
-    return "<Ignore>"
-  end, { desc = "jump to previous hunk", expr = true })
+  set("n", "]h", gs.next_hunk, { desc = "Next Hunk" })
+  set("n", "[h", gs.prev_hunk, { desc = "Prev Hunk" })
 end
 
 function M.fugitive()
@@ -345,9 +355,8 @@ function M.fugitive()
   set("n", "<leader>gl", "<Cmd>GcLog -10<CR>", { desc = "git logs" })
   set("n", "<leader>gfl", "<Cmd>Git log -p --follow -- %<CR>", { desc = "git file log" })
 end
--- }}}
 
--- Telescope {{{
+-- Telescope
 M.telescope = function()
   set("n", "<leader>fa", "<Cmd>Telescope find_files follow=true hidden=true<CR>", { desc = "find files" })
   -- set("n", "<leader>ff", "<Cmd>Telescope find_files follow=true hidden=true<CR>", { desc = "find files" })
@@ -376,21 +385,35 @@ M.telescope = function()
   telescope_git()
   telescope_lsp()
 end
--- }}}
 
--- TodoComments {{{
+-- TodoComments
 M.todo_comments = function()
-  set("n", "]t", require("todo-comments").jump_next, { desc = "next todo comment" })
-  set("n", "[t", require("todo-comments").jump_prev, { desc = "previous todo comment" })
+  return {
+    {
+      "]t",
+      function()
+        require("todo-comments").jump_next()
+      end,
+      desc = "Next todo comment",
+    },
+    {
+      "[t",
+      function()
+        require("todo-comments").jump_prev()
+      end,
+      desc = "Previous todo comment",
+    },
+    { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+    { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
+  }
 end
--- }}}
 
--- Snippets {{{
+-- Snippets
 M.snippets = function()
   set(
     "n",
     "<leader><leader>s",
-    "<Cmd>source ~/.config/nvim/lua/omareloui/snippets/init.lua<CR>",
+    "<Cmd>source ~/.config/nvim/lua/omareloui/config/snippets/init.lua<CR>",
     { desc = "source the snippets file" }
   )
   set({ "i", "s" }, "<C-j>", function()
@@ -418,21 +441,19 @@ M.snippets = function()
     end
   end, { desc = "cycle in snippet's options left", silent = true })
 end
--- }}}
 
--- Comments {{{
-M.comments = function()
-  set("n", "<leader>/", require("Comment.api").toggle.linewise.current, { desc = "toggle comment" })
-  set(
-    "v",
-    "<leader>/",
-    "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-    { desc = "toggle comment" }
-  )
-end
--- }}}
+-- Comments
+-- M.comments = function()
+--   set("n", "<leader>/", require("Comment.api").toggle.linewise.current, { desc = "toggle comment" })
+--   set(
+--     "v",
+--     "<leader>/",
+--     "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+--     { desc = "toggle comment" }
+--   )
+-- end
 
--- Terminal {{{
+-- Terminal
 M.terminal = function()
   terminal_git()
 end
@@ -447,9 +468,8 @@ M.terminal_when_active = function()
   -- set_buf_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], { desc = "close the terminal" })
   -- set_buf_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]])
 end
--- }}}
 
--- Rexplainer {{{
+-- Rexplainer
 function M.regexplainer()
   return {
     toggle = "<leader>rp",
@@ -458,9 +478,8 @@ function M.regexplainer()
     hide = "<leader>rq",
   }
 end
--- }}}
 
--- ZK {{{
+-- ZK
 function M.zk()
   set("n", "gd", vim.lsp.buf.definition, { desc = "go to zk note" })
   -- set("n", "<CR>", function()
@@ -521,46 +540,64 @@ function M.zk()
   -- Push the notes
   set("n", "<leader>zp", "<Cmd>!zk push<CR>", { desc = "push zk notes to github repo" })
 end
--- }}}
 
--- Rest {{{
+-- Rest
 function M.rest()
   set("n", "<leader>ro", "<Plug>RestNvim", { desc = "run the request under the cursor" })
   set("n", "<leader>rv", "<Plug>RestNvimPreview", { desc = "preview the request cURL command" })
   set("n", "<leader>rl", "<Plug>RestNvimLast", { desc = "re-run the last request" })
 end
--- }}}
 
--- toggler {{{
+-- Toggler
 function M.toggler()
   set(
     { "n", "v" },
     "<leader>i",
     require("nvim-toggler").toggle,
-    { desc = "toggle the cursor word (eg. from true to false)" }
+    { desc = "Toggle the cursor word (eg. from true to false)" }
   )
 end
--- }}}
 
--- Yank {{{
+-- Yank
 function M.yanky()
-  set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
-  set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
-  set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
-  set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
-
-  set("n", "<c-n>", "<Plug>(YankyCycleForward)")
-  set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+  return {
+    {
+      "<leader>p",
+      function()
+        require("telescope").extensions.yank_history.yank_history {}
+      end,
+      desc = "Open Yank History",
+    },
+    { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
+    { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after cursor" },
+    { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before cursor" },
+    { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after selection" },
+    { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before selection" },
+    { "[y", "<Plug>(YankyCycleForward)", desc = "Cycle forward through yank history" },
+    { "]y", "<Plug>(YankyCycleBackward)", desc = "Cycle backward through yank history" },
+    { "]p", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Put indented after cursor (linewise)" },
+    { "[p", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Put indented before cursor (linewise)" },
+    { "]P", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Put indented after cursor (linewise)" },
+    { "[P", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Put indented before cursor (linewise)" },
+    { ">p", "<Plug>(YankyPutIndentAfterShiftRight)", desc = "Put and indent right" },
+    { "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", desc = "Put and indent left" },
+    { ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", desc = "Put before and indent right" },
+    { "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", desc = "Put before and indent left" },
+    { "=p", "<Plug>(YankyPutAfterFilter)", desc = "Put after applying a filter" },
+    { "=P", "<Plug>(YankyPutBeforeFilter)", desc = "Put before applying a filter" },
+  }
 end
--- }}}
 
--- Portal {{{
+-- Portal
 function M.portal()
   set("n", "<leader>o", require("portal").jump_backward, { desc = "jump backward using portal" })
   set("n", "<leader>i", require("portal").jump_forward, { desc = "jump forward using portal" })
 end
--- }}}
 
----- }}}
+-- UFO
+function M.ufo()
+  set("n", "zR", require("ufo").openAllFolds)
+  set("n", "zM", require("ufo").closeAllFolds)
+end
 
 return M

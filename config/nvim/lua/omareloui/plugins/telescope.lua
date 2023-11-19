@@ -1,4 +1,18 @@
-local M = { "nvim-telescope/telescope.nvim", cmd = "Telescope", init = require("omareloui.config.mappings").telescope }
+local M = {
+  "nvim-telescope/telescope.nvim",
+  branch = "0.1.x",
+  init = require("omareloui.config.mappings").telescope,
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      cond = function()
+        return vim.fn.executable "make" == 1
+      end,
+    },
+  },
+}
 
 M.config = function()
   local present, telescope = pcall(require, "telescope")
@@ -22,7 +36,7 @@ M.config = function()
       prompt_prefix = "   ",
       selection_caret = "  ",
       entry_prefix = "  ",
-      initial_mode = "insert",
+      -- initial_mode = "insert",
       selection_strategy = "reset",
       sorting_strategy = "ascending",
       layout_strategy = "horizontal",
@@ -39,36 +53,34 @@ M.config = function()
         height = 0.80,
         preview_cutoff = 120,
       },
-      file_sorter = require("telescope.sorters").get_fuzzy_file,
+      -- file_sorter = require("telescope.sorters").get_fuzzy_file,
       file_ignore_patterns = { "node_modules", ".*%.git/.*$" },
-      generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+      -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
       path_display = { "truncate" },
-      winblend = 0,
-      border = {},
-      borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      -- winblend = 0,
+      -- border = {},
       color_devicons = true,
-      set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-      file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-      grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-      qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-      -- Developer configurations: Not meant for general override
-      buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+      -- set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+      -- file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+      -- grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+      -- qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+      -- -- Developer configurations: Not meant for general override
+      -- buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
       mappings = {
         n = { ["q"] = require("telescope.actions").close },
       },
     },
 
-    extensions = {
-      file_browser = {
-        hijack_netrw = true,
-      },
-    },
+    -- extensions = {
+    --   file_browser = {
+    --     hijack_netrw = true,
+    --   },
   }
 
   telescope.setup(options)
 
   -- load extensions
-  telescope.load_extension "file_browser"
+  -- telescope.load_extension "file_browser"
 end
 
 return M

@@ -1,4 +1,4 @@
-local M = { "akinsho/toggleterm.nvim", init = require("omareloui.config.mappings").terminal }
+local M = { "akinsho/toggleterm.nvim", event = { "BufReadPost", "BufWritePost", "BufNewFile" } }
 
 M.config = function()
   local present, toggleterm = pcall(require, "toggleterm")
@@ -7,7 +7,9 @@ M.config = function()
     return
   end
 
-  toggleterm.setup {
+  require("omareloui.config.mappings").terminal()
+
+  local opts = {
     size = 20,
     open_mapping = [[<c-\>]],
     hide_numbers = true,
@@ -30,6 +32,8 @@ M.config = function()
     },
   }
 
+  toggleterm.setup(opts)
+
   function _G.set_terminal_keymaps()
     require("omareloui.config.mappings").terminal_when_active()
   end
@@ -47,16 +51,6 @@ M.config = function()
   function _LAZYGIT_TOGGLE()
     lazygit:toggle()
   end
-
-  -- local node = Terminal:new { cmd = "node", hidden = true }
-  -- function _NODE_TOGGLE()
-  --   node:toggle()
-  -- end
-
-  -- local htop = Terminal:new { cmd = "htop", hidden = true }
-  -- function _HTOP_TOGGLE()
-  --   htop:toggle()
-  -- end
 end
 
 return M

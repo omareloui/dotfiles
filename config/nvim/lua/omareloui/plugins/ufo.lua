@@ -1,4 +1,8 @@
-local M = { "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" }
+local M = {
+  "kevinhwang91/nvim-ufo",
+  dependencies = "kevinhwang91/promise-async",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+}
 
 function M.config()
   local present, ufo = pcall(require, "ufo")
@@ -35,7 +39,7 @@ function M.config()
     return newVirtText
   end
 
-  ufo.setup {
+  local opts = {
     provider_selector = function()
       return { "lsp", "indent" }
     end,
@@ -44,7 +48,10 @@ function M.config()
     fold_virt_text_handler = virtual_text_handler,
   }
 
-  require("omareloui.ui.highlights").ufo()
+  require("omareloui.config.mappings").ufo()
+  require("omareloui.config.ui.highlights").ufo()
+
+  ufo.setup(opts)
 end
 
 return M

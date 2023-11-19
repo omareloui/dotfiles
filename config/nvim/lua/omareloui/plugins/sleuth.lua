@@ -1,4 +1,4 @@
 return {
-  "tpope/vim-fugitive",
+  "tpope/vim-sleuth",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 }

@@ -1,13 +1,7 @@
-local M = { "norcalli/nvim-colorizer.lua", enabled = false }
-
-M.config = function()
-  local present, colorizer = pcall(require, "colorizer")
-
-  if not present then
-    return
-  end
-
-  local options = {
+return {
+  "norcalli/nvim-colorizer.lua",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  opts = {
     ["*"] = {
       RGB = true,
       RRGGBB = true,
@@ -19,9 +13,5 @@ M.config = function()
       css_fn = true,
       mode = "background",
     },
-  }
-
-  colorizer.setup(options)
-end
-
-return M
+  },
+}

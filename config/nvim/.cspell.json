@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "words": [
+    "omareloui",
+    "nvim",
+    "augroup",
+    "autocmd",
+    "astro",
+    "gitlint",
+    "markdownlint",
+    "shellcheck",
+    "luacheck",
+    "lualine",
+    "bashls",
+    "cssls",
+    "prismals",
+    "yamlls",
+    "lspconfig",
+    "denols",
+    "tailwindcss",
+    "stylua",
+    "shfmt",
+    "yamlfmt",
+    "folke",
+    "noice"
+  ]
+}

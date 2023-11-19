@@ -208,8 +208,8 @@ map w %(($(echo "$f" | rg -c '\.(?:png|jpe?g)$') > 0)) && wallpaper "$f" 1;
 cmd flatten ${{
   for folder in $fx; do
     if [[ -d $folder ]]; then
-      mv $folder/* .
-      rmdir $folder
+      fd . "$folder" -d1 | xargs -I '{}' mv '{}' .
+      rmdir "$folder"
     fi
   done
 }}

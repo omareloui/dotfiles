@@ -29,10 +29,6 @@ return {
       return info
     end
 
-    cmp.config.formatting = {
-      format = require("tailwindcss-colorizer-cmp").formatter,
-    }
-
     local options = {
       experimental = { ghost_text = true },
       window = {
@@ -57,6 +53,7 @@ return {
           }
           vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
           vim_item.menu = string.format("[%s]", menu[entry.source.name])
+          require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
           return vim_item
         end,
       },

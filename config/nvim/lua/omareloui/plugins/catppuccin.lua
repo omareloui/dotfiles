@@ -2,7 +2,7 @@ local M = {
   "catppuccin/nvim",
   name = "catppuccin",
   lazy = false,
-  priority = 1000
+  priority = 1000,
 }
 
 M.config = function()
@@ -49,14 +49,12 @@ M.config = function()
       treesitter = true,
       treesitter_context = true,
       which_key = true,
-    }
+    },
   }
-
 
   catppuccin.setup(opts)
 
   pcall(require, "omareloui.config.theme")
-
 end
 
 return M

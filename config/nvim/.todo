@@ -1,0 +1,55 @@
+- [ ] on hover add rounded borders.
+- [ ] add border for lazy.
+- [ ] add border for Mason.
+- [ ] add border for lspinfo.
+
+- [-] configure lsp and other stuff for
+  - [ ] astro
+  - [ ] elixer
+  - [-] deno
+    - [ ] deno_fmt
+    - [x] denols
+  - [ ] codium
+  - [x] tailwind
+  - [x] prisma
+  - [x] markdown
+  - [x] bashls
+  - [x] docker
+  - [x] anything else from my old config
+  - [x] typescript
+  - [x] json
+  - [x] volar
+  - [x] rust
+  - [x] css
+  - [x] emmet
+  - [x] yaml
+
+- [ ] learn surround
+- [ ] move in the other direction on "," after using f,F,t,T
+- [ ] learn mini operations
+- [ ] learn abount neodev and neoconf
+- [ ] learn gitsigns, the git and github ones by tbob
+
+
+
+--------------------------------------------------------------------
+
+- [x] on gcc i have to pause for the first c to be able to comment.
+      - was the timeoutlen option.
+- [x] lualine.
+- [x] the lsp loader (like lazyvim).
+  - was noice!
+- [x] less plugins to start on start.
+- [x] formatting and linting.
+- [x] change the lazyvim text on nvim startup.
+- [x] set ]q and [q for quick fix navigations
+- [x] check why the fold waits the lspconfig to load.
+- [x] remove cspell virtual text.
+- [x] treesitter thing. 
+  - NEODIM WAS OUT OF DATE!!
+  - [x] try removing stuff from the options file.
+  - note: on disabling the lspconfig, or the treesitter the problem doens't happen
+  - note: it happens specifically on registering any lsp server.
+- [_] find the tsserver option (and keymap it) to import all missing.
+- [x] headlines.nvim.
+

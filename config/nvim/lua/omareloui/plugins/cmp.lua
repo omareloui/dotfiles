@@ -8,6 +8,7 @@ return {
     "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
     "rafamadriz/friendly-snippets",
+    { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
   },
 
   config = function()
@@ -19,19 +20,6 @@ return {
 
     vim.o.completeopt = "menu,menuone,preview,noselect"
 
-    local function border(hl_name)
-      return {
-        { "╭", hl_name },
-        { "─", hl_name },
-        { "╮", hl_name },
-        { "│", hl_name },
-        { "╯", hl_name },
-        { "─", hl_name },
-        { "╰", hl_name },
-        { "│", hl_name },
-      }
-    end
-
     local cmp_window = require "cmp.utils.window"
 
     cmp_window.info_ = cmp_window.info
@@ -41,16 +29,15 @@ return {
       return info
     end
 
+    cmp.config.formatting = {
+      format = require("tailwindcss-colorizer-cmp").formatter,
+    }
+
     local options = {
       experimental = { ghost_text = true },
       window = {
-        completion = {
-          border = border "CmpBorder",
-          winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-        },
-        documentation = {
-          border = border "CmpDocBorder",
-        },
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       },
       snippet = {
         expand = function(args)

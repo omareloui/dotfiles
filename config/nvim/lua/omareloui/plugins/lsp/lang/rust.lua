@@ -1,6 +1,8 @@
 return {
   setup = function(lspconfig, on_attach, capabilities)
     lspconfig["rust_analyzer"].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
       keys = {
         { "K", "<cmd>RustHoverActions<cr>", desc = "Hover Actions (Rust)" },
         { "<leader>cR", "<cmd>RustCodeAction<cr>", desc = "Code Action (Rust)" },

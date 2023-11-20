@@ -15,22 +15,23 @@ return {
         timeout_ms = 500,
       },
 
+      -- TODO: add deno_fmt
       formatters_by_ft = {
-        javascript = { "prettierd" },
-        typescript = { "prettierd" },
-        javascriptreact = { "prettierd" },
-        typescriptreact = { "prettierd" },
-        svelte = { "prettierd" },
-        vue = { "prettierd" },
         asrto = { "prettierd" },
         css = { "prettierd" },
-        html = { "prettierd" },
-        json = { "prettierd" },
-        yaml = { "prettierd" },
-        markdown = { "prettierd" },
         graphql = { "prettierd" },
+        html = { "prettierd" },
+        javascript = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        json = { "prettierd" },
         lua = { "stylua" },
+        markdown = { "prettierd" },
         sh = { "shfmt" },
+        svelte = { "prettierd" },
+        typescript = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        vue = { "prettierd" },
+        yaml = { "prettierd" },
       },
     }
 

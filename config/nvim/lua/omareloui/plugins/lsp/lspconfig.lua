@@ -1,11 +1,26 @@
-local language_server_to_load = { "lua_ls", "html", "typescript", "volar", "json", "rust", "css", "emmet", "yaml" }
+local language_server_to_load = {
+  "bash",
+  "css",
+  "docker",
+  "emmet",
+  "html",
+  "json",
+  "lua_ls",
+  "markdown",
+  "prisma",
+  "rust",
+  "tailwind",
+  "typescript",
+  "volar",
+  "yaml",
+}
 
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   dependencies = {
     { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-    { "folke/neodev.nvim" },
+    { "folke/neodev.nvim", opts = {} },
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
@@ -20,8 +35,6 @@ return {
   },
 
   config = function()
-    require("neodev").setup {}
-
     local lspconfig_present, lspconfig = pcall(require, "lspconfig")
     local cmp_lsp_present, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 

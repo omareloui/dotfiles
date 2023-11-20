@@ -175,6 +175,17 @@ M.rust_tools = function(bufnr)
   set("n", "<Leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
 end
 
+M.markdown_preview = function()
+  return {
+    {
+      "<leader>cp",
+      ft = "markdown",
+      "<Cmd>MarkdownPreviewToggle<CR>",
+      desc = "Markdown Preview",
+    },
+  }
+end
+
 M.tsserver = function()
   set("n", "<leader>co", function()
     vim.lsp.buf.code_action {
@@ -477,68 +488,6 @@ function M.regexplainer()
     show_split = "<leader>rs",
     hide = "<leader>rq",
   }
-end
-
--- ZK
-function M.zk()
-  set("n", "gd", vim.lsp.buf.definition, { desc = "go to zk note" })
-  -- set("n", "<CR>", function()
-  --   local buf = vim.api.nvim_get_current_buf()
-  --   local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-  --   if ft == "markdown" then
-  --     vim.lsp.buf.definition()
-  --   elseif ft == "qf" then
-  --     vim.cmd("cc! " .. vim.fn.line ".")
-  --   end
-  -- end, { desc = "go to zk note" })
-
-  -- Create a new note after asking for its title.
-  set("n", "<leader>znn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", { desc = "create a new zk note" })
-  set(
-    "n",
-    "<leader>znt",
-    "<Cmd>ZkNew { dir='todo', title = vim.fn.input('Title: ') }<CR>",
-    { desc = "create a new zk todo" }
-  )
-  set(
-    "n",
-    "<leader>znj",
-    "<Cmd>ZkNew { dir='journal' }<CR>",
-    { desc = "create a new zk journal entry (or open if existed)" }
-  )
-  set(
-    "n",
-    "<leader>zni",
-    "<Cmd>ZkNew { dir='ideas', title = vim.fn.input('Title: ') }<CR>",
-    { desc = "create a new zk ideas" }
-  )
-
-  -- Open notes.
-  set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", { desc = "open zk notes" })
-  -- Open notes associated with the selected tags.
-  set("n", "<leader>zt", "<Cmd>ZkTags<CR>", { desc = "open notes zk associated with the selected tags" })
-  -- Search for the notes matching a given query.
-  set(
-    "n",
-    "<leader>zf",
-    "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
-    { desc = "search for the zk notes matching a given query" }
-  )
-  -- Search for the notes matching the current visual selection.
-  set(
-    "v",
-    "<leader>zf",
-    ":'<,'>ZkMatch<CR>",
-    { desc = "search for the zk notes matching the current visual selection" }
-  )
-
-  -- Open notes linking to the current buffer.
-  set("n", "<leader>zb", "<Cmd>ZkBacklinks<CR>", { desc = "open notes linking to the current buffer" })
-  -- Open notes linked by the current buffer.
-  set("n", "<leader>zl", "<Cmd>ZkLinks<CR>", { desc = "open notes linked by the current buffer" })
-
-  -- Push the notes
-  set("n", "<leader>zp", "<Cmd>!zk push<CR>", { desc = "push zk notes to github repo" })
 end
 
 -- Rest

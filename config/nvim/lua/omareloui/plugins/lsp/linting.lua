@@ -21,7 +21,8 @@ return {
       markdown = { "markdownlint", "cspell" },
       sh = { "shellcheck", "cspell" },
       lua = { "luacheck", "cspell" },
-      text = { "text" },
+      text = { "cspell" },
+      dockerfile = { "hadolint", "cspell" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

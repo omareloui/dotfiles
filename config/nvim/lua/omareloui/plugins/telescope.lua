@@ -1,4 +1,4 @@
-local M = {
+return {
   "nvim-telescope/telescope.nvim",
   branch = "0.1.x",
   init = require("omareloui.config.mappings").telescope,
@@ -12,75 +12,64 @@ local M = {
       end,
     },
   },
+
+  config = function()
+    local present, telescope = pcall(require, "telescope")
+
+    if not present then
+      return
+    end
+
+    local trouble = require "trouble.providers.telescope"
+
+    local options = {
+      defaults = {
+        vimgrep_arguments = {
+          "rg",
+          "-L",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+        },
+        prompt_prefix = "   ",
+        selection_caret = "  ",
+        entry_prefix = "  ",
+        selection_strategy = "reset",
+        sorting_strategy = "ascending",
+        layout_strategy = "horizontal",
+        layout_config = {
+          horizontal = {
+            prompt_position = "top",
+            preview_width = 0.55,
+            results_width = 0.8,
+          },
+          vertical = {
+            mirror = false,
+          },
+          width = 0.87,
+          height = 0.80,
+          preview_cutoff = 120,
+        },
+        file_sorter = require("telescope.sorters").get_fuzzy_file,
+        file_ignore_patterns = { "node_modules", ".*%.git/.*$" },
+        generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+        path_display = { "truncate" },
+        color_devicons = true,
+        mappings = {
+          n = {
+            ["q"] = require("telescope.actions").close,
+            ["<C-q>"] = trouble.open_with_trouble,
+          },
+          i = {
+            ["<C-q>"] = trouble.open_with_trouble,
+          },
+        },
+      },
+    }
+
+    telescope.setup(options)
+  end,
 }
-
-M.config = function()
-  local present, telescope = pcall(require, "telescope")
-
-  if not present then
-    return
-  end
-
-  local options = {
-    defaults = {
-      vimgrep_arguments = {
-        "rg",
-        "-L",
-        "--color=never",
-        "--no-heading",
-        "--with-filename",
-        "--line-number",
-        "--column",
-        "--smart-case",
-      },
-      prompt_prefix = "   ",
-      selection_caret = "  ",
-      entry_prefix = "  ",
-      -- initial_mode = "insert",
-      selection_strategy = "reset",
-      sorting_strategy = "ascending",
-      layout_strategy = "horizontal",
-      layout_config = {
-        horizontal = {
-          prompt_position = "top",
-          preview_width = 0.55,
-          results_width = 0.8,
-        },
-        vertical = {
-          mirror = false,
-        },
-        width = 0.87,
-        height = 0.80,
-        preview_cutoff = 120,
-      },
-      -- file_sorter = require("telescope.sorters").get_fuzzy_file,
-      file_ignore_patterns = { "node_modules", ".*%.git/.*$" },
-      -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-      path_display = { "truncate" },
-      -- winblend = 0,
-      -- border = {},
-      color_devicons = true,
-      -- set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-      -- file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-      -- grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-      -- qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-      -- -- Developer configurations: Not meant for general override
-      -- buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-      mappings = {
-        n = { ["q"] = require("telescope.actions").close },
-      },
-    },
-
-    -- extensions = {
-    --   file_browser = {
-    --     hijack_netrw = true,
-    --   },
-  }
-
-  telescope.setup(options)
-
-  -- load extensions
-  -- telescope.load_extension "file_browser"
-end
-
-return M

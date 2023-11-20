@@ -208,6 +208,12 @@ M.tsserver = function()
   end, { desc = "Remove Unused Imports" })
 end
 
+M.elixir = function()
+  set("n", "<leader>fp", "<Cmd>ElixirFromPipe<CR>", { desc = "Convert pipe operator to nested expressions" })
+  set("n", "<leader>tp", "<Cmd>ElixirToPipe<CR>", { desc = "Convert nested expressions to the pipe operator" })
+  set("v", "<leader>em", "<Cmd>ElixirExpandMacro<CR>", { desc = "Expand macro" })
+end
+
 M.lspsaga = function()
   set("n", "gh", "<Cmd>Lspsaga finder ref<CR>", { silent = true })
 
@@ -235,6 +241,60 @@ end
 
 local telescope_lsp = function()
   set("n", "<leader>dl", "<Cmd>Telescope diagnostics<CR>", { desc = "List all diagnostics", buffer = true })
+end
+
+M.trouble = function()
+  return {
+    {
+      "<leader>xx",
+      function()
+        require("trouble").toggle()
+      end,
+      desc = "Toggle trouble",
+    },
+    {
+      "<leader>xw",
+      function()
+        require("trouble").toggle "workspace_diagnostics"
+      end,
+      desc = "Toggle workspace diagnostics (Trouble)",
+    },
+    {
+      "<leader>xd",
+      function()
+        require("trouble").toggle "document_diagnostics"
+      end,
+      desc = "Toggle document diagnostics (Trouble)",
+    },
+    {
+      "[q",
+      function()
+        if require("trouble").is_open() then
+          require("trouble").previous { skip_groups = true, jump = true }
+        else
+          local ok, err = pcall(vim.cmd.cprev)
+          if not ok then
+            vim.notify(err, vim.log.levels.ERROR)
+          end
+        end
+      end,
+      desc = "Previous trouble/quickfix item",
+    },
+    {
+      "]q",
+      function()
+        if require("trouble").is_open() then
+          require("trouble").next { skip_groups = true, jump = true }
+        else
+          local ok, err = pcall(vim.cmd.cnext)
+          if not ok then
+            vim.notify(err, vim.log.levels.ERROR)
+          end
+        end
+      end,
+      desc = "Next trouble/quickfix item",
+    },
+  }
 end
 
 -- Formatting

@@ -10,19 +10,19 @@ return {
     end
 
     lint.linters_by_ft = {
-      javascript = { "eslint_d", "cspell" },
-      typescript = { "eslint_d", "cspell" },
-      vue = { "eslint_d", "cspell" },
-      svelte = { "eslint_d", "cspell" },
-      javascriptreact = { "eslint_d", "cspell" },
-      typescriptreact = { "eslint_d", "cspell" },
       astro = { "eslint_d", "cspell" },
+      dockerfile = { "hadolint", "cspell" },
       gitcommit = { "gitlint", "cspell" },
+      javascript = { "eslint_d", "cspell" },
+      javascriptreact = { "eslint_d", "cspell" },
+      lua = { "luacheck", "cspell" },
       markdown = { "markdownlint", "cspell" },
       sh = { "shellcheck", "cspell" },
-      lua = { "luacheck", "cspell" },
+      svelte = { "eslint_d", "cspell" },
       text = { "cspell" },
-      dockerfile = { "hadolint", "cspell" },
+      typescript = { "eslint_d", "cspell" },
+      typescriptreact = { "eslint_d", "cspell" },
+      vue = { "eslint_d", "cspell" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

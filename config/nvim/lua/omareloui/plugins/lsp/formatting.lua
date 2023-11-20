@@ -15,9 +15,8 @@ return {
         timeout_ms = 500,
       },
 
-      -- TODO: add deno_fmt
       formatters_by_ft = {
-        asrto = { "prettierd" },
+        astro = { "prettierd" },
         css = { "prettierd" },
         graphql = { "prettierd" },
         html = { "prettierd" },

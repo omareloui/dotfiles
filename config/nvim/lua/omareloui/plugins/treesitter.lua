@@ -47,9 +47,13 @@ return {
         highlight = { enable = true, additional_vim_regex_highlighting = true },
         indent = { enable = true },
         ensure_installed = {
+          "astro",
           "bash",
           "diff",
           "dockerfile",
+          "eex",
+          "elixir",
+          "heex",
           "html",
           "javascript",
           "jsdoc",

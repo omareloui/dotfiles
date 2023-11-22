@@ -165,6 +165,12 @@ M.lsp = function(buffer_number)
   set("n", "<leader>lwl", l.buf.list_workspace_folders, { desc = "List lsp workspace folders", buffer = buffer_number })
 
   set("n", "<leader>rs", "<Cmd>LspRestart<CR>", { desc = "Restart the lsp server", buffer = buffer_number })
+  set(
+    "n",
+    "<leader>v",
+    "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>",
+    { desc = "Restart the lsp server", buffer = buffer_number }
+  )
 end
 
 M.rust_tools = function(bufnr)

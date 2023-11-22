@@ -48,6 +48,7 @@ end
 
 set("n", "<C-s>", "<Cmd>up<CR>", { desc = "Save buffer" })
 set("n", "<leader>w", "<Cmd>up<CR>", { desc = "Save buffer" })
+set("n", "<leader>nf", "<Cmd>noa up<CR>", { desc = "Save buffer without formatting" })
 
 set("n", "<leader>q", function()
   vim.schedule(function()

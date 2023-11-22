@@ -8,7 +8,8 @@ return {
     "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
     "rafamadriz/friendly-snippets",
-    { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+    "Exafunction/codeium.nvim",
+    { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
   },
 
   config = function()
@@ -48,8 +49,8 @@ return {
             nvim_lua = "api",
             luasnip = "snip",
             path = "path",
-            buffer = "buf",
             spell = "spell",
+            codeium = "codeium",
           }
           vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
           vim_item.menu = string.format("[%s]", menu[entry.source.name])
@@ -59,6 +60,7 @@ return {
       },
       mapping = cmp.mapping.preset.insert(require("omareloui.config.mappings").cmp(cmp)),
       sources = {
+        { name = "codeium", group_index = 1, priority = 100 },
         {
           name = "nvim_lsp",
           entry_filter = function(entry)

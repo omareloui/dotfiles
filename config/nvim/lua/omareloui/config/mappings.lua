@@ -488,12 +488,6 @@ end
 
 -- Snippets
 M.snippets = function()
-  set(
-    "n",
-    "<leader><leader>s",
-    "<Cmd>source ~/.config/nvim/lua/omareloui/config/snippets/init.lua<CR>",
-    { desc = "source the snippets file" }
-  )
   set({ "i", "s" }, "<C-j>", function()
     local ls = require "luasnip"
     if ls.expand_or_jumpable() then

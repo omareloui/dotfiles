@@ -1,7 +1,5 @@
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
-  init = require("omareloui.config.mappings").telescope,
   dependencies = {
     "nvim-lua/plenary.nvim",
     {
@@ -71,5 +69,25 @@ return {
     }
 
     telescope.setup(options)
+
+    local set = require("omareloui.util.keymap").set
+
+    -- stylua: ignore start
+    set("<leader>ff", "<Cmd>Telescope find_files follow=true hidden=true<CR>", "Find files")
+    set("<leader>fa", "<Cmd>Telescope find_files follow=true hidden=true no_ignore=true<CR>", "Find all")
+    set("<leader>fo", "<Cmd>Telescope oldfiles<CR>", "Find in recent opened files")
+    set("<leader>fw", "<Cmd>Telescope live_grep<CR>", "Live grep")
+    set("<leader>fb", "<Cmd>Telescope buffers<CR>", "Search in buffers")
+    set("<leader>fh", "<Cmd>Telescope help_tags<CR>", "Find in help tags")
+    set("<leader>fk", "<Cmd>Telescope keymaps<CR>", "Show key mappings")
+    set("<leader>fn", "<Cmd>Telescope file_browser files=false hide_parent_dir=true<CR>", "Open file browser")
+    set("<leader>fr", "<Cmd>Telescope file_browser cwd=~/repos<CR>", "Open all repos")
+    set("<leader>ft", "<Cmd>Telescope file_browser hidden=true repect_gitignore=false collapse_dirs=true<CR>", "Open file browser")
+    -- stylua: ignore end
+
+    set("<leader>gs", "<Cmd>Telescope git_status<CR>", "Git status")
+
+    local wk = require "which-key"
+    wk.register({ f = "+find" }, { prefix = "<leader>" })
   end,
 }

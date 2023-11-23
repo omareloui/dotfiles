@@ -1,11 +1,19 @@
 return {
   "nguyenvukhang/nvim-toggler",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-  init = require("omareloui.config.mappings").toggler,
+  keys = {
+    {
+      "<leader>i",
+      function()
+        require("nvim-toggler").toggle()
+      end,
+      desc = "Toggle the cursor word (eg. from true to false)",
+      mode = { "n", "v" },
+    },
+  },
   opts = {
     remove_default_keybinds = true,
     inverses = {
-      ["true"] = "false",
       ["True"] = "False",
       ["vim"] = "emacs",
     },

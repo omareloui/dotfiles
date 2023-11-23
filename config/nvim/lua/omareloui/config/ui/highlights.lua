@@ -1,9 +1,9 @@
 local c = require "omareloui.config.ui.palette"
 local set = vim.api.nvim_set_hl
 
-M = {}
+local M = {}
 
-M.general = function()
+function M.general()
   set(0, "Comment", { default = true, italic = true })
   set(0, "NonText", { fg = c.surface1 })
 
@@ -20,11 +20,11 @@ M.general = function()
   set(0, "Folded", { fg = c.subtext1, bg = c.crust })
 end
 
-M.cmp = function()
+function M.cmp()
   set(0, "CmpItemMenu", { fg = c.subtext0 })
 end
 
-M.indent_backline = function()
+function M.indent_backline()
   set(0, "RainbowRed", { fg = c.red })
   set(0, "RainbowYellow", { fg = c.light_yellow })
   set(0, "RainbowBlue", { fg = c.light_blue })
@@ -34,7 +34,7 @@ M.indent_backline = function()
   set(0, "RainbowCyan", { fg = c.cyan })
 end
 
-M.gitsings = function()
+function M.gitsings()
   set(0, "DiffAdd", { fg = c.green })
   set(0, "DiffAdded", { fg = c.green })
   set(0, "DiffChange", { fg = c.blue })

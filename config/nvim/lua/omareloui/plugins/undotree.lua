@@ -1,5 +1,5 @@
 return {
   "mbbill/undotree",
-  init = require("omareloui.config.mappings").undotree,
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  keys = { { "<leader>u", "<Cmd>UndotreeToggle<CR>", desc = "Toggle undo tree" } },
 }

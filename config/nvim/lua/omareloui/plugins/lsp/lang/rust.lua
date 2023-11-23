@@ -1,13 +1,15 @@
 return {
   setup = function(lspconfig, on_attach, capabilities)
     lspconfig["rust_analyzer"].setup {
-      on_attach = on_attach,
+      on_attach = function(_, bufnr)
+        on_attach(_, bufnr)
+        local set = require("omareloui.util.keymap").set
+
+        set("K", "<Cmd>RustHoverActions<CR>", "Hover Actions (Rust)", { buffer = bufnr })
+        set("<leader>ca", "<Cmd>RustCodeAction<CR>", "Code Action (Rust)", { buffer = bufnr })
+      end,
+
       capabilities = capabilities,
-      keys = {
-        { "K", "<cmd>RustHoverActions<cr>", desc = "Hover Actions (Rust)" },
-        { "<leader>cR", "<cmd>RustCodeAction<cr>", desc = "Code Action (Rust)" },
-        { "<leader>dr", "<cmd>RustDebuggables<cr>", desc = "Run Debuggables (Rust)" },
-      },
       settings = {
         ["rust-analyzer"] = {
           cargo = {

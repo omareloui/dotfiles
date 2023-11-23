@@ -34,7 +34,13 @@ return {
       },
     }
 
-    require("omareloui.config.mappings").conform(conform, opts.format_on_save)
+    local set = require("omareloui.util.keymap").set
+    set("<leader>mp", function()
+      conform.format(opts.format_on_save)
+    end, "Make pretty", { mode = { "v", "n" } })
+
+    local wk = require "which-key"
+    wk.register({ m = "+make", n = "+no" }, { prefix = "<leader>" })
 
     conform.setup(opts)
   end,

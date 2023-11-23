@@ -10,6 +10,15 @@ return {
     "rafamadriz/friendly-snippets",
     "Exafunction/codeium.nvim",
     { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
+    {
+      "Saecki/crates.nvim",
+      event = { "BufRead Cargo.toml" },
+      opts = {
+        src = {
+          cmp = { enabled = true },
+        },
+      },
+    },
   },
 
   config = function()
@@ -30,6 +39,10 @@ return {
       return info
     end
 
+    local function ignore_text(entry)
+      return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
+    end
+
     local options = {
       experimental = { ghost_text = true },
       window = {
@@ -44,30 +57,38 @@ return {
       formatting = {
         format = function(entry, vim_item)
           local icons = require("omareloui.config.ui.icons").kinds
-          -- local menu = {
-          --   nvim_lsp = "LSP",
-          --   nvim_lua = "api",
-          --   luasnip = "snip",
-          --   path = "path",
-          --   spell = "spell",
-          --   codeium = "codeium",
-          -- }
-          -- vim_item.menu = string.format("[%s]", menu[entry.source.name])
+          local menu = {
+            nvim_lsp = "LSP",
+            nvim_lua = "api",
+            luasnip = "snip",
+            path = "path",
+            spell = "spell",
+            codeium = "codeium",
+            buffer = "file",
+          }
+          vim_item.menu = string.format("[%s]", menu[entry.source.name])
           vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
           require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
           return vim_item
         end,
       },
-      mapping = cmp.mapping.preset.insert(require("omareloui.config.mappings").cmp(cmp)),
-      sources = cmp.config.sources({
-        { name = "codeium", priority = 100 },
-        { name = "nvim_lsp" },
+      mapping = cmp.mapping.preset.insert {
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<C-y>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
+      },
+      sources = cmp.config.sources {
+        { name = "codeium" },
+        { name = "nvim_lsp", filter = ignore_text },
         { name = "nvim_lua" },
         { name = "crates" },
         { name = "luasnip" },
         { name = "path" },
         { name = "spell" },
-      }, { name = "buffer", keyword_length = 3 }),
+        { name = "buffer", keyword_length = 3 },
+      },
     }
 
     require("omareloui.config.ui.highlights").cmp()

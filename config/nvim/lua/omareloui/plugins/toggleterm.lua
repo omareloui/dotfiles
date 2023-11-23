@@ -7,8 +7,6 @@ M.config = function()
     return
   end
 
-  require("omareloui.config.mappings").terminal()
-
   local opts = {
     size = 20,
     open_mapping = [[<c-\>]],
@@ -35,7 +33,9 @@ M.config = function()
   toggleterm.setup(opts)
 
   function _G.set_terminal_keymaps()
-    require("omareloui.config.mappings").terminal_when_active()
+    local set_buf_keymap = vim.api.nvim_buf_set_keymap
+    set_buf_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], { desc = "Close the terminal" })
+    set_buf_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], { desc = "Close the terminal" })
   end
 
   vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
@@ -51,6 +51,9 @@ M.config = function()
   function _LAZYGIT_TOGGLE()
     lazygit:toggle()
   end
+
+  local set = require("omareloui.util.keymap").set
+  set("<leader>gg", "<Cmd>lua _LAZYGIT_TOGGLE()<CR>", "Open lazygit")
 end
 
 return M

@@ -34,6 +34,7 @@ return {
       end,
     })
 
-    require("omareloui.config.mappings").lint(lint)
+    local set = require("omareloui.util.keymap").set
+    set("<leader>ll", lint.try_lint, "Trigger linting for current file.")
   end,
 }

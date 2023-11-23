@@ -4,5 +4,8 @@ return {
   build = false,
   cmd = "Spectre",
   opts = { open_cmd = "noswapfile vnew" },
-  keys = require("omareloui.config.mappings").spectre(),
+  keys = {
+    -- stylua: ignore
+    { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+  },
 }

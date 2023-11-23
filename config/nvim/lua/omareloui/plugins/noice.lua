@@ -50,6 +50,7 @@ return {
               { find = "%d+ fewer lines" },
               { find = "%d+ more lines" },
               { find = "%d+ lines yanked" },
+              { find = "%d+ substitutions on %d+ lines" },
             },
           },
           view = "mini",

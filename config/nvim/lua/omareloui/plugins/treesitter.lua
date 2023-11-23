@@ -1,5 +1,3 @@
-local text_objects_mappings = require("omareloui.config.mappings").treesitter_text_objects
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -36,10 +34,6 @@ return {
       },
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    keys = {
-      { text_objects_mappings.node_incremental, desc = "Increment selection" },
-      { text_objects_mappings.node_decremental, desc = "Decrement selection", mode = "x" },
-    },
     config = function()
       local opts = {
         auto_install = true,
@@ -81,28 +75,48 @@ return {
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = text_objects_mappings.init_selection,
-            node_incremental = text_objects_mappings.node_incremental,
-            node_decremental = text_objects_mappings.node_decremental,
+            init_selection = "<C-Space><C-Space>",
+            node_incremental = "<C-Space>",
+            node_decremental = "<BS>",
             scope_incremental = false,
           },
         },
         textobjects = {
           move = {
             enable = true,
-            goto_next_start = text_objects_mappings.goto_next_start,
-            goto_next_end = text_objects_mappings.goto_next_end,
-            goto_previous_start = text_objects_mappings.goto_previous_start,
-            goto_previous_end = text_objects_mappings.goto_previous_end,
+            goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+            goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+            goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
           },
           select = {
             enable = true,
-            keymaps = text_objects_mappings.select,
+            keymaps = {
+              ["af"] = { query = "@function.outer", desc = "select outer part of a function" },
+              ["if"] = { query = "@function.inner", desc = "select inner part of a function" },
+
+              ["ic"] = { query = "@class.inner", desc = "select inner part of a class" },
+              ["ac"] = { query = "@class.outer", desc = "select outer part of a class" },
+
+              ["il"] = { query = "@loop.inner", desc = "select inner part of a loop" },
+              ["al"] = { query = "@loop.outer", desc = "select outer part of a loop" },
+
+              ["ii"] = { query = "@conditional.inner", desc = "select inner part of a conditional" },
+              ["ai"] = { query = "@conditional.outer", desc = "select outer part of a conditional" },
+
+              ["ib"] = { query = "@block.inner", desc = "select inner part of a block" },
+              ["ab"] = { query = "@block.outer", desc = "select outer part of a block" },
+
+              ["ir"] = { query = "@parameter.inner", desc = "select inner part of a parameter" },
+              ["ar"] = { query = "@parameter.outer", desc = "select outer part of a parameter" },
+            },
           },
           swap = {
             enable = true,
-            swap_next = text_objects_mappings.swap.next,
-            swap_previous = text_objects_mappings.swap.prev,
+            swap_next = { ["<leader>a"] = { query = "@parameter.inner", desc = "swap with the next parameter" } },
+            swap_previous = {
+              ["<leader>A"] = { query = "@parameter.inner", desc = "swap with the previous parameter" },
+            },
           },
         },
       }

@@ -3,5 +3,22 @@ return {
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   cmd = { "TodoTrouble", "TodoTelescope" },
   config = true,
-  keys =  require("omareloui.config.mappings").todo_comments
+  keys = {
+    {
+      "]t",
+      function()
+        require("todo-comments").jump_next()
+      end,
+      desc = "Next todo comment",
+    },
+    {
+      "[t",
+      function()
+        require("todo-comments").jump_prev()
+      end,
+      desc = "Previous todo comment",
+    },
+    { "<leader>st", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
+    { "<leader>sT", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+  },
 }

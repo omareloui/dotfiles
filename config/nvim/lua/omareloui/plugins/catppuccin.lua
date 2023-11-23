@@ -13,7 +13,7 @@ M.config = function()
   end
 
   local opts = {
-    -- transparent_background = true,
+    transparent_background = true,
     flavour = "mocha",
     integrations = {
       aerial = true,

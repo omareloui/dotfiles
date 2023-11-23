@@ -59,21 +59,15 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert(require("omareloui.config.mappings").cmp(cmp)),
-      sources = {
-        { name = "codeium", group_index = 1, priority = 100 },
-        {
-          name = "nvim_lsp",
-          entry_filter = function(entry)
-            return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
-          end,
-        },
+      sources = cmp.config.sources({
+        { name = "codeium", priority = 100 },
+        { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "crates" },
         { name = "luasnip" },
         { name = "path" },
         { name = "spell" },
-        { name = "buffer", keyword_length = 5 },
-      },
+      }, { name = "buffer", keyword_length = 3 }),
     }
 
     require("omareloui.config.ui.highlights").cmp()

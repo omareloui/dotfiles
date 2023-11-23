@@ -44,16 +44,16 @@ return {
       formatting = {
         format = function(entry, vim_item)
           local icons = require("omareloui.config.ui.icons").kinds
-          local menu = {
-            nvim_lsp = "LSP",
-            nvim_lua = "api",
-            luasnip = "snip",
-            path = "path",
-            spell = "spell",
-            codeium = "codeium",
-          }
+          -- local menu = {
+          --   nvim_lsp = "LSP",
+          --   nvim_lua = "api",
+          --   luasnip = "snip",
+          --   path = "path",
+          --   spell = "spell",
+          --   codeium = "codeium",
+          -- }
+          -- vim_item.menu = string.format("[%s]", menu[entry.source.name])
           vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-          vim_item.menu = string.format("[%s]", menu[entry.source.name])
           require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
           return vim_item
         end,

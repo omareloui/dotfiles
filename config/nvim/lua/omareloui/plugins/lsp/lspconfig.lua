@@ -42,6 +42,8 @@ return {
       return
     end
 
+    require("lspconfig.ui.windows").default_options.border = "rounded"
+
     local on_attach = function(_, bufnr)
       require("omareloui.config.mappings").lsp(bufnr)
     end

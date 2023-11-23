@@ -16,9 +16,9 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-  { import = 'omareloui.plugins' },
-  { import = 'omareloui.plugins.lsp' },
-})
+require("lazy").setup({
+  { import = "omareloui.plugins" },
+  { import = "omareloui.plugins.lsp" },
+}, { ui = { border = "rounded" } })
 
 require "omareloui.config"

@@ -31,15 +31,13 @@ return {
   },
 
   config = function()
-    local present, yanky = pcall(require, "yanky")
+    local ok, yanky = pcall(require, "yanky")
 
-    if not present then
-      return
-    end
+    -- stylua: ignore
+    if not ok then return end
 
     local opts = {
       highlight = { timer = 60 },
-
       system_clipboard = {
         sync_with_ring = true,
       },

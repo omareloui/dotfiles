@@ -45,3 +45,6 @@ config/nvim/lua/omareloui/plugins/lualine.lua
 config/nvim/lua/omareloui/ui/palette.lua
 config/wlogout/style.css
 themes/current.sh
+
+# Ignore files or folders
+.ignore*

@@ -11,7 +11,6 @@ return {
       },
     },
     opts = {
-      background_colour = "#000000",
       timeout = 3000,
       render = "compact",
       max_height = function()
@@ -30,6 +29,7 @@ return {
 
   {
     "folke/noice.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       lsp = {
@@ -65,9 +65,13 @@ return {
           opts = { skip = "true" },
         },
       },
+      cmdline = {
+        enabled = false,
+        view = "cmdline",
+      },
       presets = {
+        -- command_palette = false,
         bottom_search = true,
-        command_palette = true,
         long_message_to_split = true,
         inc_rename = true,
         lsp_doc_border = true,

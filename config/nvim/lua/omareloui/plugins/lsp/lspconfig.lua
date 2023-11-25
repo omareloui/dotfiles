@@ -68,7 +68,7 @@ return {
       set("<leader>lwr", l.buf.remove_workspace_folder, "Remove lsp workspace folder")
       set("<leader>lwl", l.buf.list_workspace_folders, "List lsp workspace folders")
 
-      set("<leader>df", d.open_float, "Floating diagnostic")
+      set("<leader>?", d.open_float, "Floating diagnostic")
       set("<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", "Show buffer diagnostics")
       set("[d", d.goto_prev, "Go to previous diagnostic")
       set("]d", d.goto_next, "Go to next diagnostic")
@@ -76,7 +76,6 @@ return {
       local wk = require "which-key"
       wk.register({
         c = "+code actions",
-        d = "+dignostics",
         r = "+rename and restart",
         l = "+lsp and linters",
       }, { prefix = "<leader>" })

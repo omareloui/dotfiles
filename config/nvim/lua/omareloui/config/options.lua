@@ -8,57 +8,56 @@ if HOME ~= nil then
   undodir = HOME .. "/.cache/nvim/undodir"
 end
 
-local options = {
-  autowrite = true,
-  guifont = { "", ":h10" },
-  swapfile = false,
-  colorcolumn = { "80", "120" },
-  -- cursorcolumn = true,
-  cursorline = true,
-  foldlevel = 99,
-  foldlevelstart = -1,
-  foldenable = true,
-  foldcolumn = "1",
-  hlsearch = false,
-  linebreak = true,
-  list = true,
-  -- conceallevel = 2,
-  listchars = { tab = "» ", lead = "·", trail = "·", eol = "↲", nbsp = "☠" },
-  relativenumber = true,
-  scrolloff = 4,
-  sidescrolloff = 4,
-  -- spell = true,
-  -- spelllang = { "en_us" },
-  -- spelloptions = "camel",
-  undodir = undodir,
-  wrap = false,
-  laststatus = 3, -- global statusline
-  showmode = false,
-  expandtab = true,
-  shiftwidth = 2,
-  smartindent = true,
-  softtabstop = 2,
-  tabstop = 2,
-  fillchars = { eob = " ", foldopen = "", foldclose = "" },
-  ignorecase = true,
-  mouse = "",
-  smartcase = true,
-  number = true,
-  numberwidth = 2,
-  ruler = false,
-  signcolumn = "yes",
-  splitbelow = true,
-  splitright = true,
-  termguicolors = true,
-  undofile = true,
-  timeoutlen = 300,
-  updatetime = 200,
-  diffopt = "vertical",
-}
+local o = vim.opt
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
-end
+o.autowrite = true
+o.guifont = { "", ":h10" }
+o.swapfile = false
+o.colorcolumn = { "80", "120" }
+--o.cursorcolumn = true
+o.cursorline = true
+
+o.foldcolumn = "0"
+o.foldlevel = 99
+o.foldlevelstart = -1
+o.foldenable = true
+
+o.hlsearch = false
+o.linebreak = true
+o.list = true
+--o.conceallevel = 2
+o.listchars = { tab = "» ", lead = "·", trail = "·", eol = "↲", nbsp = "☠" }
+o.relativenumber = true
+o.scrolloff = 4
+o.sidescrolloff = 4
+--o.spell = true
+--o.spelllang = { "en_us" }
+--o.spelloptions = "camel"
+o.undodir = undodir
+o.wrap = false
+o.laststatus = 3 -- global statusline
+o.showmode = false
+o.expandtab = true
+o.shiftwidth = 2
+o.smartindent = true
+o.softtabstop = 2
+o.tabstop = 2
+o.fillchars = { eob = " ", foldopen = "", foldclose = "" }
+o.ignorecase = true
+o.mouse = ""
+o.smartcase = true
+o.number = true
+o.numberwidth = 2
+o.ruler = false
+o.signcolumn = "yes"
+o.splitbelow = true
+o.splitright = true
+o.termguicolors = true
+o.undofile = true
+o.timeoutlen = 300
+o.updatetime = 200
+o.diffopt = "vertical"
+o.cmdheight = 1
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line

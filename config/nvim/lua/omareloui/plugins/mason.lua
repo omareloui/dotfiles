@@ -44,7 +44,6 @@ return {
         "hadolint",
         "luacheck",
         "markdownlint",
-        -- "next-ls",
         "prettier",
         "prettierd",
         "shellcheck",

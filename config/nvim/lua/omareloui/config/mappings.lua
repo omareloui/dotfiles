@@ -8,9 +8,6 @@ set("<C-j>", "<Down>", "Move down", { nowait = true, mode = { "i" } })
 set("<C-k>", "<Up>", "Move up", { nowait = true, mode = { "i" } })
 set("<C-l>", "<Right>", "Move right", { nowait = true, mode = { "i" } })
 
-set("<C-b>", "<Esc>^i>", "Move to the beginning of the line", { mode = { "i" } })
-set("<C-e>", "<End>", "Move to the end of the line", { mode = { "i" } })
-
 set("k", "v:count == 0 ? 'gk' : 'k'", "Move up", { expr = true, silent = true, mode = { "n", "x" } })
 set("j", "v:count == 0 ? 'gj' : 'j'", "Move down", { expr = true, silent = true, mode = { "n", "x" } })
 set("<Up>", "v:count == 0 ? 'gk' : 'k'", "Move up", { expr = true, silent = true, mode = { "n", "x" } })
@@ -27,10 +24,8 @@ set("<C-s>", "<Cmd>up<CR>", "Save buffer")
 set("<leader>w", "<Cmd>up<CR>", "Save buffer")
 set("<leader>nf", "<Cmd>noa up<CR>", "Save buffer without formatting")
 
-set("<leader>q", function()
-  -- stylua: ignore
-  vim.schedule(function() vim.cmd "bd" end)
-end, "Close buffer", { silent = true })
+-- stylua: ignore
+set("<leader>q", function() vim.schedule(function() vim.cmd "bd" end) end, "Close buffer", { silent = true })
 
 -- Clipboard
 set("Y", "y$", "Yank to the end of the line", { remap = true })
@@ -38,7 +33,6 @@ set("<leader>y", '"+y', "Yank to the system clipboard", { remap = true, mode = {
 set("<leader>Y", '"+Y', "Yank to the system clipboard", { remap = true })
 set("<leader>p", '"+p', "Paste from the system clipboard", { remap = true, mode = { "n", "v" } })
 set("<leader>P", '"+P', "Paste from the system clipboard", { remap = true })
-
 set(
   "p",
   'p:let @+=@0<CR>:let @"=@0<CR>',
@@ -58,11 +52,11 @@ set("<leader>su", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Repla
 
 set("<leader>j", "<Cmd>m .+1<CR>==", "Move the line down")
 set("<leader>k", "<Cmd>m .-2<CR>==", "Move the line up")
-set("J", ":m '>+1<CR>gv=gv", "Move the line down", { mode = { "v" } })
 set("K", ":m '<-2<CR>gv=gv", "Move the line up", { mode = { "v" } })
+set("J", ":m '>+1<CR>gv=gv", "Move the line down", { mode = { "v" } })
 
-set("<A-j>", "yyp", "Duplicate line down")
-set("<A-k>", "yyP", "Duplicate line up")
+set("<A-j>", '"dyy"dp', "Duplicate line down")
+set("<A-k>", '"dyy"dP', "Duplicate line up")
 
 -- Window
 set("<C-j>", "<C-w>j", "Go to down window")

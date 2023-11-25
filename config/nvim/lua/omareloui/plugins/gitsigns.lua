@@ -11,14 +11,12 @@ return {
 
     local options = {
       signs = {
-        signs = {
-          add = { hl = "DiffAdd", text = "│" },
-          change = { hl = "DiffChange", text = "│" },
-          delete = { hl = "DiffDelete", text = "_" },
-          topdelete = { hl = "DiffDelete", text = "‾" },
-          changedelete = { hl = "DiffChangeDelete", text = "–" },
-          untracked = { hl = "DiffAdd" },
-        },
+        add = { hl = "DiffAdd", text = "│" },
+        change = { hl = "DiffChange", text = "│" },
+        delete = { hl = "DiffDelete", text = "_" },
+        topdelete = { hl = "DiffDelete", text = "‾" },
+        changedelete = { hl = "DiffChangeDelete", text = "–" },
+        untracked = { hl = "DiffAdd" },
       },
       current_line_blame = true,
       on_attach = function()

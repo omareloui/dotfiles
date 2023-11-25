@@ -1,14 +1,14 @@
 return {
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    lazy = true,
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts = {
       enable_autocmd = false,
     },
   },
   {
     "echasnovski/mini.comment",
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts = {
       options = {
         ignore_blank_line = true,

@@ -31,6 +31,12 @@ return {
   dependencies = "kevinhwang91/promise-async",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 
+  -- stylua: ignore
+  keys = {
+    { "zM", function() require("ufo").closeAllFolds() end, desc = "Close all folds" },
+    { "zR", function() require("ufo").openAllFolds() end, desc = "Open all folds" },
+  },
+
   config = function()
     local ok, ufo = pcall(require, "ufo")
 
@@ -42,13 +48,9 @@ return {
         return { "lsp", "indent" }
       end,
       close_fold_kinds = { "imports", "comment" },
-      open_fold_hl_timeout = 40,
+      open_fold_hl_timeout = 400,
       fold_virt_text_handler = virtual_text_handler,
     }
-
-    local set = require("omareloui.util.keymap").set
-    set("zM", require("ufo").closeAllFolds, "Close all folds")
-    set("zR", require("ufo").openAllFolds, "Open all folds")
 
     require("omareloui.config.ui.highlights").ufo()
 

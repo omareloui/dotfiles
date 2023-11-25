@@ -1,5 +1,6 @@
 return {
   "folke/trouble.nvim",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   cmd = { "TroubleToggle", "Trouble" },
   keys = {
     -- stylua: ignore start
@@ -39,7 +40,7 @@ return {
 
   config = function()
     local ok, trouble = pcall(require, "trouble")
-    
+
     -- stylua: ignore
     if not ok then return end
 

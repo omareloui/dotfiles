@@ -1,4 +1,4 @@
-read_globals = {
+globals = {
   "vim",
   "describe",
   "it",

@@ -1,7 +1,7 @@
 return {
   {
     "echasnovski/mini.ai",
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts = function()
       local ai = require "mini.ai"
       return {
@@ -61,15 +61,20 @@ return {
     end,
   },
 
-  { "echasnovski/mini.pairs", event = "VeryLazy", opts = {}, enabled = false },
+  {
+    "echasnovski/mini.pairs",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    opts = {},
+    enabled = false,
+  },
 
   {
     "echasnovski/mini.bracketed",
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts = {
       quickfix = { suffix = "", options = {} },
     },
   },
 
-  { "echasnovski/mini.operators", event = "VeryLazy", opts = {} },
+  { "echasnovski/mini.operators", event = { "BufReadPost", "BufWritePost", "BufNewFile" }, opts = {} },
 }

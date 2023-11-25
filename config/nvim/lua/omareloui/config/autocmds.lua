@@ -4,23 +4,23 @@ end
 
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = augroup("checktime"),
+  group = augroup "checktime",
   command = "checktime",
 })
 
 -- Resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
-  group = augroup("resize_splits"),
+  group = augroup "resize_splits",
   callback = function()
     local current_tab = vim.fn.tabpagenr()
-    vim.cmd("tabdo wincmd =")
+    vim.cmd "tabdo wincmd ="
     vim.cmd("tabnext " .. current_tab)
   end,
 })
 
 -- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
-  group = augroup("last_loc"),
+  group = augroup "last_loc",
   callback = function(event)
     local exclude = { "gitcommit" }
     local buf = event.buf
@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("close_with_q"),
+  group = augroup "close_with_q",
   pattern = {
     "PlenaryTestPopup",
     "help",
@@ -63,7 +63,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("wrap_spell"),
+  group = augroup "wrap_spell",
   pattern = { "gitcommit", "markdown" },
   callback = function()
     vim.opt_local.wrap = true
@@ -73,9 +73,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = augroup("auto_create_dir"),
+  group = augroup "auto_create_dir",
   callback = function(event)
-    if event.match:match("^%w%w+://") then
+    if event.match:match "^%w%w+://" then
       return
     end
     local file = vim.loop.fs_realpath(event.match) or event.match

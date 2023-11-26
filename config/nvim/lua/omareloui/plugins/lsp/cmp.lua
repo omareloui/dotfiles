@@ -89,8 +89,6 @@ return {
       sorting = defaults.sorting,
     }
 
-    -- require("omareloui.config.ui.highlights").cmp()
-
     cmp.setup(options)
   end,
 }

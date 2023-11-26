@@ -1,5 +1,11 @@
 return {
   "j-hui/fidget.nvim",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-  opts = {},
+  opts = {
+    notification = {
+      window = {
+        winblend = 0,
+      },
+    },
+  },
 }

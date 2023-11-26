@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
+    version = false,
     event = { "VeryLazy", "BufReadPost", "BufWritePost", "BufNewFile" },
     build = ":TSUpdate",
     init = function(plugin)
@@ -9,6 +9,22 @@ return {
       require "nvim-treesitter.query_predicates"
     end,
     dependencies = {
+      {
+        "HiPhish/rainbow-delimiters.nvim",
+        config = function()
+          local c = require "omareloui.config.ui.palette"
+          local set = vim.api.nvim_set_hl
+          set(0, "RainbowDelimiterRed", { fg = c.red })
+          set(0, "RainbowDelimiterYellow", { fg = c.light_yellow })
+          set(0, "RainbowDelimiterBlue", { fg = c.light_blue })
+          set(0, "RainbowDelimiterOrange", { fg = c.yellow })
+          set(0, "RainbowDelimiterGreen", { fg = c.light_green })
+          set(0, "RainbowDelimiterViolet", { fg = c.magenta })
+          set(0, "RainbowDelimiterCyan", { fg = c.cyan })
+
+          require("rainbow-delimiters.setup").setup {}
+        end,
+      },
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
         config = function()
@@ -40,6 +56,7 @@ return {
         autotag = { enable = true },
         highlight = { enable = true, additional_vim_regex_highlighting = true },
         indent = { enable = true },
+        rainbow = { enable = true },
         ensure_installed = {
           "astro",
           "bash",

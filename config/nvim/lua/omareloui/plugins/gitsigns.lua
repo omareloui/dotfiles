@@ -9,14 +9,7 @@ return {
     if not ok then return end
 
     local options = {
-      signs = {
-        add = { hl = "DiffAdd", text = "│" },
-        change = { hl = "DiffChange", text = "│" },
-        delete = { hl = "DiffDelete", text = "_" },
-        topdelete = { hl = "DiffDelete", text = "‾" },
-        changedelete = { hl = "DiffChangeDelete", text = "–" },
-        untracked = { hl = "DiffAdd" },
-      },
+      signs = { changedelete = { text = "–" } },
       current_line_blame = true,
       on_attach = function(buffer)
         local function set(lhs, rhs, desc, opts)
@@ -43,8 +36,6 @@ return {
         wk.register({ h = "+hunk", f = "+file" }, { prefix = "<leader>g" })
       end,
     }
-
-    require("omareloui.config.ui.highlights").gitsings()
 
     gs.setup(options)
   end,

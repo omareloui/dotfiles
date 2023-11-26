@@ -11,7 +11,7 @@ return {
     { "<A-3>", function() require("harpoon.ui").nav_file(3) end, desc = "Go to Harpoon file 3" },
     { "<A-4>", function() require("harpoon.ui").nav_file(4) end, desc = "Go to Harpoon file 4" },
     { "<A-h>", function() require("harpoon.ui").nav_prev() end, desc = "Go to previous Harpoon file" },
-    { "<A-h>", function() require("harpoon.ui").nav_next() end, desc = "Go to next Harpoon file" },
+    { "<A-l>", function() require("harpoon.ui").nav_next() end, desc = "Go to next Harpoon file" },
   },
 
   opts = {},

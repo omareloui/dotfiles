@@ -44,9 +44,4 @@ function M.gitsings()
   set(0, "DiffRemoved", { fg = c.red })
 end
 
-function M.ufo()
-  set(0, "UfoFoldedFg", { link = "Comment" })
-  set(0, "UfoFoldedBg", { link = "Folded" })
-end
-
 return M

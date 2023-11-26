@@ -64,12 +64,13 @@ set("<C-k>", "<C-w>k", "Go to up window")
 set("<C-h>", "<C-w>h", "Go to left window")
 set("<C-l>", "<C-w>l", "Go to right window")
 
+-- splits
 set("<leader>sv", "<Cmd>vsplit<CR>", "Split window vertically")
 set("<leader>sh", "<Cmd>split<CR>", "Split window horizontally")
 set("<leader>se", "<C-w>=", "Make the splits equal")
 set("<leader>sm", "<Cmd>MaximizerToggle<CR>", "Toggle maximizing the current window")
 
-set("<C-Up>", "<Cmd>resize +2<CR>", "Increase window height")
-set("<C-Down>", "<Cmd>resize -2<CR>", "Decrease window height")
-set("<C-Left>", "<Cmd>vertical resize -2<CR>", "Decrease window width")
-set("<C-Right>", "<Cmd>vertical resize +2<CR>", "Increase window width")
+set("<leader>s+", "<Cmd>resize +2<CR>", "Increase window height")
+set("<leader>s-", "<Cmd>resize -2<CR>", "Decrease window height")
+set("<leader>s>", "<Cmd>vertical resize +2<CR>", "Increase window width")
+set("<leader>s<", "<Cmd>vertical resize -2<CR>", "Decrease window width")

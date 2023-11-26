@@ -49,7 +49,7 @@ return {
       local l = vim.lsp
 
       local function set(lhs, rhs, desc, mode)
-        return require("omareloui.util.keymap").set(lhs, rhs, desc, { buffer = bufnr or 0, mode = mode })
+        return require("omareloui.util.keymap").set(lhs, rhs, desc, { mode = mode })
       end
 
       set("K", l.buf.hover, "Show documentation for what is under cursor")

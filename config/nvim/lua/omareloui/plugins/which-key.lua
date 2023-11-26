@@ -3,6 +3,7 @@ return {
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   config = function()
     local ok, wk = pcall(require, "which-key")
+
     -- stylua: ignore
     if not ok then return end
 
@@ -12,5 +13,11 @@ return {
       ["["] = "+previous",
       ["<leader>s"] = "+split",
     }
+
+    local has_plugin = require "omareloui.util.has_plugin"
+
+    if has_plugin "harpoon" then
+      wk.register({ h = "+harpoon" }, { prefix = "<leader>" })
+    end
   end,
 }

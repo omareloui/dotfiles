@@ -19,7 +19,20 @@ return {
       return
     end
 
-    local trouble = require "trouble.providers.telescope"
+    local has_trouble_plugin = require "omareloui.util.has_plugin" "trouble.nvim"
+
+    local mappings = {
+      n = {
+        ["q"] = require("telescope.actions").close,
+      },
+      i = {},
+    }
+
+    if has_trouble_plugin then
+      local trouble_provider = require "trouble.providers.telescope"
+      mappings.n["<C-q>"] = trouble_provider.open_with_trouble
+      mappings.i["<C-q>"] = trouble_provider.open_with_trouble
+    end
 
     local options = {
       defaults = {
@@ -57,15 +70,7 @@ return {
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
         path_display = { "truncate" },
         color_devicons = true,
-        mappings = {
-          n = {
-            ["q"] = require("telescope.actions").close,
-            ["<C-q>"] = trouble.open_with_trouble,
-          },
-          i = {
-            ["<C-q>"] = trouble.open_with_trouble,
-          },
-        },
+        mappings = mappings,
       },
     }
 

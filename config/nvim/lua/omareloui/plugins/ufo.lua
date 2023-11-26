@@ -14,7 +14,6 @@ local function virtual_text_handler(virtText, lnum, endLnum, width, truncate)
       local hlGroup = chunk[2]
       table.insert(newVirtText, { chunkText, hlGroup })
       chunkWidth = vim.fn.strdisplaywidth(chunkText)
-      -- str width returned from truncate() may less than 2nd argument, need padding
       if curWidth + chunkWidth < targetWidth then
         suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
       end
@@ -35,25 +34,14 @@ return {
   keys = {
     { "zM", function() require("ufo").closeAllFolds() end, desc = "Close all folds" },
     { "zR", function() require("ufo").openAllFolds() end, desc = "Open all folds" },
+    { "zK", function() require("ufo").peekFoldedLinesUnderCursor() end, desc = "Peek folds" },
   },
 
-  config = function()
-    local ok, ufo = pcall(require, "ufo")
-
-    -- stylua: ignore
-    if not ok then return end
-
-    local opts = {
-      provider_selector = function()
-        return { "lsp", "indent" }
-      end,
-      close_fold_kinds = { "imports", "comment" },
-      open_fold_hl_timeout = 400,
-      fold_virt_text_handler = virtual_text_handler,
-    }
-
-    require("omareloui.config.ui.highlights").ufo()
-
-    ufo.setup(opts)
-  end,
+  opts = {
+    provider_selector = function()
+      return { "lsp", "indent" }
+    end,
+    close_fold_kinds = { "imports", "comment" },
+    fold_virt_text_handler = virtual_text_handler,
+  },
 }

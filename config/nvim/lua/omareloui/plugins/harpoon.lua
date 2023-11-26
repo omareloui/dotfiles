@@ -1,25 +1,18 @@
 return {
   "ThePrimeagen/harpoon",
   event = "VeryLazy",
+
+  -- stylua: ignore
+  keys = {
+    { "<leader>ho", function() require("harpoon.ui").toggle_quick_menu() end, desc = "Open Harpoon menu" },
+    { "<leader>ha", function() require("harpoon.mark").add_file() end, desc = "Add to Harpoon" },
+    { "<A-1>", function() require("harpoon.ui").nav_file(1) end, desc = "Go to Harpoon file 1" },
+    { "<A-2>", function() require("harpoon.ui").nav_file(2) end, desc = "Go to Harpoon file 2" },
+    { "<A-3>", function() require("harpoon.ui").nav_file(3) end, desc = "Go to Harpoon file 3" },
+    { "<A-4>", function() require("harpoon.ui").nav_file(4) end, desc = "Go to Harpoon file 4" },
+    { "<A-h>", function() require("harpoon.ui").nav_prev() end, desc = "Go to previous Harpoon file" },
+    { "<A-h>", function() require("harpoon.ui").nav_next() end, desc = "Go to next Harpoon file" },
+  },
+
   opts = {},
-  config = function()
-    local mark = require "harpoon.mark"
-    local ui = require "harpoon.ui"
-
-    local set = require("omareloui.util.keymap").set
-
-    -- stylua: ignore start
-    set("<leader>ho", ui.toggle_quick_menu, "Open harpoon menu")
-    set("<leader>ha", mark.add_file, "Add to Harpoon")
-    set("<A-1>", function() ui.nav_file(1) end, "Go to harpoon file 1")
-    set("<A-2>", function() ui.nav_file(2) end, "Go to harpoon file 2")
-    set("<A-3>", function() ui.nav_file(3) end, "Go to harpoon file 3")
-    set("<A-4>", function() ui.nav_file(4) end, "Go to harpoon file 4")
-    set("<A-h>", function() ui.nav_prev() end, "Go to previous harpoon file")
-    set("<A-l>", function() ui.nav_next() end, "Go to next harpoon file")
-    -- stylua: ignore end
-
-    local wk = require "which-key"
-    wk.register({ h = "+harpoon" }, { prefix = "<leader>" })
-  end,
 }

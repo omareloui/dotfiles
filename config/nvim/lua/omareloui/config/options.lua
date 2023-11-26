@@ -1,5 +1,3 @@
-local g = vim.g
-
 local HOME = os.getenv "HOME"
 
 local undodir = nil
@@ -8,56 +6,57 @@ if HOME ~= nil then
   undodir = HOME .. "/.cache/nvim/undodir"
 end
 
-local o = vim.opt
+local opt = vim.opt
 
-o.autowrite = true
-o.guifont = { "", ":h10" }
-o.swapfile = false
-o.colorcolumn = { "80", "120" }
+opt.autowrite = true
+opt.guifont = { "", ":h10" }
+opt.swapfile = false
+opt.colorcolumn = { "80", "120" }
 --o.cursorcolumn = true
-o.cursorline = true
+opt.cursorline = true
 
-o.foldcolumn = "0"
-o.foldlevel = 99
-o.foldlevelstart = -1
-o.foldenable = true
+opt.foldcolumn = "0"
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = true
+opt.fillchars = { eob = " ", foldopen = "", foldclose = "" }
 
-o.hlsearch = false
-o.linebreak = true
-o.list = true
+opt.hlsearch = false
+opt.linebreak = true
+opt.list = true
 --o.conceallevel = 2
-o.listchars = { tab = "» ", lead = "·", trail = "·", eol = "↲", nbsp = "☠" }
-o.relativenumber = true
-o.scrolloff = 4
-o.sidescrolloff = 4
+opt.listchars = { tab = "» ", lead = "·", trail = "·", eol = "↲", nbsp = "☠" }
+opt.relativenumber = true
+opt.scrolloff = 4
+opt.sidescrolloff = 4
 --o.spell = true
 --o.spelllang = { "en_us" }
 --o.spelloptions = "camel"
-o.undodir = undodir
-o.wrap = false
-o.laststatus = 3 -- global statusline
-o.showmode = false
-o.expandtab = true
-o.shiftwidth = 2
-o.smartindent = true
-o.softtabstop = 2
-o.tabstop = 2
-o.fillchars = { eob = " ", foldopen = "", foldclose = "" }
-o.ignorecase = true
-o.mouse = ""
-o.smartcase = true
-o.number = true
-o.numberwidth = 2
-o.ruler = false
-o.signcolumn = "yes"
-o.splitbelow = true
-o.splitright = true
-o.termguicolors = true
-o.undofile = true
-o.timeoutlen = 300
-o.updatetime = 200
-o.diffopt = "vertical"
-o.cmdheight = 1
+opt.undodir = undodir
+opt.wrap = false
+opt.laststatus = 3 -- global statusline
+opt.showmode = false
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.smartindent = true
+opt.softtabstop = 2
+opt.tabstop = 2
+opt.ignorecase = true
+opt.mouse = ""
+opt.smartcase = true
+opt.number = true
+opt.numberwidth = 2
+opt.ruler = false
+opt.signcolumn = "yes"
+opt.splitbelow = true
+opt.splitright = true
+opt.termguicolors = true
+opt.undofile = true
+opt.timeoutlen = 300
+opt.updatetime = 200
+opt.diffopt = "vertical"
+opt.cmdheight = 1
+opt.smoothscroll = true
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line

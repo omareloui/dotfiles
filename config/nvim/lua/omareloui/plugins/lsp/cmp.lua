@@ -28,9 +28,8 @@ return {
       return
     end
 
-    vim.o.completeopt = "menu,menuone,preview,noselect"
-
     local cmp_window = require "cmp.utils.window"
+    local defaults = require "cmp.config.default"()
 
     cmp_window.info_ = cmp_window.info
     cmp_window.info = function(self)
@@ -39,12 +38,11 @@ return {
       return info
     end
 
-    local function ignore_text(entry)
-      return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
-    end
-
     local options = {
       experimental = { ghost_text = true },
+      completion = {
+        completeopt = "menu,menuone,noinsert",
+      },
       window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
@@ -79,19 +77,19 @@ return {
         ["<C-e>"] = cmp.mapping.abort(),
         ["<C-y>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
       },
-      sources = cmp.config.sources {
+      sources = cmp.config.sources({
         { name = "codeium" },
-        { name = "nvim_lsp", filter = ignore_text },
+        { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "crates" },
         { name = "luasnip" },
         { name = "path" },
         { name = "spell" },
-        { name = "buffer", keyword_length = 3 },
-      },
+      }, { { name = "buffer" } }),
+      sorting = defaults.sorting,
     }
 
-    require("omareloui.config.ui.highlights").cmp()
+    -- require("omareloui.config.ui.highlights").cmp()
 
     cmp.setup(options)
   end,

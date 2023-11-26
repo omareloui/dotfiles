@@ -1,5 +1,6 @@
 return {
   "nguyenvukhang/nvim-toggler",
+  enabled = false,
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   keys = {
     {

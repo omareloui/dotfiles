@@ -4,11 +4,6 @@ local M = {
   },
 
   dap = {
-    -- Stopped = "󰁕 ",
-    -- Breakpoint = " ",
-    -- BreakpointCondition = " ",
-    -- BreakpointRejected = " ",
-    -- LogPoint = ".>",
     Stopped = "󰁕 ",
     Breakpoint = " ",
     BreakpointCondition = " ",
@@ -17,14 +12,17 @@ local M = {
   },
 
   diagnostics = {
-    -- Error = " ",
-    -- Warn  = " ",
-    -- Hint  = " ",
-    -- Info  = " ",
     Error = "",
     Warn = "",
     Hint = "",
     Info = "",
+  },
+
+  informative_diagnostics = {
+    Error = "",
+    Warn = "",
+    Hint = "",
+    Info = "",
   },
 
   diagnostics_virtuals = {
@@ -80,7 +78,12 @@ local M = {
   },
 
   bufferline = {
-    modefied = " ",
+    modified = " ",
+    diagnostics = " ",
+  },
+
+  incline = {
+    modified = " ",
     diagnostics = " ",
   },
 }

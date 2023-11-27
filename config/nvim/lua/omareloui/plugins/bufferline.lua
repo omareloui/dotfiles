@@ -12,7 +12,7 @@ return {
     local icons = require("omareloui.config.ui.icons").bufferline
     local opts = {
       options = {
-        modified_icon = icons.modefied,
+        modified_icon = icons.modified,
         diagnostics = "nvim_lsp",
         component_separators = "|",
         section_separators = "",

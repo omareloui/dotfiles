@@ -26,7 +26,6 @@ return {
         set("<leader>ghd", gs.diffthis, "Diff This")
         set("<leader>ghb", function() gs.blame_line { full = true } end, "Blame Line")
         set("<leader>ghD", function() gs.diffthis "~" end, "Diff This ~")
-        set("ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk", { mode = { "o", "x" } })
         set("]h", gs.next_hunk, "Next Hunk")
         set("[h", gs.prev_hunk, "Prev Hunk")
         -- stylua: ignore end

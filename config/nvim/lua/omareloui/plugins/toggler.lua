@@ -1,13 +1,12 @@
 return {
   "nguyenvukhang/nvim-toggler",
-  enabled = false,
+  enabled = true,
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   keys = {
     {
-      "<leader>i",
-      function()
-        require("nvim-toggler").toggle()
-      end,
+      "<leader>/",
+      -- stylua: ignore
+      function() require("nvim-toggler").toggle() end,
       desc = "Toggle the cursor word (eg. from true to false)",
       mode = { "n", "v" },
     },
@@ -17,6 +16,8 @@ return {
     inverses = {
       ["True"] = "False",
       ["vim"] = "emacs",
+      ["right"] = "left",
+      ["Right"] = "Left",
     },
   },
 }

@@ -82,7 +82,6 @@ return {
       wk.register({ w = "+workspace" }, { prefix = "<leader>l" })
     end
 
-    -- local capabilities = cmp_nvim_lsp.default_capabilities()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem = {
       documentationFormat = { "markdown", "plaintext" },

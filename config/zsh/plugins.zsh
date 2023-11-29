@@ -23,10 +23,10 @@ zinit light-mode for \
 
 # Plugins
 zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+        zdharma-continuum/fast-syntax-highlighting \
+    blockf \
+        zsh-users/zsh-completions
 
 zinit light jeffreytse/zsh-vi-mode
 zinit light zsh-users/zsh-autosuggestions

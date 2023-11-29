@@ -11,17 +11,8 @@ return {
     dependencies = {
       {
         "HiPhish/rainbow-delimiters.nvim",
+        opts = {},
         config = function()
-          local c = require "omareloui.config.ui.palette"
-          local set = vim.api.nvim_set_hl
-          set(0, "RainbowDelimiterRed", { fg = c.red })
-          set(0, "RainbowDelimiterYellow", { fg = c.light_yellow })
-          set(0, "RainbowDelimiterBlue", { fg = c.light_blue })
-          set(0, "RainbowDelimiterOrange", { fg = c.yellow })
-          set(0, "RainbowDelimiterGreen", { fg = c.light_green })
-          set(0, "RainbowDelimiterViolet", { fg = c.magenta })
-          set(0, "RainbowDelimiterCyan", { fg = c.cyan })
-
           require("rainbow-delimiters.setup").setup {}
         end,
       },

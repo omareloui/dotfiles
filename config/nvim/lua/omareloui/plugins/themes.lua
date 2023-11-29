@@ -4,7 +4,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {},
-    enabled = false,
+    enabled = true,
   },
 
   {
@@ -19,7 +19,7 @@ return {
     name = "catppuccin",
     lazy = false,
     priority = 1000,
-    enabled = true,
+    enabled = false,
     config = function()
       local present, catppuccin = pcall(require, "catppuccin")
 

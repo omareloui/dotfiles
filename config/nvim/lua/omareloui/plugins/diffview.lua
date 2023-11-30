@@ -21,6 +21,11 @@ return {
         { "n", "ca", "<Cmd>Git commit --amend <bar> wincmd J<CR>", { desc = "Amend the last commit" } },
         { "n", "p", "<Cmd>Git push<CR>", { desc = "Push to origin" } },
         { "n", "<leader>q", "<Cmd>DiffviewClose<CR>", { desc = "Close diffview" } },
+        { "n", "<leader>e", "<Cmd>DiffviewToggleFiles<CR>", { desc = "Toggle file view" } },
+      },
+      view = {
+        { "n", "<leader>q", "<Cmd>DiffviewClose<CR>", { desc = "Close diffview" } },
+        { "n", "<leader>e", "<Cmd>DiffviewToggleFiles<CR>", { desc = "Toggle file view" } },
       },
     },
   },

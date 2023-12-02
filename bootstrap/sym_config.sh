@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version=2.0.2
+version=2.0.3
 
 . "$(dirname "$0")/utils.sh"
 
@@ -121,7 +121,7 @@ p "${GREEN}Success${YELLOW}:${RESET} done symlinking not from .dotfiles/config r
 # scripts
 for src in $(fd -tx '^[^.]+$' "$SCRIPTS"); do
 	dest="$HOME/.local/bin/$(basename "$src")"
-	[[ -e $dest && ignore_existing -eq 1 ]] && {
+	[[ -e $dest && $ignore_existing -eq 1 ]] && {
 		p "${BLUE}Info${YELLOW}:${RESET} ${UNDERLINE}$dest${END_UNDERLINE} already exists, ignoring creating new symlink."
 		continue
 	}

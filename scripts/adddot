@@ -2,7 +2,7 @@
 
 . "$SCRIPTS/utils.sh"
 
-version=2.0.0
+version=2.0.1
 
 verbose=0
 
@@ -19,7 +19,7 @@ while true; do
 		shift
 		;;
 	-h | --help)
-		echo -e "" echo -e "  ${BOLD}Usage:${END_BOLD}    $(basename "$0") ${YELLOW}[${B_RED}options${DARK_GRAY}...${YELLOW}]${RESET} ${YELLOW}<${GREEN}file${YELLOW}>${RESET}"
+		echo -e "  ${BOLD}Usage:${END_BOLD}    $(basename "$0") ${YELLOW}[${B_RED}options${DARK_GRAY}...${YELLOW}]${RESET} ${YELLOW}<${GREEN}file${YELLOW}>${RESET}"
 		echo -e "  ${BOLD}Version:${RESET}  ${YELLOW}$version${RESET}"
 		echo -e ""
 		echo -e "  ${BOLD}Description:${RESET}"

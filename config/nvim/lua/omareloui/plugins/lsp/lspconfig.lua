@@ -3,6 +3,7 @@ local language_server_to_load = {
   "css",
   "docker",
   "emmet",
+  "go",
   "html",
   "json",
   "lua_ls",

@@ -2,6 +2,7 @@ return {
   "nvim-neotest/neotest",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   dependencies = {
+    "nvim-neotest/neotest-go",
     "haydenmeade/neotest-jest",
     "marilari88/neotest-vitest",
     "nvim-lua/plenary.nvim",
@@ -28,6 +29,7 @@ return {
 
     local neotest_jest = require "neotest-jest"
     local neotest_vitest = require "neotest-vitest"
+    local neotest_go = require "neotest-go"
 
     local opts = {
       adapters = {
@@ -35,6 +37,7 @@ return {
           jestCommand = "jest --watch ",
         },
         neotest_vitest,
+        neotest_go,
       },
       status = { virtual_text = true },
       output = { open_on_run = true },

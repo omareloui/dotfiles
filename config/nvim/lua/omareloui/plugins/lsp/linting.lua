@@ -13,6 +13,7 @@ return {
       astro = { "eslint_d", "cspell" },
       dockerfile = { "hadolint", "cspell" },
       gitcommit = { "gitlint", "cspell" },
+      go = { "golangcilint", "cspell" },
       javascript = { "eslint_d", "cspell" },
       javascriptreact = { "eslint_d", "cspell" },
       lua = { "luacheck", "cspell" },

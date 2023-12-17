@@ -47,6 +47,10 @@ set("<C-u>", "<C-u>zz", "Move up half a page")
 set("n", "nzzzv", "Find next")
 set("N", "Nzzzv", "Find previous")
 
+-- Recording
+set("Q", "@qj", "Apply the q register")
+set("Q", "<Cmd>norm @q<CR>", 'Apply the "q" register', { mode = "x" })
+
 -- Text Manipulation
 set("<leader>su", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Replace current word")
 

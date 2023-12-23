@@ -1,14 +1,8 @@
 return {
-  setup = function(lspconfig, _, _)
+  setup = function(lspconfig, on_attach, capabilities)
     lspconfig["yamlls"].setup {
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-          },
-        },
-      },
+      capabilities = capabilities,
+      on_attach = on_attach,
 
       on_new_config = function(new_config)
         new_config.settings.yaml.schemas =

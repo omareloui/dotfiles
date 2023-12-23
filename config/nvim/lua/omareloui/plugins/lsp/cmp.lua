@@ -24,9 +24,8 @@ return {
   config = function()
     local present, cmp = pcall(require, "cmp")
 
-    if not present then
-      return
-    end
+    -- stylua: ignore
+    if not present then return end
 
     local cmp_window = require "cmp.utils.window"
     local defaults = require "cmp.config.default"()

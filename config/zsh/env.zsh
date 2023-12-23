@@ -2,8 +2,8 @@
 export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PNPM_HOME="/home/omareloui/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH="$HOME/.local/share/pnpm:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 # Global variables
 export LANG=en_US.UTF-8

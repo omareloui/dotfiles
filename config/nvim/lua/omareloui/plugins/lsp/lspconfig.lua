@@ -10,6 +10,7 @@ local language_server_to_load = {
   "markdown",
   "prisma",
   "rust",
+  "sql",
   "tailwind",
   "typescript",
   "volar",
@@ -37,21 +38,18 @@ return {
 
   config = function()
     local lspconfig_present, lspconfig = pcall(require, "lspconfig")
-    local cmp_lsp_present, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    local cmp_lsp_present, _ = pcall(require, "cmp_nvim_lsp")
 
-    if not lspconfig_present or not cmp_lsp_present then
-      return
-    end
+    -- stylua: ignore
+    if not lspconfig_present or not cmp_lsp_present then return end
 
     require("lspconfig.ui.windows").default_options.border = "rounded"
 
-    local on_attach = function(_, bufnr)
+    local on_attach = function()
       local d = vim.diagnostic
       local l = vim.lsp
 
-      local function set(lhs, rhs, desc, mode)
-        return require("omareloui.util.keymap").set(lhs, rhs, desc, { mode = mode })
-      end
+      local set = require("omareloui.util.keymap").set
 
       set("K", l.buf.hover, "Show documentation for what is under cursor")
       set("gt", l.buf.type_definition, "Lsp definition type")
@@ -63,7 +61,7 @@ return {
       set("<leader>rs", "<Cmd>LspRestart<CR>", "Restart the lsp server")
       set("<leader>v", "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>", "Restart the lsp server")
       set("<leader>rn", l.buf.rename, "Smart rename")
-      set("<leader>ca", l.buf.code_action, "See available code actions", { "n", "v" })
+      set("<leader>ca", l.buf.code_action, "See available code actions", { mode = { "n", "v" } })
 
       set("<leader>lwa", l.buf.add_workspace_folder, "Add lsp workspace folder")
       set("<leader>lwr", l.buf.remove_workspace_folder, "Remove lsp workspace folder")
@@ -101,6 +99,7 @@ return {
         },
       },
     }
+
     capabilities.textDocument.foldingRange = {
       dynamicRegistration = false,
       lineFoldingOnly = true,

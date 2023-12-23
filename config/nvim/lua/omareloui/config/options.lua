@@ -29,9 +29,9 @@ opt.listchars = { tab = "» ", lead = "·", trail = "·", eol = "↲", nbsp = "�
 opt.relativenumber = true
 opt.scrolloff = 4
 opt.sidescrolloff = 4
---o.spell = true
---o.spelllang = { "en_us" }
---o.spelloptions = "camel"
+opt.spell = false
+--opt.spelllang = { "en_us" }
+--opt.spelloptions = "camel"
 opt.undodir = undodir
 opt.wrap = false
 opt.laststatus = 3 -- global statusline

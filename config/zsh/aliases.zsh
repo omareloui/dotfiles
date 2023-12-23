@@ -27,3 +27,6 @@ alias du="dust"
 alias reload="source $ZDOTDIR/.zshrc"
 
 alias synctime="sudo ntpdate pool.ntp.org"
+
+alias update="paru -Syu"
+alias rmcache="paru -Sccd"

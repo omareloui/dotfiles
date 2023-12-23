@@ -21,7 +21,11 @@ return {
   setup = function(lspconfig, on_attach, capabilities)
     lspconfig["gopls"].setup {
       capabilities = capabilities,
-      on_attach = on_attach,
+      on_attach = function()
+        on_attach()
+        local set = require("omareloui.util.keymap").set
+        set("<leader>.", "<Cmd>!make run<CR>", 'Run "make run"')
+      end,
 
       settings = {
         gopls = {

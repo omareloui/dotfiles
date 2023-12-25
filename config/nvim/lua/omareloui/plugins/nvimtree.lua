@@ -25,7 +25,10 @@ return {
       },
       view = {
         adaptive_size = true,
-        width = 25,
+        width = {
+          min = 25,
+          max = 55,
+        },
         side = "right",
       },
       git = {

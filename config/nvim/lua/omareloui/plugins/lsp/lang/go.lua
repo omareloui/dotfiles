@@ -24,7 +24,7 @@ return {
       on_attach = function()
         on_attach()
         local set = require("omareloui.util.keymap").set
-        set("<leader>.", "<Cmd>!make run<CR>", 'Run "make run"')
+        set("<leader>.", "<Cmd>!go run .<CR>", 'Run "make run"')
       end,
 
       settings = {

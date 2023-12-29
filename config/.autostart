@@ -3,7 +3,7 @@
 [[ ! -s ~/.config/mpd/pid ]] && mpd &
 mpDris2 &
 
-export GTK_THEME=Adwaita:dark
+# export GTK_THEME=Adwaita:dark
 
 # pcloud1 & # cloud service
 # xss-lock gtklock & # locking app

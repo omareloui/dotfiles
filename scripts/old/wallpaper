@@ -1,28 +1,23 @@
 #!/usr/bin/env bash
 
 wp="$1"
-skip_wait="$2"
 
 if [[ -z $wp ]]; then
 	wp="$(fd . -p "$HOME/.wallpaper/current" -It f -d 1 | shuf --random-source=/dev/urandom -n 1)"
 fi
 
-if [[ -z "$skip_wait" ]]; then
-	skip_wait=0
-fi
-
 hyperpaper_file="$HOME/.config/hypr/hyprpaper.conf"
 
-echo -e "preload = $wp\n\nwallpaper =,$wp" >"$hyperpaper_file"
+{
+	echo "preload = $wp"
+	echo ""
+	echo "wallpaper = eDP-1,$wp"
+	echo "wallpaper = HDMI-A-1,$wp"
+} >"$hyperpaper_file"
 
-old_pids="$(ps -a | awk '/hyprpaper/ {print $1}')"
+# echo -e " HDMI-A-1,$wp\nwallpaper = ,$wp\nsplash = true" >"$hyperpaper_file"
 
-hyprpaper &>/dev/null &
+# Close previous hyprpaper instance
+ps -a | awk '/hyprpaper/ {print $1}' | xargs -n1 kill
 
-if ((skip_wait == 0)); then
-	sleep 1
-fi
-
-for id in $old_pids; do
-	kill "$id"
-done
+hyprpaper

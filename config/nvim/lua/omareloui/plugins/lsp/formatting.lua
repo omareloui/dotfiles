@@ -11,6 +11,11 @@ return {
 
     local opts = {
       formatters = {
+        buildifier = {
+          inherit = false,
+          command = "buildifier",
+        },
+
         sql_formatter = {
           prepend_args = {
             "-c",
@@ -27,6 +32,7 @@ return {
 
       formatters_by_ft = {
         astro = { "prettierd" },
+        bzl = { "buildifier" },
         css = { "prettierd" },
         graphql = { "prettierd" },
         html = { "prettierd" },

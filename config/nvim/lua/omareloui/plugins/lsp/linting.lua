@@ -11,6 +11,7 @@ return {
 
     lint.linters_by_ft = {
       astro = { "eslint_d", "cspell" },
+      bzl = { "buildifier", "cspell" },
       dockerfile = { "hadolint", "cspell" },
       gitcommit = { "gitlint", "cspell" },
       go = { "golangcilint", "cspell" },
@@ -36,6 +37,9 @@ return {
         lint.try_lint()
       end,
     })
+
+    local ns = require("lint").get_namespace "cspell"
+    vim.diagnostic.config({ virtual_text = false }, ns)
 
     local set = require("omareloui.util.keymap").set
     set("<leader>ll", lint.try_lint, "Trigger linting for current file.")

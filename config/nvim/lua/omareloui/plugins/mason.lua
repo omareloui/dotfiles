@@ -39,6 +39,7 @@ return {
 
     mason_tool_installer.setup {
       ensure_installed = {
+        "buildifier",
         "cspell",
         "eslint_d",
         "gitlint",
@@ -51,8 +52,8 @@ return {
         "prettierd",
         "shellcheck",
         "shfmt",
-        "sqlfluff",
         "sql-formatter",
+        "sqlfluff",
         "stylua",
         "yamlfmt",
         "yamllint",

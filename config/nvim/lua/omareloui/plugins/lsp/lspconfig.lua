@@ -1,5 +1,6 @@
 local language_server_to_load = {
   "bash",
+  "bazel",
   "css",
   "docker",
   "emmet",
@@ -115,7 +116,6 @@ return {
       underline = true,
       update_in_insert = false,
       virtual_text = {
-        severity = vim.diagnostic.severity.WARN,
         source = true,
         prefix = require("omareloui.config.ui.icons").diagnostics_virtuals.prefix,
       },

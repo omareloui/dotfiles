@@ -20,6 +20,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 return {
   setup = function(lspconfig, on_attach, capabilities)
     lspconfig["gopls"].setup {
+      filetypes = { "go", "gomod" },
       capabilities = capabilities,
       on_attach = function()
         on_attach()

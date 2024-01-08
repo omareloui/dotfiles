@@ -13,7 +13,7 @@ return {
     },
     regex = {
       "[uU]nused",
-      "[nN]ever [rR]ead",
+      "[nN]ever ([rR]ead|[uU]sed)",
       "[nN]ot [rR]ead",
     },
     priority = 128,

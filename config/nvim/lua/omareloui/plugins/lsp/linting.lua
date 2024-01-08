@@ -2,12 +2,62 @@ return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 
+  keys = {
+    -- stylua: ignore
+    { "<leader>ll", function() require("lint").try_lint() end, desc = "Trigger linting for current file." },
+    -- {
+    --   "<leader>lf",
+    --   "mF:%!eslint_d --stdin --fix-to-stdout<CR>`F",
+    --   desc = "Fix eslint linting errors",
+    --   -- TODO: make this work (hint: auto command)
+    --   -- filetype = { "javascript", "typescript" },
+    -- },
+    -- {
+    --   "<leader>lf",
+    --   "mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F",
+    --   desc = "Fix eslint linting errors",
+    --   -- TODO: make this work (hint: auto command)
+    --   -- filetype = { "vue" },
+    -- },
+    -- {
+    --   "<leader>lf",
+    --   "mF:%!eslint_d --stdin --fix-to-stdout<CR>`F",
+    --   desc = "Fix eslint linting errors",
+    --   -- TODO: make this work (hint: auto command)
+    --   -- filetype = { "javascript", "typescript", "vue" },
+    --   mode = { "v" },
+    -- },
+  },
+
   config = function()
     local present, lint = pcall(require, "lint")
 
-    if not present then
-      return
-    end
+    -- stylua: ignore
+    if not present then return end
+
+    local pattern = "([^:]+):(%d+):(%d+):(.+)"
+    local groups = { "file", "lnum", "col", "message" }
+
+    local buf_parser = require("lint.parser").from_pattern(
+      pattern,
+      groups,
+      nil,
+      { ["source"] = "buf", ["severity"] = vim.diagnostic.severity.WARN }
+    )
+
+    lint.linters.buf = {
+      cmd = "buf",
+      args = {
+        "lint",
+        "--config",
+        '{"version":"v1","lint":{"use":["BASIC"]}}',
+        "--path",
+      },
+      stdin = false,
+      append_fname = true,
+      ignore_exitcode = true,
+      parser = buf_parser,
+    }
 
     lint.linters_by_ft = {
       astro = { "eslint_d", "cspell" },
@@ -20,6 +70,7 @@ return {
       javascriptreact = { "eslint_d", "cspell" },
       lua = { "luacheck", "cspell" },
       markdown = { "markdownlint", "cspell" },
+      proto = { "buf", "cspell" },
       sh = { "shellcheck", "cspell" },
       sql = { "sqlfluff", "cspell" },
       svelte = { "eslint_d", "cspell" },

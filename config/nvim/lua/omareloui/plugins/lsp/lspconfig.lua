@@ -10,6 +10,7 @@ local language_server_to_load = {
   "lua_ls",
   "markdown",
   "prisma",
+  "proto",
   "rust",
   "sql",
   "tailwind",

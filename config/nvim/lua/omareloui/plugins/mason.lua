@@ -20,6 +20,7 @@ return {
       ensure_installed = {
         "astro",
         "bashls",
+        "bufls",
         "cssls",
         "denols",
         "elixirls",
@@ -39,6 +40,7 @@ return {
 
     mason_tool_installer.setup {
       ensure_installed = {
+        "buf",
         "buildifier",
         "cspell",
         "eslint_d",

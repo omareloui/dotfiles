@@ -1,8 +1,19 @@
 local nvim_config = os.getenv "DOTFILES_CONFIG" .. "/nvim"
 
+local format_opts = {
+  lsp_fallback = true,
+  async = false,
+  timeout_ms = 500,
+}
+
 return {
   "stevearc/conform.nvim",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  keys = {
+    -- stylua: ignore
+    { "<leader>mp", function() require("conform").format(format_opts) end, desc = "[M]ake [p]retty", mode = { "v", "n" } },
+    { "<leader>nf", "<Cmd>noa up<CR>", desc = "Save buffer without formatting" },
+  },
   config = function()
     local present, conform = pcall(require, "conform")
 
@@ -24,11 +35,7 @@ return {
         },
       },
 
-      format_on_save = {
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 500,
-      },
+      format_on_save = format_opts,
 
       formatters_by_ft = {
         astro = { "prettierd" },
@@ -41,6 +48,7 @@ return {
         json = { "prettierd" },
         lua = { "stylua" },
         markdown = { "prettierd" },
+        proto = { "buf" },
         sh = { "shfmt" },
         sql = { "sql_formatter" },
         svelte = { "prettierd" },
@@ -49,13 +57,9 @@ return {
         vue = { "prettierd" },
         yaml = { "prettierd" },
       },
-    }
 
-    local set = require("omareloui.util.keymap").set
-    set("<leader>mp", function()
-      conform.format(opts.format_on_save)
-    end, "Make pretty", { mode = { "v", "n" } })
-    set("<leader>nf", "<Cmd>noa up<CR>", "Save buffer without formatting")
+      notify_on_error = true,
+    }
 
     local wk = require "which-key"
     wk.register({ m = "+make", n = "+no" }, { prefix = "<leader>" })

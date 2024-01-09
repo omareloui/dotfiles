@@ -49,8 +49,6 @@ return {
       cmd = "buf",
       args = {
         "lint",
-        "--config",
-        '{"version":"v1","lint":{"use":["BASIC"]}}',
         "--path",
       },
       stdin = false,

@@ -13,6 +13,9 @@ set("j", "v:count == 0 ? 'gj' : 'j'", "Move down", { expr = true, silent = true,
 set("<Up>", "v:count == 0 ? 'gk' : 'k'", "Move up", { expr = true, silent = true, mode = { "n", "x" } })
 set("<Down>", "v:count == 0 ? 'gj' : 'j'", "Move down", { expr = true, silent = true, mode = { "n", "x" } })
 
+-- Navigate buffers
+set("<A-p>", "<Cmd>e#<CR>", "Last edited buffer")
+
 -- Indenting
 set("<", "<gv", "Indend line backwards", { mode = { "v" } })
 set(">", ">gv", "Indend line forwards", { mode = { "v" } })

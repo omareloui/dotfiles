@@ -23,6 +23,7 @@ return {
         "bufls",
         "cssls",
         "denols",
+        "dockerls",
         "elixirls",
         "emmet_ls",
         "eslint",

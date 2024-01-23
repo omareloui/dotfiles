@@ -12,7 +12,7 @@ version=2.0.3
 # The key is the dest and the value is the config files/folders that will be
 # symlinked from $DOTFILES_CONFIG
 declare -A FROM_ROOT=(
-	["$HOME"]=".zshenv .autostart"
+	["$HOME"]=".zshenv .autostart .ssh/config"
 	["$HOME/.config"]="nvim kitty fish eww lazygit starship.toml lf hypr neofetch mpd cava libinput-gestures.conf wlogout dunst rofi ncmpcpp zsh"
 )
 

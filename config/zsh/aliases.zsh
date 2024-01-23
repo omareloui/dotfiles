@@ -30,3 +30,5 @@ alias synctime="sudo ntpdate pool.ntp.org"
 
 alias update="paru -Syu"
 alias rmcache="paru -Sccd"
+
+alias rm_docker_cache="docker builder prune -a --force"

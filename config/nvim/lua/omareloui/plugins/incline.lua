@@ -28,6 +28,7 @@ end
 return {
   "b0o/incline.nvim",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  enabled = false,
   opts = {
     window = {
       margin = {

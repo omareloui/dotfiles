@@ -13,6 +13,6 @@ dunst &
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & # polkit authentication
 # wl-clip-persist --clipboard regular & #persistent clipboard?
 # wl-paste --watch cliphist store &
-/usr/lib/kdeconnectd & #kdeconnect daemon
+# /usr/lib/kdeconnectd & #kdeconnect daemon
 
 udiskie &

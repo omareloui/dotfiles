@@ -68,18 +68,22 @@ function p() {
 }
 
 function init {
-	({
-		options=""
-		_options=""
-		((verbose == 1 && debug != 1)) && _options+=v
-		((dry == 1)) && _options+=n
-		((debug == 1)) && _options+=vv
+	options=""
+	_options=""
+	((verbose == 1 && debug != 1)) && _options+=v
+	((dry == 1)) && _options+=n
+	((debug == 1)) && _options+=vv
 
-		[[ -n $_options ]] && options="-$_options"
+	[[ -n $_options ]] && options="-$_options"
 
-		rclone sync $options ~/Leatherwork "GoogleDrive:Work/Leather Work/local"
+	for f in "$HOME/Leatherwork:Work/Leather Work/local" "$HOME/Documents/passwords.kdbx:"; do
+		src="$(echo "$f" | cut -d: -f1)"
+		dist="$(echo "$f" | cut -d: -f2)"
 
-	} && p "${GREEN}Success${YELLOW}:${RESET} done syncing the files.${RESET}") || p "${RED}Error${YELLOW}:${RESET} something went wrong while syncing the files.${RESET}"
+		({
+			rclone sync $options "$src" "GoogleDrive:$dist"
+		} && p "${GREEN}Success${YELLOW}:${RESET} done syncing ${src} to GoogleDrive:${dist}.${RESET}\n\n") || p "${RED}Error${YELLOW}:${RESET} something went wrong while syncing ${src}.${RESET}\n\n"
+	done
 }
 
 init

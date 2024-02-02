@@ -13,7 +13,7 @@ version=2.0.3
 # symlinked from $DOTFILES_CONFIG
 declare -A FROM_ROOT=(
 	["$HOME"]=".zshenv .autostart .ssh/config"
-	["$HOME/.config"]="nvim kitty fish eww lazygit starship.toml lf hypr neofetch mpd cava libinput-gestures.conf wlogout dunst rofi ncmpcpp zsh"
+	["$HOME/.config"]="nvim kitty fish eww lazygit starship.toml lf hypr neofetch mpd cava libinput-gestures.conf wlogout dunst rofi ncmpcpp zsh atuin"
 )
 
 ## Not in the root of $DOTFILES_CONFIG or to rename on dest

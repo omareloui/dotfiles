@@ -3,7 +3,7 @@ export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/share/pnpm:$PATH"
-export PATH="$HOME/go/bin:$PATH"
+export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 
 # Global variables
 export LANG=en_US.UTF-8

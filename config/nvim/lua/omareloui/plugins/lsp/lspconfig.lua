@@ -126,6 +126,9 @@ return {
       float = { border = "rounded" },
     }
 
+    -- Add templ as a filetype
+    vim.filetype.add { extension = { templ = "templ" } }
+
     -- Configure the servers themselves
     for _, lsp_server in ipairs(language_server_to_load) do
       require("omareloui.plugins.lsp.lang." .. lsp_server).setup(lspconfig, on_attach, capabilities)

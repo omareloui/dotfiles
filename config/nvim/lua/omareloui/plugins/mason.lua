@@ -33,6 +33,7 @@ return {
         "marksman",
         "prismals",
         "tailwindcss",
+        "templ",
         "tsserver",
         "volar",
         "yamlls",

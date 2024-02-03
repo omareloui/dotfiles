@@ -25,6 +25,7 @@
     "yamlfmt",
     "folke",
     "noice",
-    "keymap"
+    "keymap",
+    "templ"
   ]
 }

@@ -19,6 +19,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 return {
   setup = function(lspconfig, on_attach, capabilities)
+    lspconfig["templ"].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
+
     lspconfig["gopls"].setup {
       filetypes = { "go", "gomod" },
       capabilities = capabilities,
@@ -31,7 +36,7 @@ return {
       settings = {
         gopls = {
           completeUnimported = true,
-          usePlaceholders = true,
+          -- usePlaceholders = true,
           analyses = {
             unusedparams = true,
           },

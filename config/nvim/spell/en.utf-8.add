@@ -61,3 +61,6 @@ Proto
 proto
 protos
 RPC
+nixos
+env
+zsh

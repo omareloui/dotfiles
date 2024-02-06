@@ -12,7 +12,7 @@ opt.autowrite = true
 opt.guifont = { "", ":h10" }
 opt.swapfile = false
 opt.colorcolumn = { "80", "120" }
---o.cursorcolumn = true
+--opt.cursorcolumn = true
 opt.cursorline = true
 
 opt.foldcolumn = "0"
@@ -56,7 +56,7 @@ opt.timeoutlen = 300
 opt.updatetime = 200
 opt.diffopt = "vertical"
 opt.cmdheight = 1
-opt.smoothscroll = true
+-- opt.smoothscroll = true
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line

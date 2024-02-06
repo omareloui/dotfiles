@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+
+[[ -z $BOOTSTRAP_FILES ]] && BOOTSTRAP_FILES="$HOME/.dotfiles/bootstrap"
+[[ -z $SCRIPTS ]] && SCRIPTS="$HOME/.dotfiles/scripts"
+
 . "$SCRIPTS/utils.sh"
 
 version=1.0.1

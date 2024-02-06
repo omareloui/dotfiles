@@ -24,3 +24,5 @@ export MUSIC_DIR=$HOME/Music
 export MOVIES_DIR=$HOME/Movies
 
 export NVM_DIR="$HOME/.nvm"
+
+export DISTRO=$("$HOME/.local/bin/distro")

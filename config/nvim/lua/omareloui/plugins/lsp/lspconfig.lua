@@ -10,6 +10,7 @@ local language_server_to_load = {
   "json",
   "lua_ls",
   "markdown",
+  "nix",
   "prisma",
   "proto",
   "rust",

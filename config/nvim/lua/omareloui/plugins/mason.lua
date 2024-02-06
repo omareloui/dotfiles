@@ -14,6 +14,7 @@ return {
 
     mason.setup {
       ui = { border = "rounded" },
+      PATH = "append",
     }
 
     mason_lspconfig.setup {
@@ -31,6 +32,7 @@ return {
         "html",
         "lua_ls",
         "marksman",
+        "nil_ls",
         "prismals",
         "tailwindcss",
         "templ",

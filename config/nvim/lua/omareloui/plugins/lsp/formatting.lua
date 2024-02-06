@@ -1,4 +1,5 @@
-local nvim_config = os.getenv "DOTFILES_CONFIG" .. "/nvim"
+local dotfiles = os.getenv "DOTFILES_CONFIG" or os.getenv "HOME" .. "/.dotfiles/config"
+local nvim_config = dotfiles .. "/nvim"
 
 local format_opts = {
   lsp_fallback = true,
@@ -49,6 +50,7 @@ return {
         jsonc = { "prettierd" },
         lua = { "stylua" },
         markdown = { "prettierd" },
+        nix = { "nixfmt" },
         proto = { "buf" },
         sh = { "shfmt" },
         sql = { "sql_formatter" },

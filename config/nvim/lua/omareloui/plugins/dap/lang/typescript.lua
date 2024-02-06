@@ -1,5 +1,10 @@
 return {
   setup = function(dap)
+    local ok, mason_registry = pcall(require, "mason-registry")
+
+    -- stylua: ignore
+    if not ok then return end
+
     if not dap.adapters["pwa-node"] then
       dap.adapters["pwa-node"] = {
         type = "server",
@@ -8,8 +13,7 @@ return {
         executable = {
           command = "node",
           args = {
-            require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-              .. "/js-debug/src/dapDebugServer.js",
+            mason_registry.get_package("js-debug-adapter"):get_install_path() .. "/js-debug/src/dapDebugServer.js",
             "${port}",
           },
         },

@@ -100,6 +100,7 @@
     yamllint
     yazi
     zoxide
-    unstable.atuin
+    atuin
+    # stable.atuin
   ];
 }

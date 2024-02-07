@@ -2,12 +2,8 @@
   description = "Your new nix config";
 
   inputs = {
-    # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
     # Home manager
     # TODO: uncomment on home-hamanger
@@ -56,10 +52,7 @@
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./nixos/configuration.nix
-          ];
+          modules = [ ./nixos/configuration.nix ];
         };
       };
 

@@ -7,22 +7,18 @@
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
 
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
+    ./packages.nix
+    ./users.nix
+    ./fonts.nix
 
-    # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-
-    ../modules/nixos
   ];
 
   nixpkgs = {
-    # You can add overlays here
     overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      outputs.overlays.stable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -202,32 +198,6 @@
   #   xwayland.enable = true;
   #   systemd.enable = true;
   # };
-
-  users.users.omareloui = {
-    initialPassword = "correcthorsebatterystaple";
-    isNormalUser = true;
-    openssh.authorizedKeys.keys = [
-      # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-    ];
-    extraGroups = [ "wheel" "networkmanager" "video" ];
-    shell = pkgs.zsh;
-    packages = [ ];
-  };
-
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
-    proggyfonts
-    (nerdfonts.override {
-      fonts = [ "FiraCode" "DroidSansMono" "Inconsolata" "JetBrainsMono" ];
-    })
-  ];
 
   environment = {
     variables = { EDITOR = "nvim"; };

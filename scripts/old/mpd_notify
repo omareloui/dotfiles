@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-cover="$("$HOME/.local/bin/mpd_get_artwork")"
-
-notify-send \
-	"Now Playing" \
-	"$(mpc --format "%title% \n%artist%" current)" \
-	-r 27072 \
-	-i "$cover"

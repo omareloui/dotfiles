@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-while true; do
-	printf "\ec" # clear the terminal
-	/home/omareloui/repos/MusicLyrics/dist/lib/mpd-api.js
-	mpc current --wait
-done

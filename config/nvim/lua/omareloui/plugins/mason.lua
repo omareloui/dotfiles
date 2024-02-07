@@ -32,7 +32,7 @@ return {
         "html",
         "lua_ls",
         "marksman",
-        "nil_ls",
+        -- "nil_ls",
         "prismals",
         "tailwindcss",
         "templ",

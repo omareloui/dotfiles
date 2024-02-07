@@ -13,7 +13,8 @@ version=2.0.3
 # symlinked from $DOTFILES_CONFIG
 declare -A FROM_ROOT=(
 	["$HOME"]=".zshenv .autostart .ssh/config"
-	["$HOME/.config"]="nvim kitty fish eww lazygit starship.toml lf hypr neofetch mpd cava libinput-gestures.conf wlogout dunst rofi ncmpcpp zsh atuin"
+	# ["$HOME/.config"]="nvim kitty fish eww lazygit starship.toml lf hypr neofetch mpd cava libinput-gestures.conf wlogout dunst rofi ncmpcpp zsh atuin"
+	["$HOME/.config"]="nvim kitty lazygit starship.toml lf hypr libinput-gestures.conf zsh atuin"
 )
 
 ## Not in the root of $DOTFILES_CONFIG or to rename on dest
@@ -25,7 +26,7 @@ declare -A NOT_FROM_ROOT=(
 	# ["$DOTFILES_CONFIG/git/.czrc"]="$HOME/.czrc" # Commitizen
 
 	# ZK
-	["$DOTFILES_CONFIG/zk"]="$ZK_NOTEBOOK_DIR/.zk"
+	# ["$DOTFILES_CONFIG/zk"]="$ZK_NOTEBOOK_DIR/.zk"
 )
 
 ##### Folders to make sure exist #####

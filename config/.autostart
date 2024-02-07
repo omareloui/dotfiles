@@ -1,18 +1,12 @@
 #!/usr/bin/env bash
 
-[[ ! -s ~/.config/mpd/pid ]] && mpd &
-mpDris2 &
-
-# export GTK_THEME=Adwaita:dark
-
-# pcloud1 & # cloud service
-# xss-lock gtklock & # locking app
-
+swww init &
+swww img ~/pictures/wallpapers/754zvjbqregc1.jpeg.jpg &
+nm-applet --indeicator &
 dunst &
 
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & # polkit authentication
 # wl-clip-persist --clipboard regular & #persistent clipboard?
 # wl-paste --watch cliphist store &
 # /usr/lib/kdeconnectd & #kdeconnect daemon
-
-udiskie &
+# udiskie &

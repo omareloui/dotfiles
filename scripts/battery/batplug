@@ -5,7 +5,7 @@
 . "$SCRIPTS/battery/config.sh"
 . "$SCRIPTS/utils.sh"
 
-version=2.0.0
+version=2.0.1
 
 LONGOPTS=help
 OPTIONS=h
@@ -26,7 +26,7 @@ while true; do
 		echo -e ""
 		echo -e "  ${BOLD}Args:${RESET}"
 		echo -e ""
-		echo -e "    ${BOLD}${GREEN}action${WHITE} ${YELLOW}{${BLUE}full${YELLOW}|${BLUE}area${YELLOW}|${BLUE}window${YELLOW}}${RESET}"
+		echo -e "    ${BOLD}${GREEN}action${WHITE} ${YELLOW}{${BLUE}connected${YELLOW}|${BLUE}disconnected${YELLOW}}${RESET}"
 		echo -e "      ${BLUE}connected${RESET}      ${B_RED}-${RESET} Send a connected notification."
 		echo -e "      ${BLUE}disconnected${RESET}   ${B_RED}-${RESET} Send a disconnected notification."
 		echo -e ""
@@ -60,7 +60,7 @@ connected)
 		"Charging" \
 		"$current_percentage% of battery charged." \
 		-i "$HOME/.local/share/icons/battery-charging.png" \
-		-u low \
+		-u normal \
 		-r "$NOTIFICATION_ID"
 	canberra-gtk-play -i power-plug
 	;;

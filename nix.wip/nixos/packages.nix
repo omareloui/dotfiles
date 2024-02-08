@@ -12,6 +12,7 @@
     gnome.gnome-bluetooth
     font-manager
     variety
+    entr
 
     acpi
     autoconf
@@ -23,7 +24,6 @@
     cargo
     corepack_latest
     dconf
-    # delta
     deno
     docker
     dockerfile-language-server-nodejs

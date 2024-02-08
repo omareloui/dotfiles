@@ -144,6 +144,19 @@
     };
   };
 
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      gui.showIcons = true;
+      git = {
+        paging = {
+          colorArgs = "always";
+          pager = "delta --dark --diff-so-fancy --paging=never --line-numbers";
+        };
+      };
+    };
+  };
+
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.xwayland.enable = true;
   wayland.windowManager.hyprland.systemd.enable = true;
@@ -329,7 +342,7 @@
     };
     shellIntegration.enableZshIntegration = true;
     settings = {
-      enable_audio_bill = false;
+      enable_audio_bell = false;
       remember_window_size = false;
       initial_window_width = "95c";
       initial_window_height = "35c";

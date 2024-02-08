@@ -28,7 +28,6 @@
     docker
     dockerfile-language-server-nodejs
     du-dust
-    dunst
     emmet-ls
     eslint_d
     eza

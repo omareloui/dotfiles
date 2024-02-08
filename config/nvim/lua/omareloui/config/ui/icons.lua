@@ -86,6 +86,12 @@ local M = {
     modified = " ",
     diagnostics = " ",
   },
+
+  lualine = {
+    copilot = " ",
+    diff = "",
+    lsp = "󰆼 ",
+  },
 }
 
 return M

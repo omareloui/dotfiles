@@ -326,15 +326,14 @@
           "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
         ]) 10));
 
-    # Move/resize windows with mainMod + LMB/RMB and dragging
     bindm =
       [ "$mainMod, mouse:272, movewindow" "$mainMod, mouse:273, resizewindow" ];
   };
 
+  # TODO: readd the comments from main dunst file after moving to another file
   services.dunst = {
     enable = true;
     settings = {
-
       global = {
         # TODO: check the font
         font = "Product Sans";

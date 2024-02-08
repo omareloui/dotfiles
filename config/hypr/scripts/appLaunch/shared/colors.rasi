@@ -15,4 +15,4 @@
 
 /* Import color-scheme from `colors` directory */
 
-@import "~/.config/hypr/scripts/appLaunch/colors/onedark.rasi"
+@import "~/.dotfiles/config/hypr/scripts/appLaunch/colors/onedark.rasi"

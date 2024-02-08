@@ -8,6 +8,11 @@
     # prisma-language-server
     # templ
 
+    loupe
+    gnome.gnome-bluetooth
+    font-manager
+    variety
+
     acpi
     autoconf
     automake
@@ -18,7 +23,7 @@
     cargo
     corepack_latest
     dconf
-    delta
+    # delta
     deno
     docker
     dockerfile-language-server-nodejs

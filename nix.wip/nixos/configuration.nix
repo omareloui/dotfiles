@@ -164,41 +164,6 @@
     rtkit.enable = true;
   };
 
-  # TODO: should be at home-manager, I guess
-  # dconf = {
-  #   enable = true;
-  #   settings = {
-  #     "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
-  #   };
-  # };
-  # gtk = {
-  #   enable = true;
-  #   theme = {
-  #     package = pkgs.gnome.gnome-themes-extra;
-  #     name = "Adwaita-dark";
-  #   };
-  #   cursorTheme = {
-  #     package = pkgs.bibata-cursors;
-  #     name = "Bibata-Modern-Ice";
-  #   };
-  #   iconTheme = {
-  #     package = pkgs.gruvboxPlus;
-  #     name = "GruvboxPlus";
-  #   };
-  # };
-  # qt = {
-  #   enable = true;
-  #   platformTheme = "gtk"; # gtk | gnome
-  #   style.name = "adwaita-dark";
-  #   style.package = pkgs.adwaita-qt;
-  # };
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-  #   package = pkgs.hyprland;
-  #   xwayland.enable = true;
-  #   systemd.enable = true;
-  # };
-
   environment = {
     variables = { EDITOR = "nvim"; };
     sessionVariables = {
@@ -209,20 +174,26 @@
 
   xdg.portal = {
     enable = true;
+    config = {
+      common = { default = [ "gtk" ]; };
+      pantheon = {
+        default = [ "pantheon" "gtk" ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+      };
+      x-cinnamon = { default = [ "xapp" "gtk" ]; };
+    };
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  programs = {
-    mtr.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-    zsh.enable = true;
+  programs.mtr.enable = true;
+  programs.zsh.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
   };
 
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .

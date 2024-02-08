@@ -59,4 +59,4 @@ if [[ -z $wp ]]; then
 	wp="$(fd '.*\.(png|jpe?g|gif)$' "$WALLPAPERS_DIR" -Itf -d1 | shuf --random-source=/dev/urandom -n 1)"
 fi
 
-swww img "$wp" --transition-step=45
+swww img "$wp" --transition-step=45 2>/dev/null

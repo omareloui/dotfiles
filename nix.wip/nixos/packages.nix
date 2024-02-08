@@ -98,7 +98,7 @@
     yaml-language-server
     yamlfmt
     yamllint
-    yazi
+    # yazi
     zoxide
     atuin
     # stable.atuin

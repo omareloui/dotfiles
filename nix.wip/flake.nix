@@ -21,7 +21,7 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
-      # Supported systems for your flake packages, shell, etc.
+      system = "x86_64-linux";
       systems = [
         "aarch64-linux"
         "i686-linux"
@@ -58,17 +58,12 @@
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
-      # TODO: uncomment after testing the systemConfigurations
-      # homeConfigurations = {
-      #   "omareloui@nixos" = home-manager.lib.homeManagerConfiguration {
-      #     pkgs =
-      #       nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-      #     extraSpecialArgs = { inherit inputs outputs; };
-      #     modules = [
-      #       # > Our main home-manager configuration file <
-      #       ./home-manager/home.nix
-      #     ];
-      #   };
-      # };
+      homeConfigurations = {
+        "omareloui@nixos" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home-manager/home.nix ];
+        };
+      };
     };
 }

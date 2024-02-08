@@ -223,12 +223,6 @@
       xwayland.enable = true;
     };
     zsh.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-    };
   };
 
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .

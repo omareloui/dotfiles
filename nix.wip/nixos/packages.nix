@@ -109,7 +109,7 @@
     yamllint
     # yazi
     zoxide
-    atuin
+    # atuin
     # stable.atuin
   ];
 }

@@ -97,6 +97,7 @@
   hardware = {
     opengl.enable = true;
     pulseaudio.enable = false;
+    acpilight.enable = true;
   };
 
   hardware.bluetooth = {
@@ -187,6 +188,10 @@
 
   programs.mtr.enable = true;
   programs.zsh.enable = true;
+  programs.light = {
+    enable = true;
+    brightnessKeys.enable = true;
+  };
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

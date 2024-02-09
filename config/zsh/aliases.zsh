@@ -1,7 +1,6 @@
-# Aliases
 alias zshconfig="$EDITOR ~/.config/zsh/.zshrc"
 
-alias ls="exa -l --no-time --icons --sort=type"
+alias ls="eza -l --no-time --icons --sort=type"
 
 alias ll='ls -alF'
 alias la='ls -a'

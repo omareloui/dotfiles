@@ -44,11 +44,57 @@
 
   # home.packages = with pkgs; [ ];
 
-  programs.yazi.enable = true;
+  programs.yazi = {
+    enable = true;
+    settings = {
+      manager = {
+        ratio = [ 1 4 3 ];
+        linemode = "size";
+      };
+    };
+    keymap = {
+      manager = {
+        prepend_keymap = [
+          {
+            on = [ "l" ];
+            exec = "plugin --sync smart-enter";
+            desc = "Enter the child directory, or open the file";
+          }
+          {
+            on = [ "w" ];
+            exec = "shell --confirm 'wallpaper $1'";
+            desc = "Set the image as wallpaper";
+          }
+          {
+            on = [ "A" ];
+            exec = ''
+              shell --block --confirm '
+                read -p "Write directory name: " dir
+                mkdir -p $dir
+                mv $@ $dir
+              '
+            '';
+            desc = "Add selected to a new directory";
+          }
+          {
+            on = [ "F" ];
+            exec = ''
+              shell --confirm '
+                for folder in $@; do
+                  if [[ -d $folder ]]; then
+                    fd -IHd1 . "$folder" | xargs -I{} mv {} .
+                    rmdir "$folder"
+                  fi
+                done
+              '
+            '';
+            desc = "Flatten the selected directories";
+          }
 
-  programs.thefuck.enable = true;
-  programs.thefuck.enableZshIntegration = true;
-
+        ];
+      };
+    };
+  };
   home.file.".config/yazi/plugins/smart-enter.yazi/init.lua".text = ''
     return {
     	entry = function()
@@ -57,54 +103,10 @@
     	end,
     }
   '';
-  programs.yazi.settings = {
-    manager = {
-      ratio = [ 1 4 3 ];
-      linemode = "size";
 
-    };
-  };
-  programs.yazi.keymap = {
-    manager = {
-      prepend_keymap = [
-        {
-          on = [ "l" ];
-          exec = "plugin --sync smart-enter";
-          desc = "Enter the child directory, or open the file";
-        }
-        {
-          on = [ "w" ];
-          exec = "shell --confirm 'wallpaper $1'";
-          desc = "Set the image as wallpaper";
-        }
-        {
-          on = [ "A" ];
-          exec = ''
-            shell --block --confirm '
-              read -p "Write directory name: " dir
-              mkdir -p $dir
-              mv $@ $dir
-            '
-          '';
-          desc = "Add selected to a new directory";
-        }
-        {
-          on = [ "F" ];
-          exec = ''
-            shell --confirm '
-              for folder in $@; do
-                if [[ -d $folder ]]; then
-                  fd -IHd1 . "$folder" | xargs -I{} mv {} .
-                  rmdir "$folder"
-                fi
-              done
-            '
-          '';
-          desc = "Flatten the selected directories";
-        }
-
-      ];
-    };
+  programs.thefuck = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.neovim = {
@@ -408,6 +410,175 @@
         frame_color = "#0d0f16";
         highlight = "#F38BA8";
       };
+    };
+  };
+
+  home.sessionVariables = {
+    PATH = (builtins.concatStringsSep ":" [
+      "$PATH"
+      "/usr/local/go/bin"
+      "/usr/local/bin"
+      "${config.xdg.dataHome}/.local/share/pnpm"
+      "${config.xdg.dataHome}/.cargo/bin"
+      "${config.xdg.dataHome}/.deno/bin"
+      "${config.xdg.dataHome}/.local/bin"
+      "${config.xdg.dataHome}/bin"
+    ]);
+
+    LANG = "en_US.UTF-8";
+
+    VISUAL = "nvim";
+    EDITOR = "nvim";
+
+    DOTFILES = "${config.xdg.dataHome}/.dotfiles";
+    DOTFILES_ASSETS = "${config.home.sessionVariables.DOTFILES}/assets";
+    DOTFILES_CONFIG = "${config.home.sessionVariables.DOTFILES}/config";
+    SCRIPTS = "${config.home.sessionVariables.DOTFILES}/scripts";
+    BOOTSTRAP_FILES = "${config.home.sessionVariables.DOTFILES}/bootstrap";
+
+    REPOS_DIR = "${config.xdg.dataHome}/repos";
+    MUSIC_DIR = "${config.xdg.dataHome}/Music";
+    MOVIES_DIR = "${config.xdg.dataHome}/Movies";
+    NVM_DIR = "${config.xdg.dataHome}/.nvm";
+
+    # TODO: fix this
+    # DISTRO = ''$("${config.xdg.dataHome}/.local/bin/distro")'';
+  };
+
+  home.shellAliases = {
+    # zshconfig = "$EDITOR ~/.config/zsh/.zshrc";
+    # reload = "source $ZDOTDIR/.zshrc";
+
+    ls = "eza -l --no-time --icons --sort=type";
+    ll = "ls -alF";
+    la = "ls -a";
+    l = "eza";
+
+    # neovide = "env -u WAYLAND_DISPLAY neovide"
+
+    # py = "python3";
+    # ve = "python3 -m venv ./env";
+    # va = "source ./env/bin/activate";
+
+    q = "exit";
+    ":q" = "exit";
+
+    # cat = "bat --color always --plain";
+    bat = "bat --color always --plain";
+    # grep = "grep --color=auto";
+    du = "dust";
+
+    # update = "paru -Syu";
+    # rmcache = "paru -Sccd";
+
+    clean_docker = "docker builder prune -a --force";
+
+    nr = "nixos-rebuild";
+    nf = "nr --flake ~/.dotfiles/nix.wip";
+    ns = "nf switch";
+
+    hm = "home-manager";
+    hf = "hm --flake ~/.dotfiles/nix.wip";
+    hs = "hf switch";
+  };
+
+  programs.zsh = {
+    enable = true;
+    dotDir = ".config/zsh";
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    defaultKeymap = "viins";
+    localVariables = {
+      ZVM_VI_INSERT_ESCAPE_BINDKEY = "jk";
+      ZSH_AUTOSUGGEST_STRATEGY = [ "history" "completion" ];
+    };
+    history = {
+      expireDuplicatesFirst = true;
+      extended = true;
+      ignoreAllDups = true;
+      ignoreSpace = true;
+      path = "${config.xdg.cacheHome}/zsh/zsh_history";
+      save = 1000000000;
+      size = 1000000000;
+    };
+    initExtraFirst = "";
+    initExtraBeforeCompInit = "";
+
+    initExtra = ''
+      bindkey '^ ' autosuggest-accept
+      extract() {
+        case $1 in
+          *.tar.bz | *.tar.bz2 | *.tar.tbz | *.tar.tbz2)
+            foldername="$(basename "''${1%%.*}")"
+            [[ ! -d $foldername ]] && mkdir $foldername
+            tar xjvf "$1" -C "$foldername"
+            ;;
+          *.tar.gz | *.tar.tgz)
+            foldername="$(basename "''${1%%.*}")"
+            [[ ! -d $foldername ]] && mkdir $foldername
+            tar xzvf "$1" -C "$foldername"
+            ;;
+          *.tar.xz | *.tar.txz)
+            foldername="$(basename "''${1%%.*}")"
+            [[ ! -d $foldername ]] && mkdir $foldername
+            tar xJvf "$1" -C "$foldername"
+            ;;
+          *.zip)
+            unzip "$1"
+            ;;
+          *.rar)
+            unrar x "$1"
+            ;;
+          *.7z)
+            7z x "$1"
+            ;;
+          *)
+            echo -e "\e[31mError\e[33m:\e[0m Didn't find a function to exctract $1"
+            ;;
+        esac
+      }
+      function ya() {
+        local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+        yazi "$@" --cwd-file="$tmp"
+        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+          cd -- "$cwd"
+        fi
+        rm -f -- "$tmp"
+      }
+
+      eval "$(starship init zsh)"
+      eval "$(zoxide init zsh)"
+      eval "$(atuin init zsh)"
+    '';
+
+    prezto = {
+      enable = true;
+      caseSensitive = false;
+      editor = {
+        keymap = "vi";
+        promptContext = true;
+      };
+      pmodules = [
+        "environment"
+        "terminal"
+        "editor"
+        "history"
+        "directory"
+        "spectrum"
+        "utility"
+        "completion"
+        "prompt"
+      ];
+      terminal.autoTitle = true;
+    };
+    zplug = {
+      enable = true;
+      plugins = [
+        { name = "zsh-users/zsh-autosuggestions"; }
+        { name = "zsh-users/zsh-completions"; }
+        { name = "jeffreytse/zsh-vi-mode"; }
+        { name = "zdharma-continuum/fast-syntax-highlighting"; }
+      ];
     };
   };
 

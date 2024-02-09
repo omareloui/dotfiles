@@ -14,6 +14,11 @@
     variety
     entr
 
+    # checkout this package to handle and use gtk themes
+    # NOTE: but if you're going to use it you can't leave the
+    # theme configs in home-manager
+    # nwg-look
+
     acpi
     autoconf
     automake

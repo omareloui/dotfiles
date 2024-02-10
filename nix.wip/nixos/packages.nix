@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # astro-language-server
     # buf
@@ -13,6 +13,8 @@
     font-manager
     variety
     entr
+
+    alejandra
 
     # checkout this package to handle and use gtk themes
     # NOTE: but if you're going to use it you can't leave the
@@ -53,9 +55,9 @@
     htmlhint
     jq
     keepassxc
-    kitty
-    lazygit
-    lf
+    # kitty
+    # lazygit
+    # lf
     libcanberra-gtk3
     libiconv
     libnotify
@@ -71,7 +73,8 @@
     neofetch
     networkmanagerapplet
     nil
-    nixfmt
+    # nixfmt
+    syncthing
     nodePackages.bash-language-server
     nodePackages.cspell
     nodePackages.prisma
@@ -92,7 +95,7 @@
     shellcheck
     shfmt
     sqlfluff
-    starship
+    # starship
     stylua
     swww
     tailwindcss-language-server
@@ -108,7 +111,7 @@
     yamlfmt
     yamllint
     # yazi
-    zoxide
+    # zoxide
     # atuin
     # stable.atuin
   ];

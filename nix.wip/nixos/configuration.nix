@@ -1,4 +1,11 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
@@ -30,25 +37,28 @@
       #   });
       # })
     ];
-    config = { allowUnfree = true; };
+    config = {allowUnfree = true;};
   };
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
-  nix.registry = (lib.mapAttrs (_: flake: { inherit flake; }))
+  nix.registry =
+    (lib.mapAttrs (_: flake: {inherit flake;}))
     ((lib.filterAttrs (_: lib.isType "flake")) inputs);
 
   # This will additionally add your inputs to the system's legacy channels
   # Making legacy nix commands consistent as well, awesome!
-  nix.nixPath = [ "/etc/nix/path" ];
-  environment.etc = lib.mapAttrs' (name: value: {
-    name = "nix/path/${name}";
-    value.source = value.flake;
-  }) config.nix.registry;
+  nix.nixPath = ["/etc/nix/path"];
+  environment.etc =
+    lib.mapAttrs' (name: value: {
+      name = "nix/path/${name}";
+      value.source = value.flake;
+    })
+    config.nix.registry;
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
     };
     gc = {
@@ -61,6 +71,8 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
+    firewall.allowedTCPPorts = [8384 22000];
+    firewall.allowedUDPPorts = [22000 21027];
   };
 
   system = {
@@ -81,7 +93,7 @@
         efiSupport = true;
       };
     };
-    initrd.kernelModules = [ "amdgpu" ];
+    initrd.kernelModules = ["amdgpu"];
   };
 
   time.timeZone = "Egypt";
@@ -166,7 +178,7 @@
   };
 
   environment = {
-    variables = { EDITOR = "nvim"; };
+    variables = {EDITOR = "nvim";};
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";
@@ -176,14 +188,14 @@
   xdg.portal = {
     enable = true;
     config = {
-      common = { default = [ "gtk" ]; };
+      common = {default = ["gtk"];};
       pantheon = {
-        default = [ "pantheon" "gtk" ];
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        default = ["pantheon" "gtk"];
+        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
       };
-      x-cinnamon = { default = [ "xapp" "gtk" ]; };
+      x-cinnamon = {default = ["xapp" "gtk"];};
     };
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   programs.mtr.enable = true;

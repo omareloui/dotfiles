@@ -50,7 +50,7 @@ return {
         jsonc = { "prettierd" },
         lua = { "stylua" },
         markdown = { "prettierd" },
-        nix = { "nixfmt" },
+        nix = { "alejandra" },
         proto = { "buf" },
         sh = { "shfmt" },
         sql = { "sql_formatter" },

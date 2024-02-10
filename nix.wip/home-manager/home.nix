@@ -1,4 +1,11 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   home.stateVersion = "23.11";
 
   imports = [
@@ -44,11 +51,13 @@
 
   # home.packages = with pkgs; [ ];
 
+  programs.home-manager.enable = true;
+
   programs.yazi = {
     enable = true;
     settings = {
       manager = {
-        ratio = [ 1 4 3 ];
+        ratio = [1 4 3];
         linemode = "size";
       };
     };
@@ -56,17 +65,18 @@
       manager = {
         prepend_keymap = [
           {
-            on = [ "l" ];
+            on = ["l"];
             exec = "plugin --sync smart-enter";
             desc = "Enter the child directory, or open the file";
           }
           {
-            on = [ "w" ];
-            exec = "shell --confirm 'wallpaper $1'";
+            on = ["w"];
+            # TODO: update the script after moving the script to nix
+            exec = "shell --confirm '~/.dotfiles/scripts/wallpaper $1'";
             desc = "Set the image as wallpaper";
           }
           {
-            on = [ "A" ];
+            on = ["A"];
             exec = ''
               shell --block --confirm '
                 read -p "Write directory name: " dir
@@ -77,7 +87,7 @@
             desc = "Add selected to a new directory";
           }
           {
-            on = [ "F" ];
+            on = ["F"];
             exec = ''
               shell --confirm '
                 for folder in $@; do
@@ -90,19 +100,22 @@
             '';
             desc = "Flatten the selected directories";
           }
-
         ];
       };
     };
   };
-  home.file.".config/yazi/plugins/smart-enter.yazi/init.lua".text = ''
-    return {
-    	entry = function()
-    		local h = cx.active.current.hovered
-    		ya.manager_emit(h and h.cha.is_dir and "enter" or "open", {})
-    	end,
-    }
-  '';
+  home.file.".config/yazi/plugins/smart-enter.yazi/init.lua".text =
+    /*
+    lua
+    */
+    ''
+      return {
+      	entry = function()
+      		local h = cx.active.current.hovered
+      		ya.manager_emit(h and h.cha.is_dir and "enter" or "open", {})
+      	end,
+      }
+    '';
 
   programs.thefuck = {
     enable = true;
@@ -116,19 +129,17 @@
     vimAlias = true;
   };
 
-  programs.home-manager.enable = true;
-
   programs.git = {
     enable = true;
     userName = "Omar Eloui";
     userEmail = "contact@omareloui.com";
     extraConfig = {
-      init = { defaultBranch = "main"; };
+      init = {defaultBranch = "main";};
       core = {
         editor = "nvim";
         sshCommand = "ssh -i ~/.ssh/id_rsa_github";
       };
-      push = { autoSetupRemote = true; };
+      push = {autoSetupRemote = true;};
     };
     delta = {
       enable = true;
@@ -174,12 +185,12 @@
       # "nm-applet --indeicator"
       "dunst"
     ];
-    exec = [ "libinput-gestures-setup restart" ];
+    exec = ["libinput-gestures-setup restart"];
 
     input = {
       kb_layout = "us";
       follow_mouse = 1;
-      touchpad = { natural_scroll = "yes"; };
+      touchpad = {natural_scroll = "yes";};
       sensitivity = 0;
     };
 
@@ -205,14 +216,14 @@
       workspace_swipe_invert = true;
     };
 
-    "device:epic mouse V1" = { sensitivity = -0.5; };
+    "device:epic mouse V1" = {sensitivity = -0.5;};
 
     misc = {
       disable_splash_rendering = true;
       disable_hyprland_logo = true;
     };
 
-    master = { new_is_master = false; };
+    master = {new_is_master = false;};
 
     windowrule = [
       "float, transmission"
@@ -254,82 +265,126 @@
     };
 
     "$mainMod" = "SUPER";
-    bind = [
-      # window manipulation
-      "$mainMod, escape, exec, wlogout -b 5 -T 400 -B 400"
-      "$mainMod SHIFT, R, exec, hyprctl reload"
-      "$mainMod, Q, killactive,"
-      "$mainMod, C, pseudo,"
-      "$mainMod, F, fullscreen,"
+    bind =
+      [
+        # window manipulation
+        "$mainMod, escape, exec, ${lib.getExe pkgs.wlogout} -b 5 -T 400 -B 400"
+        "$mainMod SHIFT, R, exec, hyprctl reload"
+        "$mainMod, Q, killactive,"
+        "$mainMod, C, pseudo,"
+        "$mainMod, F, fullscreen,"
 
-      # apps keybindings
-      "$mainMod, B, exec, microsoft-edge-stable"
-      "$mainMod, T, exec, telegram-desktop"
-      "$mainMod, Return, exec, kitty"
+        # apps keybindings
+        "$mainMod, B, exec, microsoft-edge-stable"
+        "$mainMod, T, exec, telegram-desktop"
+        "$mainMod, Return, exec, kitty"
 
-      ",Print,exec,~/.local/bin/screenshot -s 3 full"
-      "$mainMod,Print,exec,~/.local/bin/screenshot -p area"
+        ",Print,exec,~/.local/bin/screenshot -s 3 full"
+        "$mainMod,Print,exec,~/.local/bin/screenshot -p area"
 
-      "$mainMod SHIFT, T, exec, swaync-client -t"
+        "$mainMod SHIFT, T, exec, swaync-client -t"
 
-      "$mainMod, E, exec, thunar"
-      # TODO: check how to add this script
-      "$mainMod, R, exec, ~/.dotfiles/config/hypr/scripts/appLaunch/launcher.sh"
-      "$mainMod, P, pseudo, # dwindle"
+        "$mainMod, E, exec, thunar"
+        # TODO: check how to add this script
+        "$mainMod, R, exec, ~/.dotfiles/config/hypr/scripts/appLaunch/launcher.sh"
+        "$mainMod, P, pseudo, # dwindle"
 
-      # Move focus with mainMod + vim keys
-      "$mainMod, h, movefocus, l"
-      "$mainMod, l, movefocus, r"
-      "$mainMod, k, movefocus, u"
-      "$mainMod, j, movefocus, d"
+        # Move focus with mainMod + vim keys
+        "$mainMod, h, movefocus, l"
+        "$mainMod, l, movefocus, r"
+        "$mainMod, k, movefocus, u"
+        "$mainMod, j, movefocus, d"
 
-      "$mainMod, tab, workspace, +1"
-      "$mainMod SHIFT, tab, workspace, -1"
+        "$mainMod, tab, workspace, +1"
+        "$mainMod SHIFT, tab, workspace, -1"
 
-      # Move windows in workspace
-      "$mainMod SHIFT, h, movewindow, l"
-      "$mainMod SHIFT, l, movewindow, r"
-      "$mainMod SHIFT, k, movewindow, u"
-      "$mainMod SHIFT, j, movewindow, d"
+        # Move windows in workspace
+        "$mainMod SHIFT, h, movewindow, l"
+        "$mainMod SHIFT, l, movewindow, r"
+        "$mainMod SHIFT, k, movewindow, u"
+        "$mainMod SHIFT, j, movewindow, d"
 
-      # Resize in workspace
-      "$mainMod CONTROL, h, splitratio, -0.1"
-      "$mainMod CONTROL, l, splitratio, +0.1"
+        # Resize in workspace
+        "$mainMod CONTROL, h, splitratio, -0.1"
+        "$mainMod CONTROL, l, splitratio, +0.1"
 
-      # Scroll through existing workspaces with mainMod + scroll
-      "$mainMod, mouse_down, workspace, e+1"
-      "$mainMod, mouse_up, workspace, e-1"
+        # Scroll through existing workspaces with mainMod + scroll
+        "$mainMod, mouse_down, workspace, e+1"
+        "$mainMod, mouse_up, workspace, e-1"
 
-      # Layout
-      "$mainMod CTRL, Space, togglefloating"
-      "$mainMod, Space, togglesplit"
+        # Layout
+        "$mainMod CTRL, Space, togglefloating"
+        "$mainMod, Space, togglesplit"
 
-      "$mainMod SHIFT, V, togglegroup"
-      "$mainMod, N, changegroupactive, f"
-      "$mainMod SHIFT, N, changegroupactive, b"
+        "$mainMod SHIFT, V, togglegroup"
+        "$mainMod, N, changegroupactive, f"
+        "$mainMod SHIFT, N, changegroupactive, b"
 
-      # Laptop keys
-      ",XF86MonBrightnessUp, exec, ~/.local/bin/brightness up"
-      ",XF86MonBrightnessDown, exec, ~/.local/bin/brightness down"
-      ",XF86AudioPlay, exec, playerctl play-pause"
-      ",XF86AudioRaiseVolume, exec, ~/.local/bin/volume up"
-      ",XF86AudioLowerVolume, exec, ~/.local/bin/volume down"
-      ",XF86AudioMute, exec, ~/.local/bin/volume mute"
+        # Laptop keys
+        ",XF86MonBrightnessUp, exec, ~/.local/bin/brightness up"
+        ",XF86MonBrightnessDown, exec, ~/.local/bin/brightness down"
+        ",XF86AudioPlay, exec, playerctl play-pause"
+        ",XF86AudioRaiseVolume, exec, ~/.local/bin/volume up"
+        ",XF86AudioLowerVolume, exec, ~/.local/bin/volume down"
+        ",XF86AudioMute, exec, ~/.local/bin/volume mute"
 
-      # misc
-      "$mainMod, W, exec, ~/.local/bin/wallpaper"
-    ] ++ (
-      # workspaces
-      # binds $mainMod + [shift +] {1..10} to [move to] workspace {1..10}
-      builtins.concatLists (builtins.genList (x:
-        let ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
-        in [
-          "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
-          "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-        ]) 10));
+        # misc
+        "$mainMod, W, exec, ~/.local/bin/wallpaper"
+      ]
+      ++ (
+        # workspaces
+        # binds $mainMod + [shift +] {1..10} to [move to] workspace {1..10}
+        builtins.concatLists (builtins.genList (x: let
+            ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
+          in [
+            "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
+            "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+          ])
+          10)
+      );
 
-    bindm =
-      [ "$mainMod, mouse:272, movewindow" "$mainMod, mouse:273, resizewindow" ];
+    bindm = ["$mainMod, mouse:272, movewindow" "$mainMod, mouse:273, resizewindow"];
+  };
+
+  programs.wlogout = {
+    enable = true;
+    layout = [
+      {
+        label = "lock";
+        action = "~/.local/bin/lock";
+        text = "Lock (l)";
+        keybind = "l";
+      }
+      {
+        label = "reboot";
+        action = "systemctl reboot";
+        text = "Reboot (r)";
+        keybind = "r";
+      }
+      {
+        label = "shutdown";
+        action = "systemctl poweroff";
+        text = "Shutdown (s)";
+        keybind = "s";
+      }
+      {
+        label = "logout";
+        action = "hyprctl dispatch exit 0";
+        text = "Logout (e)";
+        keybind = "e";
+      }
+      {
+        label = "suspend";
+        action = "systemctl suspend";
+        text = "Suspend (u)";
+        keybind = "u";
+      }
+    ];
+    # style = ''
+    #   window {
+    #     background: #16191c;
+    #   }
+    # '';
   };
 
   # TODO: readd the comments from main dunst file after moving to another file
@@ -414,7 +469,7 @@
   };
 
   home.sessionVariables = {
-    PATH = (builtins.concatStringsSep ":" [
+    PATH = builtins.concatStringsSep ":" [
       "$PATH"
       "/usr/local/go/bin"
       "/usr/local/bin"
@@ -423,14 +478,14 @@
       "${config.xdg.dataHome}/.deno/bin"
       "${config.xdg.dataHome}/.local/bin"
       "${config.xdg.dataHome}/bin"
-    ]);
+    ];
 
     LANG = "en_US.UTF-8";
 
     VISUAL = "nvim";
     EDITOR = "nvim";
 
-    DOTFILES = "${config.xdg.dataHome}/.dotfiles";
+    DOTFILES = "${config.home.homeDirectory}/.dotfiles";
     DOTFILES_ASSETS = "${config.home.sessionVariables.DOTFILES}/assets";
     DOTFILES_CONFIG = "${config.home.sessionVariables.DOTFILES}/config";
     SCRIPTS = "${config.home.sessionVariables.DOTFILES}/scripts";
@@ -463,8 +518,7 @@
     q = "exit";
     ":q" = "exit";
 
-    # cat = "bat --color always --plain";
-    bat = "bat --color always --plain";
+    cat = "bat --color always --plain";
     # grep = "grep --color=auto";
     du = "dust";
 
@@ -490,7 +544,7 @@
     defaultKeymap = "viins";
     localVariables = {
       ZVM_VI_INSERT_ESCAPE_BINDKEY = "jk";
-      ZSH_AUTOSUGGEST_STRATEGY = [ "history" "completion" ];
+      ZSH_AUTOSUGGEST_STRATEGY = ["history" "completion"];
     };
     history = {
       expireDuplicatesFirst = true;
@@ -504,51 +558,53 @@
     initExtraFirst = "";
     initExtraBeforeCompInit = "";
 
-    initExtra = ''
-      bindkey '^ ' autosuggest-accept
-      extract() {
-        case $1 in
-          *.tar.bz | *.tar.bz2 | *.tar.tbz | *.tar.tbz2)
-            foldername="$(basename "''${1%%.*}")"
-            [[ ! -d $foldername ]] && mkdir $foldername
-            tar xjvf "$1" -C "$foldername"
-            ;;
-          *.tar.gz | *.tar.tgz)
-            foldername="$(basename "''${1%%.*}")"
-            [[ ! -d $foldername ]] && mkdir $foldername
-            tar xzvf "$1" -C "$foldername"
-            ;;
-          *.tar.xz | *.tar.txz)
-            foldername="$(basename "''${1%%.*}")"
-            [[ ! -d $foldername ]] && mkdir $foldername
-            tar xJvf "$1" -C "$foldername"
-            ;;
-          *.zip)
-            unzip "$1"
-            ;;
-          *.rar)
-            unrar x "$1"
-            ;;
-          *.7z)
-            7z x "$1"
-            ;;
-          *)
-            echo -e "\e[31mError\e[33m:\e[0m Didn't find a function to exctract $1"
-            ;;
-        esac
-      }
-      function ya() {
-        local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-        yazi "$@" --cwd-file="$tmp"
-        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-          cd -- "$cwd"
-        fi
-        rm -f -- "$tmp"
-      }
+    initExtra =
+      /*
+      bash
+      */
+      ''
+        bindkey '^ ' autosuggest-accept
+        extract() {
+          case $1 in
+            *.tar.bz | *.tar.bz2 | *.tar.tbz | *.tar.tbz2)
+              foldername="$(basename "''${1%%.*}")"
+              [[ ! -d $foldername ]] && mkdir $foldername
+              tar xjvf "$1" -C "$foldername"
+              ;;
+            *.tar.gz | *.tar.tgz)
+              foldername="$(basename "''${1%%.*}")"
+              [[ ! -d $foldername ]] && mkdir $foldername
+              tar xzvf "$1" -C "$foldername"
+              ;;
+            *.tar.xz | *.tar.txz)
+              foldername="$(basename "''${1%%.*}")"
+              [[ ! -d $foldername ]] && mkdir $foldername
+              tar xJvf "$1" -C "$foldername"
+              ;;
+            *.zip)
+              unzip "$1"
+              ;;
+            *.rar)
+              unrar x "$1"
+              ;;
+            *.7z)
+              7z x "$1"
+              ;;
+            *)
+              echo -e "\e[31mError\e[33m:\e[0m Didn't find a function to exctract $1"
+              ;;
+          esac
+        }
 
-      eval "$(starship init zsh)"
-      eval "$(zoxide init zsh)"
-    '';
+        function ya() {
+          local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+          ${lib.getExe pkgs.yazi} "$@" --cwd-file="$tmp"
+          if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+            cd -- "$cwd"
+          fi
+          rm -f -- "$tmp"
+        }
+      '';
 
     prezto = {
       enable = true;
@@ -573,10 +629,10 @@
     zplug = {
       enable = true;
       plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "zsh-users/zsh-completions"; }
-        { name = "jeffreytse/zsh-vi-mode"; }
-        { name = "zdharma-continuum/fast-syntax-highlighting"; }
+        {name = "zsh-users/zsh-autosuggestions";}
+        {name = "zsh-users/zsh-completions";}
+        {name = "jeffreytse/zsh-vi-mode";}
+        {name = "zdharma-continuum/fast-syntax-highlighting";}
       ];
     };
   };
@@ -587,7 +643,7 @@
     # `kitty --debug-font-fallback` to know which font is applied
     font = {
       name = "FiraCode Nerd Font Mono";
-      package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
+      package = pkgs.nerdfonts.override {fonts = ["FiraCode"];};
       size = 12;
     };
     shellIntegration.enableZshIntegration = true;
@@ -664,8 +720,13 @@
         "$character"
       ];
       line_break.disabled = true;
-      python = { format = "[(($virtualenv) )]($style)"; };
+      python = {format = "[(($virtualenv) )]($style)";};
     };
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.atuin = {
@@ -680,9 +741,8 @@
         vim_normal = "blink-block";
       };
       stats = {
-        common_prefix = [ "sudo" ];
-        common_subcommands =
-          [ "cargo" "go" "git" "npm" "yarn" "pnpm" "docker" "kubectl" ];
+        common_prefix = ["sudo"];
+        common_subcommands = ["cargo" "go" "git" "npm" "yarn" "pnpm" "docker" "kubectl"];
       };
     };
   };
@@ -691,12 +751,14 @@
   xdg.mimeApps = {
     enable = true;
     associations.added = {
-      "image/png" = [ "org.gnome.Loupe.desktop" ];
-      "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
+      "image/png" = ["org.gnome.Loupe.desktop"];
+      "image/jpeg" = ["org.gnome.Loupe.desktop"];
+      "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
     };
     defaultApplications = {
-      "image/png" = [ "org.gnome.Loupe.desktop" ];
-      "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
+      "image/png" = ["org.gnome.Loupe.desktop"];
+      "image/jpeg" = ["org.gnome.Loupe.desktop"];
+      "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
     };
   };
 
@@ -734,9 +796,30 @@
   dconf = {
     enable = true;
     settings = {
-      "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
+      "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
     };
   };
+
+  services.syncthing = {
+    enable = true;
+    # dataDir = "${config.home.homeDirectory}/documents/syncthing";
+    # configDir = "${config.home.homeDirectory}/documents/syncthing/.config/syncthing";
+    # overrideDevices = true; # overrides any devices added or deleted through the WebUI
+    # overrideFolders = true; # overrides any folders added or deleted through the WebUI
+    # settings = {
+    #   devices = {
+    #     "A24" = {id = "DEVICE_ID";};
+    #   };
+    #   folders = {
+    #     "default" = {
+    #       path = "${config.home.homeDirectory}/documents/syncthing"; # Which folder to add to Syncthing
+    #       devices = ["A24"];
+    #     };
+    #   };
+    # };
+  };
+  # home.file.".local/state/syncthing/config.xml".text =
+  #   builtins.toXML [];
 
   # TODO: doesn't work for now!
   # services.gpg-agent = {

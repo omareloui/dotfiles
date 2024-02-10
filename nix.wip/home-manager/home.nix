@@ -100,6 +100,41 @@
             '';
             desc = "Flatten the selected directories";
           }
+          {
+            desc = "Extract a compressed file";
+            on = ["e"];
+            exec = ''
+              shell --confirm '
+                for file in $@; do
+                  case $file in
+                    *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
+                      foldername="$(basename "''${file%%.*}")"
+                      [[ ! -d foldername ]] && mkdir $foldername
+                      tar xjvf "$file" -C "$foldername"
+                    ;;
+                    *.tar.gz|*.tgz)
+                      foldername="$(basename "''${file%%.*}")"
+                      [[ ! -d foldername ]] && mkdir $foldername
+                      tar xzvf "$file" -C "$foldername"
+                    ;;
+                    *.tar.xz|*.txz)
+                      foldername="$(basename "''${file%%.*}")"
+                      [[ ! -d foldername ]] && mkdir $foldername
+                      tar xJvf "$file" -C "$foldername"
+                    ;;
+                    *.zip)
+                      unzip "$file"
+                    ;;
+                    *.rar)
+                        unrar x "$file"
+                    ;;
+                    *.7z)
+                      7z x "$file"
+                    ;;
+                  esac
+                done'
+            '';
+          }
         ];
       };
     };
@@ -599,7 +634,7 @@
         function ya() {
           local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
           ${lib.getExe pkgs.yazi} "$@" --cwd-file="$tmp"
-          if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+          if cwd="$(\cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
             cd -- "$cwd"
           fi
           rm -f -- "$tmp"

@@ -215,10 +215,10 @@
 
     exec-once = [
       # "~/.autostart"
-      # "eww open bar"
-      "swww init"
+      # "${lib.getExe pkgs.eww} open bar"
+      "${lib.getExe pkgs.swww} init"
       # "nm-applet --indeicator"
-      "dunst"
+      "${lib.getExe pkgs.dunst}"
     ];
     exec = ["libinput-gestures-setup restart"];
 
@@ -380,6 +380,14 @@
 
     bindm = ["$mainMod, mouse:272, movewindow" "$mainMod, mouse:273, resizewindow"];
   };
+
+  # programs.eww = {
+  #   enable = true;
+  #   # TODO: update the path (make it in the same directory as the eww/default.nix or whatever it will be)
+  #   # TODO: make the files nix embeded
+  #   package = pkgs.eww.override {withWayland = true;};
+  #   configDir = "${config.home.sessionVariables.DOTFILES}/nix.wip/assets/eww/bar";
+  # };
 
   programs.wlogout = {
     enable = true;

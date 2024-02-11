@@ -13,8 +13,11 @@
     font-manager
     variety
     entr
+    # TODO: download after providing space
+    # torrentstream
 
     alejandra
+    socat
 
     # checkout this package to handle and use gtk themes
     # NOTE: but if you're going to use it you can't leave the

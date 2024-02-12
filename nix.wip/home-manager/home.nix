@@ -219,6 +219,7 @@
       "${lib.getExe pkgs.swww} init"
       # "nm-applet --indeicator"
       "${lib.getExe pkgs.dunst}"
+      "${lib.getExe pkgs.xorg.xhost} +SI:localuser:root"
     ];
     exec = ["libinput-gestures-setup restart"];
 
@@ -791,18 +792,17 @@
   };
 
   # To find the desktop files checkout `/run/current-system/sw/share/applications/`
-  xdg.mimeApps = {
+  xdg.mimeApps = let
+    mimeTypes = {
+      "image/png" = ["org.gnome.Loupe.desktop"];
+      "image/jpeg" = ["org.gnome.Loupe.desktop"];
+      "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
+      "application/x-tar" = "org.kde.ark.desktop";
+    };
+  in {
     enable = true;
-    associations.added = {
-      "image/png" = ["org.gnome.Loupe.desktop"];
-      "image/jpeg" = ["org.gnome.Loupe.desktop"];
-      "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
-    };
-    defaultApplications = {
-      "image/png" = ["org.gnome.Loupe.desktop"];
-      "image/jpeg" = ["org.gnome.Loupe.desktop"];
-      "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
-    };
+    associations.added = mimeTypes;
+    defaultApplications = mimeTypes;
   };
 
   home.pointerCursor = {

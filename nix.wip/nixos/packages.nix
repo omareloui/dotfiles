@@ -1,4 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  # outputs,
+  # localPackages,
+  ...
+}: {
+  # environment.systemPackages = let
+  #   var = builtins.trace "localPackages" localPackages;
+  #   # var = builtins.trace "outputs" outputs;
+  # in [var];
   environment.systemPackages = with pkgs; [
     # astro-language-server
     # buf
@@ -7,18 +16,24 @@
     # elixir-ls
     # prisma-language-server
     # templ
-
-    loupe
-    gnome.gnome-bluetooth
-    font-manager
-    variety
-    entr
     # TODO: download after providing space
+    # calibre
+    # calibre-web
+    # scribus
     # torrentstream
-
+    # thunderbird
+    # inkscape
     alejandra
+    ark
+    entr
+    font-manager
+    gnome.gnome-bluetooth
+    jujutsu
+    loupe
     socat
+    xorg.xhost
 
+    # variety
     # checkout this package to handle and use gtk themes
     # NOTE: but if you're going to use it you can't leave the
     # theme configs in home-manager
@@ -90,6 +105,7 @@
     nodejs
     patchelf
     pkg-config
+    # polkit
     polkit_gnome
     prettierd
     ripgrep

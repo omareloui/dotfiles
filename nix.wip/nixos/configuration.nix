@@ -167,7 +167,26 @@
     };
 
     # TODO: I'm not sure that I'll need it
-    gnome.gnome-keyring.enable = true;
+    # gnome.gnome-keyring.enable = true;
+
+    # TODO: update the plug scripts to use the packages instead
+    udev.extraRules =
+      /*
+      hog
+      */
+      ''
+        ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", ENV{DISPLAY}=":0", ENV{XDG_RUNTIME_DIR}="/run/user/1000" RUN+="${pkgs.su} omareloui -c \"/home/omareloui/.local/bin/batplug disconnected\""
+        ACTION=="change", SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", ENV{DISPLAY}=":0", ENV{XDG_RUNTIME_DIR}="/run/user/1000" RUN+="${pkgs.su} omareloui -c \"/home/omareloui/.local/bin/batplug connected\""
+      '';
+    # SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="0", RUN+="${config.systemd.package}/bin/systemctl start battery.target"
+    # SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="0", RUN+="${config.systemd.package}/bin/systemctl stop ac.target"
+    # SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="1", RUN+="${config.systemd.package}/bin/systemctl start ac.target"
+    # SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="1", RUN+="${config.systemd.package}/bin/systemctl stop battery.target"
+
+    # SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="0", RUN+="${config.systemd.package}/bin/systemctl --user --machine=bbigras@.host start battery.target"
+    # SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="0", RUN+="${config.systemd.package}/bin/systemctl --user --machine=bbigras@.host stop ac.target"
+    # SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="1", RUN+="${config.systemd.package}/bin/systemctl --user --machine=bbigras@.host start ac.target"
+    # SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="1", RUN+="${config.systemd.package}/bin/systemctl --user --machine=bbigras@.host stop battery.target"
   };
 
   security = {

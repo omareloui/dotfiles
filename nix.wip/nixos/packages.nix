@@ -1,14 +1,7 @@
-{
-  pkgs,
-  # outputs,
-  # localPackages,
-  ...
-}: {
-  # environment.systemPackages = let
-  #   var = builtins.trace "localPackages" localPackages;
-  #   # var = builtins.trace "outputs" outputs;
-  # in [var];
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    distro
+
     # astro-language-server
     # buf
     # buf-language-server
@@ -32,6 +25,8 @@
     loupe
     socat
     xorg.xhost
+    gnome.gnome-disk-utility
+    btrfs-progs
 
     # variety
     # checkout this package to handle and use gtk themes
@@ -68,7 +63,6 @@
     go
     golangci-lint
     gopls
-    gparted
     hadolint
     htmlhint
     jq

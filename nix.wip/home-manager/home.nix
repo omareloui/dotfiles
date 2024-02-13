@@ -1,5 +1,4 @@
 {
-  inputs,
   outputs,
   lib,
   config,
@@ -16,7 +15,7 @@
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
+    ./nvim
   ];
 
   nixpkgs = {
@@ -155,13 +154,6 @@
   programs.thefuck = {
     enable = true;
     enableZshIntegration = true;
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
   };
 
   programs.git = {
@@ -517,11 +509,11 @@
       "$PATH"
       "/usr/local/go/bin"
       "/usr/local/bin"
-      "${config.xdg.dataHome}/.local/share/pnpm"
-      "${config.xdg.dataHome}/.cargo/bin"
-      "${config.xdg.dataHome}/.deno/bin"
-      "${config.xdg.dataHome}/.local/bin"
-      "${config.xdg.dataHome}/bin"
+      "${config.home.homeDirectory}/.local/share/pnpm"
+      "${config.home.homeDirectory}/.cargo/bin"
+      "${config.home.homeDirectory}/.deno/bin"
+      "${config.home.homeDirectory}/.local/bin"
+      "${config.home.homeDirectory}/bin"
     ];
 
     LANG = "en_US.UTF-8";
@@ -535,10 +527,10 @@
     SCRIPTS = "${config.home.sessionVariables.DOTFILES}/scripts";
     BOOTSTRAP_FILES = "${config.home.sessionVariables.DOTFILES}/bootstrap";
 
-    REPOS_DIR = "${config.xdg.dataHome}/repos";
-    MUSIC_DIR = "${config.xdg.dataHome}/Music";
-    MOVIES_DIR = "${config.xdg.dataHome}/Movies";
-    NVM_DIR = "${config.xdg.dataHome}/.nvm";
+    REPOS_DIR = "${config.home.homeDirectory}/repos";
+    MUSIC_DIR = "${config.home.homeDirectory}/Music";
+    MOVIES_DIR = "${config.home.homeDirectory}/Movies";
+    NVM_DIR = "${config.home.homeDirectory}/.nvm";
 
     # TODO: fix this
     # DISTRO = ''$("${config.xdg.dataHome}/.local/bin/distro")'';

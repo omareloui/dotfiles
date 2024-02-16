@@ -6,84 +6,58 @@
     vimAlias = true;
 
     extraPackages = with pkgs; [
+      # astro-language-server
+      # buf
+      # buf-language-server
+      # buildifier
+      # elixir-ls
+      # nixfmt
+      # prisma-language-server
+      # templ
+      alejandra
+      dockerfile-language-server-nodejs
+      emmet-ls
+      eslint_d
+      gitlint
+      golangci-lint
+      gopls
+      hadolint
+      htmlhint
+      lua-language-server
+      luajitPackages.luacheck
+      markdownlint-cli
+      marksman
+      nil
+      nodePackages.bash-language-server
+      nodePackages.cspell
+      nodePackages.prisma
+      nodePackages.sql-formatter
+      nodePackages.typescript-language-server
+      nodePackages.volar
+      nodePackages.vscode-css-languageserver-bin
+      nodePackages.vscode-html-languageserver-bin
+      nodePackages.vscode-json-languageserver-bin
+      prettierd
+      shellcheck
       shfmt
+      shfmt
+      sqlfluff
+      stylua
+      tailwindcss-language-server
+      yaml-language-server
+      yamlfmt
+      yamllint
     ];
 
-    extraLuaConfig =
-      /*
-      lua
-      */
-      ''
-          local HOME = os.getenv "HOME"
+    # extraLuaConfig =
+    #   /*
+    #   lua
+    #   */
+    #   ''
+    #     ${builtins.readFile ./options.lua}
 
-          local undodir = nil
-
-          if HOME ~= nil then
-            undodir = HOME .. "/.cache/nvim/undodir"
-              end
-
-              local opt = vim.opt
-
-              opt.autowrite = true
-              opt.guifont = { "", ":h10" }
-        opt.swapfile = false
-          opt.colorcolumn = { "80", "120" }
-        --opt.cursorcolumn = true
-          opt.cursorline = true
-
-          opt.foldcolumn = "0"
-          opt.foldlevel = 99
-          opt.foldlevelstart = 99
-          opt.foldenable = true
-          opt.fillchars = { eob = " ", foldopen = "", foldclose = "" }
-
-        opt.hlsearch = false
-          opt.linebreak = true
-          opt.list = true
-          --o.conceallevel = 2
-          opt.listchars = { tab = "» ", lead = "·", trail = "·", eol = "↲", nbsp = "☠" }
-        opt.relativenumber = true
-          opt.scrolloff = 4
-          opt.sidescrolloff = 4
-          opt.spell = false
-          --opt.spelllang = { "en_us" }
-        --opt.spelloptions = "camel"
-          opt.undodir = undodir
-          opt.wrap = false
-          opt.laststatus = 3 -- global statusline
-          opt.showmode = false
-          opt.expandtab = true
-          opt.shiftwidth = 2
-          opt.smartindent = true
-          opt.softtabstop = 2
-          opt.tabstop = 2
-          opt.ignorecase = true
-          opt.mouse = ""
-          opt.smartcase = true
-          opt.number = true
-          opt.numberwidth = 2
-          opt.ruler = false
-          opt.signcolumn = "yes"
-          opt.splitbelow = true
-          opt.splitright = true
-          opt.termguicolors = true
-          opt.undofile = true
-          opt.timeoutlen = 300
-          opt.updatetime = 200
-          opt.diffopt = "vertical"
-          opt.cmdheight = 1
-          -- opt.smoothscroll = true
-
-          -- go to previous/next line with h,l,left arrow and right arrow
-          -- when cursor reaches end/beginning of line
-          vim.opt.whichwrap:append "<>[]hl"
-
-          -- considers "-" as a part of a word.
-          -- vim.opt.iskeyword:append "-"
-
-          -- stop continuous comments
-          vim.api.nvim_create_autocmd("FileType", { command = "set formatoptions-=cro" })
-      '';
+    #     ${builtins.readFile ./keymappings.lua}
+    #   '';
 
     # plugins = with pkgs.vimPlugins; [
     # ];

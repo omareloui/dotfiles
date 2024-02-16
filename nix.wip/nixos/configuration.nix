@@ -25,7 +25,7 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.stable-packages
+      # outputs.overlays.stable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -169,6 +169,7 @@
     # TODO: I'm not sure that I'll need it
     # gnome.gnome-keyring.enable = true;
 
+    # TODO: not working
     # TODO: update the plug scripts to use the packages instead
     udev.extraRules =
       /*
@@ -189,8 +190,13 @@
     # SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="1", RUN+="${config.systemd.package}/bin/systemctl --user --machine=bbigras@.host stop battery.target"
   };
 
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
+
   security = {
-    # TODO: not working
     polkit = {
       enable = true;
       extraConfig = ''

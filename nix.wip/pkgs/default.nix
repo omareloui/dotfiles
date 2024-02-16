@@ -2,4 +2,5 @@
 # You can build them using 'nix build .#example'
 {pkgs ? import <nixpkgs> {}}: {
   distro = pkgs.callPackage ./distro {};
+  slock = pkgs.callPackage ./slock {};
 }

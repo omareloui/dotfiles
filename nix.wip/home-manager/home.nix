@@ -16,13 +16,14 @@
 
     # You can also split up your configuration and import pieces of it here:
     ./nvim
+    ./swaylock
   ];
 
   nixpkgs = {
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.stable-packages
+      # outputs.overlays.stable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -210,7 +211,8 @@
       # "${lib.getExe pkgs.eww} open bar"
       "${lib.getExe pkgs.swww} init"
       # "nm-applet --indeicator"
-      "${lib.getExe pkgs.dunst}"
+      # "${lib.getExe pkgs.dunst}"
+      "${lib.getExe pkgs.swaynotificationcenter}"
       "${lib.getExe pkgs.xorg.xhost} +SI:localuser:root"
     ];
     exec = ["libinput-gestures-setup restart"];
@@ -374,6 +376,64 @@
     bindm = ["$mainMod, mouse:272, movewindow" "$mainMod, mouse:273, resizewindow"];
   };
 
+  home.file.".config/swaync/config.json".text = builtins.toJSON {
+    "$schema" = "${pkgs.swaynotificationcenter}/configSchema.json";
+    positionX = "right";
+    positionY = "top";
+    control-center-positionX = "none";
+    control-center-positionY = "none";
+    control-center-margin-top = 8;
+    control-center-margin-bottom = 8;
+    control-center-margin-right = 8;
+    control-center-margin-left = 8;
+    control-center-width = 500;
+    control-center-height = 600;
+    fit-to-screen = false;
+
+    layer = "overlay";
+    control-center-layer = "overlay";
+    cssPriority = "user";
+    notification-icon-size = 64;
+    notification-body-image-height = 100;
+    notification-body-image-width = 200;
+    notification-inline-replies = true;
+    timeout = 10;
+    timeout-low = 5;
+    timeout-critical = 0;
+    notification-window-width = 500;
+    keyboard-shortcuts = true;
+    image-visibility = "when-available";
+    transition-time = 200;
+    hide-on-clear = true;
+    hide-on-action = true;
+    script-fail-notify = true;
+
+    widgets = ["inhibitors" "title" "dnd" "mpris" "notifications"];
+    widget-config = {
+      inhibitors = {
+        text = "inhibitors";
+        button-text = "clear all";
+        clear-all-button = true;
+      };
+      title = {
+        text = "notifications";
+        clear-all-button = false;
+        button-text = "clear all";
+      };
+      dnd = {
+        text = "do not disturb";
+      };
+      label = {
+        max-lines = 5;
+        text = "label text";
+      };
+      mpris = {
+        image-size = 96;
+        image-radius = 12;
+      };
+    };
+  };
+
   # programs.eww = {
   #   enable = true;
   #   # TODO: update the path (make it in the same directory as the eww/default.nix or whatever it will be)
@@ -387,7 +447,7 @@
     layout = [
       {
         label = "lock";
-        action = "~/.local/bin/lock";
+        action = lib.getExe pkgs.slock;
         text = "Lock (l)";
         keybind = "l";
       }

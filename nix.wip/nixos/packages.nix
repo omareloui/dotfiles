@@ -1,14 +1,8 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     distro
+    # lock
 
-    # astro-language-server
-    # buf
-    # buf-language-server
-    # buildifier
-    # elixir-ls
-    # prisma-language-server
-    # templ
     # TODO: download after providing space
     # calibre
     # calibre-web
@@ -16,7 +10,9 @@
     # torrentstream
     # thunderbird
     # inkscape
-    alejandra
+
+    swaylock-effects
+
     ark
     entr
     font-manager
@@ -46,10 +42,9 @@
     dconf
     deno
     docker
-    dockerfile-language-server-nodejs
     du-dust
-    emmet-ls
-    eslint_d
+
+    inkscape-with-extensions
     eza
     fd
     flex
@@ -58,60 +53,30 @@
     fzf
     gcc
     git
-    gitlint
     gnumake
     go
-    golangci-lint
-    gopls
-    hadolint
-    htmlhint
     jq
     keepassxc
-    # kitty
-    # lazygit
-    # lf
     libcanberra-gtk3
     libiconv
     libnotify
     libtool
     lua
-    lua-language-server
-    luajitPackages.luacheck
     luarocks
     makeWrapper
-    markdownlint-cli
-    marksman
     microsoft-edge
     neofetch
     networkmanagerapplet
-    nil
-    # nixfmt
     syncthing
-    nodePackages.bash-language-server
-    nodePackages.cspell
-    nodePackages.prisma
-    nodePackages.sql-formatter
-    nodePackages.typescript-language-server
-    nodePackages.volar
-    nodePackages.vscode-css-languageserver-bin
-    nodePackages.vscode-html-languageserver-bin
-    nodePackages.vscode-json-languageserver-bin
     nodejs
     patchelf
     pkg-config
-    # polkit
     polkit_gnome
-    prettierd
     ripgrep
     rofi-wayland
     rustup
-    shellcheck
-    shfmt
-    sqlfluff
     # starship
-    stylua
     swww
-    tailwindcss-language-server
     telegram-desktop
     tldr
     tree
@@ -120,12 +85,10 @@
     wget
     wl-clipboard
     xfce.thunar
-    yaml-language-server
-    yamlfmt
-    yamllint
+    swaynotificationcenter
     # yazi
     # zoxide
     # atuin
-    # stable.atuin
+    # table.atuin
   ];
 }

@@ -98,7 +98,7 @@ done
 
 NOTIFICATION_ID=6699
 time=$(date +%Y-%m-%d-%I-%M-%S)
-dir="$HOME/Pictures/Screenshots"
+dir="$HOME/pictures/screenshots"
 filename="Screenshot_${time}.png"
 
 sound_file="$HOME/.local/share/sounds/camera-shutter.wav"

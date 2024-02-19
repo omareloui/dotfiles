@@ -36,10 +36,6 @@
       fsType = "vfat";
     };
 
-  fileSystems."/swap" = {
-    options = [ "noatime" ];
-  };
-
   swapDevices = [
     { device = "/swap/swapfile"; }
   ];

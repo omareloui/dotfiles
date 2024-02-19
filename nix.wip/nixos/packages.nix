@@ -85,6 +85,7 @@
     wget
     wl-clipboard
     xfce.thunar
+    gnome.nautilus
     swaynotificationcenter
     # yazi
     # zoxide

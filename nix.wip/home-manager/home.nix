@@ -203,9 +203,9 @@
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-    ];
+    # plugins = [
+    #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+    # ];
     settings = {
       monitor = "eDP-1, 1920x1080, 0x0, 1";
       workspace = "1, monitor:eDP-1, default:true";

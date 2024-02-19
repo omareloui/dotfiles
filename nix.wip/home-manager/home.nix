@@ -631,6 +631,7 @@
     nr = "nixos-rebuild";
     nf = "nr --flake ~/.dotfiles/nix.wip";
     ns = "nf switch";
+    ng = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
 
     hm = "home-manager";
     hf = "hm --flake ~/.dotfiles/nix.wip";

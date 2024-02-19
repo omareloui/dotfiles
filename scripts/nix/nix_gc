@@ -3,4 +3,5 @@
 nix-channel --update
 nix-env -u --always
 rm /nix/var/nix/gcroots/auto/*
+sudo nix profile wipe-history --profile /nix/var/nix/profiles/system
 nix-collect-garbage -d

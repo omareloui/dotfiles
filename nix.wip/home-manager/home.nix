@@ -54,6 +54,8 @@
   home.packages = with pkgs; [
     slock
     vol
+    brightness
+    wallpaper
 
     eva
     playerctl
@@ -80,7 +82,7 @@
           {
             on = ["w"];
             # TODO: update the script after moving the script to nix
-            exec = "shell --confirm '~/.dotfiles/scripts/wallpaper $1'";
+            exec = "shell --confirm '${lib.getExe pkgs.wallpaper} $1'";
             desc = "Set the image as wallpaper";
           }
           {
@@ -357,20 +359,21 @@
           "$mainMod CTRL, Space, togglefloating"
           "$mainMod, Space, togglesplit"
 
+          # Groups
           "$mainMod SHIFT, V, togglegroup"
           "$mainMod, N, changegroupactive, f"
           "$mainMod SHIFT, N, changegroupactive, b"
 
           # Laptop keys
-          ",XF86MonBrightnessUp, exec, ~/.local/bin/brightness up"
-          ",XF86MonBrightnessDown, exec, ~/.local/bin/brightness down"
+          ",XF86MonBrightnessUp, exec, ${lib.getExe pkgs.brightness} up"
+          ",XF86MonBrightnessDown, exec, ${lib.getExe pkgs.brightness} down"
           ",XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
           ",XF86AudioRaiseVolume, exec, ${lib.getExe pkgs.vol} up"
           ",XF86AudioLowerVolume, exec, ${lib.getExe pkgs.vol} down"
           ",XF86AudioMute, exec, ${lib.getExe pkgs.vol} mute"
 
           # misc
-          "$mainMod, W, exec, ~/.local/bin/wallpaper"
+          "$mainMod, W, exec, ${lib.getExe pkgs.wallpaper}"
         ]
         ++ (
           # workspaces
@@ -593,19 +596,14 @@
     VISUAL = "nvim";
     EDITOR = "nvim";
 
-    DOTFILES = "${config.home.homeDirectory}/.dotfiles";
-    DOTFILES_ASSETS = "${config.home.sessionVariables.DOTFILES}/assets";
-    DOTFILES_CONFIG = "${config.home.sessionVariables.DOTFILES}/config";
-    SCRIPTS = "${config.home.sessionVariables.DOTFILES}/scripts";
-    BOOTSTRAP_FILES = "${config.home.sessionVariables.DOTFILES}/bootstrap";
+    MYHOME = "${config.home.homeDirectory}/myhome";
 
-    REPOS_DIR = "${config.home.homeDirectory}/repos";
-    MUSIC_DIR = "${config.home.homeDirectory}/Music";
-    MOVIES_DIR = "${config.home.homeDirectory}/Movies";
+    REPOS_DIR = "${config.home.sessionVariables.MYHOME}/repos";
+    MOVIES_DIR = "${config.home.sessionVariables.MYHOME}/movies";
+    PICS_DIR = "${config.home.sessionVariables.MYHOME}/pictures";
+    WALLPAPERS_DIR = "${config.home.sessionVariables.MYHOME}/pictures/wallpapers";
+
     NVM_DIR = "${config.home.homeDirectory}/.nvm";
-
-    # TODO: fix this
-    # DISTRO = ''$("${config.xdg.dataHome}/.local/bin/distro")'';
   };
 
   home.shellAliases = {

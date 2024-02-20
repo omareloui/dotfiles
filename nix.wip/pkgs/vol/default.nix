@@ -1,7 +1,13 @@
-{writeShellApplication}:
+{
+  writeShellApplication,
+  alsa-utils,
+  dunst,
+  libcanberra-gtk3,
+  gnused,
+}:
 writeShellApplication {
   name = "vol";
-  runtimeInputs = [];
+  runtimeInputs = [alsa-utils dunst libcanberra-gtk3 gnused];
   text =
     /*
     bash

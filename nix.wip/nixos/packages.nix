@@ -1,8 +1,5 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    distro
-    # lock
-
     # TODO: download after providing space
     # calibre
     # calibre-web
@@ -11,6 +8,7 @@
     # thunderbird
     # inkscape
 
+    bc
     swaylock-effects
 
     ark

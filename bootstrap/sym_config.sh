@@ -12,16 +12,17 @@ version=2.0.3
 # The key is the dest and the value is the config files/folders that will be
 # symlinked from $DOTFILES_CONFIG
 declare -A FROM_ROOT=(
-	["$HOME"]=".zshenv .autostart .ssh/config"
+	# ["$HOME"]=".zshenv .autostart .ssh/config"
 	# ["$HOME/.config"]="nvim kitty fish eww lazygit starship.toml lf hypr neofetch mpd cava libinput-gestures.conf wlogout dunst rofi ncmpcpp zsh atuin"
-	["$HOME/.config"]="nvim kitty lazygit starship.toml lf hypr libinput-gestures.conf zsh atuin"
+	["$HOME"]=".autostart .ssh/config"
+	["$HOME/.config"]="nvim libinput-gestures.conf"
 )
 
 ## Not in the root of $DOTFILES_CONFIG or to rename on dest
 # Here it's the key is the src and the dest is the value
 declare -A NOT_FROM_ROOT=(
 	# Git
-	["$DOTFILES_CONFIG/git/.gitconfig"]="$HOME/.gitconfig"
+	# ["$DOTFILES_CONFIG/git/.gitconfig"]="$HOME/.gitconfig"
 	# ["$DOTFILES_CONFIG/git/templates"]="$HOME/.config/git/templates"
 	# ["$DOTFILES_CONFIG/git/.czrc"]="$HOME/.czrc" # Commitizen
 
@@ -30,8 +31,8 @@ declare -A NOT_FROM_ROOT=(
 )
 
 ##### Folders to make sure exist #####
-[[ ! -d ~/.config/git ]] && mkdir ~/.config/git
-[[ ! -d ~/.local/bin ]] && mkdir ~/.local/bin
+# [[ ! -d ~/.config/git ]] && mkdir ~/.config/git
+# [[ ! -d ~/.local/bin ]] && mkdir ~/.local/bin
 
 ############### Parse options ###############
 verbose=0

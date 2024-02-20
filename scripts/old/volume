@@ -9,10 +9,8 @@ icons=(volume_low volume_medium volume_high)
 NOTF_ID=2593
 
 function notify {
-	volume=$(amixer get Master | awk -F"[][]" '/Left:/ {print $2}')
-	volume_on=$(amixer get Master | awk -F"[][]" '/Left:/ {print $4}')
-	# volume=$(pamixer --get-volume)
-	# muted=$(pamixer --get-mute)
+	volume=$(amixer get Master | awk -F"[][]" '/Left:/ {print $2}' | sed 's/%//')
+	volume_on=$(amixer get Master | awk -F"[][]" '/Left:/ {print $4}' | sed 's/%//')
 	if [[ $volume_on == "off" ]]; then
 		icon=volume_muted
 	elif ((volume == 0)); then
@@ -33,24 +31,19 @@ function notify {
 
 case $1 in
 up)
-	amixer -D pipewire set Master unmute
-	amixer -D pipewire set Master 5%+
-	# pactl set-sink-mute @DEFAULT_SINK@ 0
-	# pactl set-sink-volume @DEFAULT_SINK@ +5%
+	amixer -D pipewire set Master unmute >/dev/null
+	amixer -D pipewire set Master 5%+ >/dev/null
 	notify
 	play_sound
 	;;
 down)
-	amixer -D pipewire set Master unmute
-	amixer -D pipewire set Master 5%-
-	# pactl set-sink-mute @DEFAULT_SINK@ 0
-	# pactl set-sink-volume @DEFAULT_SINK@ -5%
+	amixer -D pipewire set Master unmute >/dev/null
+	amixer -D pipewire set Master 5%- >/dev/null
 	notify
 	play_sound
 	;;
 mute)
-	amixer -D pipewire set Master toggle
-	# pactl set-sink-mute @DEFAULT_SINK@ toggle
+	amixer -D pipewire set Master toggle >/dev/null
 	notify
 	play_sound
 	;;

@@ -7,7 +7,7 @@ writeShellApplication {
     bash
     */
     ''
-      ${import ../ansi.nix}
+      ${import ../utils/ansi.nix}
 
       version=1.0.0
 

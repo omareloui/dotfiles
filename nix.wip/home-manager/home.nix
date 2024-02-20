@@ -19,7 +19,7 @@
     ./swaylock
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-terminal-dark;
 
   nixpkgs = {
     overlays = [
@@ -53,7 +53,10 @@
 
   home.packages = with pkgs; [
     slock
+    vol
+
     eva
+    playerctl
   ];
 
   programs.home-manager.enable = true;
@@ -361,10 +364,10 @@
           # Laptop keys
           ",XF86MonBrightnessUp, exec, ~/.local/bin/brightness up"
           ",XF86MonBrightnessDown, exec, ~/.local/bin/brightness down"
-          ",XF86AudioPlay, exec, playerctl play-pause"
-          ",XF86AudioRaiseVolume, exec, ~/.local/bin/volume up"
-          ",XF86AudioLowerVolume, exec, ~/.local/bin/volume down"
-          ",XF86AudioMute, exec, ~/.local/bin/volume mute"
+          ",XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
+          ",XF86AudioRaiseVolume, exec, ${lib.getExe pkgs.vol} up"
+          ",XF86AudioLowerVolume, exec, ${lib.getExe pkgs.vol} down"
+          ",XF86AudioMute, exec, ${lib.getExe pkgs.vol} mute"
 
           # misc
           "$mainMod, W, exec, ~/.local/bin/wallpaper"

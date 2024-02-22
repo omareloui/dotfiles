@@ -28,6 +28,7 @@
     # theme configs in home-manager
     # nwg-look
 
+    rclone
     acpi
     autoconf
     automake

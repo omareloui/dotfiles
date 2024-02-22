@@ -56,6 +56,7 @@
     vol
     brightness
     wallpaper
+    cloud_backup
     batplug
     batsuspend
     batwarning
@@ -639,14 +640,11 @@
 
     clean_docker = "docker builder prune -a --force";
 
-    nr = "nixos-rebuild";
-    nf = "nr --flake ~/.dotfiles/nix.wip";
-    ns = "nf switch";
+    ns = "nh os switch";
     ng = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
 
     hm = "home-manager";
-    hf = "hm --flake ~/.dotfiles/nix.wip";
-    hs = "hf switch";
+    hs = "nh home switch";
 
     distro = "cat /etc/*-release | awk -F'=' '/DISTRIB_ID/ {print $2}'";
   };

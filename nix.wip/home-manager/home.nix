@@ -56,7 +56,11 @@
     vol
     brightness
     wallpaper
+    batplug
+    batsuspend
+    batwarning
 
+    nh
     eva
     playerctl
   ];
@@ -604,6 +608,8 @@
     WALLPAPERS_DIR = "${config.home.sessionVariables.MYHOME}/pictures/wallpapers";
 
     NVM_DIR = "${config.home.homeDirectory}/.nvm";
+    # TODO: change after moving the dir to the main dotfiles dir
+    FLAKE = "${config.home.homeDirectory}/.dotfiles/nix.wip";
   };
 
   home.shellAliases = {

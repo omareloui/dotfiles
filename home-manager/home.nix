@@ -16,6 +16,7 @@
     inputs.nix-colors.homeManagerModules.default
     inputs.nixvim.homeManagerModules.nixvim
 
+    ./packages
     ./hyprland
     ./nvim
     ./kitty
@@ -27,6 +28,9 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
+
+      inputs.templ.overlays.default
+
       # outputs.overlays.stable-packages
 
       # You can also add overlays exported from other flakes:
@@ -54,21 +58,6 @@
   };
 
   colorScheme = systemConfig.colorScheme;
-
-  home.packages = with pkgs; [
-    slock
-    vol
-    brightness
-    wallpaper
-    cloud_backup
-    batplug
-    batsuspend
-    batwarning
-
-    nh
-    eva
-    playerctl
-  ];
 
   programs.home-manager.enable = true;
 

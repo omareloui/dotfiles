@@ -121,7 +121,7 @@
 
           "$mainMod SHIFT, T, exec, swaync-client -t"
 
-          "$mainMod, E, exec, thunar"
+          "$mainMod, E, exec, ${lib.getExe pkgs.gnome.nautilus}"
           "$mainMod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
           "$mainMod, P, pseudo, # dwindle"
 

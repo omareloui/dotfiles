@@ -1,15 +1,11 @@
 {pkgs, ...}: let
   extraPackages = with pkgs; [
-    # astro-language-server
-    # buf
-    # buildifier
-    # elixir-ls
-    # nixfmt
-    # prisma-language-server
-    # templ
     alejandra
+    bazel-buildtools
+    buf
     buf-language-server
     dockerfile-language-server-nodejs
+    elixir-ls
     emmet-ls
     eslint_d
     gitlint
@@ -22,6 +18,8 @@
     markdownlint-cli
     marksman
     nil
+    nodePackages."@astrojs/language-server"
+    nodePackages."@prisma/language-server"
     nodePackages.bash-language-server
     nodePackages.cspell
     nodePackages.prisma
@@ -33,7 +31,6 @@
     nodePackages.vscode-json-languageserver-bin
     prettierd
     shellcheck
-    shfmt
     shfmt
     sqlfluff
     stylua

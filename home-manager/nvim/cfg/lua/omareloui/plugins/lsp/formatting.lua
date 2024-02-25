@@ -55,6 +55,7 @@ return {
         sh = { "shfmt" },
         sql = { "sql_formatter" },
         svelte = { "prettierd" },
+        toml = { "prettierd" },
         typescript = { "prettierd" },
         typescriptreact = { "prettierd" },
         vue = { "prettierd" },

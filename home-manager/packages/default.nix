@@ -1,93 +1,94 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    # TODO: download after providing space
+  home.packages = with pkgs; [
     # calibre
     # calibre-web
     # scribus
     # torrentstream
     # thunderbird
-    # inkscape
-
-    bc
-    swaylock-effects
-
-    ark
-    entr
-    font-manager
-    gnome.gnome-bluetooth
-    jujutsu
-    loupe
-    socat
-    xorg.xhost
-    gnome.gnome-disk-utility
-    btrfs-progs
-
     # variety
     # checkout this package to handle and use gtk themes
     # NOTE: but if you're going to use it you can't leave the
     # theme configs in home-manager
     # nwg-look
 
-    rclone
     acpi
+    air
+    ark
     autoconf
     automake
     bat
+    bc
     bison
     bottom
     brillo
-    cargo
+    btrfs-progs
     corepack_latest
     dconf
     deno
     docker
     du-dust
-
-    inkscape-with-extensions
+    entr
+    eva
     eza
     fd
     flex
     font-awesome
+    font-manager
     fontforge
     fzf
     gcc
     git
+    gnome.gnome-bluetooth
+    gnome.gnome-disk-utility
+    gnome.nautilus
     gnumake
     go
+    inkscape-with-extensions
     jq
+    jujutsu
     keepassxc
     libcanberra-gtk3
     libiconv
     libnotify
     libtool
+    loupe
     lua
     luarocks
     makeWrapper
     microsoft-edge
     neofetch
     networkmanagerapplet
-    syncthing
+    nh
     nodejs
     patchelf
     pkg-config
+    playerctl
     polkit_gnome
+    rclone
     ripgrep
     rustup
-    # starship
+    socat
+    swaylock-effects
+    swaynotificationcenter
     swww
+    syncthing
     telegram-desktop
+    # templ
     tldr
     tree
     unzip
     vlc
     wget
     wl-clipboard
-    xfce.thunar
-    gnome.nautilus
-    swaynotificationcenter
-    # yazi
-    # zoxide
-    # atuin
-    # table.atuin
+    xorg.xhost
+
+    slock
+    vol
+    brightness
+    wallpaper
+    cloud_backup
+    batplug
+    batsuspend
+    batwarning
   ];
 }

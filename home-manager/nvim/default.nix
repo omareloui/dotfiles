@@ -2,13 +2,13 @@
   extraPackages = with pkgs; [
     # astro-language-server
     # buf
-    # buf-language-server
     # buildifier
     # elixir-ls
     # nixfmt
     # prisma-language-server
     # templ
     alejandra
+    buf-language-server
     dockerfile-language-server-nodejs
     emmet-ls
     eslint_d

@@ -76,8 +76,11 @@
     enable = true;
     settings = {
       manager = {
-        ratio = [1 4 3];
+        ratio = [1 4 4];
         linemode = "size";
+        sort_by = "natural";
+        sort_dir_first = true;
+        sort_reverse = false;
       };
     };
     keymap = {
@@ -90,7 +93,6 @@
           }
           {
             on = ["w"];
-            # TODO: update the script after moving the script to nix
             exec = "shell --confirm '${lib.getExe pkgs.wallpaper} $1'";
             desc = "Set the image as wallpaper";
           }

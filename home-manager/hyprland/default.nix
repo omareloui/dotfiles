@@ -24,6 +24,10 @@
         # "${lib.getExe pkgs.xorg.xhost} +SI:localuser:root"
       ];
 
+      exec = [
+        "avizo-service"
+      ];
+
       input = {
         kb_layout = "us";
         follow_mouse = 1;
@@ -158,12 +162,12 @@
           "$mainMod SHIFT, N, changegroupactive, b"
 
           # Laptop keys
-          ",XF86MonBrightnessUp, exec, ${lib.getExe pkgs.brightness} up"
-          ",XF86MonBrightnessDown, exec, ${lib.getExe pkgs.brightness} down"
+          ",XF86MonBrightnessUp, exec, lightctl up"
+          ",XF86MonBrightnessDown, exec, lightctl down"
           ",XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
-          ",XF86AudioRaiseVolume, exec, ${lib.getExe pkgs.vol} up"
-          ",XF86AudioLowerVolume, exec, ${lib.getExe pkgs.vol} down"
-          ",XF86AudioMute, exec, ${lib.getExe pkgs.vol} mute"
+          ",XF86AudioRaiseVolume, exec, volumectl -u up"
+          ",XF86AudioLowerVolume, exec, volumectl -u down"
+          ",XF86AudioMute, exec, volumectl -m toggle-mute"
 
           # misc
           "$mainMod, W, exec, ${lib.getExe pkgs.wallpaper}"

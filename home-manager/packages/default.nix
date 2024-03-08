@@ -11,6 +11,15 @@
     # theme configs in home-manager
     # nwg-look
 
+    # vol
+    # brightness
+    slock
+    wallpaper
+    cloud_backup
+    batplug
+    batsuspend
+    batwarning
+
     acpi
     air
     ark
@@ -51,6 +60,7 @@
     libiconv
     libnotify
     libtool
+    light
     loupe
     lua
     luarocks
@@ -69,7 +79,6 @@
     rustup
     socat
     swaylock-effects
-    swaynotificationcenter
     swww
     syncthing
     telegram-desktop

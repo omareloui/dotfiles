@@ -13,7 +13,11 @@ return {
       filters = {
         dotfiles = false,
         exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
-        -- custom = { "^bazel-.*$" },
+        custom = {
+          -- "^bazel-.*$",
+          "^\\.stfolder.*",
+          "^\\.obsidian$",
+        },
       },
       disable_netrw = true,
       hijack_netrw = true,

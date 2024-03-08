@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # calibre
+    calibre
+    # mongodb
+    mongodb-compass
+
     # calibre-web
     # scribus
     # torrentstream
@@ -82,7 +85,7 @@
     swww
     syncthing
     telegram-desktop
-    # templ
+    templ
     tldr
     tree
     unzip
@@ -90,14 +93,5 @@
     wget
     wl-clipboard
     xorg.xhost
-
-    slock
-    vol
-    brightness
-    wallpaper
-    cloud_backup
-    batplug
-    batsuspend
-    batwarning
   ];
 }

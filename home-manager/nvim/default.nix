@@ -10,9 +10,13 @@
     eslint_d
     gitlint
     golangci-lint
+    gomodifytags
     gopls
+    gotest
     hadolint
     htmlhint
+    iferr
+    impl
     lua-language-server
     luajitPackages.luacheck
     markdownlint-cli

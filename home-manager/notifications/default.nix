@@ -75,23 +75,25 @@
       ;image-base-dir =
 
       # The image opacity; allowed values range from 0 (fully transparent) to 1.0 (fully opaque).
-      ; image-opacity = 1.0
+      ;image-opacity = 1.0
 
       # The width of the notification.
       ;width = 248
+      width = 297
 
       # The height of the notification.
       ;height = 232
+      height = 185
 
       # The inner padding of the notification.
       ;padding = 24
 
       # A relative offset of the notification to the top of the screen.
       # Allowed values range from 0 (top) to 1.0 (bottom).
-      ;y-offset = 0.75
+      y-offset = 0.75
 
       # The border radius of the notification in px.
-      ;border-radius = 16
+      border-radius = 20
 
       # Sets the border width of the notification in px.
       ;border-width = 1
@@ -103,16 +105,16 @@
       ;block-spacing = 2
 
       # Sets the amount of blocks in the progress indicator.
-      ;block-count = 20
+      block-count = 20
 
       # Sets the fade in animation duration in seconds.
-      ;fade-in = 0.2
+      fade-in = 0.2
 
       # Sets the fade out animation duration in seconds.
-      ;fade-out = 0.5
+      fade-out = 0.5
 
       # The color of the notification background in format: rgba([0, 255], [0, 255], [0, 255], [0, 1]).
-      ;background = rgba(160, 160, 160, 0.8)
+      background = rgba(160, 160, 160, 0.9)
 
       # Sets the color of the notification border in format rgba([0, 255], [0, 255], [0, 255], [0, 1]).
       ;border-color = rgba(90, 90, 90, 0.8)

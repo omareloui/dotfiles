@@ -13,6 +13,23 @@
         sort_dir_first = true;
         sort_reverse = false;
       };
+      opener = {
+        vid = [
+          {
+            exec = ''vlc "$1"'';
+            desc = "Play video";
+            block = true;
+          }
+        ];
+      };
+      open = {
+        rules = [
+          {
+            mime = "video/*";
+            use = "vid";
+          }
+        ];
+      };
     };
     keymap = {
       manager = {

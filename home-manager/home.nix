@@ -23,6 +23,7 @@
     ./packages
     ./rofi
     ./swaylock
+    ./vcs
     ./yazi
   ];
 
@@ -64,34 +65,6 @@
   programs.thefuck = {
     enable = true;
     enableZshIntegration = true;
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Omar Eloui";
-    userEmail = "contact@omareloui.com";
-    extraConfig = {
-      init = {defaultBranch = "main";};
-      core = {
-        editor = "nvim";
-        sshCommand = "ssh -i ~/.ssh/id_rsa_github";
-      };
-      push = {autoSetupRemote = true;};
-    };
-    delta = {
-      enable = true;
-      options = {
-        side-by-side = true;
-        diff-so-fancy = true;
-        line-numbers = true;
-      };
-    };
-    aliases = {
-      uc = "reset HEAD^ --soft";
-      uncommit = "reset HEAD^ --soft";
-      l = ''
-        log --pretty=format:"%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --graph --date=relative --decorate --all'';
-    };
   };
 
   programs.ssh = {
@@ -483,7 +456,8 @@
       "image/png" = ["org.gnome.Loupe.desktop"];
       "image/jpeg" = ["org.gnome.Loupe.desktop"];
       "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
-      "application/x-tar" = "org.kde.ark.desktop";
+      "application/x-tar" = ["org.kde.ark.desktop"];
+      "video/mp4" = ["vlc.desktop"];
     };
   in {
     enable = true;

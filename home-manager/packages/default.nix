@@ -23,6 +23,7 @@
     batsuspend
     batwarning
 
+    # wrap-terminal
     acpi
     air
     ark
@@ -55,9 +56,10 @@
     gnome.nautilus
     gnumake
     go
+    grpcui
+    grpcurl
     inkscape-with-extensions
     jq
-    jujutsu
     keepassxc
     libcanberra-gtk3
     libiconv
@@ -77,6 +79,9 @@
     pkg-config
     playerctl
     polkit_gnome
+    protobuf
+    protoc-gen-go
+    protoc-gen-go-grpc
     rclone
     ripgrep
     rustup
@@ -88,6 +93,7 @@
     templ
     tldr
     tree
+    tribler
     unzip
     vlc
     wget

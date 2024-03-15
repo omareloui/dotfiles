@@ -75,8 +75,8 @@
       ];
       windowrulev2 = [
         "float, class:^thunar$,title:^(File Operation Progress)$"
-        "float, class:^org.inkscape.Inkscape$,title:^(Measure Path)$"
         "float, class:^org.kde.kdeconnect.*$"
+        "float, class:^org.inkscape.Inkscape$,title:^(Measure Path|PDF Import Settings)$"
       ];
 
       general = {

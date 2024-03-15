@@ -99,6 +99,10 @@
       };
     };
     initrd.kernelModules = ["amdgpu"];
+    kernelModules = ["iwlwifi"];
+    extraModprobeConfig = ''
+      options iwlwifi bt_coex_active=0
+    '';
   };
 
   time.timeZone = "Egypt";
@@ -158,6 +162,9 @@
       };
       pulse.enable = true;
       jack.enable = true;
+      wireplumber = {
+        enable = true;
+      };
     };
 
     # TODO: not working

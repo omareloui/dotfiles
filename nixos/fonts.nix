@@ -26,14 +26,17 @@
           "WindSong"
           "Luxurious Script"
           "Cairo"
+          # "Poppins"
+          # "Cinzel"
+          # "Cinzel Decorative"
         ];
       })
     ];
 
     fontconfig.defaultFonts = {
-      serif = ["Cairo" "Ubuntu"];
-      sansSerif = ["Cairo" "Ubuntu"];
-      monospace = ["Cairo" "FiraCode"];
+      serif = ["Ubuntu" "Cairo"];
+      sansSerif = ["Ubuntu" "Cairo"];
+      monospace = ["FiraCode" "Cairo"];
     };
   };
 }

@@ -63,7 +63,7 @@ return {
       set("gR", "<Cmd>Telescope lsp_references<CR>", "Show LSP references")
       set("<leader>ls", l.buf.signature_help, "Lsp signature_help")
       set("<leader>rs", "<Cmd>LspRestart<CR>", "Restart the lsp server")
-      set("<leader>v", "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>", "Restart the lsp server")
+      set("<leader>v", "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>", "Open definition in vertical split window")
       set("<leader>rn", l.buf.rename, "Smart rename")
       set("<leader>ca", l.buf.code_action, "See available code actions", { mode = { "n", "v" } })
 

@@ -57,7 +57,7 @@
         workspace_swipe_invert = true;
       };
 
-      "device:epic mouse V1" = {sensitivity = -0.5;};
+      # "device:epic mouse V1" = {sensitivity = -0.5;};
 
       misc = {
         disable_splash_rendering = true;

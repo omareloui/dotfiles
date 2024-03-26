@@ -270,15 +270,12 @@
   };
 
   home.shellAliases = {
-    # zshconfig = "$EDITOR ~/.config/zsh/.zshrc";
-    # reload = "source $ZDOTDIR/.zshrc";
-
     ls = "eza -l --no-time --icons --sort=type";
-    ll = "ls -alF";
-    la = "ls -a";
+    ll = "eza -alg --icons --sort=type";
+    la = "eza -al --no-time --icons --sort=type";
     l = "eza";
 
-    # neovide = "env -u WAYLAND_DISPLAY neovide"
+    dot = "z ${config.home.homeDirectory}/.dotfiles && ${config.home.sessionVariables.EDITOR}";
 
     # py = "python3";
     # ve = "python3 -m venv ./env";
@@ -288,11 +285,11 @@
     ":q" = "exit";
 
     cat = "bat --color always --plain";
-    # grep = "grep --color=auto";
     du = "dust";
 
-    # update = "paru -Syu";
-    # rmcache = "paru -Sccd";
+    lg = "lazygit";
+
+    update = "nix flake update";
 
     clean_docker = "docker builder prune -a --force";
 

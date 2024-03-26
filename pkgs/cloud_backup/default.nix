@@ -91,7 +91,7 @@ writeShellApplication {
           dist="$(echo "$f" | cut -d: -f2)"
 
           ({
-            rclone sync $options "$src" "GDrive:$dist"
+            rclone sync --progress $options "$src" "GDrive:$dist"
           } && p "''${GREEN}Success''${YELLOW}:''${RESET} done syncing ''${src} to GDrive:''${dist}.''${RESET}\n\n") || p "''${RED}Error''${YELLOW}:''${RESET} something went wrong while syncing ''${src}.''${RESET}\n\n"
         done
       }

@@ -4,6 +4,7 @@
     bazel-buildtools
     buf
     buf-language-server
+    codeium
     dockerfile-language-server-nodejs
     elixir-ls
     emmet-ls

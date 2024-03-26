@@ -35,6 +35,7 @@
     bottom
     brillo
     btrfs-progs
+    codeium
     corepack_latest
     dconf
     deno

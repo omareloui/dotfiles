@@ -6,6 +6,9 @@
   programs.yazi = {
     enable = true;
     settings = {
+      headsup = {
+        disable_exec_warn = true;
+      };
       manager = {
         ratio = [1 4 4];
         linemode = "size";
@@ -16,7 +19,7 @@
       opener = {
         vid = [
           {
-            exec = ''vlc "$1"'';
+            run = ''vlc "$1"'';
             desc = "Play video";
             block = true;
           }

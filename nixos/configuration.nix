@@ -182,6 +182,11 @@
     # gnome.gnome-keyring.enable = true;
   };
 
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "btrfs";
+  };
+
   security.pam.services.swaylock = {
     text = ''
       auth include login

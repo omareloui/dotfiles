@@ -263,7 +263,7 @@
     REPOS_DIR = "${config.home.sessionVariables.MYHOME}/repos";
     MOVIES_DIR = "${config.home.sessionVariables.MYHOME}/movies";
     PICS_DIR = "${config.home.sessionVariables.MYHOME}/pictures";
-    WALLPAPERS_DIR = "${config.home.sessionVariables.MYHOME}/pictures/wallpapers";
+    WALLPAPERS_DIR = "${config.home.sessionVariables.MYHOME}/pictures/wallpapers/.loop_over";
 
     NVM_DIR = "${config.home.homeDirectory}/.nvm";
     FLAKE = "${config.home.homeDirectory}/.dotfiles";

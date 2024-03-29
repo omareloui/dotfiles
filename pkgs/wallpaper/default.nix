@@ -58,7 +58,7 @@ writeShellApplication {
         esac
       done
 
-      WALLPAPERS_DIR=''${WALLPAPERS_DIR:-''${MYHOME:-$HOME/myhome}/pictures/wallpapers}
+      WALLPAPERS_DIR=''${WALLPAPERS_DIR:-''${MYHOME:-$HOME/myhome}/pictures/wallpapers/.loop_over}
 
       wp=''${1:-"$(fd '.*\.(png|jpe?g|gif)$' "$WALLPAPERS_DIR" -Itf -d1 | shuf --random-source=/dev/urandom -n 1)"}
 

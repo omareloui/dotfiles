@@ -124,8 +124,8 @@
           "$mainMod, T, exec, telegram-desktop"
           "$mainMod, Return, exec, kitty"
 
-          ",Print,exec,~/.local/bin/screenshot -s 3 full"
-          "$mainMod,Print,exec,~/.local/bin/screenshot -p area"
+          ", Print, exec, ${lib.getExe pkgs.screenshot} -s 3 full"
+          "$mainMod, Print, exec, ${lib.getExe pkgs.screenshot} -p area"
 
           "$mainMod SHIFT, N, exec, swaync-client -t"
 

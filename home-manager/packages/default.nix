@@ -17,6 +17,7 @@
     # vol
     # brightness
     # wrap-terminal
+
     acpi
     air
     ark
@@ -88,6 +89,7 @@
     rclone
     ripgrep
     rustup
+    screenshot
     slock
     socat
     swaylock-effects

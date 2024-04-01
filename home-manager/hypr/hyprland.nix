@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -18,9 +19,10 @@
         # "~/.autostart"
         "${lib.getExe pkgs.waybar}"
         "${lib.getExe pkgs.hypridle}"
+        "${lib.getExe pkgs.pyprland}"
         "${lib.getExe pkgs.swww} init"
-        # "nm-applet --indeicator"
-        # "${lib.getExe pkgs.xorg.xhost} +SI:localuser:root"
+
+        "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # to the bluetooth stutter
         "${lib.getExe pkgs.swaynotificationcenter}"
       ];
 
@@ -66,14 +68,17 @@
 
       master = {new_is_master = false;};
 
-      windowrule = [
-        "float, transmission"
-        "float, eog"
-        "float, pavucontrol"
-        "float, vlc"
-        "float, blueman-manager"
-      ];
-      windowrulev2 = [
+      windowrulev2 = let
+        shouldFloat = "tribler|org.gnome.Loupe|pavucontrol|vlc|.blueman-manager-wrapped|scratchpad";
+        scratpad = "class:^scratchpad$";
+        # scratpadsize = "80% 85%";
+      in [
+        "float, class:^(${shouldFloat})$"
+        "center 1, class:^(${shouldFloat})$"
+
+        # "size ${scratpadsize}, ${scratpad}"
+        "workspace special silent, ${scratpad}"
+
         "float, class:^thunar$,title:^(File Operation Progress)$"
         "float, class:^org.kde.kdeconnect.*$"
         "float, class:^org.inkscape.Inkscape$,title:^(Measure Path|PDF Import Settings)$"
@@ -91,7 +96,6 @@
 
       decoration = {
         rounding = 10;
-
         blur = {
           enabled = true;
           size = 8;
@@ -123,7 +127,7 @@
           ",Print,exec,~/.local/bin/screenshot -s 3 full"
           "$mainMod,Print,exec,~/.local/bin/screenshot -p area"
 
-          "$mainMod SHIFT, T, exec, swaync-client -t"
+          "$mainMod SHIFT, N, exec, swaync-client -t"
 
           "$mainMod, E, exec, ${lib.getExe pkgs.gnome.nautilus}"
           "$mainMod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
@@ -160,6 +164,11 @@
           "$mainMod SHIFT, V, togglegroup"
           "$mainMod, N, changegroupactive, f"
           "$mainMod SHIFT, N, changegroupactive, b"
+
+          # Plugins
+          "$mainMod SHIFT, B, exec, pypr toggle btm && hyprctl dispatch bringactivetotop"
+          "$mainMod SHIFT, T, exec, pypr toggle term && hyprctl dispatch bringactivetotop"
+          "$mainMod SHIFT, E, exec, pypr toggle yazi && hyprctl dispatch bringactivetotop"
 
           # Laptop keys
           ",XF86MonBrightnessUp, exec, lightctl up"

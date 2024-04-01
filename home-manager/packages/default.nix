@@ -57,6 +57,7 @@
     go
     grpcui
     grpcurl
+    hyprpicker
     imagemagick
     inkscape-with-extensions
     jq
@@ -76,12 +77,14 @@
     nh
     nodejs
     patchelf
+    pavucontrol
     pkg-config
     playerctl
     polkit_gnome
     protobuf
     protoc-gen-go
     protoc-gen-go-grpc
+    python3
     rclone
     ripgrep
     rustup

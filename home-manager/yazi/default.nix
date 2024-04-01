@@ -17,19 +17,53 @@
         sort_reverse = false;
       };
       opener = {
-        vid = [
+        default = [
           {
-            run = ''vlc "$1"'';
-            desc = "Play video";
+            run = ''xdg-open "$@"'';
+            desc = "Open with default system application";
+          }
+        ];
+
+        image = [
+          {
+            run = ''loupe $@'';
+            desc = "Open images";
+          }
+        ];
+
+        video = [
+          {
+            run = ''vlc "$@"'';
+            desc = "Open videos";
+          }
+        ];
+
+        text = [
+          {
+            run = ''nvim "$@"'';
+            desc = "Open with the text editor";
             block = true;
           }
         ];
       };
+
       open = {
         rules = [
           {
+            mime = "text/*";
+            use = "text";
+          }
+          {
+            name = "*.{json,yaml,yml,md}";
+            use = "text";
+          }
+          {
+            mime = "image/*";
+            use = "image";
+          }
+          {
             mime = "video/*";
-            use = "vid";
+            use = "video";
           }
         ];
       };

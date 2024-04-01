@@ -16,12 +16,12 @@
 
       exec-once = [
         # "~/.autostart"
-        # "${lib.getExe pkgs.eww} open bar"
+        "${lib.getExe pkgs.waybar}"
+        "${lib.getExe pkgs.hypridle}"
         "${lib.getExe pkgs.swww} init"
         # "nm-applet --indeicator"
-        # "${lib.getExe pkgs.dunst}"
-        "${lib.getExe pkgs.swaynotificationcenter}"
         # "${lib.getExe pkgs.xorg.xhost} +SI:localuser:root"
+        "${lib.getExe pkgs.swaynotificationcenter}"
       ];
 
       exec = [

@@ -35,12 +35,11 @@ return {
     -- stylua: ignore
     if not present then return end
 
-    local pattern = "([^:]+):(%d+):(%d+):(.+)"
-    local groups = { "file", "lnum", "col", "message" }
-
+    local proto_lint_pattern = "([^:]+):(%d+):(%d+):(.+)"
+    local proto_lint_groups = { "file", "lnum", "col", "message" }
     local buf_parser = require("lint.parser").from_pattern(
-      pattern,
-      groups,
+      proto_lint_pattern,
+      proto_lint_groups,
       nil,
       { ["source"] = "buf", ["severity"] = vim.diagnostic.severity.WARN }
     )
@@ -87,8 +86,11 @@ return {
       end,
     })
 
-    local ns = require("lint").get_namespace "cspell"
-    vim.diagnostic.config({ virtual_text = false }, ns)
+    local ignore_virtual_text_for = { "cspell" }
+    for _, ln in pairs(ignore_virtual_text_for) do
+      local ns = require("lint").get_namespace(ln)
+      vim.diagnostic.config({ virtual_text = false }, ns)
+    end
 
     local set = require("omareloui.util.keymap").set
     set("<leader>ll", lint.try_lint, "Trigger linting for current file.")

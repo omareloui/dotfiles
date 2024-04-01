@@ -1,10 +1,12 @@
 {
   writeShellApplication,
   swww,
+  ffmpeg,
+  imagemagick,
 }:
 writeShellApplication {
   name = "wallpaper";
-  runtimeInputs = [swww];
+  runtimeInputs = [swww ffmpeg imagemagick];
   text =
     /*
     bash
@@ -63,5 +65,29 @@ writeShellApplication {
       wp=''${1:-"$(fd '.*\.(png|jpe?g|gif)$' "$WALLPAPERS_DIR" -Itf -d1 | shuf --random-source=/dev/urandom -n 1)"}
 
       swww img "$wp" --transition-step=45 2>/dev/null
+
+      wall_cache_dir="$HOME/.cache/wallpapers"
+
+      basename=$(basename -- "$wp")
+      ext="''${basename##*.}"
+      filename="''${basename%.*}"
+
+      src="$wall_cache_dir/blurred_$filename.png"
+      curr_name="blurred_wallpaper.png"
+
+      png_cache_file="$wall_cache_dir/$filename.png"
+
+      [[ ! -d $wall_cache_dir ]] && mkdir "$wall_cache_dir"
+
+      if [[ $ext != "png" && ! -f $png_cache_file ]]; then
+        ffmpeg -i "$wp" "$png_cache_file"
+        src="$png_cache_file"
+      fi
+
+      if [[ ! -f $src ]]; then
+        convert "$wp" -blur 0x16 -channel RGBA "$src"
+      fi
+
+      cp -f "$src" "$wall_cache_dir/$curr_name"
     '';
 }

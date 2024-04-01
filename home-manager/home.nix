@@ -16,15 +16,18 @@
     inputs.nix-colors.homeManagerModules.default
     inputs.nixvim.homeManagerModules.nixvim
 
-    ./hyprland
+    ./hypr/hyprland.nix
+    ./hypr/hypridle.nix
+    ./hypr/hyprlock.nix
+
     ./kitty
     ./notifications
     ./nvim
     ./packages
     ./rofi
-    ./swaylock
     ./vcs
     ./yazi
+    ./waybar
   ];
 
   nixpkgs = {
@@ -121,7 +124,7 @@
     layout = [
       {
         label = "lock";
-        action = lib.getExe pkgs.slock;
+        action = lib.getExe pkgs.hyprlock;
         text = "Lock (l)";
         keybind = "l";
       }

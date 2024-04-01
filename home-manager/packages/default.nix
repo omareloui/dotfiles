@@ -16,13 +16,6 @@
 
     # vol
     # brightness
-    slock
-    wallpaper
-    cloud_backup
-    batplug
-    batsuspend
-    batwarning
-
     # wrap-terminal
     acpi
     air
@@ -30,11 +23,15 @@
     autoconf
     automake
     bat
+    batplug
+    batsuspend
+    batwarning
     bc
     bison
     bottom
     brillo
     btrfs-progs
+    cloud_backup
     codeium
     corepack_latest
     dconf
@@ -45,6 +42,7 @@
     eva
     eza
     fd
+    ffmpeg
     flex
     font-awesome
     font-manager
@@ -59,6 +57,7 @@
     go
     grpcui
     grpcurl
+    imagemagick
     inkscape-with-extensions
     jq
     keepassxc
@@ -86,6 +85,7 @@
     rclone
     ripgrep
     rustup
+    slock
     socat
     swaylock-effects
     swww
@@ -97,6 +97,7 @@
     tribler
     unzip
     vlc
+    wallpaper
     wget
     wl-clipboard
     xorg.xhost

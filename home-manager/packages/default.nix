@@ -13,9 +13,6 @@
     # NOTE: but if you're going to use it you can't leave the
     # theme configs in home-manager
     # nwg-look
-
-    # vol
-    # brightness
     # wrap-terminal
 
     acpi
@@ -60,6 +57,7 @@
     grpcurl
     hyprpicker
     imagemagick
+    init_bar
     inkscape-with-extensions
     jq
     keepassxc
@@ -86,6 +84,7 @@
     protoc-gen-go
     protoc-gen-go-grpc
     python3
+    qalculate-gtk
     rclone
     ripgrep
     rustup

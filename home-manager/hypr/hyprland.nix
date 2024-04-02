@@ -16,13 +16,12 @@
       workspace = "1, monitor:eDP-1, default:true";
 
       exec-once = [
-        # "~/.autostart"
-        "${lib.getExe pkgs.waybar}"
+        "${lib.getExe pkgs.init_bar}"
         "${lib.getExe pkgs.hypridle}"
         "${lib.getExe pkgs.pyprland}"
         "${lib.getExe pkgs.swww} init"
 
-        "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # to the bluetooth stutter
+        "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # to fix the bluetooth stutter
         "${lib.getExe pkgs.swaynotificationcenter}"
       ];
 
@@ -177,6 +176,7 @@
           ",XF86AudioRaiseVolume, exec, volumectl -u up"
           ",XF86AudioLowerVolume, exec, volumectl -u down"
           ",XF86AudioMute, exec, volumectl -m toggle-mute"
+          ",XF86Calculator, exec, ${lib.getExe pkgs.qalculate-gtk}"
 
           # misc
           "$mainMod, W, exec, ${lib.getExe pkgs.wallpaper}"

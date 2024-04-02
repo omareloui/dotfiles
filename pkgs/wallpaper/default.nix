@@ -64,7 +64,17 @@ writeShellApplication {
 
       wp=''${1:-"$(fd '.*\.(png|jpe?g|gif)$' "$WALLPAPERS_DIR" -Itf -d1 | shuf --random-source=/dev/urandom -n 1)"}
 
-      swww img "$wp" --transition-step=45 2>/dev/null
+      # transition_type="wipe"
+      # transition_type="outer"
+      # transition_type="random"
+
+      # --transition-type="$transition_type" \
+      swww img "$wp" \
+        --transition-step=20 \
+        --transition-bezier .43,1.19,1,.4 \
+        --transition-fps=60 \
+        --transition-duration=0.4 \
+        --transition-pos "$(hyprctl cursorpos)"
 
       wall_cache_dir="$HOME/.cache/wallpapers"
 

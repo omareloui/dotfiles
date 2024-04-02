@@ -83,7 +83,9 @@
     protobuf
     protoc-gen-go
     protoc-gen-go-grpc
-    python3
+    (pkgs.python311.withPackages (ppkgs: [
+      ppkgs.pip
+    ]))
     qalculate-gtk
     rclone
     ripgrep

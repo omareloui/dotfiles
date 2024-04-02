@@ -32,7 +32,7 @@
       tooltip-format = "{title}";
       on-click = "activate";
       on-click-middle = "close";
-      ignore-list = ["Alacritty"];
+      ignore-list = ["scratchpad" "kitty"];
       app_ids-mapping = {
         firefoxdeveloperedition = "firefox-developer-edition";
       };

@@ -1,10 +1,11 @@
 {
   writeShellApplication,
   waybar,
+  toybox,
 }:
 writeShellApplication {
   name = "init_bar";
-  runtimeInputs = [waybar];
+  runtimeInputs = [waybar toybox];
   text =
     /*
     bash
@@ -73,7 +74,6 @@ writeShellApplication {
       fi
 
       IFS=';' read -ra arrThemes <<<"$themestyle"
-      echo "Theme: ''${arrThemes[0]}"
 
       if [[ ! -f "$HOME/.config/waybar/themes''${arrThemes[1]}/style.css" ]]; then
         themestyle="/ml4w;/ml4w/light"

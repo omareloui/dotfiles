@@ -15,18 +15,19 @@
       monitor = "eDP-1, 1920x1080, 0x0, 1";
       workspace = "1, monitor:eDP-1, default:true";
 
-      exec-once = [
+      exec = [
+        "avizo-service"
         "${lib.getExe pkgs.init_bar}"
-        "${lib.getExe pkgs.hypridle}"
-        "${lib.getExe pkgs.pyprland}"
-        "${lib.getExe pkgs.swww} init"
-
-        "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # to fix the bluetooth stutter
         "${lib.getExe pkgs.swaynotificationcenter}"
       ];
 
-      exec = [
-        "avizo-service"
+      exec-once = [
+        "${lib.getExe pkgs.hypridle}"
+        "${lib.getExe pkgs.pyprland}"
+        "${lib.getExe pkgs.swww} init"
+        "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # to fix the bluetooth stutter
+
+        "${lib.getExe pkgs.telegram-desktop} -startintray"
       ];
 
       input = {
@@ -68,7 +69,7 @@
       master = {new_is_master = false;};
 
       windowrulev2 = let
-        shouldFloat = "tribler|org.gnome.Loupe|pavucontrol|vlc|.blueman-manager-wrapped|scratchpad";
+        shouldFloat = "tribler|org.gnome.Loupe|pavucontrol|vlc|.blueman-manager-wrapped|scratchpad|nm-connection-editor";
         scratpad = "class:^scratchpad$";
         # scratpadsize = "80% 85%";
       in [
@@ -115,22 +116,8 @@
           "$mainMod, escape, exec, ${lib.getExe pkgs.wlogout} -b 5 -T 400 -B 400"
           "$mainMod SHIFT, R, exec, hyprctl reload"
           "$mainMod, Q, killactive,"
-          "$mainMod, C, pseudo,"
           "$mainMod, F, fullscreen,"
-
-          # apps keybindings
-          "$mainMod, B, exec, microsoft-edge-stable"
-          "$mainMod, T, exec, telegram-desktop"
-          "$mainMod, Return, exec, kitty"
-
-          ", Print, exec, ${lib.getExe pkgs.screenshot} -s 3 full"
-          "$mainMod, Print, exec, ${lib.getExe pkgs.screenshot} -p area"
-
-          "$mainMod SHIFT, N, exec, swaync-client -t"
-
-          "$mainMod, E, exec, ${lib.getExe pkgs.gnome.nautilus}"
-          "$mainMod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
-          "$mainMod, P, pseudo, # dwindle"
+          "$mainMod, C, pseudo, dwindle"
 
           # Move focus with mainMod + vim keys
           "$mainMod, h, movefocus, l"
@@ -159,6 +146,15 @@
           "$mainMod CTRL, Space, togglefloating"
           "$mainMod, Space, togglesplit"
 
+          # Laptop keys
+          ",XF86MonBrightnessUp, exec, lightctl up"
+          ",XF86MonBrightnessDown, exec, lightctl down"
+          ",XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
+          ",XF86AudioRaiseVolume, exec, volumectl -u up"
+          ",XF86AudioLowerVolume, exec, volumectl -u down"
+          ",XF86AudioMute, exec, volumectl -m toggle-mute"
+          ",XF86Calculator, exec, ${lib.getExe pkgs.qalculate-gtk}"
+
           # Groups
           "$mainMod SHIFT, V, togglegroup"
           "$mainMod, N, changegroupactive, f"
@@ -169,17 +165,25 @@
           "$mainMod SHIFT, T, exec, pypr toggle term && hyprctl dispatch bringactivetotop"
           "$mainMod SHIFT, E, exec, pypr toggle yazi && hyprctl dispatch bringactivetotop"
 
-          # Laptop keys
-          ",XF86MonBrightnessUp, exec, lightctl up"
-          ",XF86MonBrightnessDown, exec, lightctl down"
-          ",XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
-          ",XF86AudioRaiseVolume, exec, volumectl -u up"
-          ",XF86AudioLowerVolume, exec, volumectl -u down"
-          ",XF86AudioMute, exec, volumectl -m toggle-mute"
-          ",XF86Calculator, exec, ${lib.getExe pkgs.qalculate-gtk}"
+          # Apps keybindings
+          "$mainMod, Return, exec, ${lib.getExe pkgs.kitty}"
+          "$mainMod, B, exec, ${lib.getExe pkgs.microsoft-edge}"
+          "$mainMod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
+          "$mainMod, N, exec, nm-connection-editor"
+          "$mainMod, U, exec, blueman-manager"
+          "$mainMod, E, exec, ${lib.getExe pkgs.gnome.nautilus}"
 
-          # misc
+          "$mainMod SHIFT, N, exec, swaync-client -t"
+
+          # Scripts
+          "$mainMod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
+
           "$mainMod, W, exec, ${lib.getExe pkgs.wallpaper}"
+
+          "$mainMod CTRL SHIFT, R, exec, ${lib.getExe pkgs.init_bar}"
+
+          ", Print, exec, ${lib.getExe pkgs.screenshot} -s 3 full"
+          "$mainMod, Print, exec, ${lib.getExe pkgs.screenshot} -p area"
         ]
         ++ (
           # workspaces

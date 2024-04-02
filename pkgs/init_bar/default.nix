@@ -2,10 +2,11 @@
   writeShellApplication,
   waybar,
   toybox,
+  ripgrep,
 }:
 writeShellApplication {
   name = "init_bar";
-  runtimeInputs = [waybar toybox];
+  runtimeInputs = [waybar toybox ripgrep];
   text =
     /*
     bash
@@ -55,7 +56,11 @@ writeShellApplication {
       # -----------------------------------------------------
       # Quit all running waybar instances
       # -----------------------------------------------------
-      pkill waybar
+      is_running="$(ps -e | rg -c waybar || echo 0)"
+      if ((is_running > 0)); then
+        # shellcheck disable=SC2210
+        pkill waybar
+      fi
       sleep 0.2
 
       # -----------------------------------------------------

@@ -16,20 +16,21 @@
     inputs.nix-colors.homeManagerModules.default
     # inputs.nixvim.homeManagerModules.nixvim
 
-    ./hypr/hyprland.nix
     ./hypr/hypridle.nix
+    ./hypr/hyprland.nix
     ./hypr/hyprlock.nix
     ./hypr/pyprland.nix
 
-    ./wlogout
     ./kitty
     ./notifications
     ./nvim
     ./packages
     ./rofi
+    ./swappy
     ./vcs
-    ./yazi
     ./waybar
+    ./wlogout
+    ./yazi
   ];
 
   nixpkgs = {

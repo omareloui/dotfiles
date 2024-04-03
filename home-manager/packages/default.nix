@@ -20,6 +20,7 @@
     ark
     autoconf
     automake
+    bar_themeswitcher
     bat
     batplug
     batsuspend
@@ -29,6 +30,8 @@
     bottom
     brillo
     btrfs-progs
+    cliphist
+    cliphist_wrapper
     cloud_backup
     codeium
     corepack_latest
@@ -61,6 +64,7 @@
     inkscape-with-extensions
     jq
     keepassxc
+    kora-icon-theme
     libcanberra-gtk3
     libiconv
     libnotify
@@ -83,9 +87,7 @@
     protobuf
     protoc-gen-go
     protoc-gen-go-grpc
-    (pkgs.python311.withPackages (ppkgs: [
-      ppkgs.pip
-    ]))
+    pywal
     qalculate-gtk
     rclone
     ripgrep
@@ -99,6 +101,7 @@
     telegram-desktop
     templ
     tldr
+    trashy
     tree
     tribler
     unzip
@@ -107,5 +110,9 @@
     wget
     wl-clipboard
     xorg.xhost
+
+    (pkgs.python311.withPackages (ppkgs: [
+      ppkgs.pip
+    ]))
   ];
 }

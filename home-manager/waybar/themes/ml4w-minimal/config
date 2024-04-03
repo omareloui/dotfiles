@@ -36,7 +36,6 @@
 
     // Modules Right    
     "modules-right": [
-        "custom/updates",
         "pulseaudio",
         "bluetooth",
         "battery", 
@@ -47,6 +46,5 @@
         "custom/exit",
         "clock",
         "tray",
-        "custom/ml4w-welcome"
     ]
 }

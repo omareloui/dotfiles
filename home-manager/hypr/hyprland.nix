@@ -28,6 +28,7 @@
         "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # to fix the bluetooth stutter
 
         "${lib.getExe pkgs.telegram-desktop} -startintray"
+        "wl-paste --watch cliphist store"
       ];
 
       input = {
@@ -98,8 +99,8 @@
         rounding = 10;
         blur = {
           enabled = true;
+          passes = 2;
           size = 8;
-          passes = 1;
           vibrancy = 0.1696;
         };
 
@@ -114,7 +115,6 @@
         [
           # window manipulation
           "$mainMod, escape, exec, ${lib.getExe pkgs.wlogout} -b 5 -T 400 -B 400"
-          "$mainMod SHIFT, R, exec, hyprctl reload"
           "$mainMod, Q, killactive,"
           "$mainMod, F, fullscreen,"
           "$mainMod, C, pseudo, dwindle"
@@ -160,6 +160,9 @@
           "$mainMod, N, changegroupactive, f"
           "$mainMod SHIFT, N, changegroupactive, b"
 
+          # Hypdland misc
+          "$mainMod SHIFT, R, exec, hyprctl reload"
+
           # Plugins
           "$mainMod SHIFT, B, exec, pypr toggle btm && hyprctl dispatch bringactivetotop"
           "$mainMod SHIFT, T, exec, pypr toggle term && hyprctl dispatch bringactivetotop"
@@ -177,6 +180,7 @@
 
           # Scripts
           "$mainMod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
+          "$mainMod, V, exec, ${lib.getExe pkgs.cliphist_wrapper} list"
 
           "$mainMod, W, exec, ${lib.getExe pkgs.wallpaper}"
 

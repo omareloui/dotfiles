@@ -54,48 +54,19 @@
       separate-outputs = true;
     };
 
-    # # ML4W Welcome App
-    # "custom/ml4w-welcome" = {
-    #   on-click = "~/dotfiles/apps/ML4W_Welcome-x86_64.AppImage";
-    #   format = " ";
-    #   tooltip = false;
-    # };
-
     # Empty
     "custom/empty" = {
       format = "";
     };
 
-    # # Youtube Subscriber Count
-    # "custom/youtube" = {
-    #   format = " {}";
-    #   exec = "python ~/private/youtube.py";
-    #   restart-interval = 600;
-    #   on-click = "chromium https =#studio.youtube.com";
-    #   tooltip = false;
-    # };
-
     # Cliphist
     "custom/cliphist" = {
       format = "";
-      on-click = "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh";
-      on-click-right = "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh d";
-      on-click-middle = "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh w";
+      on-click = "sleep 0.1 && ${lib.getExe pkgs.cliphist_wrapper} list";
+      on-click-right = "sleep 0.1 &&  ${lib.getExe pkgs.cliphist_wrapper} delete";
+      on-click-middle = "sleep 0.1 && ${lib.getExe pkgs.cliphist_wrapper} wipe";
       tooltip = false;
     };
-
-    # # Updates Count
-    # "custom/updates" = {
-    #   format = "  {}";
-    #   tooltip-format = "{}";
-    #   escape = true;
-    #   return-type = "json";
-    #   exec = "~/dotfiles/scripts/updates.sh";
-    #   restart-interval = 60;
-    #   on-click = "alacritty --class dotfiles-floating -e ~/dotfiles/scripts/installupdates.sh";
-    #   on-click-right = "~/dotfiles/.settings/software.sh";
-    #   tooltip = false;
-    # };
 
     # Wallpaper
     "custom/wallpaper" = {
@@ -108,23 +79,9 @@
     # Waybar Themes
     "custom/waybarthemes" = {
       format = "";
-      on-click = "~/.config/waybar/themeswitcher.sh";
+      on-click = lib.getExe pkgs.bar_themeswitcher;
       tooltip = false;
     };
-
-    # # Settings
-    # "custom/settings" = {
-    #   format = "";
-    #   on-click = "~/dotfiles/apps/ML4W_Dotfiles_Settings-x86_64.AppImage";
-    #   tooltip = false;
-    # };
-
-    # # Keybindings
-    # "custom/keybindings" = {
-    #   format = "";
-    #   on-click = "~/dotfiles/hypr/scripts/keybindings.sh";
-    #   tooltip = false;
-    # };
 
     # Filemanager Launcher
     "custom/filemanager" = {
@@ -133,33 +90,12 @@
       tooltip = false;
     };
 
-    # # Outlook Launcher
-    # "custom/outlook" = {
-    #   format = "";
-    #   on-click = "chromium --app=https =#outlook.office.com/mail/";
-    #   tooltip = false;
-    # };
-
-    # # Teams Launcher
-    # "custom/teams" = {
-    #   format = "";
-    #   on-click = "chromium --app=https =#teams.microsoft.com/go";
-    #   tooltip = false;
-    # };
-
     # Browser Launcher
     "custom/browser" = {
       format = "";
       on-click = lib.getExe pkgs.microsoft-edge;
       tooltip = false;
     };
-
-    # # ChatGPT Launcher
-    # "custom/chatgpt" = {
-    #   format = " ";
-    #   on-click = "chromium --app=https =#chat.openai.com";
-    #   tooltip = false;
-    # };
 
     # Calculator
     "custom/calculator" = {
@@ -168,27 +104,12 @@
       tooltip = false;
     };
 
-    # # Windows VM
-    # "custom/windowsvm" = {
-    #   format = "";
-    #   on-click = "~/dotfiles/scripts/launchvm.sh";
-    #   tooltip = false;
-    # };
-
     # Rofi Application Launcher
     "custom/appmenu" = {
-      format = "Apps";
+      format = "";
       on-click = "sleep 0.2;rofi -show drun -replace";
       tooltip = false;
     };
-
-    # # Rofi Application Launcher
-    # "custom/appmenuicon" = {
-    #   format = "";
-    #   on-click = "rofi -show drun -replace";
-    #   on-click-right = "~/dotfiles/hypr/scripts/keybindings.sh";
-    #   tooltip = false;
-    # };
 
     # Power Menu
     "custom/exit" = {
@@ -196,16 +117,6 @@
       on-click = lib.getExe pkgs.wlogout;
       tooltip = false;
     };
-
-    # keyboard-state = {
-    #   numlock = true;
-    #   capslock = true;
-    #   format = "{name} {icon}";
-    #   format-icons = {
-    #     locked = "";
-    #     unlocked = "";
-    #   };
-    # };
 
     # System tray
     tray = {

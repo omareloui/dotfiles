@@ -2,11 +2,10 @@
   writeShellApplication,
   swww,
   ffmpeg,
-  imagemagick,
 }:
 writeShellApplication {
   name = "wallpaper";
-  runtimeInputs = [swww ffmpeg imagemagick];
+  runtimeInputs = [swww ffmpeg];
   text =
     /*
     bash
@@ -64,6 +63,8 @@ writeShellApplication {
 
       wp=''${1:-"$(fd '.*\.(png|jpe?g|gif)$' "$WALLPAPERS_DIR" -Itf -d1 | shuf --random-source=/dev/urandom -n 1)"}
 
+      # Set the image
+
       # transition_type="wipe"
       # transition_type="outer"
       # transition_type="random"
@@ -76,14 +77,12 @@ writeShellApplication {
         --transition-duration=0.4 \
         --transition-pos "$(hyprctl cursorpos)"
 
+      # Cache the png version of the image (for hyprlock)
       wall_cache_dir="$HOME/.cache/wallpapers"
 
       basename=$(basename -- "$wp")
       ext="''${basename##*.}"
       filename="''${basename%.*}"
-
-      src="$wall_cache_dir/blurred_$filename.png"
-      curr_name="blurred_wallpaper.png"
 
       png_cache_file="$wall_cache_dir/$filename.png"
 
@@ -91,13 +90,16 @@ writeShellApplication {
 
       if [[ $ext != "png" && ! -f $png_cache_file ]]; then
         ffmpeg -i "$wp" "$png_cache_file"
-        src="$png_cache_file"
+      fi
+      cp -f "$png_cache_file" "$wall_cache_dir/current.png"
+
+      # Generate the blurry version
+      blurry_cache_file="$wall_cache_dir/blurred_$filename.png"
+
+      if [[ ! -f $blurry_cache_file ]]; then
+        convert "$wp" -blur 0x16 -channel RGBA "$blurry_cache_file"
       fi
 
-      if [[ ! -f $src ]]; then
-        convert "$wp" -blur 0x16 -channel RGBA "$src"
-      fi
-
-      cp -f "$src" "$wall_cache_dir/$curr_name"
+      cp -f "$blurry_cache_file" "$wall_cache_dir/current_blurred.png"
     '';
 }

@@ -8,15 +8,29 @@
     conf
     */
     ''
+      general {
+        grace = 2
+      }
+
       background {
           monitor =
-          path = $HOME/.cache/wallpapers/blurred_wallpaper.png   # only png supported for now
+
+          path = $HOME/.cache/wallpapers/current.png
+
+          blur_passes = 2
+          blur_size = 8
+          noise = 0.0117
+          contrast = 0.8916
+          brightness = 0.8172
+          vibrancy = 0.1696
+          vibrancy_darkness = 0.0
       }
 
       input-field {
           monitor =
           size = 200, 50
-          outline_thickness = 1
+          # outline_thickness = 1
+          outline_thickness = 0
           dots_size = 0.33 # Scale of input-field height, 0.2 - 0.8
           dots_spacing = 0.15 # Scale of dots' absolute size, 0.0 - 1.0
           dots_center = true

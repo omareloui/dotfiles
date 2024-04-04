@@ -125,7 +125,7 @@ window#waybar.empty #window {
   font-weight: normal;
   font-style: normal;
   opacity: 0.8;
-  border: 2px solid @backgroundlight;
+  border: 1px solid @backgroundlight;
 }
 
 #taskbar button {

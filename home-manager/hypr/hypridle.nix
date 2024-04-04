@@ -5,7 +5,7 @@
 
   home.file.".config/hypr/hypridle.conf".text =
     /*
-    conf
+    hyprlang
     */
     ''
       general {

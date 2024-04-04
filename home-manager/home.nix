@@ -14,13 +14,14 @@
     # outputs.homeManagerModules.example
 
     inputs.nix-colors.homeManagerModules.default
-    # inputs.nixvim.homeManagerModules.nixvim
 
-    ./hypr/hypridle.nix
     ./hypr/hyprland.nix
+    ./hypr/hypridle.nix
     ./hypr/hyprlock.nix
+    ./hypr/hyprshade.nix
     ./hypr/pyprland.nix
 
+    ./anyrun
     ./kitty
     ./notifications
     ./nvim
@@ -463,31 +464,6 @@
     };
   };
 
-  services.syncthing = {
-    enable = true;
-    # dataDir = "${config.home.homeDirectory}/documents/syncthing";
-    # configDir = "${config.home.homeDirectory}/documents/syncthing/.config/syncthing";
-    # overrideDevices = true; # overrides any devices added or deleted through the WebUI
-    # overrideFolders = true; # overrides any folders added or deleted through the WebUI
-    # settings = {
-    #   devices = {
-    #     "A24" = {id = "DEVICE_ID";};
-    #   };
-    #   folders = {
-    #     "default" = {
-    #       path = "${config.home.homeDirectory}/documents/syncthing"; # Which folder to add to Syncthing
-    #       devices = ["A24"];
-    #     };
-    #   };
-    # };
-  };
-  # home.file.".local/state/syncthing/config.xml".text =
-  #   builtins.toXML [];
-
-  # TODO: doesn't work for now!
-  # services.gpg-agent = {
-  #   enable = true;
-  #   defaultCacheTtl = 1800;
-  #   enableSshSupport = true;
-  # };
+  services.syncthing = {enable = true;};
+  services.udiskie = {enable = true;};
 }

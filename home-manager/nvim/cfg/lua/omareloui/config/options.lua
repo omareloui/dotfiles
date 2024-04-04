@@ -67,3 +67,9 @@ vim.opt.whichwrap:append "<>[]hl"
 
 -- stop continuous comments
 vim.api.nvim_create_autocmd("FileType", { command = "set formatoptions-=cro" })
+
+vim.filetype.add {
+  pattern = {
+    [".*/hypr/.*%.conf"] = "hyprlang",
+  },
+}

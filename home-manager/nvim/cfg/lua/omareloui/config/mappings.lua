@@ -73,10 +73,10 @@ set("<C-l>", "<C-w>l", "Go to right window")
 -- splits
 set("<leader>sv", "<Cmd>vsplit<CR>", "Split window vertically")
 set("<leader>sh", "<Cmd>split<CR>", "Split window horizontally")
-set("<leader>se", "<C-w>=", "Make the splits equal")
 set("<leader>sx", "<Cmd>close<CR>", "Split window horizontally")
 
 set("<leader>s+", "<Cmd>resize +10<CR>", "Increase window height")
 set("<leader>s-", "<Cmd>resize -10<CR>", "Decrease window height")
 set("<leader>s>", "<Cmd>vertical resize +10<CR>", "Increase window width")
 set("<leader>s<", "<Cmd>vertical resize -10<CR>", "Decrease window width")
+set("<leader>s=", "<C-w>=", "Make the splits equal")

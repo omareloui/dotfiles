@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  # inputs,
+  ...
+}: {
   home.packages = with pkgs; [
     calibre
     # mongodb
@@ -108,6 +112,7 @@
     unzip
     vlc
     wallpaper
+    wev
     wget
     wl-clipboard
     xorg.xhost
@@ -117,4 +122,5 @@
       ppkgs.pip
     ]))
   ];
+  # ++ [inputs.anyrun.packages.${pkgs.system}.anyrun];
 }

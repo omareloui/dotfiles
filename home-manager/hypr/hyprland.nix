@@ -4,7 +4,9 @@
   pkgs,
   ...
 }: {
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = let
+    p = config.colorScheme.palette;
+  in {
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
@@ -21,33 +23,45 @@
         gaps_in = 5;
         gaps_out = 14;
         border_size = 2;
-        "col.active_border" = "rgba(${config.colorScheme.palette.base0B}ee) rgba(${config.colorScheme.palette.base0D}ee) 45deg";
-        "col.inactive_border" = "rgba(${config.colorScheme.palette.base04}aa)";
+        "col.active_border" = "rgba(${p.base0B}ee) rgba(${p.base0D}ee) 45deg";
+        "col.inactive_border" = "rgba(${p.base04}aa)";
         layout = "dwindle";
         allow_tearing = false;
       };
 
       input = {
-        kb_layout = "us";
+        # kb_layout = "us,es,ar";
+        # kb_variant = "qwerty,,";
+        # kb_options = "grp:alt_shift_toggle";
+        repeat_rate = 30;
+        repeat_delay = 300;
+        numlock_by_default = 1;
         follow_mouse = 1;
-        touchpad = {natural_scroll = "yes";};
         sensitivity = 0;
+
+        touchpad = {
+          disable_while_typing = true;
+          natural_scroll = true;
+          clickfinger_behavior = false;
+          tap-to-click = true;
+          drag_lock = false;
+        };
       };
 
       decoration = {
         rounding = 10;
         blur = {
           enabled = true;
-          size = 12;
-          passes = 4;
-          new_optimizations = "on";
+          size = 10;
+          passes = 3;
+          new_optimizations = true;
           ignore_opacity = true;
           xray = false;
           blurls = "waybar";
         };
 
         active_opacity = 1.0;
-        inactive_opacity = 0.8;
+        inactive_opacity = 0.85;
         fullscreen_opacity = 1.0;
         "col.shadow" = "0x66000000";
 
@@ -57,31 +71,33 @@
       };
 
       animations = {
-        # enabled = "yes";
-        # bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        # animation = [
-        #   "windows, 1, 7, myBezier"
-        #   "windowsOut, 1, 7, default, popin 80%"
-        #   "border, 1, 10, default"
-        #   "fade, 1, 7, default"
-        #   "workspaces, 1, 6, default"
-        # ];
         enabled = true;
         bezier = [
           "myBezier, 0.05, 0.9, 0.1, 1.05"
-          "overshot, 0.05, 0.9, 0.1, 1.05"
+
+          "overshot1, 0.05, 0.9, 0.1, 1.05"
           "smoothOut, 0.5, 0, 0.99, 0.99"
           "smoothIn, 0.5, -0.5, 0.68, 1.5"
+
+          "linear, 0.0, 0.0, 1.0, 1.0"
+          "wind, 0.05, 0.9, 0.1, 1.05"
+          "winIn, 0.1, 1.1, 0.1, 1.1"
+          "winOut, 0.3, -0.3, 0, 1"
+          "slow, 0, 0.85, 0.3, 1"
+          "overshot2, 0.7, 0.6, 0.1, 1.1"
+          "bounce, 1.1, 1.6, 0.1, 0.85"
+          "sligshot, 1, -1, 0.15, 1.25"
+          "nice, 0, 6.9, 0.5, -4.20"
         ];
         animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
+          # "windows, 1, 7, myBezier"
+          # "windowsOut, 1, 7, default, popin 80%"
+          # "border, 1, 10, default"
+          # "borderangle, 1, 8, default"
+          # "fade, 1, 7, default"
+          # "workspaces, 1, 6, default"
 
-          # "windows, 1, 5, overshot, slide"
+          # "windows, 1, 5, overshot1, slide"
           # "windowsOut, 1, 3, smoothOut"
           # "windowsIn, 1, 3, smoothOut"
           # "windowsMove, 1, 4, smoothIn, slide"
@@ -89,12 +105,27 @@
           # "fade, 1, 5, smoothIn"
           # "fadeDim, 1, 5, smoothIn"
           # "workspaces, 1, 6, default"
+
+          "windowsIn, 1, 5, winIn, slide"
+          "windowsOut, 1, 5, winOut, slide"
+          "windowsMove, 1, 5, wind, slide"
+          "border, 1, 10, linear"
+          "borderangle, 1, 180, linear, loop #used by rainbow borders and rotating colors"
+          "fade, 1, 5, overshot2"
+          "workspaces, 1, 5, wind"
+          "windows, 1, 5, bounce, slide"
         ];
       };
 
       gestures = {
-        workspace_swipe = "on";
+        workspace_swipe = true;
         workspace_swipe_invert = true;
+        workspace_swipe_create_new = true;
+        workspace_swipe_forever = true;
+        workspace_swipe_fingers = 3;
+        workspace_swipe_distance = 400;
+        workspace_swipe_min_speed_to_force = 30;
+        workspace_swipe_cancel_ratio = 0.5;
       };
 
       master = {
@@ -102,43 +133,86 @@
       };
 
       dwindle = {
-        pseudotile = "yes";
-        preserve_split = "yes";
+        pseudotile = true;
+        preserve_split = true;
+        smart_resizing = true;
+        force_split = 2;
       };
 
       exec = [
         "avizo-service"
-        "${lib.getExe pkgs.init_bar}"
         "${lib.getExe pkgs.swaynotificationcenter}"
+        "${lib.getExe pkgs.init_bar}"
+        "${lib.getExe pkgs.hyprshade} auto"
       ];
 
       exec-once = [
         "${lib.getExe pkgs.hypridle}"
         "${lib.getExe pkgs.pyprland}"
         "${lib.getExe pkgs.swww} init"
-        "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # to fix the bluetooth stutter
-
+        "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # fixes the bluetooth stutter
         "${lib.getExe pkgs.telegram-desktop} -startintray"
+
+        "${lib.getExe pkgs.udiskie} &"
         "wl-paste --watch cliphist store"
+
+        "dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE"
       ];
 
       windowrulev2 = let
-        shouldFloat = "tribler|org.gnome.Loupe|pavucontrol|vlc|.blueman-manager-wrapped|scratchpad|nm-connection-editor";
+        shouldFloat = "tribler|org.gnome.Loupe|pavucontrol|.blueman-manager-wrapped|scratchpad|nm-connection-editor";
         scratpad = "class:^scratchpad$";
-        # scratpadsize = "80% 85%";
+        pipRe = "Picture[\- ]in[\- ][Pp]icture";
       in [
         "float, class:^(${shouldFloat})$"
         "center 1, class:^(${shouldFloat})$"
-
-        # "size ${scratpadsize}, ${scratpad}"
         "workspace special silent, ${scratpad}"
+        "stayfocused, ${scratpad}"
 
         "float, class:^thunar$,title:^(File Operation Progress)$"
         "float, class:^org.kde.kdeconnect.*$"
         "float, class:^org.inkscape.Inkscape$,title:^(Measure Path|PDF Import Settings)$"
+
+        "fullscreen, class:^(vlc)$"
+
+        "opacity 0.95 0.95, class:^(microsoft-edge)$"
+        "opacity 0.95 0.8, class:^(kitty)$"
+        "opacity 0.85 0.8, class:^(org.gnome.Nautilus)$"
+
+        "bordercolor rgb(${p.base00}) rgb(${p.base01}), floating:1"
+
+        # Picture-in-a-Picture (PIP) rules: Oddly, some need re-duplication. This is because the window for
+        # PIP changes after on first launch, and will not inherant the rules...
+        "opacity 0.95 0.75, title:^(${pipRe})$"
+        # Interestingly, the opacity rule above doesn't need the reduplication?
+        "pin, title:^(${pipRe})$"
+        "float, title:^(${pipRe})$"
+        "size 25% 25%, title:^(${pipRe})$"
+
+        "move 74% 73%, title:^(${pipRe})$"
+      ];
+
+      layerrule = [
+        "unset, rofi"
+        "blur, rofi"
+        "ignorezero, rofi"
+
+        "blur, wlogout"
+        "blur, class:^(swww)$"
+
+        "blur, swaync-control-center"
+        "blur, swaync-notification-window"
+
+        "ignorezero, swaync-control-center"
+        "ignorezero, swaync-notification-window"
+
+        "ignorealpha 0.5, swaync-control-center"
+        "ignorealpha 0.5, swaync-notification-window"
       ];
 
       misc = {
+        enable_swallow = true;
+        swallow_regex = "^(Alacritty|kitty|footclient|scratchpad)$";
         disable_splash_rendering = true;
         disable_hyprland_logo = true;
       };
@@ -179,6 +253,14 @@
           "$mainMod CTRL, Space, togglefloating"
           "$mainMod, Space, togglesplit"
 
+          # Groups
+          "$mainMod SHIFT, V, togglegroup"
+          "$mainMod, N, changegroupactive, f"
+          "$mainMod SHIFT, N, changegroupactive, b"
+
+          # Hypdland misc
+          "$mainMod SHIFT, R, exec, hyprctl reload"
+
           # Laptop keys
           ",XF86MonBrightnessUp, exec, lightctl up"
           ",XF86MonBrightnessDown, exec, lightctl down"
@@ -188,13 +270,7 @@
           ",XF86AudioMute, exec, volumectl -m toggle-mute"
           ",XF86Calculator, exec, ${lib.getExe pkgs.qalculate-gtk}"
 
-          # Groups
-          "$mainMod SHIFT, V, togglegroup"
-          "$mainMod, N, changegroupactive, f"
-          "$mainMod SHIFT, N, changegroupactive, b"
-
-          # Hypdland misc
-          "$mainMod SHIFT, R, exec, hyprctl reload"
+          "$mainMod, A, exec, hyprctl switchxkblayout"
 
           # Plugins
           "$mainMod SHIFT, B, exec, pypr toggle btm && hyprctl dispatch bringactivetotop"
@@ -203,6 +279,7 @@
 
           # Apps keybindings
           "$mainMod, Return, exec, ${lib.getExe pkgs.kitty}"
+          "$mainMod SHIFT, Return, exec, ${lib.getExe pkgs.kitty}"
           "$mainMod, B, exec, ${lib.getExe pkgs.microsoft-edge}"
           "$mainMod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
           "$mainMod, N, exec, nm-connection-editor"

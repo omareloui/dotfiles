@@ -5,7 +5,7 @@
 
   home.file.".config/hypr/hyprlock.conf".text =
     /*
-    conf
+    hyprlang
     */
     ''
       general {

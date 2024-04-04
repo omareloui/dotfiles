@@ -97,7 +97,7 @@ return {
     set("<leader>fk", "<Cmd>Telescope keymaps<CR>", "Show key mappings")
     set("<leader>fn", "<Cmd>Telescope file_browser files=false hide_parent_dir=true<CR>", "Open file browser")
     set("<leader>fr", "<Cmd>Telescope file_browser cwd=~/repos<CR>", "Open all repos")
-    set("<leader>ft", "<Cmd>Telescope file_browser hidden=true repect_gitignore=false collapse_dirs=true<CR>", "Open file browser")
+    -- set("<leader>ft", "<Cmd>Telescope file_browser hidden=true repect_gitignore=false collapse_dirs=true<CR>", "Open file browser")
     -- stylua: ignore end
 
     set("<leader>gs", "<Cmd>Telescope git_status<CR>", "Git status")

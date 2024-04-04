@@ -1,6 +1,6 @@
 local function virtual_text_handler(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
-  local suffix = ("  %d "):format(endLnum - lnum)
+  local suffix = (" 󰁂 %d "):format(endLnum - lnum)
   local sufWidth = vim.fn.strdisplaywidth(suffix)
   local targetWidth = width - sufWidth
   local curWidth = 0
@@ -48,7 +48,10 @@ return {
         return { "lsp", "indent" }
       end,
       open_fold_hl_timeout = 60,
-      close_fold_kinds = { "imports", "comment" },
+      close_fold_kinds_for_ft = {
+        default = { "imports", "comment" },
+        json = { "array" },
+      },
       fold_virt_text_handler = virtual_text_handler,
     }
 
@@ -56,6 +59,6 @@ return {
 
     -- Highlights
     local c = require "omareloui.config.ui.palette"
-    vim.api.nvim_set_hl(0, "Folded", { fg = c.subtext1, bg = c.crust })
+    vim.api.nvim_set_hl(0, "Folded", { fg = c.subtext1, bg = c.crust, blend = 50 })
   end,
 }

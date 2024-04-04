@@ -90,6 +90,8 @@ writeShellApplication {
 
       if [[ $ext != "png" && ! -f $png_cache_file ]]; then
         ffmpeg -i "$wp" "$png_cache_file"
+      else
+        png_cache_file="$wp"
       fi
       cp -f "$png_cache_file" "$wall_cache_dir/current.png"
 

@@ -8,7 +8,7 @@
     # `kitty list-fonts` to choose a font
     # `kitty --debug-font-fallback` to know which font is applied
     font = {
-      name = "FiraCode Nerd Font Mono";
+      name = "FiraCode Nerd Font";
       package = pkgs.nerdfonts.override {fonts = ["FiraCode"];};
       size = 12;
     };

@@ -8,12 +8,103 @@
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
+
     # plugins = [
     #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
     # ];
+
     settings = {
       monitor = "eDP-1, 1920x1080, 0x0, 1";
       workspace = "1, monitor:eDP-1, default:true";
+
+      general = {
+        gaps_in = 5;
+        gaps_out = 14;
+        border_size = 2;
+        "col.active_border" = "rgba(${config.colorScheme.palette.base0B}ee) rgba(${config.colorScheme.palette.base0D}ee) 45deg";
+        "col.inactive_border" = "rgba(${config.colorScheme.palette.base04}aa)";
+        layout = "dwindle";
+        allow_tearing = false;
+      };
+
+      input = {
+        kb_layout = "us";
+        follow_mouse = 1;
+        touchpad = {natural_scroll = "yes";};
+        sensitivity = 0;
+      };
+
+      decoration = {
+        rounding = 10;
+        blur = {
+          enabled = true;
+          size = 12;
+          passes = 4;
+          new_optimizations = "on";
+          ignore_opacity = true;
+          xray = false;
+          blurls = "waybar";
+        };
+
+        active_opacity = 1.0;
+        inactive_opacity = 0.8;
+        fullscreen_opacity = 1.0;
+        "col.shadow" = "0x66000000";
+
+        drop_shadow = true;
+        shadow_range = 4;
+        shadow_render_power = 3;
+      };
+
+      animations = {
+        # enabled = "yes";
+        # bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        # animation = [
+        #   "windows, 1, 7, myBezier"
+        #   "windowsOut, 1, 7, default, popin 80%"
+        #   "border, 1, 10, default"
+        #   "fade, 1, 7, default"
+        #   "workspaces, 1, 6, default"
+        # ];
+        enabled = true;
+        bezier = [
+          "myBezier, 0.05, 0.9, 0.1, 1.05"
+          "overshot, 0.05, 0.9, 0.1, 1.05"
+          "smoothOut, 0.5, 0, 0.99, 0.99"
+          "smoothIn, 0.5, -0.5, 0.68, 1.5"
+        ];
+        animation = [
+          "windows, 1, 7, myBezier"
+          "windowsOut, 1, 7, default, popin 80%"
+          "border, 1, 10, default"
+          "borderangle, 1, 8, default"
+          "fade, 1, 7, default"
+          "workspaces, 1, 6, default"
+
+          # "windows, 1, 5, overshot, slide"
+          # "windowsOut, 1, 3, smoothOut"
+          # "windowsIn, 1, 3, smoothOut"
+          # "windowsMove, 1, 4, smoothIn, slide"
+          # "border, 1, 5, default"
+          # "fade, 1, 5, smoothIn"
+          # "fadeDim, 1, 5, smoothIn"
+          # "workspaces, 1, 6, default"
+        ];
+      };
+
+      gestures = {
+        workspace_swipe = "on";
+        workspace_swipe_invert = true;
+      };
+
+      master = {
+        new_is_master = false;
+      };
+
+      dwindle = {
+        pseudotile = "yes";
+        preserve_split = "yes";
+      };
 
       exec = [
         "avizo-service"
@@ -31,44 +122,6 @@
         "wl-paste --watch cliphist store"
       ];
 
-      input = {
-        kb_layout = "us";
-        follow_mouse = 1;
-        touchpad = {natural_scroll = "yes";};
-        sensitivity = 0;
-      };
-
-      animations = {
-        enabled = "yes";
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
-        ];
-      };
-
-      dwindle = {
-        pseudotile = "yes";
-        preserve_split = "yes";
-      };
-
-      gestures = {
-        workspace_swipe = "on";
-        workspace_swipe_invert = true;
-      };
-
-      # "device:epic mouse V1" = {sensitivity = -0.5;};
-
-      misc = {
-        disable_splash_rendering = true;
-        disable_hyprland_logo = true;
-      };
-
-      master = {new_is_master = false;};
-
       windowrulev2 = let
         shouldFloat = "tribler|org.gnome.Loupe|pavucontrol|vlc|.blueman-manager-wrapped|scratchpad|nm-connection-editor";
         scratpad = "class:^scratchpad$";
@@ -85,29 +138,9 @@
         "float, class:^org.inkscape.Inkscape$,title:^(Measure Path|PDF Import Settings)$"
       ];
 
-      general = {
-        gaps_in = 5;
-        gaps_out = 20;
-        border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
-        layout = "dwindle";
-        allow_tearing = false;
-      };
-
-      decoration = {
-        rounding = 10;
-        blur = {
-          enabled = true;
-          passes = 2;
-          size = 8;
-          vibrancy = 0.1696;
-        };
-
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+      misc = {
+        disable_splash_rendering = true;
+        disable_hyprland_logo = true;
       };
 
       "$mainMod" = "SUPER";

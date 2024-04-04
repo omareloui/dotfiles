@@ -1,83 +1,58 @@
 return {
   "nvim-lualine/lualine.nvim",
-  enabled = false,
+  enabled = true,
   dependencies = { "kyazdani42/nvim-web-devicons" },
 
   config = function()
     local present, lualine = pcall(require, "lualine")
 
-    if not present then
-      return
+    -- stylua: ignore
+    if not present then return end
+
+    local lazy_status = require "lazy.status"
+    local c = require "omareloui.config.ui.palette"
+
+    ---@param color string
+    local function get_theme(color)
+      return {
+        a = { bg = color, fg = c.crust, gui = "bold" },
+        b = { bg = c.base, fg = c.text },
+        c = { bg = c.base, fg = c.text },
+      }
     end
 
-    local c = require "omareloui.config.ui.palette"
-    local i = require "omareloui.config.ui.icons"
-    local i_lualine = i.lualine
+    local theme = {
+      normal = get_theme(c.blue),
+      insert = get_theme(c.green),
+      visual = get_theme(c.magenta),
+      command = get_theme(c.yellow),
+      replace = get_theme(c.red),
+      inactive = {
+        a = { bg = c.surface0, fg = c.subtext0, gui = "bold" },
+        b = { bg = c.surface0, fg = c.subtext0 },
+        c = { bg = c.surface0, fg = c.subtext0 },
+      },
+    }
 
     lualine.setup {
       options = {
+        theme = theme,
         -- globalstatus = true,
         -- icons_enabled = true,
-        disabled_filetypes = { "alpha", "dashboard" },
+        disabled_filetypes = { "alpha", "dashboard", "NvimTree" },
         always_divide_middle = true,
       },
       sections = {
-        lualine_a = {
-          {
-            "mode",
-            -- color = function()
-            --   return { bg = mode_color[vim.fn.mode()] }
-            -- end,
-            -- separator = { right = sep.right },
-          },
-        },
-
-        lualine_b = {
-          {
-            "branch",
-            icon = "",
-            color = { bg = c.surface0, fg = c.magenta },
-            -- separator = { right = sep.right },
-          },
-          {
-            "diff",
-            colored = true,
-            symbols = i_lualine.diff,
-            color = { bg = c.surface0 },
-            -- separator = { left = sep.left, right = sep.right },
-          },
-        },
-
-        lualine_c = {
-          -- {
-          --   "diagnostics",
-          --   sources = { "nvim_diagnostic" },
-          --   sections = { "info", "error", "warn", "hint" },
-          --   symbols = {
-          --     info = i.diagnostics.Info,
-          --     error = i.diagnostics.Error,
-          --     warn = i.diagnostics.Warn,
-          --     hint = i.diagnostics.Hint,
-          --   },
-          --   colored = true,
-          --   always_visible = false,
-          -- },
-        },
-
         lualine_x = {
           {
-            function()
-              return i_lualine.lsp
-            end,
-            -- separator = { left = sep.left, right = sep.right },
-            -- separator = { left = sep.left },
-            color = { bg = c.magenta, fg = c.black },
+            lazy_status.updates,
+            cond = lazy_status.has_updates,
+            color = { fg = c.yellow },
           },
+          { "encoding" },
+          { "fileformat" },
+          { "filetype" },
         },
-
-        lualine_y = {},
-
-        lualine_z = {},
       },
     }
   end,

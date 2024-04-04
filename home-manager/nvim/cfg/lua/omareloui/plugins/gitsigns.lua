@@ -10,6 +10,7 @@ return {
 
     local options = {
       signs = { changedelete = { text = "–" } },
+      preview_config = { border = "rounded" },
       current_line_blame = true,
       on_attach = function(buffer)
         local function set(lhs, rhs, desc, opts)

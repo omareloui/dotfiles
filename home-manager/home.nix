@@ -222,8 +222,9 @@
 
     MYHOME = "${config.home.homeDirectory}/myhome";
 
-    REPOS_DIR = "${config.home.sessionVariables.MYHOME}/repos";
+    DOWNLOADS_DIR = "${config.home.sessionVariables.MYHOME}/downloads";
     MOVIES_DIR = "${config.home.sessionVariables.MYHOME}/movies";
+    REPOS_DIR = "${config.home.sessionVariables.MYHOME}/repos";
     PICS_DIR = "${config.home.sessionVariables.MYHOME}/pictures";
     WALLPAPERS_DIR = "${config.home.sessionVariables.MYHOME}/pictures/wallpapers/.loop_over";
 

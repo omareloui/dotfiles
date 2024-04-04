@@ -24,6 +24,13 @@
           }
         ];
 
+        pdf = [
+          {
+            run = ''zathura $@'';
+            desc = "Open pdf files";
+          }
+        ];
+
         image = [
           {
             run = ''loupe $@'';
@@ -64,6 +71,10 @@
           {
             mime = "video/*";
             use = "video";
+          }
+          {
+            mime = "application/pdf";
+            use = "pdf";
           }
         ];
       };

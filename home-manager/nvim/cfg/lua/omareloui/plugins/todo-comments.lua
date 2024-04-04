@@ -18,7 +18,7 @@ return {
       end,
       desc = "Previous todo comment",
     },
-    { "<leader>st", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
-    { "<leader>sT", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+    { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
+    { "<leader>fT", "<cmd>TodoTelescope<cr>", desc = "Todo" },
   },
 }

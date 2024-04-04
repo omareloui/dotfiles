@@ -9,6 +9,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "rafamadriz/friendly-snippets",
     "Exafunction/codeium.nvim",
+    "onsails/lspkind.nvim",
     { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
     {
       "Saecki/crates.nvim",
@@ -27,6 +28,7 @@ return {
     -- stylua: ignore
     if not present then return end
 
+    local lspkind = require "lspkind"
     local cmp_window = require "cmp.utils.window"
     local defaults = require "cmp.config.default"()
 
@@ -40,7 +42,7 @@ return {
     local options = {
       experimental = { ghost_text = true },
       completion = {
-        completeopt = "menu,menuone,noinsert",
+        completeopt = "menu,menuone,preview,noinsert",
       },
       window = {
         completion = cmp.config.window.bordered(),
@@ -52,22 +54,10 @@ return {
         end,
       },
       formatting = {
-        format = function(entry, vim_item)
-          local icons = require("omareloui.config.ui.icons").kinds
-          local menu = {
-            nvim_lsp = "LSP",
-            nvim_lua = "api",
-            luasnip = "snip",
-            path = "path",
-            spell = "spell",
-            codeium = "codeium",
-            buffer = "file",
-          }
-          vim_item.menu = string.format("[%s]", menu[entry.source.name])
-          vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-          require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
-          return vim_item
-        end,
+        format = lspkind.cmp_format {
+          maxwidth = 50,
+          ellipsis_car = "",
+        },
       },
       mapping = cmp.mapping.preset.insert {
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),

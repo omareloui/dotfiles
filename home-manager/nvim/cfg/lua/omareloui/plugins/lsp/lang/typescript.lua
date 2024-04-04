@@ -1,6 +1,8 @@
 return {
   setup = function(lspconfig, on_attach, capabilities)
     lspconfig["tsserver"].setup {
+      root_dir = lspconfig.util.root_pattern "package.json",
+      single_file_support = false,
       capabilities = capabilities,
       on_attach = function(_, bufnr)
         on_attach(_, bufnr)

@@ -88,6 +88,7 @@
     protoc-gen-go
     protoc-gen-go-grpc
     pywal
+    pywal
     qalculate-gtk
     rclone
     ripgrep
@@ -110,6 +111,7 @@
     wget
     wl-clipboard
     xorg.xhost
+    zathura
 
     (pkgs.python311.withPackages (ppkgs: [
       ppkgs.pip

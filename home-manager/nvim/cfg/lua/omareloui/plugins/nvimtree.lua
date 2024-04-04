@@ -25,7 +25,7 @@ return {
       hijack_unnamed_buffer_when_opening = false,
       update_cwd = true,
       update_focused_file = {
-        enable = true,
+        enable = false,
         update_cwd = false,
       },
       view = {
@@ -99,7 +99,10 @@ return {
     }
 
     local set = require("omareloui.util.keymap").set
-    set("<leader>e", require("nvim-tree.api").tree.toggle, "toggle NvimTree")
+    set("<leader>ee", "<Cmd>NvimTreeToggle<CR>", "Toggle NvimTree")
+    set("<leader>ef", "<Cmd>NvimTreeFindFileToggle<CR>", "Toggle NvimTree with focusing over the current file")
+    set("<leader>ec", "<Cmd>NvimTreeCollapse<CR>", "Collapse file NvimTree")
+    set("<leader>er", "<Cmd>NvimTreeReload<CR>", "Reloads NvimTree")
 
     vim.g.nvimtree_side = options.view.side
     nvimtree.setup(options)

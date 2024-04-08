@@ -45,7 +45,6 @@
     du-dust
     entr
     eva
-    eza
     fd
     ffmpeg
     flex

@@ -1,6 +1,6 @@
 {
   pkgs,
-  # inputs,
+  inputs,
   ...
 }: {
   home.packages = with pkgs; [
@@ -91,15 +91,15 @@
     protobuf
     protoc-gen-go
     protoc-gen-go-grpc
-    pywal
-    pywal
     qalculate-gtk
     rclone
     ripgrep
     rustup
     screenshot
+    shade
     slock
     socat
+    sortpics
     swaylock-effects
     swww
     syncthing
@@ -114,6 +114,7 @@
     wallpaper
     wev
     wget
+    wirelesstools
     wl-clipboard
     xorg.xhost
     zathura
@@ -122,5 +123,4 @@
       ppkgs.pip
     ]))
   ];
-  # ++ [inputs.anyrun.packages.${pkgs.system}.anyrun];
 }

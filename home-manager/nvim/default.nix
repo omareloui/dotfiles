@@ -38,6 +38,7 @@
     shellcheck
     shfmt
     sqlfluff
+    statix
     stylua
     tailwindcss-language-server
     yaml-language-server

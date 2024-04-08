@@ -31,31 +31,31 @@ in {
       # intensity = 1.0     # 0.0 - 1.0
     '';
 
-  systemd.user = {
-    services.hyprshade = {
-      Unit = {
-        Description = "Apply screen filter";
-      };
-      Service = {
-        Type = "oneshot";
-        ExecStart = "${lib.getExe pkgs.hyprshade} auto";
-      };
-    };
-    timers.hyprshade = {
-      Unit = {
-        Description = "Apply screen filter on schedule";
-      };
-      Timer = {
-        OnCalendar = [
-          "*-*-* ${start_blue_light_filter_on}"
-          "*-*-* ${end_blue_light_filter_on}"
-        ];
-      };
-      Install = {
-        WantedBy = ["timers.target"];
-      };
-    };
-  };
+  # systemd.user = {
+  #   services.hyprshade = {
+  #     Unit = {
+  #       Description = "Apply screen filter";
+  #     };
+  #     Service = {
+  #       Type = "oneshot";
+  #       ExecStart = "${lib.getExe pkgs.hyprshade} auto";
+  #     };
+  #   };
+  #   timers.hyprshade = {
+  #     Unit = {
+  #       Description = "Apply screen filter on schedule";
+  #     };
+  #     Timer = {
+  #       OnCalendar = [
+  #         "*-*-* ${start_blue_light_filter_on}"
+  #         "*-*-* ${end_blue_light_filter_on}"
+  #       ];
+  #     };
+  #     Install = {
+  #       WantedBy = ["timers.target"];
+  #     };
+  #   };
+  # };
 
   home.file.".config/hypr/shaders/blue-light-filter.glsl".text =
     /*
@@ -94,10 +94,10 @@ in {
           // RGB
           vec3 color = vec3(pixColor[0], pixColor[1], pixColor[2]);
 
-      #ifdef WithQuickAndDirtyLuminancePreservation
-          color *= mix(1.0, dot(color, vec3(0.2126, 0.7152, 0.0722)) / max(dot(color, vec3(0.2126, 0.7152, 0.0722)), 1e-5),
-                       LuminancePreservationFactor);
-      #endif
+          #ifdef WithQuickAndDirtyLuminancePreservation
+              color *= mix(1.0, dot(color, vec3(0.2126, 0.7152, 0.0722)) / max(dot(color, vec3(0.2126, 0.7152, 0.0722)), 1e-5),
+                           LuminancePreservationFactor);
+          #endif
 
           color = mix(color, color * colorTemperatureToRGB(temperature), temperatureStrength);
 
@@ -167,8 +167,6 @@ in {
 
           gl_FragColor = vec4(correction);
       }
-
-      // vim: ft=glsl
     '';
 
   home.file.".config/hypr/shaders/invert-colors.glsl".text =

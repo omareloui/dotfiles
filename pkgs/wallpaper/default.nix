@@ -2,10 +2,11 @@
   writeShellApplication,
   swww,
   ffmpeg,
+  pywal,
 }:
 writeShellApplication {
   name = "wallpaper";
-  runtimeInputs = [swww ffmpeg];
+  runtimeInputs = [swww ffmpeg pywal];
   text =
     /*
     bash
@@ -103,5 +104,8 @@ writeShellApplication {
       fi
 
       cp -f "$blurry_cache_file" "$wall_cache_dir/current_blurred.png"
+
+      # Generate the wallpaper colorscheme
+      # wal -nqstei "$wp"
     '';
 }

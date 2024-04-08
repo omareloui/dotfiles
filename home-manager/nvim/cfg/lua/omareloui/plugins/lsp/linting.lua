@@ -67,6 +67,7 @@ return {
       javascriptreact = { "eslint_d", "cspell" },
       lua = { "luacheck", "cspell" },
       markdown = { "markdownlint", "cspell" },
+      nix = { "statix", "cspell" },
       proto = { "buf", "cspell" },
       sh = { "shellcheck", "cspell" },
       sql = { "sqlfluff", "cspell" },

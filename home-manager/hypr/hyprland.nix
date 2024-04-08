@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -50,6 +51,7 @@
 
       decoration = {
         rounding = 10;
+
         blur = {
           enabled = true;
           size = 10;
@@ -121,7 +123,7 @@
         workspace_swipe = true;
         workspace_swipe_invert = true;
         workspace_swipe_create_new = true;
-        workspace_swipe_forever = true;
+        workspace_swipe_forever = false;
         workspace_swipe_fingers = 3;
         workspace_swipe_distance = 400;
         workspace_swipe_min_speed_to_force = 30;
@@ -173,7 +175,7 @@
         "float, class:^org.kde.kdeconnect.*$"
         "float, class:^org.inkscape.Inkscape$,title:^(Measure Path|PDF Import Settings)$"
 
-        "fullscreen, class:^(vlc)$"
+        # "fullscreen, class:^(vlc)$"
 
         "opacity 0.95 0.95, class:^(microsoft-edge)$"
         "opacity 0.95 0.8, class:^(kitty)$"
@@ -279,8 +281,8 @@
 
           # Apps keybindings
           "$mainMod, Return, exec, ${lib.getExe pkgs.kitty}"
-          "$mainMod SHIFT, Return, exec, ${lib.getExe pkgs.kitty}"
-          "$mainMod, B, exec, ${lib.getExe pkgs.microsoft-edge}"
+          "$mainMod SHIFT, Return, exec, [float] ${lib.getExe pkgs.kitty}"
+          "$mainMod, B, exec, [workspace 1] ${lib.getExe pkgs.microsoft-edge}"
           "$mainMod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
           "$mainMod, N, exec, nm-connection-editor"
           "$mainMod, U, exec, blueman-manager"
@@ -290,6 +292,7 @@
 
           # Scripts
           "$mainMod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
+          # "$mainMod, R, exec, ${lib.getExe inputs.anyrun.packages.${pkgs.system}.anyrun-with-all-plugins}"
           "$mainMod, V, exec, ${lib.getExe pkgs.cliphist_wrapper} list"
 
           "$mainMod, W, exec, ${lib.getExe pkgs.wallpaper}"

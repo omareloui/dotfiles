@@ -85,5 +85,9 @@
       "kitty_mod+right" = "no_op";
       "kitty_mod+left" = "no_op";
     };
+
+    # extraConfig = ''
+    #   include ${config.home.homeDirecotry}/.cache/wal/colors-kitty.conf
+    # '';
   };
 }

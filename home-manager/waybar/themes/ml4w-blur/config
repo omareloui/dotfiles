@@ -1,13 +1,4 @@
-// __        __          _                 
-// \ \      / /_ _ _   _| |__   __ _ _ __  
-//  \ \ /\ / / _` | | | | '_ \ / _` | '__| 
-//   \ V  V / (_| | |_| | |_) | (_| | |    
-//    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    
-//                 |___/                   
-//  
-// by Stephan Raabe (2023) 
-// ----------------------------------------------------- 
-//
+// vi: ft=jsonc
 {
     // General Settings
     "layer": "top",
@@ -40,13 +31,15 @@
     "modules-right": [
         "pulseaudio",
         "bluetooth",
-        "battery", 
         "network",
+        "battery", 
         "group/hardware",
         "custom/cliphist",
+        "custom/shade",
         "idle_inhibitor",
         "tray",
         "custom/exit",
         "clock",
     ]
 }
+

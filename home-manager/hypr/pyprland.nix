@@ -12,9 +12,15 @@
     cmdEmulator = "${lib.getExe pkgs.kitty} --class \\\"${class}\\\"";
     xsize = 80;
     ysize = 85;
+    smxsize = 60;
+    smysize = 70;
+
     pos = p: (100 - p) / 2;
     xpos = pos xsize;
     ypos = pos ysize;
+
+    smxpos = pos smxsize;
+    smypos = pos smysize;
   in
     /*
     toml
@@ -42,8 +48,8 @@
       command = "${cmdEmulator} ${lib.getExe pkgs.bottom}"
       class = "${class}"
       unfocus = "hide"
-      position = "${builtins.toString xpos}% ${builtins.toString ypos}%"
-      size = "${builtins.toString xsize}% ${builtins.toString ysize}%"
+      position = "${builtins.toString smxpos}% ${builtins.toString smypos}%"
+      size = "${builtins.toString smxsize}% ${builtins.toString smysize}%"
       animation = "fromTop"
     '';
 }

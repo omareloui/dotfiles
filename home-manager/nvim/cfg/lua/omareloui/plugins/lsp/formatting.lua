@@ -34,6 +34,14 @@ return {
             nvim_config .. "/lua/omareloui/plugins/lsp/.sql_formatter.json",
           },
         },
+
+        prettier = {
+          options = {
+            ft_parsers = {
+              svg = "html",
+            },
+          },
+        },
       },
 
       format_on_save = format_opts,
@@ -55,6 +63,7 @@ return {
         sh = { "shfmt" },
         sql = { "sql_formatter" },
         svelte = { "prettierd" },
+        svg = { "prettier" },
         toml = { "prettierd" },
         typescript = { "prettierd" },
         typescriptreact = { "prettierd" },

@@ -31,9 +31,6 @@
     nodePackages.sql-formatter
     nodePackages.typescript-language-server
     nodePackages.volar
-    nodePackages.vscode-css-languageserver-bin
-    nodePackages.vscode-html-languageserver-bin
-    nodePackages.vscode-json-languageserver-bin
     prettierd
     shellcheck
     shfmt
@@ -41,6 +38,7 @@
     statix
     stylua
     tailwindcss-language-server
+    vscode-langservers-extracted
     yaml-language-server
     yamlfmt
     yamllint

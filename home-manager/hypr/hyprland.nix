@@ -158,17 +158,17 @@
       ];
 
       windowrulev2 = let
-        shouldFloat = "tribler|org.gnome.Loupe|pavucontrol|.blueman-manager-wrapped|scratchpad|nm-connection-editor";
+        shouldFloatClasses = "tribler|org.gnome.Loupe|pavucontrol|.blueman-manager-wrapped|scratchpad|nm-connection-editor";
         scratpad = "class:^scratchpad$";
         pipRe = "Picture[\- ]in[\- ][Pp]icture";
       in [
-        "float, class:^(${shouldFloat})$"
-        "center 1, class:^(${shouldFloat})$"
         "workspace special silent, ${scratpad}"
         "stayfocused, ${scratpad}"
 
+        "float, class:^(${shouldFloatClasses})$"
+        "center 1, class:^(${shouldFloatClasses})$"
+
         "float, class:^thunar$,title:^(File Operation Progress)$"
-        "float, class:^org.kde.kdeconnect.*$"
         "float, class:^org.inkscape.Inkscape$,title:^(Measure Path|PDF Import Settings)$"
 
         # "fullscreen, class:^(vlc)$"
@@ -179,14 +179,10 @@
 
         "bordercolor rgb(${p.base00}) rgb(${p.base01}), floating:1"
 
-        # Picture-in-a-Picture (PIP) rules: Oddly, some need re-duplication. This is because the window for
-        # PIP changes after on first launch, and will not inherant the rules...
         "opacity 0.95 0.75, title:^(${pipRe})$"
-        # Interestingly, the opacity rule above doesn't need the reduplication?
         "pin, title:^(${pipRe})$"
         "float, title:^(${pipRe})$"
         "size 25% 25%, title:^(${pipRe})$"
-
         "move 74% 73%, title:^(${pipRe})$"
       ];
 
@@ -265,7 +261,7 @@
           ",XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
           ",XF86AudioRaiseVolume, exec, volumectl -u up"
           ",XF86AudioLowerVolume, exec, volumectl -u down"
-          ",XF86AudioMute, exec, volumectl -m toggle-mute"
+          ",XF86AudioMute, exec, volumectl toggle-mute"
           ",XF86Calculator, exec, ${lib.getExe pkgs.qalculate-gtk}"
 
           "$mainMod, A, exec, hyprctl switchxkblayout"

@@ -14,7 +14,7 @@ writeShellApplication {
     ''
       ${import ../utils/ansi.nix}
 
-      version=3.0.0
+      version=3.0.1
 
       LONGOPTS=help,no-copy,sleep:,e,quite,preview
       OPTIONS=h,C,s:,edit,q,p
@@ -211,6 +211,7 @@ writeShellApplication {
             fi
             sleep 1
           done
+          sleep 0.2
         fi
       }
 

@@ -19,7 +19,7 @@
       extended = true;
       ignoreDups = true;
       ignoreSpace = true;
-      ignorePatterns = [".private"];
+      ignorePatterns = ["*.private*"];
       path = "${config.xdg.cacheHome}/zsh/zsh_history";
       save = 1000000000;
       size = 1000000000;
@@ -73,6 +73,9 @@
           fi
           rm -f -- "$tmp"
         }
+
+        hash -d h="$HOME/myhome"
+        hash -d d="$HOME/.dotfiles"
       '';
 
     prezto = {

@@ -12,7 +12,7 @@
 
       manager = {
         ratio = [1 4 4];
-        linemode = "size";
+        linemode = "mylinemode";
         sort_by = "natural";
         sort_dir_first = true;
         sort_reverse = false;
@@ -206,6 +206,13 @@
             run = "help";
             desc = "Show the help menu";
           }
+          {
+            on = ["y"];
+            run = [
+              "yank"
+              ''shell --confirm 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' ''
+            ];
+          }
         ];
       };
 
@@ -245,6 +252,74 @@
       };
     };
   };
+
+  home.file.".config/yazi/init.lua".text =
+    /*
+    lua
+    */
+    ''
+      local old_linemode = Folder.linemode
+      function Folder:linemode(area, _files)
+        if cx.active.conf.linemode ~= "mylinemode" then
+          return old_linemode(self, area)
+        end
+
+        local lines = {}
+
+        local year = os.date("%Y")
+
+        for _, f in ipairs(self:by_kind(self.CURRENT).window) do
+          -- Modified time
+          local time = f.cha.modified // 1
+          if time and os.date("%Y", time) ~= year then
+            time = os.date("%d/%m/%Y", time)
+          else
+            time = time and os.date("%d %b. %H:%M", time) or ""
+          end
+
+          -- Size
+          local size = f:size()
+          size = size and ya.readable_size(size):gsub(" ", "") or "-"
+
+          lines[#lines + 1] = ui.Line({
+            ui.Span(" "),
+            ui.Span(size),
+            ui.Span("   "),
+            ui.Span(time),
+            ui.Span(" "),
+          })
+        end
+
+        return ui.Paragraph(area, lines):align(ui.Paragraph.RIGHT)
+      end
+
+      function Status:owner()
+        local h = cx.active.current.hovered
+        if h == nil or ya.target_family() ~= "unix" then
+          return ui.Line({})
+        end
+
+        return ui.Line({
+          ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
+          ui.Span(":"),
+          ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("magenta"),
+          ui.Span(" "),
+        })
+      end
+
+      function Status:render(area)
+        self.area = area
+
+        local left = ui.Line({ self:mode(), self:size(), self:name() })
+        local right = ui.Line({ self:owner(), self:permissions(), self:percentage(), self:position() })
+
+        return {
+          ui.Paragraph(area, { left }),
+          ui.Paragraph(area, { right }):align(ui.Paragraph.RIGHT),
+          table.unpack(Progress:render(area, right:width())),
+        }
+      end
+    '';
 
   home.file.".config/yazi/plugins/smart-enter.yazi/init.lua".text =
     /*

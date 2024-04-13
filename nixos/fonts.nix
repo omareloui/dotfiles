@@ -14,24 +14,26 @@
       proggyfonts
       (nerdfonts.override {
         fonts = [
-          "FiraCode"
+          "DejaVuSansMono"
           "DroidSansMono"
+          "FiraCode"
           "Inconsolata"
+          "Iosevka"
           "JetBrainsMono"
+          "NerdFontsSymbolsOnly"
         ];
       })
       (google-fonts.override {
         fonts = [
-          "Fira Sans"
-          "Zeyada"
-          "Great Vibes"
-          "WindSong"
-          "Luxurious Script"
           "Cairo"
-          "Poppins"
-          "Cinzel"
           "Cinzel Decorative"
+          "Cinzel"
+          "Great Vibes"
+          "Luxurious Script"
+          "Poppins"
           "Rubik"
+          "WindSong"
+          "Zeyada"
         ];
       })
     ];
@@ -42,7 +44,7 @@
     in {
       serif = icons ++ ["Ubuntu" arabic];
       sansSerif = icons ++ ["Ubuntu" arabic];
-      monospace = icons ++ ["FiraCode" arabic];
+      monospace = icons ++ ["NerdFontsSymbolsOnly" "Iosevka" arabic];
     };
   };
 }

@@ -4,7 +4,6 @@
     "layer": "top",
     "margin-top": 0,
     "margin-bottom": 0,
-    "layer": "top",
     "margin-left": 0,
     "margin-right": 0,    
     "spacing": 0,
@@ -29,6 +28,7 @@
 
     // Modules Right    
     "modules-right": [
+        "custom/empty",
         "pulseaudio",
         "bluetooth",
         "network",
@@ -39,7 +39,7 @@
         "idle_inhibitor",
         "tray",
         "custom/exit",
-        "clock",
+        "clock"
     ]
 }
 

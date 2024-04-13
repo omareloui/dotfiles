@@ -7,7 +7,6 @@
   programs.waybar = {
     enable = true;
   };
-
   home.file.".config/waybar/modules.json".text = builtins.toJSON {
     # Workspaces
     "hyprland/workspaces" = {
@@ -28,7 +27,7 @@
     # Taskbar
     "wlr/taskbar" = {
       format = "{icon}";
-      icon-size = 18;
+      icon-size = 14;
       tooltip-format = "{title}";
       on-click = "activate";
       on-click-middle = "close";
@@ -127,7 +126,7 @@
 
     # System tray
     tray = {
-      icon-size = 21;
+      icon-size = 18;
       spacing = 10;
     };
 
@@ -203,7 +202,7 @@
       format-ethernet = "  {ifname}";
       format-disconnected = "Disconnected";
       tooltip-format = " {ifname} via {gwaddri}";
-      tooltip-format-wifi = "  {ifname} @ {essid}\nIP = {ipaddr}\nStrength = {signalStrength}%\nFreq = {frequency}MHz\nUp = {bandwidthUpBits} Down = {bandwidthDownBits}";
+      tooltip-format-wifi = "   {ifname} @ {essid}\nIP = {ipaddr}\nStrength = {signalStrength}%\nFreq = {frequency}MHz\nUp = {bandwidthUpBits} Down = {bandwidthDownBits}";
       tooltip-format-ethernet = " {ifname}\nIP = {ipaddr}\n up = {bandwidthUpBits} down = {bandwidthDownBits}";
       tooltip-format-disconnected = "Disconnected";
       max-length = 50;

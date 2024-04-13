@@ -2,11 +2,12 @@
   writeShellApplication,
   swww,
   ffmpeg,
+  file,
   pywal,
 }:
 writeShellApplication {
   name = "wallpaper";
-  runtimeInputs = [swww ffmpeg pywal];
+  runtimeInputs = [swww ffmpeg pywal file];
   text =
     /*
     bash
@@ -82,16 +83,16 @@ writeShellApplication {
       wall_cache_dir="$HOME/.cache/wallpapers"
 
       basename=$(basename -- "$wp")
-      ext="''${basename##*.}"
       filename="''${basename%.*}"
+      mime="$(file -b --mime-type "$wp" | cut -d '/' -f2)"
 
       png_cache_file="$wall_cache_dir/$filename.png"
 
       [[ ! -d $wall_cache_dir ]] && mkdir "$wall_cache_dir"
 
-      if [[ $ext != "png" && ! -f $png_cache_file ]]; then
+      if [[ $mime != "png" && ! -f $png_cache_file ]]; then
         ffmpeg -i "$wp" "$png_cache_file"
-      else
+      elif [[ ! -f $png_cache_file  ]]; then
         png_cache_file="$wp"
       fi
       cp -f "$png_cache_file" "$wall_cache_dir/current.png"

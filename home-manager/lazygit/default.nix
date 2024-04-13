@@ -3,7 +3,10 @@
     lazygit = {
     enable = true;
     settings = {
-      gui.showIcons = true;
+      gui = {
+        showIcons = true;
+        nerdFontsVersion = "3";
+      };
       git = {
         paging = {
           colorArgs = "always";

@@ -136,6 +136,8 @@
       hs = "nh home switch";
 
       distro = "cat /etc/*-release | awk -F'=' '/DISTRIB_ID/ {print $2}'";
+
+      pnpx = "pnpm dlx";
     };
 
     pointerCursor = {
@@ -155,6 +157,7 @@
       "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
       "application/x-tar" = ["org.kde.ark.desktop"];
       "video/mp4" = ["vlc.desktop"];
+      "x-scheme-handler/magnet" = ["userapp-transmission-gtk-9UFXL2.desktop"];
     };
   in {
     enable = true;

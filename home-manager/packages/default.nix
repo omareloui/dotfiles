@@ -1,23 +1,6 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
-    calibre
     # mongodb
-    mongodb-compass
-
-    # calibre-web
-    # scribus
-    # torrentstream
-    # thunderbird
-    # variety
-    # checkout this package to handle and use gtk themes
-    # NOTE: but if you're going to use it you can't leave the
-    # theme configs in home-manager
-    # nwg-look
-    # wrap-terminal
 
     acpi
     air
@@ -34,6 +17,7 @@
     bottom
     brillo
     btrfs-progs
+    calibre
     cliphist
     cliphist_wrapper
     cloud_backup
@@ -47,6 +31,7 @@
     eva
     fd
     ffmpeg
+    file
     flex
     font-awesome
     font-manager
@@ -78,15 +63,19 @@
     luarocks
     makeWrapper
     microsoft-edge
+    mongodb-compass
+    mpg123
     neofetch
     networkmanagerapplet
     nh
     nodejs
+    nwg-look
     patchelf
     pavucontrol
     pkg-config
     playerctl
     polkit_gnome
+    poppler
     protobuf
     protoc-gen-go
     protoc-gen-go-grpc
@@ -107,7 +96,7 @@
     tldr
     trashy
     tree
-    tribler
+    transmission_4-gtk
     unzip
     vlc
     wallpaper

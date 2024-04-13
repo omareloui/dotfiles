@@ -158,12 +158,14 @@
       ];
 
       windowrulev2 = let
-        shouldFloatClasses = "tribler|org.gnome.Loupe|pavucontrol|.blueman-manager-wrapped|scratchpad|nm-connection-editor";
+        shouldFloatClasses = "transmission-gtk|org.gnome.Loupe|pavucontrol|.blueman-manager-wrapped|scratchpad|nm-connection-editor";
         scratpad = "class:^scratchpad$";
         pipRe = "Picture[\- ]in[\- ][Pp]icture";
       in [
         "workspace special silent, ${scratpad}"
         "stayfocused, ${scratpad}"
+
+        "stayfocused, class:^TelegramDesktop$"
 
         "float, class:^(${shouldFloatClasses})$"
         "center 1, class:^(${shouldFloatClasses})$"
@@ -171,7 +173,8 @@
         "float, class:^thunar$,title:^(File Operation Progress)$"
         "float, class:^org.inkscape.Inkscape$,title:^(Measure Path|PDF Import Settings)$"
 
-        # "fullscreen, class:^(vlc)$"
+        "size 960 520, class:^transmission-gtk$,title:^Transmission$"
+        "size 482 567, class:^transmission-gtk$,title:^Torrent Options$"
 
         "opacity 0.95 0.95, class:^(microsoft-edge)$"
         "opacity 0.95 0.8, class:^(kitty)$"

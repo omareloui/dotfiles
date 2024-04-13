@@ -31,6 +31,7 @@
     nodePackages.sql-formatter
     nodePackages.typescript-language-server
     nodePackages.volar
+    nodePackages_latest.eslint
     nodePackages_latest.prettier
     prettierd
     shellcheck

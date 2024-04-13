@@ -56,26 +56,27 @@ return {
       parser = buf_parser,
     }
 
+    local js_linter = "eslint"
     lint.linters_by_ft = {
-      astro = { "eslint_d", "cspell" },
+      astro = { js_linter, "cspell" },
       bzl = { "buildifier", "cspell" },
       dockerfile = { "hadolint", "cspell" },
       gitcommit = { "gitlint", "cspell" },
       go = { "golangcilint", "cspell" },
       html = { "htmlhint", "cspell" },
-      javascript = { "eslint_d", "cspell" },
-      javascriptreact = { "eslint_d", "cspell" },
+      javascript = { js_linter, "cspell" },
+      javascriptreact = { js_linter, "cspell" },
       lua = { "luacheck", "cspell" },
       markdown = { "markdownlint", "cspell" },
       nix = { "statix", "cspell" },
       proto = { "buf", "cspell" },
       sh = { "shellcheck", "cspell" },
       sql = { "sqlfluff", "cspell" },
-      svelte = { "eslint_d", "cspell" },
+      svelte = { js_linter, "cspell" },
       text = { "cspell" },
-      typescript = { "eslint_d", "cspell" },
-      typescriptreact = { "eslint_d", "cspell" },
-      vue = { "eslint_d", "cspell" },
+      typescript = { js_linter, "cspell" },
+      typescriptreact = { js_linter, "cspell" },
+      vue = { js_linter, "cspell" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

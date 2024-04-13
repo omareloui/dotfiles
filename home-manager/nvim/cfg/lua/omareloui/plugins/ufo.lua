@@ -49,7 +49,7 @@ return {
       end,
       open_fold_hl_timeout = 60,
       close_fold_kinds_for_ft = {
-        default = { "imports", "comment" },
+        -- default = { "imports", "comment" },
         json = { "array" },
       },
       fold_virt_text_handler = virtual_text_handler,

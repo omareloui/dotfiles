@@ -72,28 +72,29 @@
 
         * {
           font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-        	background-image: none;
-        	transition: 20ms;
-        	box-shadow: none;
+          background-image: none;
+          transition: 20ms;
+          box-shadow: none;
         }
 
         window {
-        	background: url("${config.home.homeDirectory}/.cache/wallpapers/current_blurred.png");
-        	background-size: cover;
+          background: url("${config.home.homeDirectory}/.cache/wallpapers/current_blurred.png");
+          background-size: cover;
+          background-position: center;
         }
 
         button {
-        	color: #FFFFFF;
+          color: #FFFFFF;
           font-size:20px;
 
           background-repeat: no-repeat;
-        	background-position: center;
-        	background-size: 25%;
+          background-position: center;
+          background-size: 25%;
 
-        	border-style: solid;
-        	background-color: rgba(12, 12, 12, 0.3);
-        	/* border: 3px solid #FFFFFF; */
-        	border: 0px solid #FFFFFF;
+          border-style: solid;
+          background-color: rgba(12, 12, 12, 0.3);
+          /* border: 3px solid #FFFFFF; */
+          border: 0px solid #FFFFFF;
 
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
@@ -102,8 +103,8 @@
         button:active,
         button:hover {
           color: @color13;
-        	background-color: rgba(12, 12, 12, 0.5);
-        	border: 0px solid @color13;
+          background-color: rgba(12, 12, 12, 0.5);
+          border: 0px solid @color13;
           outline: none;
         }
 
@@ -114,39 +115,39 @@
         */
 
         #lock {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url("icons/lock.png"));
+          margin: 10px;
+          border-radius: 20px;
+          background-image: image(url("icons/lock.png"));
         }
 
         #logout {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url("icons/logout.png"));
+          margin: 10px;
+          border-radius: 20px;
+          background-image: image(url("icons/logout.png"));
         }
 
         #suspend {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url("icons/suspend.png"));
+          margin: 10px;
+          border-radius: 20px;
+          background-image: image(url("icons/suspend.png"));
         }
 
         #hibernate {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url("icons/hibernate.png"));
+          margin: 10px;
+          border-radius: 20px;
+          background-image: image(url("icons/hibernate.png"));
         }
 
         #shutdown {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url("icons/shutdown.png"));
+          margin: 10px;
+          border-radius: 20px;
+          background-image: image(url("icons/shutdown.png"));
         }
 
         #reboot {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url("icons/reboot.png"));
+          margin: 10px;
+          border-radius: 20px;
+          background-image: image(url("icons/reboot.png"));
         }
       '';
   };

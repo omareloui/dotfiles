@@ -17,8 +17,8 @@
 
           path = $HOME/.cache/wallpapers/current.png
 
+          blur_size = 6
           blur_passes = 2
-          blur_size = 8
           noise = 0.0117
           contrast = 0.8916
           brightness = 0.8172
@@ -76,7 +76,7 @@
           color = rgba(200, 200, 200, 1.0)
           font_size = 20
           font_family = Fira Semibold
-          position = -100, 160
+          position = -100, 120
           halign = right
           valign = bottom
           shadow_passes = 5

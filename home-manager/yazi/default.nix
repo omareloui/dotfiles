@@ -149,13 +149,14 @@
           }
           {
             on = ["A"];
-            run = ''
-              shell --block --confirm '
-                read -p "Write directory name: " dir
-                mkdir -p $dir
-                mv $@ $dir
-              '
-            '';
+            run = "plugin fold";
+            # run = ''
+            #   shell --block --confirm '
+            #     read -p "Write directory name: " dir
+            #     mkdir -p $dir
+            #     mv $@ $dir
+            #   '
+            # '';
             desc = "Add selected to a new directory";
           }
           {

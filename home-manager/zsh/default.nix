@@ -35,6 +35,11 @@
         bindkey '^ ' autosuggest-accept
         extract() {
           case $1 in
+            *.tar.xz.gpg|*.txz.gpg)
+              foldername="$(basename "''${1%%.*}")"
+              [[ ! -d foldername ]] && mkdir $foldername
+              gpg -d "$file" | tar xJvC "$foldername"
+            ;;
             *.tar.bz | *.tar.bz2 | *.tar.tbz | *.tar.tbz2)
               foldername="$(basename "''${1%%.*}")"
               [[ ! -d $foldername ]] && mkdir $foldername

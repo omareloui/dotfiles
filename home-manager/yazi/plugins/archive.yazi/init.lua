@@ -68,7 +68,8 @@ end
 ---@param files string[]
 ---@return string|nil error_message
 local function srm(files)
-	local child, err = Command("srm"):args({ "-rf" }):args(files):spawn()
+	local child, err =
+		Command("srm"):stdout(Command.INHERIT):stderr(Command.INHERIT):args({ "-rfvv" }):args(files):spawn()
 	if err then
 		return "error while creating the srm child: " .. err
 	end
@@ -82,7 +83,11 @@ end
 ---@param file string
 ---@return string|nil error_message
 local function gpg(file)
-	local child, err = Command("gpg"):args({ "-r", "contact@omareloui.com", "-e", file }):spawn()
+	local child, err = Command("gpg")
+		:stdout(Command.INHERIT)
+		:stderr(Command.INHERIT)
+		:args({ "-r", "contact@omareloui.com", "-e", file })
+		:spawn()
 	if err then
 		return "error while creating the gpg child: " .. err
 	end
@@ -99,7 +104,12 @@ end
 ---@param files string[]
 ---@return string|nil error_message
 local function tarxz(archive_name, files)
-	local child, err = Command("tar"):args({ "-Jcvf", archive_name }):args(files):spawn()
+	local child, err = Command("tar")
+		:stdout(Command.INHERIT)
+		:stderr(Command.INHERIT)
+		:args({ "-Jcvf", archive_name })
+		:args(files)
+		:spawn()
 	if err then
 		return "error while creating the tar child: " .. err
 	end
@@ -124,7 +134,8 @@ local function zip(name, files, is_protected)
 	-- stylua: ignore
 	if err then return err end
 
-	local child, err = Command("zip"):args({ args, name, name }):args(files):spawn()
+	local child, err =
+		Command("zip"):stdout(Command.INHERIT):stderr(Command.INHERIT):args({ args, name, name }):args(files):spawn()
 	if err then
 		return "error while creating the tar child: " .. err
 	end

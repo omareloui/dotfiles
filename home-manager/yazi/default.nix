@@ -220,7 +220,7 @@
             desc = "securely remove the selected file(s)";
             on = [leader "D"];
             orphan = true;
-            run = "shell --confirm 'srm -rf $@'";
+            run = "shell --confirm 'srm -rfvv $@'";
           }
           {
             on = [leader "s" "s"];

@@ -44,6 +44,7 @@
     gnome.nautilus
     gnumake
     go
+    group_likes
     grpcui
     grpcurl
     hyprpicker

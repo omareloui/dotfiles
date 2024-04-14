@@ -121,7 +121,7 @@ local function zip(name, files, is_protected)
 	end
 
 	local err = cp_to_dir(name, files)
-  -- stylua: ignore
+	-- stylua: ignore
 	if err then return err end
 
 	local child, err = Command("zip"):args({ args, name, name }):args(files):spawn()
@@ -183,37 +183,37 @@ return {
 		end
 
 		local sel, err = get_selected()
-    -- stylua: ignore
-    if err then return ya.err(tostring(err)) end
+		-- stylua: ignore
+		if err then return ya.err(tostring(err)) end
 
 		local cwd = get_cwd()
 		local rel_sel, err = get_rel_paths(cwd, sel)
-    -- stylua: ignore
-    if err or not rel_sel then return ya.err(tostring(err)) end
+		-- stylua: ignore
+		if err or not rel_sel then return ya.err(tostring(err)) end
 
 		if func == "xz" then
 			archive_name = archive_name .. ".tar.xz"
 			local err = tarxz(archive_name, rel_sel)
-      -- stylua: ignore
-      if err then return ya.err(tostring(err)) end
+			-- stylua: ignore
+			if err then return ya.err(tostring(err)) end
 		elseif func == "xz.gpg" then
 			archive_name = archive_name .. ".tar.xz"
 
 			local err = tarxz(archive_name, rel_sel)
-      -- stylua: ignore
-      if err then return ya.err(tostring(err)) end
+			-- stylua: ignore
+			if err then return ya.err(tostring(err)) end
 
 			local err = gpg(archive_name)
-      -- stylua: ignore
-      if err then return ya.err(tostring(err)) end
+			-- stylua: ignore
+			if err then return ya.err(tostring(err)) end
 		elseif func == "zip" then
 			local err = zip(archive_name, rel_sel, false)
-      -- stylua: ignore
-      if err then return ya.err(tostring(err)) end
+			-- stylua: ignore
+			if err then return ya.err(tostring(err)) end
 		elseif func == "pzip" then
 			local err = zip(archive_name, rel_sel, true)
-      -- stylua: ignore
-      if err then return ya.err(tostring(err)) end
+			-- stylua: ignore
+			if err then return ya.err(tostring(err)) end
 		end
 	end,
 }

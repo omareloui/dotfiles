@@ -12,7 +12,7 @@ function Folder:linemode(area, _files)
 		-- Modified time
 		local time = math.floor(f.cha.modified)
 		if time and os.date("%Y", time) ~= year then
-			time = os.date("%d/%m/%Y", time)
+			time = os.date("%d %b. %Y", time)
 		else
 			time = time and os.date("%d %b. %H:%M", time) or ""
 		end

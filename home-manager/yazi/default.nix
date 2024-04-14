@@ -22,21 +22,21 @@
         default = [
           {
             run = ''xdg-open "$@"'';
-            desc = "Open with default system application";
+            desc = "open with default system application";
           }
         ];
 
         pdf = [
           {
             run = ''zathura $@'';
-            desc = "Open pdf files";
+            desc = "open pdf files";
           }
         ];
 
         image = [
           {
             run = ''loupe $@'';
-            desc = "Open images";
+            desc = "open images";
           }
         ];
 
@@ -44,14 +44,14 @@
           {
             run = ''vlc "$@"'';
             orphan = true;
-            desc = "Open videos";
+            desc = "open videos";
           }
         ];
 
         text = [
           {
             run = ''nvim "$@"'';
-            desc = "Open with the text editor";
+            desc = "open with the text editor";
             block = true;
           }
         ];
@@ -59,7 +59,7 @@
         archive = [
           {
             run = ''ark "$0"'';
-            desc = "Open a gui to view/extract the archive";
+            desc = "open a gui to view/extract the archive";
             block = true;
           }
         ];
@@ -130,34 +130,32 @@
           {
             on = ["<A-j"];
             run = "seek 10";
-            desc = "Seek down half a page";
+            desc = "seek down half a page";
           }
           {
             on = ["<A-k"];
             run = "seek -10";
-            desc = "Seek up half a page";
+            desc = "seek up half a page";
           }
           {
             on = ["l"];
             run = "plugin --sync smart-enter";
-            desc = "Enter the child directory, or open the file";
+            desc = "enter the child directory, or open the file";
           }
           {
             on = ["w"];
             run = ''shell --confirm '${lib.getExe pkgs.wallpaper} "$0"' '';
-            desc = "Set the image as wallpaper";
+            desc = "set the image as wallpaper";
           }
           {
             on = ["A"];
             run = "plugin fold";
-            # run = ''
-            #   shell --block --confirm '
-            #     read -p "Write directory name: " dir
-            #     mkdir -p $dir
-            #     mv $@ $dir
-            #   '
-            # '';
-            desc = "Add selected to a new directory";
+            desc = "add selected to a new directory";
+          }
+          {
+            on = [leader "g"];
+            run = "shell --confirm ${lib.getExe pkgs.group_likes}";
+            desc = "group like-titled files into directories";
           }
           {
             on = [leader "f"];
@@ -171,15 +169,16 @@
                 done
               '
             '';
-            desc = "Flatten the selected directories";
+            desc = "flatten the selected directories";
           }
           {
-            desc = "Extract a compressed file";
+            desc = "extract a compressed file";
             on = [leader "e"];
             run = ''
               shell --confirm --block '
                 for file in $@; do
-                foldername="$(basename "''${file%%.*}")"
+                filename="$(basename "$file")"
+                foldername="$(basename "''${filename%%.*}")"
                 case $file in
                   *.tar.xz.gpg|*.txz.gpg)
                     [[ ! -d foldername ]] && mkdir $foldername
@@ -212,34 +211,36 @@
             '';
           }
           {
-            desc = "Archive selected";
+            desc = "archive selected";
             on = [leader "a"];
+            orphan = true;
             run = "plugin archive";
           }
           {
-            desc = "Securely remove the selected file(s)";
+            desc = "securely remove the selected file(s)";
             on = [leader "D"];
+            orphan = true;
             run = "shell --confirm 'srm -rf $@'";
           }
           {
             on = [leader "s" "s"];
             run = "shell --confirm '${lib.getExe pkgs.sortpics}'";
-            desc = "Sort the pictures in CWD to phone directory and desktop directory depending on its dimensions";
+            desc = "sort the pictures in CWD to phone directory and desktop directory depending on its dimensions";
           }
           {
             on = [leader "t"];
             run = "tasks_show";
-            desc = "Show the tasks manager";
+            desc = "show the tasks manager";
           }
           {
             on = [leader "h"];
             run = "help";
-            desc = "Show the help menu";
+            desc = "show the help menu";
           }
           {
             on = [leader "?"];
             run = "help";
-            desc = "Show the help menu";
+            desc = "show the help menu";
           }
           {
             on = ["y"];
@@ -256,32 +257,32 @@
           {
             on = [leader "h"];
             run = "help";
-            desc = "Show the help menu";
+            desc = "show the help menu";
           }
           {
             on = [leader "?"];
             run = "help";
-            desc = "Show the help menu";
+            desc = "show the help menu";
           }
           {
             on = ["q"];
             run = "close";
-            desc = "Hide the task manager";
+            desc = "hide the task manager";
           }
           {
             on = [leader "t"];
             run = "close";
-            desc = "Hide the task manager";
+            desc = "hide the task manager";
           }
           {
             on = ["i"];
             run = "inspect";
-            desc = "Inspect the task";
+            desc = "inspect the task";
           }
           {
             on = [leader "c"];
             run = "cancel";
-            desc = "Cancel the task";
+            desc = "cancel the task";
           }
         ];
       };

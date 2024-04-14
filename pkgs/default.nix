@@ -7,6 +7,7 @@
   cliphist_wrapper = pkgs.callPackage ./cliphist_wrapper {};
   shade = pkgs.callPackage ./shade {};
   sortpics = pkgs.callPackage ./sortpics {};
+  group_likes = pkgs.callPackage ./group_likes {};
 
   init_bar = pkgs.callPackage ./init_bar {};
   bar_themeswitcher = pkgs.callPackage ./bar_themeswitcher {};

@@ -155,9 +155,12 @@
       "image/png" = ["org.gnome.Loupe.desktop"];
       "image/jpeg" = ["org.gnome.Loupe.desktop"];
       "x-scheme-handler/tg" = ["org.telegram.desktop.desktop"];
-      "application/x-tar" = ["org.kde.ark.desktop"];
       "video/mp4" = ["vlc.desktop"];
       "x-scheme-handler/magnet" = ["userapp-transmission-gtk-9UFXL2.desktop"];
+
+      "application/x-tar" = ["org.kde.ark.desktop"];
+      "application/x-rar" = ["org.kde.ark.desktop"];
+      "application/zip" = ["org.kde.ark.desktop"];
     };
   in {
     enable = true;

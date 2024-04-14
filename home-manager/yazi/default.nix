@@ -54,6 +54,14 @@
             block = true;
           }
         ];
+
+        archive = [
+          {
+            run = ''ark "$0"'';
+            desc = "Open a gui to view/extract the archive";
+            block = true;
+          }
+        ];
       };
 
       open = {
@@ -77,6 +85,18 @@
           {
             mime = "application/pdf";
             use = "pdf";
+          }
+          {
+            mime = "application/zip";
+            use = "archive";
+          }
+          {
+            mime = "application/x-rar";
+            use = "archive";
+          }
+          {
+            mime = "application/x-tar";
+            use = "archive";
           }
         ];
       };
@@ -123,7 +143,7 @@
           }
           {
             on = ["w"];
-            run = "shell --confirm '${lib.getExe pkgs.wallpaper} $0'";
+            run = ''shell --confirm '${lib.getExe pkgs.wallpaper} "$0"' '';
             desc = "Set the image as wallpaper";
           }
           {
@@ -155,36 +175,100 @@
             desc = "Extract a compressed file";
             on = [leader "e"];
             run = ''
-              shell --confirm '
+              shell --confirm --block '
                 for file in $@; do
-                  case $file in
-                    *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
-                      foldername="$(basename "''${file%%.*}")"
-                      [[ ! -d foldername ]] && mkdir $foldername
-                      tar xjvf "$file" -C "$foldername"
-                    ;;
-                    *.tar.gz|*.tgz)
-                      foldername="$(basename "''${file%%.*}")"
-                      [[ ! -d foldername ]] && mkdir $foldername
-                      tar xzvf "$file" -C "$foldername"
-                    ;;
-                    *.tar.xz|*.txz)
-                      foldername="$(basename "''${file%%.*}")"
-                      [[ ! -d foldername ]] && mkdir $foldername
-                      tar xJvf "$file" -C "$foldername"
-                    ;;
-                    *.zip)
-                      unzip "$file"
-                    ;;
-                    *.rar)
-                        unrar x "$file"
-                    ;;
-                    *.7z)
-                      7z x "$file"
-                    ;;
-                  esac
-                done'
+                foldername="$(basename "''${file%%.*}")"
+                case $file in
+                  *.tar.xz.gpg|*.txz.gpg)
+                    [[ ! -d foldername ]] && mkdir $foldername
+                    gpg -d "$file" | tar xJvC "$foldername"
+                  ;;
+                  *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
+                    [[ ! -d foldername ]] && mkdir $foldername
+                    tar xjvf "$file" -C "$foldername"
+                  ;;
+                  *.tar.gz|*.tgz)
+                    [[ ! -d foldername ]] && mkdir $foldername
+                    tar xzvf "$file" -C "$foldername"
+                  ;;
+                  *.tar.xz|*.txz)
+                    [[ ! -d foldername ]] && mkdir $foldername
+                    tar xJvf "$file" -C "$foldername"
+                  ;;
+                  *.zip)
+                    unzip "$file"
+                  ;;
+                  *.rar)
+                      unrar x "$file"
+                  ;;
+                  *.7z)
+                    7z x "$file"
+                  ;;
+                esac
+              done
+              '
             '';
+          }
+          # {
+          #   on = [leader "a" "z"];
+          #   run = ''
+          #     shell --confirm --block '
+          #       read -p "Archive name? " archive_name
+          #       mkdir -p "$archive_name"
+          #       cp $@ "$archive_name"
+          #       zip -r "$archive_name" $archive_name
+          #       rm -rf $archive_name
+          #     '
+          #   '';
+          #   desc = "Archive the selected file(s) into a .zip archive";
+          # }
+          # {
+          #   on = [leader "a" "x"];
+          #   run = ''
+          #     shell --confirm --block '
+          #       read -p "Archive name? " archive_name
+          #       relpaths="$(for i in $@; do realpath -s --relative-to="$PWD" "$i"; done)"
+          #       tar -Jcvf "$archive_name.tar.xz" ''${relpaths[@]}
+          #     '
+          #   '';
+          #   desc = "Archive the selected file(s) into a .tar.xz archive";
+          # }
+          # {
+          #   desc = "Archive and protect the selected file(s) into a .zip archive";
+          #   on = [leader "a" "p"];
+          #   run = ''
+          #     shell --confirm --block '
+          #       read -p "Archive name? " archive_name
+          #       mkdir -p "$archive_name"
+          #       cp $@ "$archive_name"
+          #       zip -er "$archive_name" $archive_name
+          #       rm -rf $archive_name
+          #     '
+          #   '';
+          # }
+          # {
+          #   desc = "Archive the selected file(s) into a .tar.xz archive";
+          #   on = [leader "a" "g"];
+          #   run = ''
+          #     shell --confirm '
+          #       # read -p "Archive name? " archive_name
+          #       archive_name="protected_archive"
+          #       relpaths="$(for i in $@; do realpath -s --relative-to="$PWD" "$i"; done)"
+          #       tar -Jcvf "$archive_name.tar.xz" ''${relpaths[@]}
+          #       gpg -r contact@omareloui.com -e "$archive_name.tar.xz"
+          #       srm -f "$archive_name.tar.xz"
+          #     '
+          #   '';
+          # }
+          {
+            desc = "Archive selected";
+            on = [leader "a"];
+            run = "plugin archive";
+          }
+          {
+            desc = "Securely remove the selected file(s)";
+            on = [leader "D"];
+            run = "shell --confirm 'srm -rf $@'";
           }
           {
             on = [leader "s" "s"];
@@ -293,6 +377,24 @@
         return ui.Paragraph(area, lines):align(ui.Paragraph.RIGHT)
       end
 
+      function Status:mime()
+        local h = cx.active.current.hovered
+        if h == nil or ya.target_family() ~= "unix" or h.cha.is_dir then
+          return ui.Line({})
+        end
+
+        local mime = h:mime()
+
+        if not mime then
+          return ui.Line({})
+        end
+
+        return ui.Line({
+          ui.Span(" "),
+          ui.Span(mime):fg("gray"):dim(),
+        })
+      end
+
       function Status:owner()
         local h = cx.active.current.hovered
         if h == nil or ya.target_family() ~= "unix" then
@@ -310,7 +412,7 @@
       function Status:render(area)
         self.area = area
 
-        local left = ui.Line({ self:mode(), self:size(), self:name() })
+        local left = ui.Line({ self:mode(), self:size(), self:name(), self:mime() })
         local right = ui.Line({ self:owner(), self:permissions(), self:percentage(), self:position() })
 
         return {
@@ -368,5 +470,116 @@
       end
 
       return M
+    '';
+
+  home.file.".config/yazi/plugins/archive.yazi/init.lua".text =
+    /*
+    lua
+    */
+    ''
+      ---@param s string
+      ---@return string
+      local function trim(s)
+        return s:match("^%s*(.-)%s*$")
+      end
+
+      local get_selected = ya.sync(function(state)
+        local selected = cx.active.selected
+        state.selected = {}
+        for k, v in pairs(selected) do
+          state.selected[k] = tostring(v)
+        end
+        return state.selected
+      end)
+
+      local get_cwd = ya.sync(function(state)
+        local cwd = cx.active.current.cwd
+        state.cwd = tostring(cwd)
+        return state.cwd
+      end)
+
+      return {
+        entry = function(_self, _args)
+          local cand = ya.which({
+            cands = {
+              { on = "g", desc = "archive into gpg protected .tar.xz.gpg archive file" },
+              { on = "p", desc = "TODO: archive into protected .zip file" },
+            },
+          })
+
+          if not cand then
+            return
+          end
+
+          if cand ~= 1 then
+            return
+          end
+
+          local archive_name, event = ya.input({
+            title = "Archive name:",
+            position = { "top-center", w = 40 },
+            realtime = false,
+          })
+
+          local confirmed = event == 1
+
+          archive_name = trim(archive_name)
+
+          if not confirmed or archive_name == "" then
+            return
+          end
+          archive_name = archive_name .. ".tar.xz"
+
+          local sel = get_selected()
+          local cwd = get_cwd()
+          local files = {}
+          for _, file in ipairs(sel) do
+            local out, err = Command("realpath"):args({ "-s", "--relative-to", cwd, file }):output()
+            local f = out.stdout
+            f = trim(f)
+            if err then
+              ya.err("error while getting the relative path: " .. err)
+              return
+            end
+            table.insert(files, f)
+          end
+
+          local child, err = Command("tar"):args({ "-Jcvf", archive_name }):args(files):spawn()
+          if err then
+            ya.err("error while creating the tar child: ", err)
+            return
+          end
+
+          local _, err = child:wait()
+          if err then
+            ya.err("error on running the tar child: ", err)
+            return
+          end
+
+          local child, err = Command("gpg"):args({ "-r", "contact@omareloui.com", "-e", archive_name }):spawn()
+          if err then
+            ya.err("error while creating the gpg child: ", err)
+            return
+          end
+
+          local _, err = child:wait()
+          if err then
+            ya.err("error on running the gpg child: ", err)
+            return
+          end
+
+          local child, err = Command("srm"):args({ "-f", archive_name }):spawn()
+          if err then
+            ya.err("error while creating the srm child: ", err)
+            return
+          end
+
+          local _, err = child:wait()
+          if err then
+            ya.err("error on running the srm child: ", err)
+            return
+          end
+        end,
+      }
     '';
 }

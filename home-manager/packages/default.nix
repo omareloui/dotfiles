@@ -88,15 +88,16 @@
     slock
     socat
     sortpics
+    srm
     swaylock-effects
     swww
     syncthing
     telegram-desktop
     templ
     tldr
+    transmission_4-gtk
     trashy
     tree
-    transmission_4-gtk
     unzip
     vlc
     wallpaper
@@ -106,6 +107,7 @@
     wl-clipboard
     xorg.xhost
     zathura
+    zip
 
     (pkgs.python311.withPackages (ppkgs: [
       ppkgs.pip

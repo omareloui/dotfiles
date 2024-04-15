@@ -28,6 +28,7 @@
           "Cairo"
           "Cinzel Decorative"
           "Cinzel"
+          "Fira Sans"
           "Great Vibes"
           "Luxurious Script"
           "Poppins"

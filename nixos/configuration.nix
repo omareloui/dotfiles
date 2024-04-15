@@ -245,6 +245,12 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+    settings = let
+      day = 86400;
+    in {
+      default-cache-ttl = day;
+      max-cache-ttl = day;
+    };
   };
   programs.hyprland = {
     enable = true;

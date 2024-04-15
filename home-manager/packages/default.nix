@@ -99,6 +99,7 @@
     transmission_4-gtk
     trashy
     tree
+    unrar
     unzip
     vlc
     wallpaper

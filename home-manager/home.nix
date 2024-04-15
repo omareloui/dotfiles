@@ -69,7 +69,6 @@
   inherit (systemConfig) colorScheme;
   systemd.user.startServices = "sd-switch";
 
-  programs.home-manager.enable = true;
   home = {
     stateVersion = "23.11";
 
@@ -198,6 +197,21 @@
     };
   };
 
+  programs.home-manager.enable = true;
+  programs.gpg.enable = true;
+
   services.syncthing.enable = true;
   services.udiskie.enable = true;
+
+  services.gpg-agent = let
+    day = 86400;
+  in {
+    enable = true;
+    enableSshSupport = true;
+    enableZshIntegration = true;
+
+    defaultCacheTtl = day;
+
+    maxCacheTtl = day;
+  };
 }

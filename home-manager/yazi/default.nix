@@ -211,7 +211,33 @@
             '';
           }
           {
-            desc = "archive selected";
+            desc = "protect with gpg";
+            on = [leader "p" "e"];
+            orphan = true;
+            # TODO: make sure the selected are files not folders (or archive if it contains folders)
+            run = ''
+              shell --confirm '
+                for file in $@; do
+                  gpg -r contact@omareloui.com -e "$file"
+                done
+              '
+            '';
+          }
+          {
+            desc = "decrepit gpg files";
+            on = [leader "p" "d"];
+            orphan = true;
+            run = ''
+              shell --confirm --block '
+                for file in $@; do
+                  name="$(basename "$file")"
+                  gpg -d "$file" 1>''${name%.*} 2>/dev/null
+                done
+              '
+            '';
+          }
+          {
+            desc = "archive";
             on = [leader "a"];
             orphan = true;
             run = "plugin archive";

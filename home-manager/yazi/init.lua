@@ -1,3 +1,16 @@
+---@param s string
+---@return string
+local function trim(s)
+	return s:match("^%s*(.-)%s*$")
+end
+
+---@param str string
+---@param start string
+---@return boolean
+local function starts_with(str, start)
+	return str:sub(1, #start) == start
+end
+
 local old_linemode = Folder.linemode
 function Folder:linemode(area, _files)
 	if cx.active.conf.linemode ~= "mylinemode" then

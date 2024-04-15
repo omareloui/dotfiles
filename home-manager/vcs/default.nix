@@ -19,14 +19,19 @@ in {
     enable = true;
     userName = user.name;
     userEmail = user.email;
+
     extraConfig = {
-      init = {defaultBranch = "main";};
+      user.signingKey = "contact@omareloui.com";
+      init.defaultBranch = "main";
+      push.autoSetupRemote = true;
+      commit.gpgSign = true;
+      tag.gpgSign = true;
       core = {
         editor = "nvim";
         sshCommand = "ssh -i ~/.ssh/id_rsa_github";
       };
-      push = {autoSetupRemote = true;};
     };
+
     delta = {
       enable = true;
       options = {

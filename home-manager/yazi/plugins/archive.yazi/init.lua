@@ -69,7 +69,7 @@ end
 ---@return string|nil error_message
 local function srm(files)
 	local child, err =
-		Command("srm"):stdout(Command.INHERIT):stderr(Command.INHERIT):args({ "-rfvv" }):args(files):spawn()
+		Command("srm"):stdout(Command.INHERIT):stderr(Command.INHERIT):args({ "-rfvvv" }):args(files):spawn()
 	if err then
 		return "error while creating the srm child: " .. err
 	end

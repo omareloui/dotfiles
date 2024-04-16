@@ -240,7 +240,7 @@
             desc = "archive";
             on = [leader "a"];
             orphan = true;
-            run = "plugin archive";
+            run = "plugin archive-and-protect";
           }
           {
             desc = "securely remove the selected file(s)";

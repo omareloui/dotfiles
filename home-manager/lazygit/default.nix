@@ -5,6 +5,7 @@
     settings = {
       gui = {
         showIcons = true;
+        showFileTree = false;
         nerdFontsVersion = "3";
       };
       git = {

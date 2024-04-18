@@ -164,7 +164,7 @@
     };
 
     "hyprland/language" = {
-      format = "/ K {short}";
+      format = "{short}";
     };
 
     # Group Hardware
@@ -175,7 +175,7 @@
         children-class = "not-memory";
         transition-left-to-right = false;
       };
-      modules = ["custom/system" "disk" "cpu" "memory" "hyprland/language"];
+      modules = ["custom/system" "disk" "cpu" "memory"];
     };
 
     # Group Settings

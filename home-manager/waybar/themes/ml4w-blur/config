@@ -38,8 +38,8 @@
         "custom/shade",
         "idle_inhibitor",
         "tray",
-        "custom/exit",
-        "clock"
+        "hyprland/language",
+        "clock",
+        "custom/exit"
     ]
 }
-

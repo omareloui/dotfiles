@@ -153,6 +153,11 @@
             desc = "add selected to a new directory";
           }
           {
+            on = ["-"];
+            run = "shell --confirm --block 'nvim -c \"norm -\" ..'";
+            desc = "open oil file explorer";
+          }
+          {
             on = [leader "g"];
             run = "shell --confirm ${lib.getExe pkgs.group_likes}";
             desc = "group like-titled files into directories";
@@ -181,23 +186,24 @@
                 foldername="$(basename "''${filename%%.*}")"
                 case $file in
                   *.tar.xz.gpg|*.txz.gpg)
-                    [[ ! -d foldername ]] && mkdir $foldername
+                    [[ ! -d foldername ]] && mkdir "$foldername"
                     gpg -d "$file" | tar xJvC "$foldername"
                   ;;
                   *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
-                    [[ ! -d foldername ]] && mkdir $foldername
+                    [[ ! -d foldername ]] && mkdir "$foldername"
                     tar xjvf "$file" -C "$foldername"
                   ;;
                   *.tar.gz|*.tgz)
-                    [[ ! -d foldername ]] && mkdir $foldername
+                    [[ ! -d foldername ]] && mkdir "$foldername"
                     tar xzvf "$file" -C "$foldername"
                   ;;
                   *.tar.xz|*.txz)
-                    [[ ! -d foldername ]] && mkdir $foldername
+                    [[ ! -d foldername ]] && mkdir "$foldername"
                     tar xJvf "$file" -C "$foldername"
                   ;;
                   *.zip)
-                    unzip "$file"
+                    [[ ! -d foldername ]] && mkdir "$foldername"
+                    unzip -qqqd "$foldername" "$file"
                   ;;
                   *.rar)
                       unrar x "$file"
@@ -237,16 +243,16 @@
             '';
           }
           {
-            desc = "archive";
             on = [leader "a"];
             orphan = true;
             run = "plugin archive-and-protect";
+            desc = "archive";
           }
           {
-            desc = "securely remove the selected file(s)";
             on = [leader "D"];
             orphan = true;
-            run = "shell --confirm 'srm -rfvvv $@'";
+            run = "shell --confirm 'for f in $@; do srm -rfvvv $f; done'";
+            desc = "securely remove the selected file(s)";
           }
           {
             on = [leader "s" "s"];

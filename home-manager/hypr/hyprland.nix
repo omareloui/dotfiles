@@ -27,9 +27,8 @@
       };
 
       input = {
-        # kb_layout = "us,es,ar";
-        # kb_variant = "qwerty,,";
-        # kb_options = "grp:alt_shift_toggle";
+        kb_layout = "us,eg";
+        kb_options = "grp:alt_shift_toggle";
         repeat_rate = 30;
         repeat_delay = 300;
         numlock_by_default = 1;

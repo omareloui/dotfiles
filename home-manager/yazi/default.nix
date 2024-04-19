@@ -164,16 +164,7 @@
           }
           {
             on = [leader "f"];
-            run = ''
-              shell --confirm '
-                for folder in $@; do
-                  if [[ -d $folder ]]; then
-                    fd -IHd1 . "$folder" | xargs -I{} mv {} .
-                    rmdir "$folder"
-                  fi
-                done
-              '
-            '';
+            run = ''plugin unfold'';
             desc = "flatten the selected directories";
           }
           {
@@ -182,8 +173,18 @@
             run = ''
               shell --confirm --block '
                 for file in $@; do
-                filename="$(basename "$file")"
-                foldername="$(basename "''${filename%%.*}")"
+                filename_with_ext="$(basename "$file")"
+                foldername="''${filename_with_ext%.*}"
+
+                case $filename_with_ext in
+                  *.tar.xz.gpg)
+                    foldername="''${filename_with_ext%.*.*.*}"
+                  ;;
+                  *.tar.bz|*.tar.bz2|*.tar.gz|*.tar.xz)
+                    foldername="''${filename_with_ext%.*.*}"
+                  ;;
+                esac
+
                 case $file in
                   *.tar.xz.gpg|*.txz.gpg)
                     [[ ! -d foldername ]] && mkdir "$foldername"
@@ -203,7 +204,7 @@
                   ;;
                   *.zip)
                     [[ ! -d foldername ]] && mkdir "$foldername"
-                    unzip -qqqd "$foldername" "$file"
+                    unzip -d "$foldername" "$file"
                   ;;
                   *.rar)
                       unrar x "$file"

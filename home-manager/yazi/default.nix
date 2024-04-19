@@ -252,7 +252,7 @@
           {
             on = [leader "D"];
             orphan = true;
-            run = "shell --confirm 'for f in $@; do srm -rfvvv $f; done'";
+            run = "plugin srm";
             desc = "securely remove the selected file(s)";
           }
           {

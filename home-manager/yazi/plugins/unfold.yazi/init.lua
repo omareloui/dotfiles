@@ -110,13 +110,6 @@ return {
 			end
 		end
 
-		-- for folder in $@; do
-		--   if [[ -d "$folder" ]]; then
-		--     fd -IHd1 . "$folder" | xargs -I{} mv {} .
-		--     rmdir "$folder"
-		--   fi
-		-- done
-
 		for _, dir in ipairs(dirs) do
 			local children, err = get_children(dir)
 			if err then

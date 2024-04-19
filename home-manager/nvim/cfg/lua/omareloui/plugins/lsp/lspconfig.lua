@@ -56,12 +56,12 @@ return {
 
       local set = require("omareloui.util.keymap").set
 
-      set("K", l.buf.hover, "Show documentation for what is under cursor")
+      -- set("K", l.buf.hover, "Show documentation for what is under cursor")
       set("gt", l.buf.type_definition, "Lsp definition type")
       set("gi", l.buf.implementation, "Lsp definition type")
-      set("gd", l.buf.definition, "Lsp definition")
-      set("gD", l.buf.declaration, "Go to declaration")
-      set("gR", "<Cmd>Telescope lsp_references<CR>", "Show LSP references")
+      -- set("gd", l.buf.definition, "Lsp definition")
+      -- set("gD", l.buf.declaration, "Go to declaration")
+      -- set("gR", "<Cmd>Telescope lsp_references<CR>", "Show LSP references")
       set("<leader>ls", l.buf.signature_help, "Lsp signature_help")
       set("<leader>rs", "<Cmd>LspRestart<CR>", "Restart the lsp server")
       set("<leader>sdv", "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>", "Open definition in vertical split window")
@@ -73,10 +73,10 @@ return {
       set("<leader>lwr", l.buf.remove_workspace_folder, "Remove lsp workspace folder")
       set("<leader>lwl", l.buf.list_workspace_folders, "List lsp workspace folders")
 
-      set("<leader>?", d.open_float, "Floating diagnostic")
-      set("<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", "Show buffer diagnostics")
-      set("[d", d.goto_prev, "Go to previous diagnostic")
-      set("]d", d.goto_next, "Go to next diagnostic")
+      -- set("<leader>?", d.open_float, "Floating diagnostic")
+      -- set("<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", "Show buffer diagnostics")
+      -- set("[d", d.goto_prev, "Go to previous diagnostic")
+      -- set("]d", d.goto_next, "Go to next diagnostic")
 
       local wk = require "which-key"
       wk.register({
@@ -85,6 +85,7 @@ return {
         l = "+lsp and linters",
       }, { prefix = "<leader>" })
       wk.register({ w = "+workspace" }, { prefix = "<leader>l" })
+      wk.register({ d = "+show definition in a split" }, { prefix = "<leader>s" })
     end
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()

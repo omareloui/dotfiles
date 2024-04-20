@@ -251,7 +251,6 @@
           }
           {
             on = [leader "D"];
-            orphan = true;
             run = "plugin srm";
             desc = "securely remove the selected file(s)";
           }

@@ -68,8 +68,7 @@ end
 ---@param files string[]
 ---@return string|nil error_message
 local function srm(files)
-	local child, err =
-		Command("srm"):stdout(Command.INHERIT):stderr(Command.INHERIT):args({ "-rfvvv" }):args(files):spawn()
+	local child, err = Command("srm"):stdout(Command.PIPED):stderr(Command.PIPED):args({ "-rfvvv" }):args(files):spawn()
 	if err then
 		return "error while creating the srm child: " .. err
 	end
@@ -80,12 +79,27 @@ local function srm(files)
 	end
 end
 
----@param file string
+---@param files string[]
 ---@return string|nil error_message
-local function gpg(file)
+local function rm(files)
+	local child, err = Command("rm"):stdout(Command.PIPED):stderr(Command.PIPED):args({ "-rf" }):args(files):spawn()
+	if err then
+		return "error while creating the rm child: " .. err
+	end
+
+	local _, err = child:wait()
+	if err then
+		return "error on running the rm child: " .. err
+	end
+end
+
+---@param file string
+---@param ignoreSecureRemove? boolean
+---@return string|nil error_message
+local function gpg(file, ignoreSecureRemove)
 	local child, err = Command("gpg")
-		:stdout(Command.INHERIT)
-		:stderr(Command.INHERIT)
+		:stdout(Command.PIPED)
+		:stderr(Command.PIPED)
 		:args({ "-r", "contact@omareloui.com", "-e", file })
 		:spawn()
 	if err then
@@ -97,19 +111,19 @@ local function gpg(file)
 		return "error on running the gpg child: " .. err
 	end
 
-	return srm({ file })
+	local removeFunc = srm
+	if ignoreSecureRemove then
+		removeFunc = rm
+	end
+	return removeFunc({ file })
 end
 
 ---@param archive_name string
 ---@param files string[]
 ---@return string|nil error_message
 local function tarxz(archive_name, files)
-	local child, err = Command("tar")
-		:stdout(Command.INHERIT)
-		:stderr(Command.INHERIT)
-		:args({ "-Jcvf", archive_name })
-		:args(files)
-		:spawn()
+	local child, err =
+		Command("tar"):stdout(Command.PIPED):stderr(Command.PIPED):args({ "-Jcvf", archive_name }):args(files):spawn()
 	if err then
 		return "error while creating the tar child: " .. err
 	end
@@ -135,7 +149,7 @@ local function zip(name, files, is_protected)
 	if err then return err end
 
 	local child, err =
-		Command("zip"):stdout(Command.INHERIT):stderr(Command.INHERIT):args({ args, name, name }):args(files):spawn()
+		Command("zip"):stdout(Command.PIPED):stderr(Command.PIPED):args({ args, name, name }):args(files):spawn()
 	if err then
 		return "error while creating the tar child: " .. err
 	end
@@ -148,11 +162,12 @@ local function zip(name, files, is_protected)
 	return srm({ name })
 end
 
----@return "xz"|"xz.gpg"|"zip"|nil func
+---@return "xz"|"xz.gpg"|"xz.gpg_no-srm"|"zip"|"pzip"|nil func
 local function get_func()
 	local funcs = {
 		"xz",
 		"xz.gpg",
+		"xz.gpg_no-srm",
 		"zip",
 		"pzip",
 	}
@@ -160,7 +175,8 @@ local function get_func()
 	local cand = ya.which({
 		cands = {
 			{ on = "x", desc = "protected .tar.xz file" },
-			{ on = "g", desc = "gpg protected .tar.xz.gpg file" },
+			{ on = "g", desc = "gpg protected .tar.xz file" },
+			{ on = "h", desc = "gpg protected .tar.xz file without securely removing the .tar.xz file" },
 			{ on = "z", desc = ".zip file" },
 			{ on = "p", desc = "protected .zip file" },
 		},
@@ -215,6 +231,16 @@ return {
 			if err then return ya.err(tostring(err)) end
 
 			local err = gpg(archive_name)
+			-- stylua: ignore
+			if err then return ya.err(tostring(err)) end
+		elseif func == "xz.gpg_no-srm" then
+			archive_name = archive_name .. ".tar.xz"
+
+			local err = tarxz(archive_name, rel_sel)
+			-- stylua: ignore
+			if err then return ya.err(tostring(err)) end
+
+			local err = gpg(archive_name, true)
 			-- stylua: ignore
 			if err then return ya.err(tostring(err)) end
 		elseif func == "zip" then

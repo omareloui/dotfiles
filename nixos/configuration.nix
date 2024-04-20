@@ -17,6 +17,7 @@
     ./users.nix
     ./fonts.nix
     ./udev.nix
+    ./sops.nix
 
     ./hardware-configuration.nix
   ];

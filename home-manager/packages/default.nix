@@ -3,6 +3,7 @@
     # mongodb
 
     acpi
+    age
     air
     ark
     autoconf
@@ -88,8 +89,10 @@
     shade
     slock
     socat
+    sops
     sortpics
     srm
+    ssh-to-age
     swaylock-effects
     swww
     syncthing

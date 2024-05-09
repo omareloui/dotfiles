@@ -120,7 +120,7 @@
     # Power Menu
     "custom/exit" = {
       format = "";
-      on-click = lib.getExe pkgs.wlogout;
+      on-click = "${lib.getExe pkgs.wlogout} -b 5 -T 400 -B 400";
       tooltip = false;
     };
 

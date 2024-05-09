@@ -39,6 +39,8 @@
     fontforge
     fzf
     gcc
+    gh
+    ghostscript
     git
     gnome.gnome-bluetooth
     gnome.gnome-disk-utility

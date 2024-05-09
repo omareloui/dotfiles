@@ -63,7 +63,7 @@ opt.cmdheight = 1
 vim.opt.whichwrap:append "<>[]hl"
 
 -- considers "-" as a part of a word.
--- vim.opt.iskeyword:append "-"
+vim.opt.iskeyword:append "-"
 
 -- stop continuous comments
 vim.api.nvim_create_autocmd("FileType", { command = "set formatoptions-=cro" })

@@ -55,7 +55,6 @@
             block = true;
           }
         ];
-
         archive = [
           {
             run = ''ark "$0"'';
@@ -127,16 +126,6 @@
     in {
       manager = {
         prepend_keymap = [
-          {
-            on = ["<A-j"];
-            run = "seek 10";
-            desc = "seek down half a page";
-          }
-          {
-            on = ["<A-k"];
-            run = "seek -10";
-            desc = "seek up half a page";
-          }
           {
             on = ["l"];
             run = "plugin --sync smart-enter";
@@ -221,11 +210,10 @@
             desc = "protect with gpg";
             on = [leader "p" "e"];
             orphan = true;
-            # TODO: make sure the selected are files not folders (or archive if it contains folders)
             run = ''
               shell --confirm '
                 for file in $@; do
-                  gpg -r contact@omareloui.com -e "$file"
+                  [[ -f $file ]] && gpg -r contact@omareloui.com -e "$file"
                 done
               '
             '';
@@ -240,6 +228,31 @@
                   name="$(basename "$file")"
                   gpg -d "$file" 1>''${name%.*} 2>/dev/null
                 done
+              '
+            '';
+          }
+          {
+            desc = "edit gpg files";
+            on = [leader "p" "o"];
+            run = ''
+              shell --confirm --block '
+                file=$0
+                if [[ $file == *.gpg ]]; then
+                  # TODO: decrepit as a temp
+                  # TODO: update $file to be that temp
+                else
+                  # TODO: copy the file to /tmp
+                  # TODO: update $file to be that temp
+                fi
+
+                # TODO: edit the file
+
+                # TODO: know how to track if exited after saving or not
+
+                # TODO: on success (file updated/changed) encrypt and move to current dir
+                # TODO: remove the temp files
+
+                # TODO: on failure (file updated/changed) move back the files
               '
             '';
           }

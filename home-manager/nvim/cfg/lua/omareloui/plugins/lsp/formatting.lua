@@ -64,6 +64,7 @@ return {
         sql = { "sql_formatter" },
         svelte = { "prettierd" },
         svg = { "prettier" },
+        templ = { "templ" },
         toml = { "prettierd" },
         typescript = { "prettierd" },
         typescriptreact = { "prettierd" },

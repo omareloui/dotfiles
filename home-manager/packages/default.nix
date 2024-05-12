@@ -16,6 +16,7 @@
     bc
     bison
     bottom
+    brave
     brillo
     btrfs-progs
     calibre
@@ -63,6 +64,7 @@
     libtool
     light
     loupe
+    lsof
     lua
     luarocks
     makeWrapper

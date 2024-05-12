@@ -198,12 +198,12 @@
     # Network
     network = {
       format = "{ifname}";
-      format-wifi = "   {signalStrength}%";
-      format-ethernet = "  {ifname}";
+      format-wifi = "    {signalStrength}%";
+      format-ethernet = "   {ifname}";
       format-disconnected = "Disconnected";
-      tooltip-format = " {ifname} via {gwaddri}";
+      tooltip-format = "   {ifname} via {gwaddri}";
       tooltip-format-wifi = "   {ifname} @ {essid}\nIP = {ipaddr}\nStrength = {signalStrength}%\nFreq = {frequency}MHz\nUp = {bandwidthUpBits} Down = {bandwidthDownBits}";
-      tooltip-format-ethernet = " {ifname}\nIP = {ipaddr}\n up = {bandwidthUpBits} down = {bandwidthDownBits}";
+      tooltip-format-ethernet = "   {ifname}\nIP = {ipaddr}\n up = {bandwidthUpBits} down = {bandwidthDownBits}";
       tooltip-format-disconnected = "Disconnected";
       max-length = 50;
       on-click = "nm-connection-editor";
@@ -212,7 +212,7 @@
     # Battery
     battery = {
       states = {
-        # good = 95;
+        good = 95;
         warning = 30;
         critical = 15;
       };
@@ -220,8 +220,6 @@
       format-charging = "  {capacity}%";
       format-plugged = "  {capacity}%";
       format-alt = "{icon}  {time}";
-      # format-good = ""; // An empty format will hide the module
-      # format-full = "";
       format-icons = [" " " " " " " " " "];
     };
 
@@ -249,11 +247,12 @@
     # Bluetooth
     bluetooth = {
       format = " {status}";
+      format-connected-battery = " {device_alias} {device_battery_percentage}%";
       format-disabled = "";
       format-off = "";
+      format-no-controller = "";
       interval = 30;
       on-click = "blueman-manager";
-      format-no-controller = "";
     };
 
     # Other

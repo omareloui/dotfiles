@@ -1,6 +1,6 @@
 return {
   "nvimdev/lspsaga.nvim",
-  enabled = true,
+  enabled = false,
   event = "BufEnter",
   after = "nvim-lspconfig",
   dependencies = {

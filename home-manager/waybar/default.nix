@@ -198,7 +198,7 @@
     # Network
     network = {
       format = "{ifname}";
-      format-wifi = "    {signalStrength}%";
+      format-wifi = "    {signalStrength}% {essid}";
       format-ethernet = "   {ifname}";
       format-disconnected = "Disconnected";
       tooltip-format = "   {ifname} via {gwaddri}";

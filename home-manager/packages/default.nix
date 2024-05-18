@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     # mongodb
 
+    # moviesscripts
     acpi
     age
     air
@@ -76,6 +77,7 @@
     nh
     nodejs
     nwg-look
+    parallel
     patchelf
     pavucontrol
     pkg-config

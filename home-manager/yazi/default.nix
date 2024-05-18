@@ -161,48 +161,50 @@
             on = [leader "e"];
             run = ''
               shell --confirm --block '
+                IFS=$'\n'
                 for file in $@; do
-                filename_with_ext="$(basename "$file")"
-                foldername="''${filename_with_ext%.*}"
+                  filename_with_ext="$(basename "$file")"
+                  foldername="''${filename_with_ext%.*}"
 
-                case $filename_with_ext in
-                  *.tar.xz.gpg)
-                    foldername="''${filename_with_ext%.*.*.*}"
-                  ;;
-                  *.tar.bz|*.tar.bz2|*.tar.gz|*.tar.xz)
-                    foldername="''${filename_with_ext%.*.*}"
-                  ;;
-                esac
+                  case $filename_with_ext in
+                    *.tar.xz.gpg)
+                      foldername="''${filename_with_ext%.*.*.*}"
+                    ;;
+                    *.tar.bz|*.tar.bz2|*.tar.gz|*.tar.xz)
+                      foldername="''${filename_with_ext%.*.*}"
+                    ;;
+                  esac
 
-                case $file in
-                  *.tar.xz.gpg|*.txz.gpg)
-                    [[ ! -d foldername ]] && mkdir "$foldername"
-                    gpg -d "$file" | tar xJvC "$foldername"
-                  ;;
-                  *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
-                    [[ ! -d foldername ]] && mkdir "$foldername"
-                    tar xjvf "$file" -C "$foldername"
-                  ;;
-                  *.tar.gz|*.tgz)
-                    [[ ! -d foldername ]] && mkdir "$foldername"
-                    tar xzvf "$file" -C "$foldername"
-                  ;;
-                  *.tar.xz|*.txz)
-                    [[ ! -d foldername ]] && mkdir "$foldername"
-                    tar xJvf "$file" -C "$foldername"
-                  ;;
-                  *.zip)
-                    [[ ! -d foldername ]] && mkdir "$foldername"
-                    unzip -d "$foldername" "$file"
-                  ;;
-                  *.rar)
-                      unrar x "$file"
-                  ;;
-                  *.7z)
-                    7z x "$file"
-                  ;;
-                esac
-              done
+                  case $file in
+                    *.tar.xz.gpg|*.txz.gpg)
+                      [[ ! -d foldername ]] && mkdir "$foldername"
+                      gpg -d "$file" | tar xJvC "$foldername"
+                    ;;
+                    *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
+                      [[ ! -d foldername ]] && mkdir "$foldername"
+                      tar xjvf "$file" -C "$foldername"
+                    ;;
+                    *.tar.gz|*.tgz)
+                      [[ ! -d foldername ]] && mkdir "$foldername"
+                      tar xzvf "$file" -C "$foldername"
+                    ;;
+                    *.tar.xz|*.txz)
+                      [[ ! -d foldername ]] && mkdir "$foldername"
+                      tar xJvf "$file" -C "$foldername"
+                    ;;
+                    *.zip)
+                      [[ ! -d foldername ]] && mkdir "$foldername"
+                      unzip -d "$foldername" "$file"
+                    ;;
+                    *.rar)
+                        unrar x "$file"
+                    ;;
+                    *.7z)
+                      7z x "$file"
+                    ;;
+                  esac
+                done
+                unset IFS
               '
             '';
           }

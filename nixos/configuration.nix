@@ -168,7 +168,6 @@
       };
     };
 
-    # TODO: not working
     udisks2.enable = true;
 
     openssh = {

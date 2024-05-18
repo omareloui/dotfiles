@@ -150,7 +150,6 @@
         "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # fixes the bluetooth stutter
         "${lib.getExe pkgs.telegram-desktop} -startintray"
 
-        "${lib.getExe pkgs.udiskie} &"
         "wl-paste --watch cliphist store"
 
         "dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE"

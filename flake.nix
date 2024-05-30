@@ -33,6 +33,9 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # TODO: change to upstream
+    # moviesscripts.url = "/home/omareloui/myhome/repos/moviesscripts";
   };
 
   outputs = {

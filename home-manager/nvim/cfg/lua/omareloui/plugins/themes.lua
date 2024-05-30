@@ -3,14 +3,27 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    opts = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-    },
-    enabled = true,
+
+    config = function()
+      local ok, tokionight = pcall(require, "tokyonight")
+
+      --stylua: ignore
+      if not ok then return end
+
+      local opts = {
+        transparent = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+      }
+
+      if vim.g.neovide then
+        opts = {}
+      end
+
+      return tokionight.setup(opts)
+    end,
   },
 
   {

@@ -17,12 +17,12 @@
     bc
     bison
     bottom
-    brave
     brillo
     btrfs-progs
     calibre
     cliphist
     cliphist_wrapper
+    cloc
     cloud_backup
     codeium
     corepack_latest
@@ -73,6 +73,7 @@
     mongodb-compass
     mpg123
     neofetch
+    neovide
     networkmanagerapplet
     nh
     nodejs

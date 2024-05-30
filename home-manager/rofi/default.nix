@@ -330,7 +330,7 @@
     };
   };
 
-  home.file . ".config/rofi/border.rasi".text = ''* { border-width: 3px; }'';
+  home.file.".config/rofi/border.rasi".text = ''* { border-width: 3px; }'';
   home.file.".config/rofi/font.rasi".text = ''* { font: "Fira Sans 11"; }'';
   home.file.".config/rofi/wallpaper.rasi".text = ''* { current-image: url("${config.home.homeDirectory}/.cache/wallpapers/current_blurred.png", height); }'';
   home.file.".config/rofi/palette.rasi".text = let

@@ -24,6 +24,7 @@
     ./eza
     ./kitty
     ./lazygit
+    ./neovide
     ./notifications
     ./nvim
     ./packages

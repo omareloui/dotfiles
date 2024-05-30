@@ -10,9 +10,17 @@ local opt = vim.opt
 
 opt.autowrite = true
 opt.guifont = { "FiraCode Nerd Font", ":h12" }
+opt.guicursor = {
+  "n-v-c:block",
+  "i-ci-ve:ver25",
+  "r-cr:hor20",
+  "o:hor50",
+  "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
+  "sm:block-blinkwait175-blinkoff150-blinkon175",
+}
 opt.swapfile = false
 opt.colorcolumn = { "80", "120" }
-opt.cursorcolumn = true
+opt.cursorcolumn = false
 opt.cursorline = true
 
 opt.foldcolumn = "0"
@@ -73,3 +81,9 @@ vim.filetype.add {
     [".*/hypr/.*%.conf"] = "hyprlang",
   },
 }
+
+-- Neovide options
+vim.g.neovide_hide_mouse_when_typing = true
+vim.g.neovide_no_idle = false
+vim.g.neovide_fullscreen = false
+vim.g.neovide_cursor_smooth_blink = true

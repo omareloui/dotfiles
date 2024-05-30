@@ -74,6 +74,7 @@ set("<C-l>", "<C-w>l", "Go to right window")
 set("<leader>sv", "<Cmd>vsplit<CR>", "Split window vertically")
 set("<leader>sh", "<Cmd>split<CR>", "Split window horizontally")
 set("<leader>sx", "<Cmd>close<CR>", "Split window horizontally")
+set("<leader>so", "<C-w>o", "Close all other windows")
 
 set("<leader>s+", "<Cmd>resize +10<CR>", "Increase window height")
 set("<leader>s-", "<Cmd>resize -10<CR>", "Decrease window height")

@@ -9,10 +9,10 @@ end
 local opt = vim.opt
 
 opt.autowrite = true
-opt.guifont = { "", ":h10" }
+opt.guifont = { "FiraCode Nerd Font", ":h12" }
 opt.swapfile = false
 opt.colorcolumn = { "80", "120" }
---opt.cursorcolumn = true
+opt.cursorcolumn = true
 opt.cursorline = true
 
 opt.foldcolumn = "0"

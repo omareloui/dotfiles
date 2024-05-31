@@ -84,6 +84,6 @@ vim.filetype.add {
 
 -- Neovide options
 vim.g.neovide_hide_mouse_when_typing = true
-vim.g.neovide_no_idle = false
+vim.g.neovide_no_idle = true
 vim.g.neovide_fullscreen = false
 vim.g.neovide_cursor_smooth_blink = true

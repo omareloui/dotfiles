@@ -7,9 +7,6 @@
         host = "github.com";
         hostname = "github.com";
         identityFile = "~/.ssh/id_rsa_github";
-        extraOptions = {
-          UseKeychain = "yes";
-        };
       };
       "gitlab.com" = {
         host = "gitlab.com";

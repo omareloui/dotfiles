@@ -5,28 +5,6 @@ return {
   keys = {
     -- stylua: ignore
     { "<leader>ll", function() require("lint").try_lint() end, desc = "Trigger linting for current file." },
-    -- {
-    --   "<leader>lf",
-    --   "mF:%!eslint_d --stdin --fix-to-stdout<CR>`F",
-    --   desc = "Fix eslint linting errors",
-    --   -- TODO: make this work (hint: auto command)
-    --   -- filetype = { "javascript", "typescript" },
-    -- },
-    -- {
-    --   "<leader>lf",
-    --   "mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F",
-    --   desc = "Fix eslint linting errors",
-    --   -- TODO: make this work (hint: auto command)
-    --   -- filetype = { "vue" },
-    -- },
-    -- {
-    --   "<leader>lf",
-    --   "mF:%!eslint_d --stdin --fix-to-stdout<CR>`F",
-    --   desc = "Fix eslint linting errors",
-    --   -- TODO: make this work (hint: auto command)
-    --   -- filetype = { "javascript", "typescript", "vue" },
-    --   mode = { "v" },
-    -- },
   },
 
   config = function()

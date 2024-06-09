@@ -29,9 +29,9 @@ return {
     }
 
     if has_trouble_plugin then
-      local trouble_provider = require "trouble.providers.telescope"
-      mappings.n["<C-q>"] = trouble_provider.open_with_trouble
-      mappings.i["<C-q>"] = trouble_provider.open_with_trouble
+      local trouble = require "trouble.sources.telescope"
+      mappings.n["<C-q>"] = trouble.open
+      mappings.i["<C-q>"] = trouble.open
     end
 
     local options = {

@@ -163,7 +163,7 @@
         "workspace special silent, ${scratpad}"
         "stayfocused, ${scratpad}"
 
-        "stayfocused, class:^TelegramDesktop$"
+        "stayfocused, title:^TelegramDesktop$"
 
         "float, class:^(${shouldFloatClasses})$"
         "center 1, class:^(${shouldFloatClasses})$"

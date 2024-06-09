@@ -48,7 +48,6 @@
     gnome.gnome-disk-utility
     gnome.nautilus
     gnumake
-    go
     go-mockery
     group_likes
     grpcui

@@ -22,6 +22,7 @@
     ./atuin
     ./dunst
     ./eza
+    ./go
     ./kitty
     ./lazygit
     ./neovide

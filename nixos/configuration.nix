@@ -14,10 +14,11 @@
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
 
-    ./users.nix
     ./fonts.nix
-    ./udev.nix
+    ./home-servers.nix
     ./sops.nix
+    ./udev.nix
+    ./users.nix
 
     ./hardware-configuration.nix
   ];
@@ -51,16 +52,24 @@
   # Making legacy nix commands consistent as well, awesome!
   nix.nixPath = ["/etc/nix/path"];
 
-  environment.etc =
-    lib.mapAttrs' (name: value: {
-      name = "nix/path/${name}";
-      value.source = value.flake;
-    })
-    config.nix.registry;
+  environment = {
+    etc =
+      lib.mapAttrs' (name: value: {
+        name = "nix/path/${name}";
+        value.source = value.flake;
+      })
+      config.nix.registry;
 
-  environment.systemPackages = with pkgs; [
-    git
-  ];
+    systemPackages = with pkgs; [
+      git
+    ];
+
+    variables = {EDITOR = "nvim";};
+    sessionVariables = {
+      WLR_NO_HARDWARE_CURSORS = "1";
+      NIXOS_OZONE_WL = "1";
+    };
+  };
 
   nix = {
     settings = {
@@ -77,8 +86,16 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [8384 22000];
-    firewall.allowedUDPPorts = [22000 21027];
+    firewall.allowedTCPPorts = [
+      8384 # Syncthing
+      22000 # Syncthing
+      7575 # Homarr
+      8080 # Openbook
+    ];
+    firewall.allowedUDPPorts = [
+      22000 # Syncthing
+      21027 # Syncthing?
+    ];
   };
 
   system = {
@@ -144,6 +161,18 @@
   };
   services.blueman.enable = true;
 
+  virtualisation = {
+    docker = {
+      enable = true;
+      enableOnBoot = true;
+      storageDriver = "btrfs";
+    };
+
+    oci-containers = {
+      backend = "docker";
+    };
+  };
+
   services = {
     xserver = {
       enable = true;
@@ -177,14 +206,6 @@
         PasswordAuthentication = false;
       };
     };
-
-    # TODO: I'm not sure that I'll need it
-    # gnome.gnome-keyring.enable = true;
-  };
-
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "btrfs";
   };
 
   security.pam.services.swaylock = {
@@ -213,14 +234,6 @@
       '';
     };
     rtkit.enable = true;
-  };
-
-  environment = {
-    variables = {EDITOR = "nvim";};
-    sessionVariables = {
-      WLR_NO_HARDWARE_CURSORS = "1";
-      NIXOS_OZONE_WL = "1";
-    };
   };
 
   xdg.portal = {
@@ -252,5 +265,5 @@
   };
 
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }

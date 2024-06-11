@@ -11,15 +11,6 @@ return {
     "Exafunction/codeium.nvim",
     "onsails/lspkind.nvim",
     { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
-    {
-      "Saecki/crates.nvim",
-      event = { "BufRead Cargo.toml" },
-      opts = {
-        src = {
-          cmp = { enabled = true },
-        },
-      },
-    },
   },
 
   config = function()

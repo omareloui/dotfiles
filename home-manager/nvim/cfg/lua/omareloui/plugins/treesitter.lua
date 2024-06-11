@@ -44,7 +44,6 @@ return {
     config = function()
       local opts = {
         auto_install = true,
-        autotag = { enable = true },
         highlight = { enable = true, highlight = { enable = true }, additional_vim_regex_highlighting = true },
         indent = { enable = true },
         rainbow = { enable = true },
@@ -145,6 +144,12 @@ return {
   {
     "windwp/nvim-ts-autotag",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    opts = {},
+    opts = {
+      opts = {
+        enable_close = true,
+        enable_rename = true,
+        enable_close_on_slash = true,
+      },
+    },
   },
 }

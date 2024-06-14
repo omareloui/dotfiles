@@ -1,15 +1,16 @@
 local ignore_on_filetypes = {
-  "help",
+  "Trouble",
   "alpha",
   "dashboard",
-  "neo-tree",
-  "Trouble",
-  "trouble",
+  "help",
   "lazy",
+  "lazyterm",
   "mason",
+  "neo-tree",
+  "neotest-summary",
   "notify",
   "toggleterm",
-  "lazyterm",
+  "trouble",
 }
 
 return {

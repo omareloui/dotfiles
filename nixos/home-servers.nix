@@ -8,9 +8,19 @@
   };
 
   services = {
+    transmission = {
+      enable = true;
+      package = pkgs.transmission_4-gtk;
+      openFirewall = true;
+      settings = {
+        download-dir = "/home/media/torrents";
+        incomplete-dir = "/home/media/torrents/.incomplete";
+      };
+    };
     jellyfin = {
       enable = true;
       openFirewall = true;
+      group = "media";
     };
     jellyseerr = {
       enable = true;
@@ -23,18 +33,22 @@
     sonarr = {
       enable = true;
       openFirewall = true;
+      group = "media";
     };
     radarr = {
       enable = true;
       openFirewall = true;
+      group = "media";
     };
     bazarr = {
       enable = true;
       openFirewall = true;
+      group = "media";
     };
     readarr = {
       enable = true;
       openFirewall = true;
+      group = "media";
     };
   };
 

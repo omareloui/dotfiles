@@ -106,7 +106,6 @@
     telegram-desktop
     templ
     tldr
-    transmission_4-gtk
     trashy
     tree
     unrar

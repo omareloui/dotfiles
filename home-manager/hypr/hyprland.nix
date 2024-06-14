@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   pkgs,
@@ -163,7 +162,8 @@
         "workspace special silent, ${scratpad}"
         "stayfocused, ${scratpad}"
 
-        "stayfocused, title:^TelegramDesktop$"
+        # "stayfocused, title:^TelegramDesktop$"
+        # "stayfocused, class:^\.telegram-desktop-wrapped&,title:^Choose export folder$"
 
         "float, class:^(${shouldFloatClasses})$"
         "center 1, class:^(${shouldFloatClasses})$"
@@ -180,7 +180,7 @@
 
         "bordercolor rgb(${p.base00}) rgb(${p.base01}), floating:1"
 
-        "opacity 0.95 0.75, title:^(${pipRe})$"
+        # "opacity 0.95 0.75, title:^(${pipRe})$"
         "pin, title:^(${pipRe})$"
         "float, title:^(${pipRe})$"
         "size 25% 25%, title:^(${pipRe})$"

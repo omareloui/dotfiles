@@ -71,6 +71,7 @@ function Status:owner()
 	end
 
 	return ui.Line({
+		ui.Span(" "),
 		ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
 		ui.Span(":"),
 		ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("magenta"),
@@ -81,8 +82,8 @@ end
 function Status:render(area)
 	self.area = area
 
-	local left = ui.Line({ self:mode(), self:size(), self:name(), self:mime() })
-	local right = ui.Line({ self:owner(), self:permissions(), self:percentage(), self:position() })
+	local left = ui.Line({ self:mode(), self:size(), self:name() })
+	local right = ui.Line({ self:mime(), self:owner(), self:permissions(), self:percentage(), self:position() })
 
 	return {
 		ui.Paragraph(area, { left }),

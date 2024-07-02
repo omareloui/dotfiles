@@ -7,9 +7,6 @@
   ...
 }: {
   imports = [
-    # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.example
-
     inputs.nix-colors.homeManagerModules.default
 
     ./hypr/hyprland.nix
@@ -23,6 +20,7 @@
     ./dunst
     ./eza
     ./go
+    ./inkscape
     ./kitty
     ./lazygit
     ./neovide
@@ -72,7 +70,7 @@
   systemd.user.startServices = "sd-switch";
 
   home = {
-    stateVersion = "23.11";
+    stateVersion = "24.05";
 
     username = "omareloui";
     homeDirectory = "/home/omareloui";

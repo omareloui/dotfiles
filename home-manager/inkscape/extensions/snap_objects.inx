@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <name>Snap Object Points</name>
+  <id>org.pakin.filter.snap_objects</id>
+  <param name="tab" type="notebook">
+    <page name="Options" gui-text="Options">
+      <param name="max-dist" type="float" min="1" max="9999" precision="0"
+             gui-text="Maximum snap distance">25</param>
+      <param name="controls" type="bool" gui-text="Snap control points">true</param>
+      <param name="ends" type="bool" gui-text="Snap endpoints">true</param>
+      <param name="first-only" type="bool" gui-text="Modify only the first selected path">false</param>
+    </page>
+    <page name="Help" gui-text="Help">
+      <label>
+        This effect snaps points in each selected object to nearby points in other selected objects.
+      </label>
+    </page>
+  </param>
+
+  <effect>
+    <object-type>path</object-type>
+    <effects-menu>
+      <submenu name="Modify Path" />
+    </effects-menu>
+  </effect>
+  <script>
+    <command location="inx" interpreter="python">snap_objects.py</command>
+  </script>
+</inkscape-extension>

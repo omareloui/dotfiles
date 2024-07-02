@@ -55,7 +55,6 @@
     hyprpicker
     imagemagick
     init_bar
-    inkscape-with-extensions
     jq
     keepassxc
     kora-icon-theme
@@ -120,8 +119,11 @@
     zathura
     zip
 
-    (pkgs.python311.withPackages (ppkgs: [
-      ppkgs.pip
-    ]))
+    (pkgs.python311.withPackages (ppkgs:
+      with ppkgs; [
+        pip
+        inkex
+        pyclipper
+      ]))
   ];
 }

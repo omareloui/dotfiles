@@ -72,9 +72,9 @@ function Status:owner()
 
 	return ui.Line({
 		ui.Span(" "),
-		ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
-		ui.Span(":"),
 		ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("magenta"),
+		ui.Span(":"),
+		ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
 		ui.Span(" "),
 	})
 end

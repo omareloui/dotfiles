@@ -70,7 +70,6 @@
     # Wallpaper
     "custom/shade" = {
       format = "";
-      # on-click = ''curr=$(${lib.getExe pkgs.hyprshade} current); if [[ $curr == "" ]]; then; ${lib.getExe pkgs.hyprshade} toggle; elif [[ $curr == 'blue-light-filter' ]]; then; ${lib.getExe pkgs.hyprshade} on vibrance; else; ${lib.getExe pkgs.hyprshade} on blue-light-filter; fi'';
       on-click = ''${lib.getExe pkgs.shade} toggle'';
       tooltip = false;
     };

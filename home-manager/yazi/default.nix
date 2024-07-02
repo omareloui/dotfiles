@@ -28,14 +28,14 @@
 
         pdf = [
           {
-            run = ''zathura $@'';
+            run = ''zathura "$@"'';
             desc = "open pdf files";
           }
         ];
 
         image = [
           {
-            run = ''loupe $@'';
+            run = ''loupe "$@"'';
             desc = "open images";
           }
         ];

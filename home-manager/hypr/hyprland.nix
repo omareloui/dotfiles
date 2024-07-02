@@ -155,8 +155,9 @@
       ];
 
       windowrulev2 = let
-        shouldFloatClasses = "transmission-gtk|org.gnome.Loupe|pavucontrol|.blueman-manager-wrapped|scratchpad|nm-connection-editor";
+        shouldFloatClasses = "transmission-gtk|org\.gnome\.Loupe|pavucontrol|scratchpad|nm-connection-editor|org\.keepassxc\.KeePassXC";
         scratpad = "class:^scratchpad$";
+        bluetoothClientRe = "^\.blueman-manager-wrapped$";
         pipRe = "Picture[\- ]in[\- ][Pp]icture";
       in [
         "workspace special silent, ${scratpad}"
@@ -167,9 +168,14 @@
 
         "float, class:^(${shouldFloatClasses})$"
         "center 1, class:^(${shouldFloatClasses})$"
+        "size 1200 760, class:^(${shouldFloatClasses})$"
+
+        "float, class:${bluetoothClientRe}"
+        "center 1, class:${bluetoothClientRe}"
+        "size 750 445, class:${bluetoothClientRe}"
 
         "float, class:^thunar$,title:^(File Operation Progress)$"
-        "float, class:^org.inkscape.Inkscape$,title:^(Measure Path|PDF Import Settings)$"
+        "float, class:^org.inkscape.Inkscape$,title:^(|Measure Path|PDF Import Settings|Calender|Frame|Offset Paths)$"
 
         "size 960 520, class:^transmission-gtk$,title:^Transmission$"
         "size 482 567, class:^transmission-gtk$,title:^Torrent Options$"
@@ -180,7 +186,7 @@
 
         "bordercolor rgb(${p.base00}) rgb(${p.base01}), floating:1"
 
-        # "opacity 0.95 0.75, title:^(${pipRe})$"
+        "opacity 1 1, title:^(${pipRe})$"
         "pin, title:^(${pipRe})$"
         "float, title:^(${pipRe})$"
         "size 25% 25%, title:^(${pipRe})$"

@@ -148,6 +148,7 @@
         "${lib.getExe pkgs.swww} init"
         "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # fixes the bluetooth stutter
         "${lib.getExe pkgs.telegram-desktop} -startintray"
+        "${lib.getExe pkgs.slack}"
 
         "wl-paste --watch cliphist store"
 

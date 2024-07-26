@@ -93,6 +93,7 @@
     rustup
     screenshot
     shade
+    slack
     slock
     socat
     sops
@@ -116,6 +117,7 @@
     wirelesstools
     wl-clipboard
     xorg.xhost
+    yarn
     zathura
     zip
 

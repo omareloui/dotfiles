@@ -159,6 +159,8 @@
         shouldFloatClasses = "transmission-gtk|org\.gnome\.Loupe|pavucontrol|scratchpad|nm-connection-editor|org\.keepassxc\.KeePassXC";
         scratpad = "class:^scratchpad$";
         bluetoothClientRe = "^\.blueman-manager-wrapped$";
+        fileSelectorTitleRe = "^(Select file to open)$";
+        fileSelectorClassRe = "^(xdg-desktop-portal-gtk)$";
         pipRe = "Picture[\- ]in[\- ][Pp]icture";
       in [
         "workspace special silent, ${scratpad}"
@@ -174,6 +176,14 @@
         "float, class:${bluetoothClientRe}"
         "center 1, class:${bluetoothClientRe}"
         "size 750 445, class:${bluetoothClientRe}"
+
+        "float, title:${fileSelectorTitleRe}"
+        "center 1, title:${fileSelectorTitleRe}"
+        "size 1160 680, title:${fileSelectorTitleRe}"
+
+        "float, class:${fileSelectorClassRe}"
+        "center 1, class:${fileSelectorClassRe}"
+        "size 1160 680, class:${fileSelectorClassRe}"
 
         "float, class:^thunar$,title:^(File Operation Progress)$"
         "float, class:^org.inkscape.Inkscape$,title:^(|Measure Path|PDF Import Settings|Calender|Frame|Offset Paths)$"

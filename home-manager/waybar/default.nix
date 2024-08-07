@@ -91,7 +91,7 @@
     # Filemanager Launcher
     "custom/filemanager" = {
       format = "";
-      on-click = lib.getExe pkgs.gnome.nautilus;
+      on-click = lib.getExe pkgs.nautilus;
       tooltip = false;
     };
 

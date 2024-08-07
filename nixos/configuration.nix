@@ -131,8 +131,6 @@
     useXkbConfig = true;
   };
 
-  sound.enable = true;
-
   hardware = {
     opengl.enable = true;
     pulseaudio.enable = false;
@@ -177,7 +175,6 @@
     xserver = {
       enable = true;
       xkb.layout = "us";
-      libinput.enable = true;
       displayManager.gdm = {
         enable = true;
         wayland = true;

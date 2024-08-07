@@ -30,7 +30,6 @@
     nodePackages.prisma
     nodePackages.sql-formatter
     nodePackages.typescript-language-server
-    nodePackages.volar
     nodePackages_latest.eslint
     nodePackages_latest.prettier
     prettierd
@@ -40,6 +39,8 @@
     statix
     stylua
     tailwindcss-language-server
+    vscode-extensions.sonarsource.sonarlint-vscode
+    vscode-extensions.vue.volar
     vscode-langservers-extracted
     yaml-language-server
     yamlfmt

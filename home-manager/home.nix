@@ -15,7 +15,7 @@
     ./hypr/hyprshade.nix
     ./hypr/pyprland.nix
 
-    ./anyrun
+    # ./anyrun
     ./atuin
     ./dunst
     ./eza
@@ -170,7 +170,7 @@
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.gnome.gnome-themes-extra;
+      package = pkgs.gnome-themes-extra;
       name = "Adwaita-dark";
     };
     # iconTheme = {
@@ -185,7 +185,7 @@
 
   qt = {
     enable = true;
-    platformTheme = "gtk"; # gtk | gnome
+    platformTheme.name = "gtk"; # gtk | gnome
     style.name = "adwaita-dark";
     style.package = pkgs.adwaita-qt;
   };

@@ -7,7 +7,7 @@
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     defaultKeymap = "viins";
     localVariables = {

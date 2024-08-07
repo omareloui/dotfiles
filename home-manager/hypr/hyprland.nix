@@ -125,7 +125,7 @@
       };
 
       master = {
-        new_is_master = false;
+        new_status = "slave";
       };
 
       dwindle = {
@@ -148,7 +148,7 @@
         "${lib.getExe pkgs.swww} init"
         "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # fixes the bluetooth stutter
         "${lib.getExe pkgs.telegram-desktop} -startintray"
-        "${lib.getExe pkgs.slack}"
+        # "${lib.getExe pkgs.slack}"
 
         "wl-paste --watch cliphist store"
 
@@ -296,7 +296,7 @@
           "$mainMod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
           "$mainMod, N, exec, nm-connection-editor"
           "$mainMod, U, exec, blueman-manager"
-          "$mainMod, E, exec, ${lib.getExe pkgs.gnome.nautilus}"
+          "$mainMod, E, exec, ${lib.getExe pkgs.nautilus}"
 
           "$mainMod SHIFT, N, exec, swaync-client -t"
 

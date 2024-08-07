@@ -45,8 +45,8 @@
     ghostscript
     git
     gnome.gnome-bluetooth
-    gnome.gnome-disk-utility
-    gnome.nautilus
+    gnome-disk-utility
+    nautilus
     gnumake
     go-mockery
     group_likes
@@ -111,6 +111,7 @@
     unrar
     unzip
     vlc
+    vscode-extensions.sonarsource.sonarlint-vscode
     wallpaper
     wev
     wget

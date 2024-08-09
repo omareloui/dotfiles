@@ -126,7 +126,9 @@
 
       update = "nix flake update";
 
-      clean_docker = "docker builder prune -a --force";
+      docker_clean = "docker builder prune -a --force";
+      docker_clean_images = "docker rmi $(docker images -a --filter=dangling=true -q)";
+      docker_clean_ps = "docker rm $(docker ps --filter=status=exited --filter=status=created -q)";
 
       ns = "nh os switch";
       ng = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";

@@ -66,13 +66,14 @@
           ];
           ports = ["7575:7575"];
         };
-        openbooks = {
-          autoStart = true;
-          image = "evanbuss/openbooks";
-          ports = ["8080:80"];
-          cmd = ["--name" "omareloui" "--persist"];
-          volumes = ["/home/media/openbooks:/books"];
-        };
+
+        # openbooks = {
+        #   autoStart = true;
+        #   image = "evanbuss/openbooks";
+        #   ports = ["8080:80"];
+        #   cmd = ["--name" "omareloui" "--persist"];
+        #   volumes = ["/home/media/openbooks:/books"];
+        # };
       };
     };
   };

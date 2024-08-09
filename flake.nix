@@ -28,8 +28,8 @@
 
     templ.url = "github:a-h/templ";
 
-    anyrun.url = "github:Kirottu/anyrun";
-    anyrun.inputs.nixpkgs.follows = "nixpkgs";
+    # anyrun.url = "github:Kirottu/anyrun";
+    # anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";

@@ -28,7 +28,6 @@
     corepack_latest
     dconf
     deno
-    docker
     du-dust
     entr
     eva

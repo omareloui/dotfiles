@@ -62,6 +62,8 @@
 
     systemPackages = with pkgs; [
       git
+      neovim
+      home-manager
     ];
 
     variables = {EDITOR = "nvim";};

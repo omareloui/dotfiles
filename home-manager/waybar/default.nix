@@ -98,7 +98,7 @@
     # Browser Launcher
     "custom/browser" = {
       format = "";
-      on-click = lib.getExe pkgs.microsoft-edge;
+      on-click = "microsoft-edge";
       tooltip = false;
     };
 

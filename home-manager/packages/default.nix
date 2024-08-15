@@ -5,10 +5,8 @@
     # moviesscripts
     acpi
     age
-    air
     ark
     autoconf
-    automake
     bar_themeswitcher
     bat
     batplug
@@ -27,7 +25,6 @@
     codeium
     corepack_latest
     dconf
-    deno
     du-dust
     entr
     eva
@@ -43,14 +40,9 @@
     gh
     ghostscript
     git
-    gnome.gnome-bluetooth
     gnome-disk-utility
-    nautilus
-    gnumake
-    go-mockery
+    gnome.gnome-bluetooth
     group_likes
-    grpcui
-    grpcurl
     hyprpicker
     imagemagick
     init_bar
@@ -64,17 +56,13 @@
     light
     loupe
     lsof
-    lua
-    luarocks
-    makeWrapper
     microsoft-edge
-    mongodb-compass
     mpg123
+    nautilus
     neofetch
     neovide
     networkmanagerapplet
     nh
-    nodejs
     nwg-look
     parallel
     patchelf
@@ -83,13 +71,9 @@
     playerctl
     polkit_gnome
     poppler
-    protobuf
-    protoc-gen-go
-    protoc-gen-go-grpc
     qalculate-gtk
     rclone
     ripgrep
-    rustup
     screenshot
     shade
     slack
@@ -103,7 +87,6 @@
     swww
     syncthing
     telegram-desktop
-    templ
     tldr
     trashy
     tree
@@ -120,6 +103,28 @@
     yarn
     zathura
     zip
+
+    # Development
+    air
+    automake
+    deno
+    gnumake
+    go-mockery
+    grpcui
+    grpcurl
+    lua
+    luarocks
+    makeWrapper
+    mongodb-compass
+    nodePackages.prisma
+    nodejs
+    postman
+    prisma-engines
+    protobuf
+    protoc-gen-go
+    protoc-gen-go-grpc
+    rustup
+    templ
 
     (pkgs.python311.withPackages (ppkgs:
       with ppkgs; [

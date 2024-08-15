@@ -292,7 +292,7 @@
           # Apps keybindings
           "$mainMod, Return, exec, ${lib.getExe pkgs.kitty}"
           "$mainMod SHIFT, Return, exec, [float] ${lib.getExe pkgs.kitty}"
-          "$mainMod, B, exec, [workspace 1] ${lib.getExe pkgs.microsoft-edge}"
+          "$mainMod, B, exec, [workspace 1] microsoft-edge"
           "$mainMod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
           "$mainMod, N, exec, nm-connection-editor"
           "$mainMod, U, exec, blueman-manager"

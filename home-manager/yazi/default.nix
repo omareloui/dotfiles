@@ -11,8 +11,8 @@
       };
 
       manager = {
-        ratio = [1 4 4];
-        linemode = "mylinemode";
+        ratio = [1 3 4];
+        linemode = "custom";
         sort_by = "natural";
         sort_dir_first = true;
         sort_reverse = false;

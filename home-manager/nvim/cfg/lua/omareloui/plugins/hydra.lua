@@ -5,9 +5,10 @@ return {
     local Hydra = require "hydra"
 
     local wk = require "which-key"
-    wk.register({
-      s = "+hydra split",
-    }, { prefix = "<leader>s" })
+
+    wk.add {
+      { "<leader>ss", group = "hydra split" },
+    }
 
     Hydra {
       -- string? only used in auto-generated hint

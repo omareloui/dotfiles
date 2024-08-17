@@ -75,7 +75,7 @@ return {
   config = function()
     -- Keys
     local wk = require "which-key"
-    wk.register({ d = "+debug" }, { prefix = "<leader>" })
+    wk.add { { "<leader>d", desc = "+debug" } }
 
     -- Styles
     local set_hl = vim.api.nvim_set_hl

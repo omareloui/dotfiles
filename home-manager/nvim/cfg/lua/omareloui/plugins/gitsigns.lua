@@ -32,8 +32,8 @@ return {
         -- stylua: ignore end
 
         local wk = require "which-key"
-        wk.register({ g = "+git" }, { prefix = "<leader>" })
-        wk.register({ h = "+hunk", f = "+file" }, { prefix = "<leader>g" })
+        wk.add { { "<leader>g", group = "git" } }
+        wk.add { { "<leader>gh", group = "hunk" }, { "f", group = "file" } }
       end,
     }
 

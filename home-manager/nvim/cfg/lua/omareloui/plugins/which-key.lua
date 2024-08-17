@@ -11,17 +11,14 @@ return {
     -- stylua: ignore
     if not ok then return end
 
-    wk.register {
-      g = "+goto",
-      ["]"] = "+next",
-      ["["] = "+previous",
-      ["<leader>s"] = "+split",
+    wk.add {
+      { "<leader>s", group = "split" },
     }
 
     local has_plugin = require "omareloui.util.has_plugin"
 
     if has_plugin "harpoon" then
-      wk.register({ h = "+harpoon" }, { prefix = "<leader>" })
+      wk.add { { "<leader>h", group = "harpoon" } }
     end
 
     wk.setup {}

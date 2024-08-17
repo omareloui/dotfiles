@@ -103,6 +103,6 @@ return {
     set("<leader>gs", "<Cmd>Telescope git_status<CR>", "Git status")
 
     local wk = require "which-key"
-    wk.register({ f = "+find" }, { prefix = "<leader>" })
+    wk.add { { "<leader>f", group = "find" } }
   end,
 }

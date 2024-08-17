@@ -19,7 +19,8 @@
     iferr
     impl
     lua-language-server
-    luajitPackages.luacheck
+    luaPackages.luacheck
+    vscode-extensions.sonarsource.sonarlint-vscode
     markdownlint-cli
     marksman
     nil
@@ -27,7 +28,6 @@
     nodePackages."@prisma/language-server"
     nodePackages.bash-language-server
     nodePackages.cspell
-    nodePackages.prisma
     nodePackages.sql-formatter
     nodePackages.typescript-language-server
     nodePackages_latest.eslint
@@ -39,7 +39,6 @@
     statix
     stylua
     tailwindcss-language-server
-    vscode-extensions.sonarsource.sonarlint-vscode
     vscode-extensions.vue.volar
     vscode-langservers-extracted
     yaml-language-server

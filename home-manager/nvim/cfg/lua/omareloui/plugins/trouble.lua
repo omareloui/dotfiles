@@ -52,7 +52,7 @@ return {
     }
 
     local wk = require "which-key"
-    wk.register({ x = "+trouble" }, { prefix = "<leader>" })
+    wk.add { { "<leader>x", group = "trouble" } }
 
     trouble.setup(opts)
   end,

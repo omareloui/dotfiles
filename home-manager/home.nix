@@ -106,15 +106,17 @@
       _ZO_EXCLUDE_DIRS = "${h}:${mh}/**/.private/**:${mh}/**/.private";
 
       NVM_DIR = "${h}/.nvm";
+
+      # Used by the nix helper `nh`
       FLAKE = "${h}/.dotfiles";
     };
 
     shellAliases = {
-      dot = "z ${config.home.homeDirectory}/.dotfiles && ${config.home.sessionVariables.EDITOR}";
+      "." = "cd ${config.home.homeDirectory}/.dotfiles && ${config.home.sessionVariables.EDITOR}";
 
-      # py = "python3";
-      # ve = "python3 -m venv ./env";
-      # va = "source ./env/bin/activate";
+      py = "python3";
+      pve = "python3 -m venv ./env";
+      pva = "source ./env/bin/activate";
 
       q = "exit";
       ":q" = "exit";
@@ -124,21 +126,30 @@
 
       lg = "lazygit";
 
-      update = "nix flake update";
-
       docker_clean = "docker builder prune -a --force";
       docker_clean_images = "docker rmi $(docker images -a --filter=dangling=true -q)";
       docker_clean_ps = "docker rm $(docker ps --filter=status=exited --filter=status=created -q)";
 
-      ns = "nh os switch";
-      ng = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
-
-      hm = "home-manager";
-      hs = "nh home switch";
-
       distro = "cat /etc/*-release | awk -F'=' '/DISTRIB_ID/ {print $2}'";
 
       pnpx = "pnpm dlx";
+
+      # Nix related aliases
+      ngen = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+      hgen = "home-manager generations";
+
+      ngc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
+
+      nu = "cd ${config.home.sessionVariables.FLAKE} && nix flake update";
+
+      nb = "nh os build";
+      ns = "nh os switch";
+
+      hm = "home-manager";
+      hb = "nh home build";
+      hs = "nh home switch";
+
+      depgraph = "nix-du | dot -Tsvg | display";
     };
 
     pointerCursor = {

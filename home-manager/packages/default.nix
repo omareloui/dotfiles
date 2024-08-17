@@ -62,7 +62,6 @@
     neofetch
     neovide
     networkmanagerapplet
-    nh
     nwg-look
     parallel
     patchelf
@@ -93,7 +92,6 @@
     unrar
     unzip
     vlc
-    vscode-extensions.sonarsource.sonarlint-vscode
     wallpaper
     wev
     wget
@@ -103,6 +101,11 @@
     yarn
     zathura
     zip
+
+    # Nix Utilities
+    nh
+    nix-du
+    graphviz # For `nix-du`
 
     # Development
     air
@@ -116,10 +119,10 @@
     luarocks
     makeWrapper
     mongodb-compass
-    nodePackages.prisma
     nodejs
     postman
-    prisma-engines
+    # nodePackages.prisma
+    # prisma-engines
     protobuf
     protoc-gen-go
     protoc-gen-go-grpc

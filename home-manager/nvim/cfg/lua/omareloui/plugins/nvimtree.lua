@@ -106,5 +106,12 @@ return {
 
     vim.g.nvimtree_side = options.view.side
     nvimtree.setup(options)
+
+    local ok, wk = pcall(require, "which-key")
+
+    -- stylua: ignore
+    if not ok then return end
+
+    wk.add { { "<leader>e", group = "file tree" } }
   end,
 }

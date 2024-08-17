@@ -1,7 +1,7 @@
 return {
   {
     "https://gitlab.com/schrieveslaach/sonarlint.nvim",
-
+    enabled = false,
     dependencies = { "neovim/nvim-lspconfig" },
 
     opts = {

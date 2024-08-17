@@ -76,7 +76,7 @@ return {
     }
 
     local wk = require "which-key"
-    wk.register({ m = "+make", n = "+no" }, { prefix = "<leader>" })
+    wk.add { { "<leader>m", group = "make" }, { "<leader>n", group = "no" } }
 
     conform.setup(opts)
   end,

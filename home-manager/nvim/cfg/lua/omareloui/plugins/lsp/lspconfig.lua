@@ -28,8 +28,6 @@ return {
   dependencies = {
     { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
     { "folke/neodev.nvim", opts = {} },
-    -- "williamboman/mason.nvim",
-    -- "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
     {
       "antosha417/nvim-lsp-file-operations",
@@ -82,14 +80,17 @@ return {
       set("[d", d.goto_prev, "Go to previous diagnostic")
       set("]d", d.goto_next, "Go to next diagnostic")
 
-      local wk = require "which-key"
-      wk.register({
-        c = "+code actions",
-        r = "+rename and restart",
-        l = "+lsp and linters",
-      }, { prefix = "<leader>" })
-      wk.register({ w = "+workspace" }, { prefix = "<leader>l" })
-      wk.register({ d = "+show definition in a split" }, { prefix = "<leader>s" })
+      local ok, wk = pcall(require, "which-key")
+
+      if ok then
+        wk.add {
+          { "<leader>c", group = "code actions" },
+          { "<leader>r", group = "rename and restart" },
+          { "<leader>l", group = "lsp and linters" },
+          { "<leader>lw", group = "workspace" },
+          { "<leader>sd", group = "show definition in split" },
+        }
+      end
     end
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()

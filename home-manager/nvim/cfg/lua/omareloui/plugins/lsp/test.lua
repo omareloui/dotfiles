@@ -25,7 +25,7 @@ return {
     if not ok then return end
 
     local wk = require "which-key"
-    wk.register({ t = "+test" }, { prefix = "<leader>" })
+    wk.add { { "<leader>t", group = "test" } }
 
     local neotest_jest = require "neotest-jest"
     local neotest_vitest = require "neotest-vitest"

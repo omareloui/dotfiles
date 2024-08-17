@@ -33,13 +33,14 @@ in {
     };
 
     delta = {
-      enable = true;
+      enable = false;
       options = {
         side-by-side = true;
         diff-so-fancy = true;
         line-numbers = true;
       };
     };
+
     aliases = {
       uc = "reset HEAD^ --soft";
       uncommit = "reset HEAD^ --soft";

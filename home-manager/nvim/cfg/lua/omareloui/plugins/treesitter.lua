@@ -3,6 +3,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     version = false,
     event = { "VeryLazy", "BufReadPost", "BufWritePost", "BufNewFile" },
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     build = ":TSUpdate",
     init = function(plugin)
       require("lazy.core.loader").add_to_rtp(plugin)
@@ -11,13 +12,14 @@ return {
     dependencies = {
       {
         "HiPhish/rainbow-delimiters.nvim",
-        opts = {},
+        enabled = true,
         config = function()
           require("rainbow-delimiters.setup").setup {}
         end,
       },
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        enabled = true,
         config = function()
           local move = require "nvim-treesitter.textobjects.move" ---@type table<string,fun(...)>
           local configs = require "nvim-treesitter.configs"
@@ -40,11 +42,14 @@ return {
         end,
       },
     },
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     config = function()
       local opts = {
         auto_install = true,
-        highlight = { enable = true, highlight = { enable = true }, additional_vim_regex_highlighting = true },
+        highlight = {
+          enable = true,
+          highlight = { enable = true },
+          additional_vim_regex_highlighting = true,
+        },
         indent = { enable = true },
         rainbow = { enable = true },
         ensure_installed = {
@@ -79,53 +84,53 @@ return {
           "vue",
           "yaml",
         },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<C-Space><C-Space>",
-            node_incremental = "<C-Space>",
-            node_decremental = "<BS>",
-            scope_incremental = false,
-          },
-        },
-        textobjects = {
-          move = {
-            enable = true,
-            goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
-            goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
-            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
-            goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
-          },
-          select = {
-            enable = true,
-            keymaps = {
-              ["af"] = { query = "@function.outer", desc = "select outer part of a function" },
-              ["if"] = { query = "@function.inner", desc = "select inner part of a function" },
+        -- incremental_selection = {
+        --   enable = true,
+        --   keymaps = {
+        --     init_selection = "<C-Space><C-Space>",
+        --     node_incremental = "<C-Space>",
+        --     node_decremental = "<BS>",
+        --     scope_incremental = false,
+        --   },
+        -- },
+        -- textobjects = {
+        --   move = {
+        --     enable = true,
+        --     goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+        --     goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+        --     goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+        --     goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
+        --   },
+        --   select = {
+        --     enable = true,
+        --     keymaps = {
+        --       ["af"] = { query = "@function.outer", desc = "select outer part of a function" },
+        --       ["if"] = { query = "@function.inner", desc = "select inner part of a function" },
 
-              ["ic"] = { query = "@class.inner", desc = "select inner part of a class" },
-              ["ac"] = { query = "@class.outer", desc = "select outer part of a class" },
+        --       ["ic"] = { query = "@class.inner", desc = "select inner part of a class" },
+        --       ["ac"] = { query = "@class.outer", desc = "select outer part of a class" },
 
-              ["il"] = { query = "@loop.inner", desc = "select inner part of a loop" },
-              ["al"] = { query = "@loop.outer", desc = "select outer part of a loop" },
+        --       ["il"] = { query = "@loop.inner", desc = "select inner part of a loop" },
+        --       ["al"] = { query = "@loop.outer", desc = "select outer part of a loop" },
 
-              ["ii"] = { query = "@conditional.inner", desc = "select inner part of a conditional" },
-              ["ai"] = { query = "@conditional.outer", desc = "select outer part of a conditional" },
+        --       ["ii"] = { query = "@conditional.inner", desc = "select inner part of a conditional" },
+        --       ["ai"] = { query = "@conditional.outer", desc = "select outer part of a conditional" },
 
-              ["ib"] = { query = "@block.inner", desc = "select inner part of a block" },
-              ["ab"] = { query = "@block.outer", desc = "select outer part of a block" },
+        --       ["ib"] = { query = "@block.inner", desc = "select inner part of a block" },
+        --       ["ab"] = { query = "@block.outer", desc = "select outer part of a block" },
 
-              ["ir"] = { query = "@parameter.inner", desc = "select inner part of a parameter" },
-              ["ar"] = { query = "@parameter.outer", desc = "select outer part of a parameter" },
-            },
-          },
-          swap = {
-            enable = true,
-            swap_next = { ["<leader>a"] = { query = "@parameter.inner", desc = "swap with the next parameter" } },
-            swap_previous = {
-              ["<leader>A"] = { query = "@parameter.inner", desc = "swap with the previous parameter" },
-            },
-          },
-        },
+        --       ["ir"] = { query = "@parameter.inner", desc = "select inner part of a parameter" },
+        --       ["ar"] = { query = "@parameter.outer", desc = "select outer part of a parameter" },
+        --     },
+        --   },
+        --   swap = {
+        --     enable = true,
+        --     swap_next = { ["<leader>a"] = { query = "@parameter.inner", desc = "swap with the next parameter" } },
+        --     swap_previous = {
+        --       ["<leader>A"] = { query = "@parameter.inner", desc = "swap with the previous parameter" },
+        --     },
+        --   },
+        -- },
       }
 
       require("nvim-treesitter.configs").setup(opts)

@@ -223,7 +223,7 @@
       ];
 
       misc = {
-        enable_swallow = true;
+        enable_swallow = false;
         swallow_regex = "^(Alacritty|kitty|footclient|scratchpad)$";
         disable_splash_rendering = true;
         disable_hyprland_logo = true;

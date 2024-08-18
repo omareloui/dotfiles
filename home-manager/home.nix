@@ -134,7 +134,13 @@
 
       pnpx = "pnpm dlx";
 
-      # Nix related aliases
+      # BtrFS aliases
+      # https://marc.merlins.org/perso/btrfs/post_2014-05-04_Fixing-Btrfs-Filesystem-Full-Problems.html
+      btrfs_balance = "(sudo btrfs balance start -musage=0 / && sudo btrfs balance start -dusage=0 / && sudo btrfs balance start -dusage=20 / &) && while :; do sudo btrfs balance status -v /; sleep 60; done";
+      btrfs_df = "sudo btrfs filesystem usage /";
+      btrfs_show = "sudo btrfs filesystem show";
+
+      # Nix aliases
       ngen = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       hgen = "home-manager generations";
 

@@ -58,6 +58,13 @@
       format = "";
     };
 
+    # Notifications
+    "custom/notification" = {
+      format = "";
+      on-click = "swaync-client -t";
+      tooltip = false;
+    };
+
     # Cliphist
     "custom/cliphist" = {
       format = "";
@@ -184,7 +191,7 @@
         # "custom/chatgpt"
         "custom/settings"
         "custom/waybarthemes"
-        "custom/wallpaper"
+        # "custom/wallpaper"
       ];
     };
 

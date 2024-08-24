@@ -15,10 +15,10 @@
     "modules-left": [
         "custom/appmenu",
         "group/settings",
-        "wlr/taskbar",
-        "group/quicklinks",
-        "hyprland/window",
-        "custom/empty"
+        "wlr/taskbar"
+        // "group/quicklinks",
+        // "hyprland/window"
+        // "custom/empty"
     ],
 
     // Modules Center
@@ -26,7 +26,7 @@
         "hyprland/workspaces"
     ],
 
-    // Modules Right    
+    // Modules Right
     "modules-right": [
         "custom/empty",
         "pulseaudio",
@@ -39,6 +39,7 @@
         "idle_inhibitor",
         "tray",
         "hyprland/language",
+        "custom/notification",
         "clock",
         "custom/exit"
     ]

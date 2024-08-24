@@ -4,9 +4,8 @@ return {
   config = function()
     local present, toggleterm = pcall(require, "toggleterm")
 
-    if not present then
-      return
-    end
+    -- stylua: ignore
+    if not present then return end
 
     local opts = {
       size = 20,

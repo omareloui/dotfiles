@@ -16,5 +16,19 @@ return {
     { "<A-l>", function() require("harpoon.ui").nav_next() end, desc = "Go to next Harpoon file" },
   },
 
-  opts = {},
+  config = function()
+    local ok, harpoon = pcall(require, "harpoon")
+
+    -- stylua: ignore
+    if not ok then return end
+
+    harpoon.setup()
+
+    local wk_ok, wk = pcall(require, "which-key")
+
+    -- stylua: ignore
+    if not wk_ok then return end
+
+    wk.add { { "<leader>h", group = "harpoon" } }
+  end,
 }

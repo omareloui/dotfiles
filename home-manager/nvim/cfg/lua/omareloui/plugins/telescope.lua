@@ -72,7 +72,6 @@ return {
           ".output",
           ".nuxt",
           "vendor",
-          "build",
           "dist",
           "^bazel-.*/",
         },

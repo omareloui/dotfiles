@@ -20,11 +20,11 @@ return {
         end
 
         -- stylua: ignore start
+        set("<leader>gfd", gs.diffthis, "Diff this file")
         set("<leader>ghS", gs.stage_buffer, "Stage Buffer")
         set("<leader>ghR", gs.reset_buffer, "Reset Buffer")
         set("<leader>ghu", gs.stage_hunk, "Stage Hunk", { mode = { "n", "v" } })
         set("<leader>ghp", gs.preview_hunk, "Preview Hunk")
-        set("<leader>ghd", gs.diffthis, "Diff This")
         set("<leader>ghb", function() gs.blame_line { full = true } end, "Blame Line")
         set("<leader>ghD", function() gs.diffthis "~" end, "Diff This ~")
         set("]h", gs.next_hunk, "Next Hunk")
@@ -32,8 +32,11 @@ return {
         -- stylua: ignore end
 
         local wk = require "which-key"
-        wk.add { { "<leader>g", group = "git" } }
-        wk.add { { "<leader>gh", group = "hunk" }, { "f", group = "file" } }
+        wk.add {
+          { "<leader>g", group = "git" },
+          { "<leader>gh", group = "hunk" },
+          { "<leader>gf", group = "file" },
+        }
       end,
     }
 

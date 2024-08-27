@@ -85,6 +85,7 @@
     swaylock-effects
     swww
     syncthing
+    teams-for-linux
     telegram-desktop
     tldr
     trashy

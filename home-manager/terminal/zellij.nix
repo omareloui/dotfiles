@@ -376,4 +376,47 @@
 
       }
     '';
+
+  home.file.".config/zellij/layouts/trust-fe.kdl".text =
+    /*
+    kdl
+    */
+    ''
+      layout {
+        tab_template name="base" {
+          children
+          pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+          }
+        }
+
+        base name="editor" focus=true {
+          pane {
+            command "${config.home.sessionVariables.EDITOR}"
+            cwd "${config.home.sessionVariables.REPOS_DIR}/whats_cookin/trust_claim"
+          }
+        }
+
+        base name="run-time" {
+          pane {
+            cwd "${config.home.sessionVariables.REPOS_DIR}/whats_cookin/trust_claim"
+          }
+
+          pane split_direction="vertical" size=20 {
+            command "yarn"
+            args "dev"
+            cwd "${config.home.sessionVariables.REPOS_DIR}/whats_cookin/trust_claim"
+          }
+        }
+
+        base name="backend" {
+          pane split_direction="vertical" {
+            command "docker"
+            args "compose" "--profile" "dev" "up"
+            cwd "${config.home.sessionVariables.REPOS_DIR}/whats_cookin"
+          }
+        }
+
+      }
+    '';
 }

@@ -79,6 +79,38 @@
           rm -f -- "$tmp"
         }
 
+        function _list_zellij_sessions () {
+          zellij list-sessions 2>/dev/null | sed -e 's/\x1b\[[0-9;]*m//g'
+        }
+
+        function zja() {
+          zj_session=$(_list_zellij_sessions | rg -v 'EXITED -' | awk '{print $1}' | fzf)
+          if [[ -n $zj_session ]]; then
+            wezterm start -- zsh --login -c "zellij attach $session"
+          fi
+        }
+
+        function zjl() {
+          layout=$(fd '.*' "$HOME/.config/zellij/layouts" | xargs -I{} basename {} .kdl | fzf)
+          if [[ -n $layout ]]; then
+            wezterm start -- zsh --login -c "zellij --layout $layout attach -c $layout"
+          fi
+        }
+
+        function zjgc() {
+          sessions=$(_list_zellij_sessions | awk '/EXITED -/ {print $1}' )
+          if [[ -n $sessions ]]; then
+            echo $sessions | xargs -n1 zellij d
+          fi
+        }
+
+        function zjd() {
+          sessions=$(_list_zellij_sessions | awk '{print $1}' | fzf -m)
+          if [[ -n $sessions ]]; then
+            echo $sessions | xargs -n1 zellij d --force
+          fi
+        }
+
         hash -d h="$HOME/myhome"
         hash -d d="$HOME/.dotfiles"
       '';

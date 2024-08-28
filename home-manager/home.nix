@@ -145,6 +145,9 @@
       hb = "nh home build";
       hs = "nh home switch";
 
+      # Zellij aliases
+      zj = "zellij";
+
       depgraph = "nix-du | dot -Tsvg | display";
     };
 

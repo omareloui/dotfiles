@@ -89,7 +89,7 @@
           };
         };
         move = {
-          "bind \"Ctrl h\"" = {SwitchToMode = "Normal";};
+          "bind \"Ctrl m\"" = {SwitchToMode = "Normal";};
           "bind \"n\" \"Tab\"" = {MovePane = [];};
           "bind \"p\"" = {MovePaneBackwards = [];};
           "bind \"h\"" = {MovePane = "Left";};
@@ -333,7 +333,7 @@
           "bind \"Ctrl t\"" = {SwitchToMode = "Tab";};
         };
         "shared_except \"move\" \"locked\"" = {
-          "bind \"Ctrl h\"" = {SwitchToMode = "Move";};
+          "bind \"Ctrl m\"" = {SwitchToMode = "Move";};
         };
         "shared_except \"tmux\" \"locked\"" = {
           "bind \"Ctrl b\"" = {SwitchToMode = "Tmux";};

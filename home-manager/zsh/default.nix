@@ -84,7 +84,7 @@
         }
 
         function zja() {
-          zj_session=$(_list_zellij_sessions | rg -v 'EXITED -' | awk '{print $1}' | fzf)
+          zj_session=$(_list_zellij_sessions | rg -v '(EXITED -|\(current\))' | awk '{print $1}' | fzf)
           if [[ -n $zj_session ]]; then
             wezterm start -- zsh --login -c "zellij attach $session"
           fi

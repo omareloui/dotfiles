@@ -1,6 +1,5 @@
 {...}: {
-  programs.
-    lazygit = {
+  programs.lazygit = {
     enable = true;
     settings = {
       gui = {
@@ -11,7 +10,7 @@
       git = {
         paging = {
           colorArgs = "always";
-          # pager = "delta --dark --diff-so-fancy --paging=never --line-numbers";
+          pager = "delta --dark --diff-so-fancy --paging=never --line-numbers";
         };
       };
     };

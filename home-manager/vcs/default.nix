@@ -33,7 +33,7 @@ in {
     };
 
     delta = {
-      enable = false;
+      enable = true;
       options = {
         side-by-side = true;
         diff-so-fancy = true;

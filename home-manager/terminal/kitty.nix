@@ -10,11 +10,7 @@
     font = {
       name = "FiraCode Nerd Font";
       package = pkgs.nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "Iosevka"
-          "NerdFontsSymbolsOnly"
-        ];
+        fonts = ["FiraCode"];
       };
       size = 12;
     };
@@ -27,13 +23,20 @@
       initial_window_height = "35c";
       window_padding_width = 0;
       confirm_os_window_close = 0;
+      hide_window_decorations = true;
+
       wayland_titlebar_color = "background";
       macos_titlebar_color = "background";
-      hide_window_decorations = true;
       background_opacity = "0.6";
 
       foreground = "#${base05}";
       background = "#${base00}";
+
+      cursor = "#${base05}";
+      cursor_text_color = "#${base00}";
+
+      selection_foreground = "#${base05}";
+      selection_background = "#${base00}";
 
       color0 = "#${base00}";
       color1 = "#${base08}";
@@ -57,12 +60,6 @@
       color19 = "#${base02}";
       color20 = "#${base04}";
       color21 = "#${base06}";
-
-      cursor = "#${base05}";
-      cursor_text_color = "#${base00}";
-
-      selection_foreground = "#${base00}"; # "none"
-      selection_background = "#${base05}";
 
       url_color = "#${base04}";
 

@@ -62,6 +62,8 @@
         inherit system;
         config.allowUnfree = true;
       });
+
+    pkgs = nixpkgs.legacyPackages.${system};
   in {
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
@@ -89,8 +91,10 @@
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       "omareloui@nixos" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        extraSpecialArgs = {inherit inputs outputs systemConfig;};
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit inputs outputs systemConfig;
+        };
         modules = [./home-manager/home.nix];
       };
     };

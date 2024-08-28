@@ -6,6 +6,7 @@
 }: {
   wayland.windowManager.hyprland = let
     p = config.colorScheme.palette;
+    terminalEmulator = lib.getExe pkgs.wezterm;
   in {
     enable = true;
     xwayland.enable = true;
@@ -192,7 +193,7 @@
         "size 482 567, class:^transmission-gtk$,title:^Torrent Options$"
 
         "opacity 0.95 0.95, class:^(microsoft-edge)$"
-        "opacity 0.95 0.8, class:^(kitty)$"
+        "opacity 0.95 0.8, class:^(kitty|org\.wezfurlong\.wezterm)$"
         "opacity 0.85 0.8, class:^(org.gnome.Nautilus)$"
 
         "bordercolor rgb(${p.base00}) rgb(${p.base01}), floating:1"
@@ -224,7 +225,7 @@
 
       misc = {
         enable_swallow = false;
-        swallow_regex = "^(Alacritty|kitty|footclient|scratchpad)$";
+        swallow_regex = "^(Alacritty|kitty|wezterm|footclient|scratchpad)$";
         disable_splash_rendering = true;
         disable_hyprland_logo = true;
       };
@@ -290,8 +291,8 @@
           "$mainMod SHIFT, E, exec, pypr toggle yazi && hyprctl dispatch bringactivetotop"
 
           # Apps keybindings
-          "$mainMod, Return, exec, ${lib.getExe pkgs.kitty}"
-          "$mainMod SHIFT, Return, exec, [float] ${lib.getExe pkgs.kitty}"
+          "$mainMod, Return, exec, ${terminalEmulator}"
+          "$mainMod SHIFT, Return, exec, [float] ${terminalEmulator}"
           "$mainMod, B, exec, [workspace 1] microsoft-edge"
           "$mainMod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
           "$mainMod, N, exec, nm-connection-editor"

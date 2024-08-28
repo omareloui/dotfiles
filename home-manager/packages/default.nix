@@ -122,13 +122,15 @@
     mongodb-compass
     nodejs
     postman
-    # nodePackages.prisma
-    # prisma-engines
     protobuf
     protoc-gen-go
     protoc-gen-go-grpc
     rustup
     templ
+
+    stable.nodePackages.prisma
+    stable.prisma-engines
+    openssl
 
     (pkgs.python311.withPackages (ppkgs:
       with ppkgs; [

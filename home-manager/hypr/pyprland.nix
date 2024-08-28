@@ -7,8 +7,9 @@
 
   home.file.".config/hypr/pyprland.toml".text = let
     class = "scratchpad";
-    terminalEmulator = "${lib.getExe pkgs.wezterm} start --class ${class} --always-new-process -- zsh --login -c 'zellij'";
-    terminalEmulatorRun = "${lib.getExe pkgs.wezterm} start --class ${class} --always-new-process --";
+
+    term = "${lib.getExe pkgs.wezterm} start --class ${class} --always-new-process --";
+
     xsize = 80;
     ysize = 85;
     smxsize = 60;
@@ -29,14 +30,14 @@
       plugins = ["scratchpads"]
 
       [scratchpads.term]
-      command = "${terminalEmulator}"
+      command = "${term} zsh --login -c 'zellij attach -c ${class}'"
       class = "${class}"
       position = "${builtins.toString xpos}% ${builtins.toString ypos}%"
       size = "${builtins.toString xsize}% ${builtins.toString ysize}%"
       animation = "fromTop"
 
       [scratchpads.yazi]
-      command = "${terminalEmulatorRun} ${lib.getExe pkgs.yazi}"
+      command = "${term} ${lib.getExe pkgs.yazi}"
       class = "${class}"
       unfocus = "hide"
       position = "${builtins.toString xpos}% ${builtins.toString ypos}%"
@@ -44,7 +45,7 @@
       animation = "fromTop"
 
       [scratchpads.btm]
-      command = "${terminalEmulatorRun} ${lib.getExe pkgs.bottom}"
+      command = "${term} ${lib.getExe pkgs.bottom}"
       class = "${class}"
       unfocus = "hide"
       position = "${builtins.toString smxpos}% ${builtins.toString smypos}%"

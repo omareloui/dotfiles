@@ -292,7 +292,7 @@
 
           # Apps keybindings
           "$mainMod, Return, exec, ${terminalEmulator}"
-          "$mainMod SHIFT, Return, exec, [float] ${terminalEmulator}"
+          "$mainMod SHIFT, Return, exec, ${lib.getExe pkgs.zj_sessions}"
           "$mainMod, B, exec, [workspace 1] microsoft-edge"
           "$mainMod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
           "$mainMod, N, exec, nm-connection-editor"

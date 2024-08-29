@@ -101,6 +101,7 @@
     yarn
     zathura
     zip
+    zj_sessions
 
     # Nix Utilities
     nh

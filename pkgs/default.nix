@@ -14,4 +14,6 @@
   batplug = pkgs.callPackage ./battery/batplug.nix {};
   batsuspend = pkgs.callPackage ./battery/batsuspend.nix {};
   batwarning = pkgs.callPackage ./battery/batwarning.nix {};
+
+  zj_sessions = pkgs.callPackage ./zj_sessions {};
 }

@@ -42,7 +42,6 @@
     git
     gnome-disk-utility
     gnome.gnome-bluetooth
-    group_likes
     hyprpicker
     imagemagick
     init_bar

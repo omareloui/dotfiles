@@ -147,11 +147,6 @@
             desc = "open oil file explorer";
           }
           {
-            on = [leader "g"];
-            run = "shell --confirm ${lib.getExe pkgs.group_likes}";
-            desc = "group like-titled files into directories";
-          }
-          {
             on = [leader "f"];
             run = ''plugin unfold'';
             desc = "flatten the selected directories";

@@ -101,7 +101,7 @@
     };
 
     shellAliases = {
-      "." = "cd ${config.home.homeDirectory}/.dotfiles && ${config.home.sessionVariables.EDITOR}";
+      "." = "cd ${config.home.sessionVariables.FLAKE} && ${config.home.sessionVariables.EDITOR}";
 
       py = "python3";
       pve = "python3 -m venv ./env";

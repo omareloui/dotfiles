@@ -70,44 +70,6 @@
         config.disable_default_key_bindings = true;
         config.keys = {
           { key = 'V', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom 'Clipboard' },
-          { key = 'V', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom 'PrimarySelection' },
-
-        --   {
-        --     -- Split vertical
-        --     key = '(',
-        --     mods = 'CTRL|SHIFT',
-        --     action = wezterm.action.SplitPane {
-        --       direction = 'Right',
-        --       size = { Percent = 50 },
-        --     },
-        --   },
-        --   {
-        --     -- Split horizontal
-        --     key = ')',
-        --     mods = 'CTRL|SHIFT',
-        --     action = wezterm.action.SplitPane {
-        --       direction = 'Down',
-        --       size = { Percent = 50 },
-        --     },
-        --   },
-        --   {
-        --     -- Cycle through panes
-        --     key = 'Tab',
-        --     mods = 'CTRL',
-        --     action = wezterm.action.ActivatePaneDirection 'Next',
-        --   },
-        --   {
-        --     -- Cycle through panes in reverse
-        --     key = 'Tab',
-        --     mods = 'CTRL|SHIFT',
-        --     action = wezterm.action.ActivatePaneDirection 'Prev',
-        --   },
-        --   {
-        --     -- Close a pane forcefully
-        --     key = 'Q',
-        --     mods = 'CTRL|SHIFT',
-        --     action = wezterm.action.CloseCurrentPane { confirm = false; },
-        --   }
         }
 
         -- Misc

@@ -86,6 +86,7 @@
     syncthing
     teams-for-linux
     telegram-desktop
+    termdown
     tldr
     trashy
     tree

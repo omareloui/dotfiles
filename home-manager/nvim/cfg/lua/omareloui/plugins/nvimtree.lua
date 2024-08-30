@@ -14,7 +14,7 @@ return {
         dotfiles = false,
         exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
         custom = {
-          -- "^bazel-.*$",
+          "^\\.git$",
           "^\\.stfolder.*",
           "^\\.obsidian$",
         },

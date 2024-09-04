@@ -343,11 +343,11 @@
   };
 
   home.file = let
-    default_tab_template = ''
-      tab_template name="base" {
+    common_layout_content = ''
+      default_tab_template {
         children
         pane size=1 borderless=true {
-          plugin location="zellij:compact-bar"
+            plugin location="compact-bar"
         }
       }
     '';
@@ -358,19 +358,17 @@
       */
       ''
         layout {
-          ${default_tab_template}
+          ${common_layout_content}
+          cwd "${config.home.sessionVariables.FLAKE}"
 
-          base name="dotfiles" focus=true {
+          tab name="dotfiles" focus=true {
             pane {
               command "${config.home.sessionVariables.EDITOR}"
-              cwd "${config.home.sessionVariables.FLAKE}"
             }
           }
 
-          base name="cmd" {
-            pane {
-              cwd "${config.home.sessionVariables.FLAKE}"
-            }
+          tab name="cmd" {
+            pane
           }
          }
       '';
@@ -381,24 +379,22 @@
       */
       ''
         layout {
-          ${default_tab_template}
+          ${common_layout_content}
 
-          base name="editor" focus=true {
+          cwd "${config.home.sessionVariables.REPOS_DIR}/odinls"
+
+          tab name="editor" focus=true {
             pane {
               command "${config.home.sessionVariables.EDITOR}"
-              cwd "${config.home.sessionVariables.REPOS_DIR}/odinls"
             }
           }
 
-          base name="docker" {
-            pane {
-              cwd "${config.home.sessionVariables.REPOS_DIR}/odinls"
-            }
+          tab name="docker" {
+            pane
 
             pane split_direction="vertical" size=20 {
               command "docker"
               args "compose" "--profile" "dev" "up" "--watch"
-              cwd "${config.home.sessionVariables.REPOS_DIR}/odinls"
             }
           }
         }
@@ -410,24 +406,22 @@
       */
       ''
         layout {
-          ${default_tab_template}
+          ${common_layout_content}
+          cwd "${config.home.sessionVariables.REPOS_DIR}/whats_cookin"
 
-          base name="editor" focus=true {
+          tab name="editor" focus=true {
             pane {
               command "${config.home.sessionVariables.EDITOR}"
-              cwd "${config.home.sessionVariables.REPOS_DIR}/whats_cookin/trust_claim_backend"
+              cwd "trust_claim_backend"
             }
           }
 
-          base name="docker" {
-            pane {
-              cwd "${config.home.sessionVariables.REPOS_DIR}/whats_cookin/trust_claim_backend"
-            }
+          tab name="docker" {
+            pane cwd="trust_claim_backend"
 
             pane split_direction="vertical" size=20 {
               command "docker"
               args "compose" "--profile" "dev" "up" "--watch"
-              cwd "${config.home.sessionVariables.REPOS_DIR}/whats_cookin"
             }
           }
         }
@@ -439,16 +433,16 @@
       */
       ''
         layout {
-          ${default_tab_template}
+          ${common_layout_content}
 
-          base name="editor" focus=true {
+          tab name="editor" focus=true {
             pane {
               command "${config.home.sessionVariables.EDITOR}"
               cwd "${config.home.sessionVariables.REPOS_DIR}/whats_cookin/trust_claim"
             }
           }
 
-          base name="run-time" {
+          tab name="run-time" {
             pane {
               cwd "${config.home.sessionVariables.REPOS_DIR}/whats_cookin/trust_claim"
             }
@@ -460,7 +454,7 @@
             }
           }
 
-          base name="backend" {
+          tab name="backend" {
             pane split_direction="vertical" {
               command "docker"
               args "compose" "--profile" "dev" "up"

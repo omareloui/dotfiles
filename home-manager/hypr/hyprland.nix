@@ -201,8 +201,8 @@
         "opacity 1 1, title:^(${pipRe})$"
         "pin, title:^(${pipRe})$"
         "float, title:^(${pipRe})$"
-        "size 25% 25%, title:^(${pipRe})$"
-        "move 74% 73%, title:^(${pipRe})$"
+        "size 656 386, title:^(${pipRe})$"
+        "move 1252 680, title:^(${pipRe})$"
       ];
 
       layerrule = [

@@ -20,7 +20,6 @@
     impl
     lua-language-server
     luaPackages.luacheck
-    vscode-extensions.sonarsource.sonarlint-vscode
     markdownlint-cli
     marksman
     nil
@@ -39,6 +38,8 @@
     statix
     stylua
     tailwindcss-language-server
+    vale
+    vscode-extensions.sonarsource.sonarlint-vscode
     vscode-extensions.vue.volar
     vscode-langservers-extracted
     yaml-language-server

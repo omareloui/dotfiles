@@ -45,7 +45,7 @@ return {
       javascript = { js_linter, "cspell" },
       javascriptreact = { js_linter, "cspell" },
       lua = { "luacheck", "cspell" },
-      markdown = { "markdownlint", "cspell" },
+      markdown = { "markdownlint", "vale", "cspell" },
       nix = { "statix", "cspell" },
       proto = { "buf", "cspell" },
       sh = { "shellcheck", "cspell" },

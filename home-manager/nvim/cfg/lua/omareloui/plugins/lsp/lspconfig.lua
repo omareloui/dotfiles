@@ -14,6 +14,7 @@ local language_server_to_load = {
   "nix",
   "prisma",
   "proto",
+  "python",
   "rust",
   "sql",
   "tailwind",

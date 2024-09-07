@@ -1,8 +1,7 @@
 {
-  lib,
   stdenv,
   fetchFromGitHub,
-  python311,
+  python312,
 }:
 stdenv.mkDerivation {
   pname = "inkscape-applytransforms";
@@ -16,8 +15,8 @@ stdenv.mkDerivation {
   };
 
   nativeCheckInputs = [
-    python311.pkgs.inkex
-    python311.pkgs.pytestCheckHook
+    python312.pkgs.inkex
+    python312.pkgs.pytestCheckHook
   ];
 
   dontBuild = true;

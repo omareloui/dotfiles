@@ -48,6 +48,7 @@ return {
       markdown = { "markdownlint", "vale", "cspell" },
       nix = { "statix", "cspell" },
       proto = { "buf", "cspell" },
+      python = { "flake8" },
       sh = { "shellcheck", "cspell" },
       sql = { "sqlfluff", "cspell" },
       svelte = { js_linter, "cspell" },

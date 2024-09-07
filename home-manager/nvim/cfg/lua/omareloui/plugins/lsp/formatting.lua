@@ -60,6 +60,7 @@ return {
         markdown = { "prettierd" },
         nix = { "alejandra" },
         proto = { "buf" },
+        python = { "isort", "black" },
         sh = { "shfmt" },
         sql = { "sql_formatter" },
         svelte = { "prettierd" },

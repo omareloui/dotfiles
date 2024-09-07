@@ -133,7 +133,7 @@
     stable.prisma-engines
     openssl
 
-    (pkgs.python311.withPackages (ppkgs:
+    (pkgs.python312.withPackages (ppkgs:
       with ppkgs; [
         pip
         inkex

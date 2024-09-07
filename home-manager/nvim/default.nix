@@ -32,6 +32,10 @@
     nodePackages_latest.eslint
     nodePackages_latest.prettier
     prettierd
+    pyright
+    python312Packages.isort
+    python312Packages.black
+    python312Packages.flake8
     shellcheck
     shfmt
     sqlfluff

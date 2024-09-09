@@ -32,7 +32,7 @@
           "bind \"Ctrl g\"" = {SwitchToMode = "Normal";};
         };
         resize = {
-          "bind \"Ctrl n\"" = {SwitchToMode = "Normal";};
+          # "bind \"Ctrl n\"" = {SwitchToMode = "Normal";};
           "bind \"h\"" = {Resize = "Increase Left";};
           "bind \"j\"" = {Resize = "Increase Down";};
           "bind \"k\"" = {Resize = "Increase Up";};
@@ -45,7 +45,7 @@
           "bind \"-\"" = {Resize = "Decrease";};
         };
         pane = {
-          "bind \"Ctrl p\"" = {SwitchToMode = "Normal";};
+          "bind \"Ctrl w\"" = {SwitchToMode = "Normal";};
           "bind \"h\"" = {MoveFocus = "Left";};
           "bind \"l\"" = {MoveFocus = "Right";};
           "bind \"j\"" = {MoveFocus = "Down";};
@@ -318,11 +318,11 @@
           "bind \"Enter\" \"Esc\" \"q\"" = {SwitchToMode = "Normal";};
         };
         "shared_except \"pane\" \"locked\"" = {
-          "bind \"Ctrl p\"" = {SwitchToMode = "Pane";};
+          "bind \"Ctrl w\"" = {SwitchToMode = "Pane";};
         };
-        "shared_except \"resize\" \"locked\"" = {
-          "bind \"Ctrl n\"" = {SwitchToMode = "Resize";};
-        };
+        # "shared_except \"resize\" \"locked\"" = {
+        #   "bind \"Ctrl n\"" = {SwitchToMode = "Resize";};
+        # };
         "shared_except \"scroll\" \"locked\"" = {
           "bind \"Ctrl s\"" = {SwitchToMode = "Scroll";};
         };

@@ -33,12 +33,13 @@
     nodePackages_latest.prettier
     prettierd
     pyright
-    python312Packages.isort
     python312Packages.black
     python312Packages.flake8
+    python312Packages.isort
     shellcheck
     shfmt
     sqlfluff
+    sqls
     statix
     stylua
     tailwindcss-language-server

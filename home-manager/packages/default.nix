@@ -127,6 +127,8 @@
     protoc-gen-go
     protoc-gen-go-grpc
     rustup
+    sqlc
+    sqlite
     templ
 
     stable.nodePackages.prisma

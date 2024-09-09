@@ -38,6 +38,7 @@ return {
         "nvim-tree/nvim-tree.lua",
       },
     },
+    "nanotee/sqls.nvim", -- for sql
   },
 
   config = function()

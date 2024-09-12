@@ -131,6 +131,7 @@
     rustup
     sqlc
     sqlite
+    sqlitebrowser
     templ
 
     stable.nodePackages.prisma

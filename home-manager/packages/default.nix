@@ -96,6 +96,7 @@
     wallpaper
     wev
     wget
+    whatsapp-for-linux
     wirelesstools
     wl-clipboard
     xorg.xhost
@@ -115,6 +116,7 @@
     deno
     gnumake
     go-mockery
+    goose
     grpcui
     grpcurl
     lua

@@ -400,6 +400,26 @@
         }
       '';
 
+    ".config/zellij/layouts/financial-planner.kdl".text =
+      /*
+      kdl
+      */
+      ''
+        layout {
+          ${common_layout_content}
+          cwd "${config.home.sessionVariables.REPOS_DIR}/financial-planner"
+
+          tab name="editor" focus=true {
+            pane
+          }
+
+          tab name="cmd & dev" {
+            pane
+            pane split_direction="vertical" size=20
+          }
+        }
+      '';
+
     ".config/zellij/layouts/trust-be.kdl".text =
       /*
       kdl

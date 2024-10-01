@@ -27,7 +27,7 @@
       };
 
       input = {
-        kb_layout = "us,eg";
+        kb_layout = "us,es,eg";
         kb_options = "grp:alt_shift_toggle";
         repeat_rate = 30;
         repeat_delay = 300;

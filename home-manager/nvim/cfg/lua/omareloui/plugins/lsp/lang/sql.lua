@@ -17,7 +17,7 @@ return {
           connections = {
             {
               driver = "sqlite3",
-              dataSourceName = "/home/omareloui/myhome/repos/financial-plans/data/db.sqlite",
+              dataSourceName = "/home/omareloui/myhome/repos/financial-planner/data/db.sqlite",
             },
           },
         },

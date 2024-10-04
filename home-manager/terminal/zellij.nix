@@ -400,14 +400,14 @@
         }
       '';
 
-    ".config/zellij/layouts/financial-planner.kdl".text =
+    ".config/zellij/layouts/tyche.kdl".text =
       /*
       kdl
       */
       ''
         layout {
           ${common_layout_content}
-          cwd "${config.home.sessionVariables.REPOS_DIR}/financial-planner"
+          cwd "${config.home.sessionVariables.REPOS_DIR}/tyche"
 
           tab name="editor" focus=true {
             pane

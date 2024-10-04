@@ -62,7 +62,7 @@ return {
         proto = { "buf" },
         python = { "isort", "black" },
         sh = { "shfmt" },
-        sql = { "sql_formatter" },
+        sql = { "sqlfluff" },
         svelte = { "prettierd" },
         svg = { "prettier" },
         templ = { "templ" },

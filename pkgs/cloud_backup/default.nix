@@ -72,6 +72,7 @@ writeShellApplication {
       done
 
       function p() {
+        logger "$1"
         if ((verbose == 1)); then
           echo -e "$1"
         fi
@@ -86,7 +87,7 @@ writeShellApplication {
 
         [[ -n $_options ]] && options="-$_options"
 
-        for f in "$MYHOME/leatherwork:leatherwork/local" "$MYHOME/documents/passwords.kdbx:secrets"; do
+        for f in "$MYHOME/leatherwork:leatherwork/patterns_and_designs" "$MYHOME/documents/passwords.kdbx:secrets"; do
           src="$(echo "$f" | cut -d: -f1)"
           dest="$(echo "$f" | cut -d: -f2)"
 

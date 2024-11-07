@@ -25,7 +25,7 @@
 
   nix = {
     # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
+    # To make nix3 commands consistent with flake
     registry =
       (lib.mapAttrs (_: flake: {inherit flake;}))
       ((lib.filterAttrs (_: lib.isType "flake")) inputs);
@@ -187,6 +187,13 @@
         PermitRootLogin = "no";
         PasswordAuthentication = false;
       };
+    };
+
+    cron = {
+      enable = true;
+      systemCronJobs = [
+        "0 0 */1 * * ${config.users.users.omareloui.name} ${outputs.packages.${pkgs.system}.cloud_backup}"
+      ];
     };
   };
 

@@ -40,8 +40,8 @@
     gh
     ghostscript
     git
+    gnome-bluetooth
     gnome-disk-utility
-    gnome.gnome-bluetooth
     hyprpicker
     imagemagick
     init_bar
@@ -69,6 +69,7 @@
     playerctl
     polkit_gnome
     poppler
+    pulseaudioFull
     qalculate-gtk
     rclone
     ripgrep
@@ -95,6 +96,7 @@
     vlc
     wallpaper
     wev
+    wf-recorder
     wget
     whatsapp-for-linux
     wirelesstools

@@ -88,11 +88,11 @@ writeShellApplication {
 
         for f in "$MYHOME/leatherwork:leatherwork/local" "$MYHOME/documents/passwords.kdbx:secrets"; do
           src="$(echo "$f" | cut -d: -f1)"
-          dist="$(echo "$f" | cut -d: -f2)"
+          dest="$(echo "$f" | cut -d: -f2)"
 
           ({
-            rclone sync --progress $options "$src" "GDrive:$dist"
-          } && p "''${GREEN}Success''${YELLOW}:''${RESET} done syncing ''${src} to GDrive:''${dist}.''${RESET}\n\n") || p "''${RED}Error''${YELLOW}:''${RESET} something went wrong while syncing ''${src}.''${RESET}\n\n"
+            rclone sync --progress $options "$src" "GDrive:$dest"
+          } && p "''${GREEN}Success''${YELLOW}:''${RESET} done syncing ''${src} to GDrive:''${dest}.''${RESET}\n\n") || p "''${RED}Error''${YELLOW}:''${RESET} something went wrong while syncing ''${src}.''${RESET}\n\n"
         done
       }
 

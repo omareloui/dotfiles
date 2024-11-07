@@ -86,7 +86,7 @@ writeShellApplication {
 
         [[ -n $_options ]] && options="-$_options"
 
-        for f in "$MYHOME/leatherwork:Work/Leather Work/local" "$MYHOME/documents/passwords.kdbx:"; do
+        for f in "$MYHOME/leatherwork:leatherwork/local" "$MYHOME/documents/passwords.kdbx:secrets"; do
           src="$(echo "$f" | cut -d: -f1)"
           dist="$(echo "$f" | cut -d: -f2)"
 

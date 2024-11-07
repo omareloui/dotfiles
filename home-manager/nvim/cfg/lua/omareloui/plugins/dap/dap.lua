@@ -24,7 +24,7 @@ return {
         { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
         { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
       },
-      opts = {},
+      opts = { ensure_installed = { "delve" } },
       config = function()
         local dap = require "dap"
         local dapui = require "dapui"
@@ -49,6 +49,9 @@ return {
         ensure_installed = {},
       },
     },
+
+    -- languages
+    { "leoluz/nvim-dap-go", opts = {} },
   },
 
   -- stylua: ignore

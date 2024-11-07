@@ -8,6 +8,7 @@ return {
 
     wk.add {
       { "<leader>ss", group = "hydra split" },
+      { "<leader>dd", group = "hydra debug" },
     }
 
     Hydra {
@@ -33,6 +34,19 @@ return {
         { "h", "<C-w>H", { desc = "Move the split left" } },
         { "l", "<C-w>L", { desc = "Move the split right" } },
         { "o", "<C-w>o", { desc = "Close all other windows" } },
+      },
+    }
+
+    Hydra {
+      name = "Debugger hydra",
+      mode = { "n" },
+      body = "<leader>dd",
+      -- stylua: ignore
+      heads = {
+        { "c", function() require("dap").continue() end, { desc = "Debug: Start/continue" } },
+        { "i", function() require("dap").step_into() end, { desc = "Debug: Step Into" } },
+        { "j", function() require("dap").down() end, { desc = "Debug: Down" } },
+        { "k", function() require("dap").up() end, { desc = "Debug: Up" } },
       },
     }
   end,

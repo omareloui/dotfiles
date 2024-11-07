@@ -113,6 +113,7 @@
     # Development
     air
     automake
+    delve
     deno
     gnumake
     go-mockery

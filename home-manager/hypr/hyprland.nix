@@ -58,7 +58,7 @@
         };
 
         active_opacity = 1.0;
-        inactive_opacity = 0.85;
+        # inactive_opacity = 0.85;
         fullscreen_opacity = 1.0;
         "col.shadow" = "0x66000000";
 

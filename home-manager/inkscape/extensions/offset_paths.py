@@ -15,12 +15,14 @@ License: GNU GPL v3
 
 """
 
-import inkex
-import math
-from inkex.paths import CubicSuperPath
-import re
 import copy
+import math
+import re
+
+import inkex
 import pyclipper
+from inkex.paths import CubicSuperPath
+
 
 class OffsetPaths(inkex.EffectExtension):
     

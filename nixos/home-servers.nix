@@ -1,12 +1,4 @@
 {pkgs, ...}: {
-  environment = {
-    systemPackages = with pkgs; [
-      jellyfin
-      jellyfin-web
-      jellyfin-ffmpeg
-    ];
-  };
-
   services = {
     transmission = {
       enable = true;

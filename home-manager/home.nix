@@ -5,7 +5,11 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  browser = "microsoft-edge";
+  browserPkg = "${pkgs.microsoft-edge}/bin/microsoft-edge";
+  editor = "nvim";
+in {
   imports = [
     inputs.nix-colors.homeManagerModules.default
 
@@ -81,8 +85,8 @@
 
       LANG = "en_US.UTF-8";
 
-      VISUAL = "nvim";
-      EDITOR = "nvim";
+      VISUAL = editor;
+      EDITOR = editor;
 
       MYHOME = "${h}/myhome";
 
@@ -95,6 +99,9 @@
       _ZO_EXCLUDE_DIRS = "${h}:${mh}/**/.private/**:${mh}/**/.private";
 
       NVM_DIR = "${h}/.nvm";
+
+      # For electron apps
+      DEFAULT_BROWSER = browserPkg;
 
       # Used by the nix helper `nh`
       FLAKE = "${h}/.dotfiles";
@@ -172,6 +179,14 @@
       "application/x-tar" = ["org.kde.ark.desktop"];
       "application/x-rar" = ["org.kde.ark.desktop"];
       "application/zip" = ["org.kde.ark.desktop"];
+      "application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
+      "x-scheme-handler/msteams" = ["teams-for-linux.desktop"];
+
+      "text/html" = browser;
+      "x-scheme-handler/http" = browser;
+      "x-scheme-handler/https" = browser;
+      "x-scheme-handler/about" = browser;
+      "x-scheme-handler/unknown" = browser;
     };
   in {
     enable = true;

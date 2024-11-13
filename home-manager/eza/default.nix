@@ -4,10 +4,14 @@
     enableZshIntegration = true;
   };
 
-  home.shellAliases = {
-    ls = "eza -l --no-time --icons --sort=type";
-    ll = "eza -alg --icons --sort=type";
-    la = "eza -al --no-time --icons --sort=type";
+  home.shellAliases = let
+    defaultLs = "eza -l --no-time --icons --sort=type --no-quotes --git";
+  in {
+    ls = defaultLs;
+    la = "${defaultLs} -a";
+    ll = "eza -agl --icons --sort=type --no-quotes --git --links";
+    lll = "eza -aglo --icons --sort=type --no-quotes --git --git-repos-no-status --links";
+    lt = "eza --icons --sort=type --tree --level 5";
     l = "eza";
   };
 }

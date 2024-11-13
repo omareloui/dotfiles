@@ -73,6 +73,7 @@ return {
           ".nuxt",
           "vendor",
           "dist",
+          "build",
           "^bazel-.*/",
         },
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,

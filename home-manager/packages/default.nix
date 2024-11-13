@@ -1,17 +1,12 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # mongodb
+    #
 
-    # moviesscripts
     acpi
     age
     ark
     autoconf
-    bar_themeswitcher
     bat
-    batplug
-    batsuspend
-    batwarning
     bc
     bison
     bottom
@@ -19,9 +14,7 @@
     btrfs-progs
     calibre
     cliphist
-    cliphist_wrapper
     cloc
-    cloud_backup
     codeium
     corepack_latest
     dconf
@@ -31,6 +24,7 @@
     fd
     ffmpeg
     file
+    firefox
     flex
     font-awesome
     font-manager
@@ -44,7 +38,6 @@
     gnome-disk-utility
     hyprpicker
     imagemagick
-    init_bar
     jq
     keepassxc
     kora-icon-theme
@@ -73,13 +66,10 @@
     qalculate-gtk
     rclone
     ripgrep
-    screenshot
-    shade
     slack
     slock
     socat
     sops
-    sortpics
     srm
     ssh-to-age
     swaylock-effects
@@ -94,7 +84,6 @@
     unrar
     unzip
     vlc
-    wallpaper
     wev
     wf-recorder
     wget
@@ -105,6 +94,21 @@
     yarn
     zathura
     zip
+
+    # Custom scripts/packages
+    # moviesscripts
+    bar_themeswitcher
+    batplug
+    batsuspend
+    batwarning
+    cliphist_wrapper
+    cloud_backup
+    gengif
+    init_bar
+    screenshot
+    shade
+    sortpics
+    wallpaper
     zj_sessions
 
     # Nix Utilities
@@ -137,8 +141,8 @@
     sqlitebrowser
     templ
 
-    stable.nodePackages.prisma
-    stable.prisma-engines
+    nodePackages.prisma
+    prisma-engines
     openssl
 
     (pkgs.python312.withPackages (ppkgs:

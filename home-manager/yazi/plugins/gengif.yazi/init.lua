@@ -12,15 +12,15 @@ end)
 
 ---@param paths string[]
 ---@return string|nil error_message
-local function srm(paths)
-	local child, err = Command("srm"):arg("-rfvvv"):args(paths):spawn()
+local function gengif(paths)
+	local child, err = Command("gengif"):args(paths):spawn()
 	if err then
-		return "error while creating the srm child: " .. err
+		return "error while creating the gnegif child: " .. err
 	end
 
 	local _, err = child:wait()
 	if err then
-		return "error on running the srm child: " .. err
+		return "error on running the gnegif child: " .. err
 	end
 end
 
@@ -29,7 +29,7 @@ return {
 		---@type string[]
 		local paths = get_selected()
 
-		local err = srm(paths)
+		local err = gengif(paths)
 		if err then
 			ya.err(err)
 			return

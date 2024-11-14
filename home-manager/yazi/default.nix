@@ -6,16 +6,19 @@
   programs.yazi = {
     enable = true;
     settings = {
-      headsup = {
-        disable_exec_warn = true;
-      };
-
       manager = {
         ratio = [1 3 4];
         linemode = "custom";
         sort_by = "natural";
         sort_dir_first = true;
         sort_reverse = false;
+      };
+
+      preview = {
+        image_delay = 100;
+        image_filter = "catmull-rom";
+        image_quality = 85;
+        sixel_fraction = 10;
       };
 
       opener = {
@@ -283,6 +286,11 @@
             on = [leader "?"];
             run = "help";
             desc = "show the help menu";
+          }
+          {
+            on = [leader "g"];
+            run = "plugin gengif";
+            desc = "generate a gif preview from a video";
           }
           {
             on = ["y"];

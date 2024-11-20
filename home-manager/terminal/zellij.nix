@@ -346,7 +346,7 @@
     common_layout_content = ''
       default_tab_template {
         children
-        pane size=1 borderless=true {
+        pane size=1 borderless=true split_direction="vertical" {
             plugin location="compact-bar"
         }
       }

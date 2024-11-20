@@ -172,7 +172,7 @@
 
         "float, class:^(${shouldFloatClasses})$"
         "center 1, class:^(${shouldFloatClasses})$"
-        "size 1200 760, class:^(${shouldFloatClasses})$"
+        # "size 1200 760, class:^(${shouldFloatClasses})$"
 
         "float, class:${bluetoothClientRe}"
         "center 1, class:${bluetoothClientRe}"

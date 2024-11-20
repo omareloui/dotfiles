@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   programs.zellij = {
     enable = true;
     enableZshIntegration = true;
@@ -97,76 +101,48 @@
           "bind \"k\"" = {MovePane = "Up";};
           "bind \"l\"" = {MovePane = "Right";};
         };
-        tab = {
-          "bind \"Ctrl t\"" = {SwitchToMode = "Normal";};
-          "bind \"r\"" = {
-            SwitchToMode = "RenameTab";
-            TabNameInput = 0;
-          };
-          "bind \"h\" \"k\"" = {GoToPreviousTab = [];};
-          "bind \"l\" \"j\"" = {GoToNextTab = [];};
-          "bind \"n\"" = {
-            NewTab = [];
-            SwitchToMode = "Normal";
-          };
-          "bind \"x\"" = {
-            CloseTab = [];
-            SwitchToMode = "Normal";
-          };
-          "bind \"s\"" = {
-            ToggleActiveSyncTab = [];
-            SwitchToMode = "Normal";
-          };
-          "bind \"b\"" = {
-            BreakPane = [];
-            SwitchToMode = "Normal";
-          };
-          "bind \"]\"" = {
-            BreakPaneRight = [];
-            SwitchToMode = "Normal";
-          };
-          "bind \"[\"" = {
-            BreakPaneLeft = [];
-            SwitchToMode = "Normal";
-          };
-          "bind \"1\"" = {
-            GoToTab = 1;
-            SwitchToMode = "Normal";
-          };
-          "bind \"2\"" = {
-            GoToTab = 2;
-            SwitchToMode = "Normal";
-          };
-          "bind \"3\"" = {
-            GoToTab = 3;
-            SwitchToMode = "Normal";
-          };
-          "bind \"4\"" = {
-            GoToTab = 4;
-            SwitchToMode = "Normal";
-          };
-          "bind \"5\"" = {
-            GoToTab = 5;
-            SwitchToMode = "Normal";
-          };
-          "bind \"6\"" = {
-            GoToTab = 6;
-            SwitchToMode = "Normal";
-          };
-          "bind \"7\"" = {
-            GoToTab = 7;
-            SwitchToMode = "Normal";
-          };
-          "bind \"8\"" = {
-            GoToTab = 8;
-            SwitchToMode = "Normal";
-          };
-          "bind \"9\"" = {
-            GoToTab = 9;
-            SwitchToMode = "Normal";
-          };
-          "bind \"Tab\"" = {ToggleTab = [];};
-        };
+        tab =
+          {
+            "bind \"Ctrl t\"" = {SwitchToMode = "Normal";};
+            "bind \"r\"" = {
+              SwitchToMode = "RenameTab";
+              TabNameInput = 0;
+            };
+            "bind \"h\" \"k\"" = {GoToPreviousTab = [];};
+            "bind \"l\" \"j\"" = {GoToNextTab = [];};
+            "bind \"n\"" = {
+              NewTab = [];
+              SwitchToMode = "Normal";
+            };
+            "bind \"x\"" = {
+              CloseTab = [];
+              SwitchToMode = "Normal";
+            };
+            "bind \"s\"" = {
+              ToggleActiveSyncTab = [];
+              SwitchToMode = "Normal";
+            };
+            "bind \"b\"" = {
+              BreakPane = [];
+              SwitchToMode = "Normal";
+            };
+            "bind \"]\"" = {
+              BreakPaneRight = [];
+            };
+            "bind \"[\"" = {
+              BreakPaneLeft = [];
+            };
+            "bind \"Tab\"" = {ToggleTab = [];};
+          }
+          // builtins.listToAttrs (builtins.map (n: {
+              name = "bind \"${builtins.toString n}\"";
+              value = {
+                GoToTab = n;
+                SwitchToMode = "Normal";
+              };
+            })
+            (builtins.genList (x: x + 1)
+              9));
         scroll = {
           "bind \"Ctrl s\"" = {SwitchToMode = "Normal";};
           "bind \"e\"" = {

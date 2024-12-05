@@ -21,9 +21,14 @@ return {
           }
         end
 
-        -- stylua: ignore start
-        set("<leader>co", function() apply_code_action "source.organizeImports.ts" end, "Organize Imports")
-        set("<leader>cr", function() apply_code_action "source.removeUnused.ts" end, "Remove Unused Imports")
+        set("<leader>co", function()
+          apply_code_action "source.removeUnused.ts"
+          apply_code_action "source.organizeImports.ts"
+        end, "Organize Imports")
+
+        set("<leader>cr", function()
+          apply_code_action "source.removeUnused.ts"
+        end, "Remove Unused Imports")
       end,
     }
   end,

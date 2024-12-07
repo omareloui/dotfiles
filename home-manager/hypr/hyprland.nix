@@ -60,11 +60,13 @@
         active_opacity = 1.0;
         # inactive_opacity = 0.85;
         fullscreen_opacity = 1.0;
-        "col.shadow" = "0x66000000";
 
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
+        shadow = {
+          enabled = true;
+          color = "0x66000000";
+          range = 4;
+          render_power = 3;
+        };
       };
 
       animations = {

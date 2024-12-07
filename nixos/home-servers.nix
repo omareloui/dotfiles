@@ -23,7 +23,7 @@
       openFirewall = true;
     };
     sonarr = {
-      enable = true;
+      enable = false;
       openFirewall = true;
       group = "media";
     };
@@ -33,12 +33,12 @@
       group = "media";
     };
     bazarr = {
-      enable = true;
+      enable = false;
       openFirewall = true;
       group = "media";
     };
     readarr = {
-      enable = true;
+      enable = false;
       openFirewall = true;
       group = "media";
     };

@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{config, ...}: {
   programs.zellij = {
     enable = true;
     enableZshIntegration = true;
@@ -372,6 +368,28 @@
               command "docker"
               args "compose" "--profile" "dev" "up" "--watch"
             }
+          }
+        }
+      '';
+
+    ".config/zellij/layouts/rovicare.kdl".text =
+      /*
+      kdl
+      */
+      ''
+        layout {
+          ${common_layout_content}
+
+          cwd "${config.home.sessionVariables.REPOS_DIR}/aztenderhands/rovicare_notifier"
+
+          tab name="editor" focus=true {
+            pane split_direction="vertical" {
+              command "${config.home.sessionVariables.EDITOR}"
+            }
+          }
+
+          tab name="cmd" {
+            pane split_direction="vertical"
           }
         }
       '';

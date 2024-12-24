@@ -44,6 +44,7 @@
     libcanberra-gtk3
     libiconv
     libnotify
+    libreoffice
     libtool
     light
     loupe

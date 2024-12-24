@@ -131,7 +131,7 @@
         prepend_keymap = [
           {
             on = ["l"];
-            run = "plugin --sync smart-enter";
+            run = "plugin smart-enter";
             desc = "enter the child directory, or open the file";
           }
           {

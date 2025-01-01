@@ -17,6 +17,7 @@
       127.0.0.1 prowlarr.homelab
       127.0.0.1 jellyfin.homelab
       127.0.0.1 syncthing.homelab
+      127.0.0.1 transmission.homelab
     '';
   };
 
@@ -47,6 +48,11 @@
         "syncthing.homelab" = {
           locations."/" = {
             proxyPass = "http://localhost:8384";
+          };
+        };
+        "transmission.homelab" = {
+          locations."/" = {
+            proxyPass = "http://localhost:9091";
           };
         };
       };

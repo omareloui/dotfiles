@@ -46,6 +46,7 @@
     vscode-extensions.sonarsource.sonarlint-vscode
     vscode-extensions.vue.volar
     vscode-langservers-extracted
+    vue-language-server
     yaml-language-server
     yamlfmt
     yamllint
@@ -64,4 +65,12 @@ in {
     source = ./cfg;
     recursive = true;
   };
+
+  home.file.".config/nvim/lua/omareloui/plugins/lsp/lang/vue_language_server_path.lua".text =
+    /*
+    lua
+    */
+    ''
+      return "${pkgs.vue-language-server + "/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"}"
+    '';
 }

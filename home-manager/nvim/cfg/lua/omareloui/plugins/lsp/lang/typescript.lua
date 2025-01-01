@@ -3,6 +3,18 @@ return {
     lspconfig["ts_ls"].setup {
       root_dir = lspconfig.util.root_pattern "package.json",
       single_file_support = false,
+
+      filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+      init_options = {
+        plugins = {
+          {
+            name = "@vue/typescript-plugin",
+            location = require "omareloui.plugins.lsp.lang.vue_language_server_path",
+            languages = { "vue" },
+          },
+        },
+      },
+
       capabilities = capabilities,
       on_attach = function(_, bufnr)
         on_attach(_, bufnr)

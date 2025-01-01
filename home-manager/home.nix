@@ -187,6 +187,8 @@ in {
       "x-scheme-handler/https" = browser;
       "x-scheme-handler/about" = browser;
       "x-scheme-handler/unknown" = browser;
+
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "writer.desktop";
     };
   in {
     enable = true;

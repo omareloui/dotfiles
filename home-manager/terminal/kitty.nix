@@ -9,9 +9,7 @@
     # `kitty --debug-font-fallback` to know which font is applied
     font = {
       name = "FiraCode Nerd Font";
-      package = pkgs.nerdfonts.override {
-        fonts = ["FiraCode"];
-      };
+      package = pkgs.nerd-fonts.fira-code;
       size = 12;
     };
     shellIntegration.enableZshIntegration = true;

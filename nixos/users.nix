@@ -10,6 +10,7 @@
       "video"
       "docker"
       "media"
+      "syncthing"
     ];
     shell = pkgs.zsh;
     packages = [];
@@ -17,6 +18,7 @@
 
   users.groups.media.members = [
     "omareloui"
+    "syncthing"
     "jellyfin"
     "prowlarr"
     "sonarr"

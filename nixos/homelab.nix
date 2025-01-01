@@ -1,5 +1,62 @@
 {pkgs, ...}: {
+  networking = {
+    firewall.allowedTCPPorts = [
+      8384 # Syncthing
+      22000 # Syncthing
+      # 7575 # Homarr
+      # 8080 # Openbook
+    ];
+    firewall.allowedUDPPorts = [
+      22000 # Syncthing
+      21027 # Syncthing?
+    ];
+
+    extraHosts = ''
+      127.0.0.1 sonarr.homelab
+      127.0.0.1 radarr.homelab
+      127.0.0.1 prowlarr.homelab
+      127.0.0.1 jellyfin.homelab
+      127.0.0.1 syncthing.homelab
+    '';
+  };
+
   services = {
+    nginx = {
+      enable = true;
+      virtualHosts = {
+        "jellyfin.homelab" = {
+          locations."/" = {
+            proxyPass = "http://localhost:8096";
+          };
+        };
+        "sonarr.homelab" = {
+          locations."/" = {
+            proxyPass = "http://localhost:8989";
+          };
+        };
+        "radarr.homelab" = {
+          locations."/" = {
+            proxyPass = "http://localhost:7878";
+          };
+        };
+        "prowlarr.homelab" = {
+          locations."/" = {
+            proxyPass = "http://localhost:9696";
+          };
+        };
+        "syncthing.homelab" = {
+          locations."/" = {
+            proxyPass = "http://localhost:8384";
+          };
+        };
+      };
+    };
+
+    syncthing = {
+      enable = false;
+      openDefaultPorts = false;
+    };
+
     transmission = {
       enable = true;
       package = pkgs.transmission_4-gtk;
@@ -65,13 +122,13 @@
           ports = ["7575:7575"];
         };
 
-        # openbooks = {
-        #   autoStart = true;
-        #   image = "evanbuss/openbooks";
-        #   ports = ["8080:80"];
-        #   cmd = ["--name" "omareloui" "--persist"];
-        #   volumes = ["/home/media/openbooks:/books"];
-        # };
+        openbooks = {
+          autoStart = false;
+          image = "evanbuss/openbooks";
+          ports = ["8080:80"];
+          cmd = ["--name" "omareloui" "--persist"];
+          volumes = ["/home/media/openbooks:/books"];
+        };
       };
     };
   };

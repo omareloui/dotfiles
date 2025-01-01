@@ -75,7 +75,6 @@
     ssh-to-age
     swaylock-effects
     swww
-    syncthing
     teams-for-linux
     telegram-desktop
     termdown

@@ -15,7 +15,7 @@
     # inputs.hardware.nixosModules.common-ssd
 
     ./fonts.nix
-    ./home-servers.nix
+    ./homelab.nix
     ./sops.nix
     ./udev.nix
     ./users.nix
@@ -71,16 +71,6 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [
-      8384 # Syncthing
-      22000 # Syncthing
-      7575 # Homarr
-      8080 # Openbook
-    ];
-    firewall.allowedUDPPorts = [
-      22000 # Syncthing
-      21027 # Syncthing?
-    ];
   };
 
   system = {

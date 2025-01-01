@@ -6,8 +6,6 @@
       noto-fonts-emoji
       liberation_ttf
       ubuntu_font_family
-      # fira-code
-      # fira-code-symbols
       font-awesome
       mplus-outline-fonts.githubRelease
       dina-font

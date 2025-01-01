@@ -23,7 +23,7 @@
       openFirewall = true;
     };
     sonarr = {
-      enable = false;
+      enable = true;
       openFirewall = true;
       group = "media";
     };
@@ -44,11 +44,17 @@
     };
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    # This is required for sonarr
+    "dotnet-sdk-6.0.428"
+    "aspnetcore-runtime-6.0.36"
+  ];
+
   virtualisation = {
     oci-containers = {
       containers = {
         homarr = {
-          autoStart = true;
+          autoStart = false;
           image = "ghcr.io/ajnart/homarr:latest";
           volumes = [
             "/var/run/docker.sock:/var/run/docker.sock"

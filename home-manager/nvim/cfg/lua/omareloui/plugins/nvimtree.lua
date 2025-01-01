@@ -1,5 +1,6 @@
 return {
   "nvim-tree/nvim-tree.lua",
+  enabled = false,
   event = "VeryLazy",
   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
   config = function()

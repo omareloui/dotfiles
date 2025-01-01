@@ -142,7 +142,12 @@ return {
 
     -- Configure the servers themselves
     for _, lsp_server in ipairs(language_server_to_load) do
-      require("omareloui.plugins.lsp.lang." .. lsp_server).setup(lspconfig, on_attach, capabilities)
+      local lang_lsp = require("omareloui.plugins.lsp.lang." .. lsp_server)
+      if lang_lsp.enabled == false then
+        goto continue
+      end
+      lang_lsp.setup(lspconfig, on_attach, capabilities)
+      ::continue::
     end
   end,
 }

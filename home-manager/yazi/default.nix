@@ -200,7 +200,7 @@
                       ;;
                     *)
                       rmdir "$foldername"
-                      echo "Error: Unsported file: $file"
+                      echo "Error: Unsupported file: $file"
                       continue
                       ;;
                   esac

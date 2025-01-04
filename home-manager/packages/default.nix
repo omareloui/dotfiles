@@ -56,6 +56,7 @@
     neovide
     networkmanagerapplet
     nwg-look
+    optimize
     parallel
     patchelf
     pavucontrol

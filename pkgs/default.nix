@@ -8,6 +8,7 @@
   shade = pkgs.callPackage ./shade {};
   sortpics = pkgs.callPackage ./sortpics {};
   gengif = pkgs.callPackage ./gengif {};
+  optimize = pkgs.callPackage ./optimize {};
 
   init_bar = pkgs.callPackage ./init_bar {};
   bar_themeswitcher = pkgs.callPackage ./bar_themeswitcher {};

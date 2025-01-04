@@ -157,10 +157,11 @@
           {
             desc = "extract a compressed file";
             on = [leader "e"];
+            # TODO: move this to a plugin
             run = ''
               shell --confirm --block '
                 IFS=$'\n'
-                for file in $@; do
+                for file in "$@"; do
                   filename_with_ext="$(basename "$file")"
                   foldername="''${filename_with_ext%.*}"
 
@@ -173,33 +174,35 @@
                     ;;
                   esac
 
+                  [[ ! -d foldername ]] && mkdir "$foldername"
+
                   case $file in
                     *.tar.xz.gpg|*.txz.gpg)
-                      [[ ! -d foldername ]] && mkdir "$foldername"
                       gpg -d "$file" | tar xJvC "$foldername"
-                    ;;
+                      ;;
                     *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
-                      [[ ! -d foldername ]] && mkdir "$foldername"
                       tar xjvf "$file" -C "$foldername"
-                    ;;
+                      ;;
                     *.tar.gz|*.tgz)
-                      [[ ! -d foldername ]] && mkdir "$foldername"
                       tar xzvf "$file" -C "$foldername"
-                    ;;
+                      ;;
                     *.tar.xz|*.txz)
-                      [[ ! -d foldername ]] && mkdir "$foldername"
                       tar xJvf "$file" -C "$foldername"
-                    ;;
+                      ;;
                     *.zip)
-                      [[ ! -d foldername ]] && mkdir "$foldername"
                       unzip -d "$foldername" "$file"
-                    ;;
+                      ;;
                     *.rar)
-                        unrar x "$file"
-                    ;;
+                      unrar x "$file" -op"$foldername"
+                      ;;
                     *.7z)
-                      7z x "$file"
-                    ;;
+                      7z x "$file" -o"$foldername"
+                      ;;
+                    *)
+                      rmdir "$foldername"
+                      echo "Error: Unsported file: $file"
+                      continue
+                      ;;
                   esac
                 done
                 unset IFS
@@ -303,6 +306,8 @@
       };
 
       tasks = {
+        suppress_preload = true;
+
         prepend_keymap = [
           {
             on = [leader "h"];

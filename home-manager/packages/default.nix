@@ -57,6 +57,7 @@
     networkmanagerapplet
     nwg-look
     optimize
+    p7zip
     parallel
     patchelf
     pavucontrol
@@ -65,6 +66,7 @@
     polkit_gnome
     poppler
     pulseaudioFull
+    pv
     qalculate-gtk
     rclone
     ripgrep

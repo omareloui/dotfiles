@@ -10,6 +10,19 @@
         pane_frames = {rounded_corners = true;};
       };
 
+      load_plugins = {
+        autolock = [];
+      };
+
+      plugins = {
+        "autolock location=\"file:~/.config/zellij/plugins/zellij-autolock.wasm\"" = {
+          is_enabled = true;
+          triggers = "nvim|vim|git|fzf|zoxide|atuin";
+          reaction_seconds = "0.5";
+          print_to_log = true;
+        };
+      };
+
       pane_frames = false;
       default_layout = "compact";
       theme = "custom";
@@ -28,9 +41,21 @@
       };
 
       "keybinds clear-defaults=true" = {
+        normal = {
+          "bind \"Enter\"" = {
+            WriteChars = "\\u{000D}";
+            "MessagePlugin \"autolock\"" = {};
+          };
+        };
+
         locked = {
           "bind \"Ctrl g\"" = {SwitchToMode = "Normal";};
+          "bind \"Alt z\"" = {
+            MessagePlugin = {autolock = {payload = "disable";};};
+            SwitchToMode = "Normal";
+          };
         };
+
         resize = {
           # "bind \"Ctrl n\"" = {SwitchToMode = "Normal";};
           "bind \"h\"" = {Resize = "Increase Left";};
@@ -270,6 +295,11 @@
             SwitchToMode = "Normal";
           };
         };
+        shared = {
+          "bind \"Alt Shift z\"" = {
+            MessagePlugin = {autolock = {payload = "enable";};};
+          };
+        };
         "shared_except \"locked\"" = {
           "bind \"Ctrl g\"" = {SwitchToMode = "Locked";};
           # "bind \"Ctrl q\"" = {Quit = [];};
@@ -277,14 +307,18 @@
           "bind \"Alt n\"" = {NewPane = [];};
           "bind \"Alt i\"" = {MoveTab = "Left";};
           "bind \"Alt o\"" = {MoveTab = "Right";};
-          "bind \"Alt h\" \"Alt Left\"" = {MoveFocusOrTab = "Left";};
-          "bind \"Alt l\" \"Alt Right\"" = {MoveFocusOrTab = "Right";};
-          "bind \"Alt j\" \"Alt Down\"" = {MoveFocus = "Down";};
-          "bind \"Alt k\" \"Alt Up\"" = {MoveFocus = "Up";};
+          "bind \"Ctrl h\" \"Ctrl Left\"" = {MoveFocusOrTab = "Left";};
+          "bind \"Ctrl l\" \"Ctrl Right\"" = {MoveFocusOrTab = "Right";};
+          "bind \"Ctrl j\" \"Ctrl Down\"" = {MoveFocus = "Down";};
+          "bind \"Ctrl k\" \"Ctrl Up\"" = {MoveFocus = "Up";};
           "bind \"Alt =\" \"Alt +\"" = {Resize = "Increase";};
           "bind \"Alt -\"" = {Resize = "Decrease";};
           "bind \"Alt [\"" = {PreviousSwapLayout = [];};
           "bind \"Alt ]\"" = {NextSwapLayout = [];};
+          "bind \"Alt z\"" = {
+            MessagePlugin = {autolock = {payload = "disable";};};
+            SwitchToMode = "Normal";
+          };
         };
         "shared_except \"normal\" \"locked\"" = {
           "bind \"Enter\" \"Esc\" \"q\"" = {SwitchToMode = "Normal";};
@@ -324,6 +358,8 @@
       }
     '';
   in {
+    ".config/zellij/plugins/zellij-autolock.wasm".source = ./zellij-autolock.wasm;
+
     ".config/zellij/layouts/dotfiles.kdl".text =
       /*
       kdl

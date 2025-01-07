@@ -34,12 +34,7 @@ set("<leader>y", '"+y', "Yank to the system clipboard", { remap = true, mode = {
 set("<leader>Y", '"+Y', "Yank to the system clipboard", { remap = true })
 set("<leader>p", '"+p', "Paste from the system clipboard", { remap = true, mode = { "n", "v" } })
 set("<leader>P", '"+P', "Paste from the system clipboard", { remap = true })
-set(
-  "p",
-  'p:let @+=@0<CR>:let @"=@0<CR>',
-  "Paste without overwriting the register",
-  { silent = true, remap = true, mode = "x" }
-)
+set("p", 'p:let @"=@0<CR>', "Paste without overwriting the register", { silent = true, remap = true, mode = "x" })
 
 -- Navigation in file
 -- keep the cursor in the center of the screen

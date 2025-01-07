@@ -33,6 +33,10 @@
       cursor = "#${base05}";
       cursor_text_color = "#${base00}";
 
+      cursor_trail = 5;
+      cursor_trail_decay = "0.1 0.5";
+      cursor_trail_start_threshold = 1;
+
       selection_foreground = "#${base05}";
       selection_background = "#${base00}";
 

@@ -30,7 +30,6 @@ set("<leader>w", "<Cmd>up<CR>", "Save buffer")
 set("<leader>q", function() vim.schedule(function() vim.cmd "bd" end) end, "Close buffer", { silent = true })
 
 -- Clipboard
-set("Y", "y$", "Yank to the end of the line", { remap = true })
 set("<leader>y", '"+y', "Yank to the system clipboard", { remap = true, mode = { "n", "v" } })
 set("<leader>Y", '"+Y', "Yank to the system clipboard", { remap = true })
 set("<leader>p", '"+p', "Paste from the system clipboard", { remap = true, mode = { "n", "v" } })

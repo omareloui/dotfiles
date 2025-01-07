@@ -1,12 +1,12 @@
 {
   writeShellApplication,
   ffmpeg,
-  libjpeg,
+  ghostscript,
   ...
 }:
 writeShellApplication {
   name = "optimize";
-  runtimeInputs = [ffmpeg libjpeg];
+  runtimeInputs = [ffmpeg ghostscript];
   text =
     /*
     bash
@@ -14,7 +14,7 @@ writeShellApplication {
     ''
       ${import ../utils/ansi.nix}
 
-      version=1.0.0
+      version=1.1.0
 
       custom_output=""
       replace_original=false
@@ -31,7 +31,7 @@ writeShellApplication {
         echo -e ""
         echo -e "''${BOLD}Description:''${RESET}"
         echo -e ""
-        echo -e "    ''${B_GRAY}Optimizes images and videos.''${RESET}"
+        echo -e "    ''${B_GRAY}Optimizes images, videos, and pdf files.''${RESET}"
         echo -e ""
         echo -e "''${BOLD}Args:''${RESET}"
         echo -e ""
@@ -40,7 +40,7 @@ writeShellApplication {
         echo -e "''${BOLD}Options:''${RESET}"
         echo -e ""
         echo -e "  ''${BLUE}-h''${RESET}, ''${BLUE}--help''${RESET}                ''${B_RED}-''${RESET} Show this help message."
-        echo -e "  ''${BLUE}-R''${RESET}, ''${BLUE}--resize''${RESET}              ''${B_RED}-''${RESET} Resize the image."
+        echo -e "  ''${BLUE}-R''${RESET}, ''${BLUE}--resize''${RESET}              ''${B_RED}-''${RESET} Resize the image or video."
         echo -e "  ''${BLUE}-W''${RESET}, ''${BLUE}--max-width ''${YELLOW}<''${MAGENTA}int''${YELLOW}>''${RESET}     ''${B_RED}-''${RESET} When \`--resize\` is provided, set maximum width ''${DARK_GRAY}(default: $max_width)''${RESET}."
         echo -e "  ''${BLUE}-H''${RESET}, ''${BLUE}--max-height ''${YELLOW}<''${MAGENTA}int''${YELLOW}>''${RESET}    ''${B_RED}-''${RESET} When \`--resize\` is provided, set maximum height ''${DARK_GRAY}(default: $max_height)''${RESET}."
         echo -e "  ''${BLUE}-Q''${RESET}, ''${BLUE}--image-quality ''${YELLOW}<''${MAGENTA}int''${YELLOW}>''${RESET} ''${B_RED}-''${RESET} Set the image quality ''${DARK_GRAY}(highest: 0, lowest: 100, default: $image_quality_factor)''${RESET}."
@@ -152,7 +152,6 @@ writeShellApplication {
           "$output"
       }
 
-
       function optimize_other_images {
         local scale_width=-1
         local scale_height=-1
@@ -188,6 +187,28 @@ writeShellApplication {
           "$2"
       }
 
+      function optimize_pdf {
+        gs \
+          -q \
+          -dNOPAUSE \
+          -dBATCH \
+          -dSAFER \
+          -sDEVICE=pdfwrite \
+          -dNOTRANSPARENCY \
+          -dPDFSETTINGS=/screen \
+          -dEmbedAllFonts=true \
+          -dSubsetFonts=true \
+          -dColorImageDownsampleType=/Bicubic \
+          -dColorImageResolution=144 \
+          -dGrayImageDownsampleType=/Bicubic \
+          -dGrayImageResolution=144 \
+          -dMonoImageDownsampleType=/Bicubic \
+          -dMonoImageResolution=144 \
+          -sOutputFile="$2" \
+          "$1"
+      }
+
+
       for file in "$@"; do
         if [[ ! -f "$file" ]]; then
            echo -e "''${BOLD}''${RED}Error''${YELLOW}:''${RESET} File not found: ''${BOLD}''${DARK_GRAY}$file''${RESET}."
@@ -200,15 +221,17 @@ writeShellApplication {
         output="$custom_output"
 
         if [[ -z $custom_output ]]; then
-          output="''${file%.*}_optimized.$ext"
+          output="''${file%.*}.optimized.$ext"
         fi
-
 
         if $verbose; then
           echo -e "''${BLUE}''${BOLD}Processing''${YELLOW}:''${RESET} $file"
         fi
 
         case "$ext" in
+        "pdf")
+          optimize_pdf "$file" "$output"
+          ;;
         "jpg"|"jpeg")
           optimize_jpeg "$file" "$output"
           ;;

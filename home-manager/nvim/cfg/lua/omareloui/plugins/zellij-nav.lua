@@ -3,10 +3,23 @@ return {
   lazy = true,
   event = "VeryLazy",
   keys = {
-    { "<C-h>", "<Cmd>ZellijNavigateLeftTab<CR>", { silent = true, desc = "Navigate left or tab" } },
-    { "<C-j>", "<Cmd>ZellijNavigateDown<CR>", { silent = true, desc = "Navigate down" } },
-    { "<C-k>", "<Cmd>ZellijNavigateUp<CR>", { silent = true, desc = "Navigate up" } },
-    { "<C-l>", "<Cmd>ZellijNavigateRightTab<CR>", { silent = true, desc = "Navigate right or tab" } },
+    { "<A-h>", "<Cmd>ZellijNavigateLeftTab<CR>", { silent = true, desc = "Navigate left or tab" } },
+    { "<A-j>", "<Cmd>ZellijNavigateDown<CR>", { silent = true, desc = "Navigate down" } },
+    { "<A-k>", "<Cmd>ZellijNavigateUp<CR>", { silent = true, desc = "Navigate up" } },
+    { "<A-l>", "<Cmd>ZellijNavigateRightTab<CR>", { silent = true, desc = "Navigate right or tab" } },
   },
-  opts = {},
+
+  config = function()
+    local ok, zellij_nav = pcall(require, "zellij-nav")
+
+    -- stylua: ignore
+    if not ok then return end
+
+    vim.api.nvim_create_autocmd("VimLeave", {
+      pattern = "*",
+      command = "silent !zellij action switch-mode normal",
+    })
+
+    zellij_nav.setup {}
+  end,
 }

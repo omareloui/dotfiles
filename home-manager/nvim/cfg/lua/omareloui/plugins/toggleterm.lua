@@ -1,5 +1,6 @@
 return {
   "akinsho/toggleterm.nvim",
+  enable = true,
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   config = function()
     local present, toggleterm = pcall(require, "toggleterm")

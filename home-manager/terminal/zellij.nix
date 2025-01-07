@@ -1,7 +1,7 @@
 {config, ...}: {
   programs.zellij = {
     enable = true;
-    enableZshIntegration = false;
+    enableZshIntegration = true;
 
     settings = {
       mirror_session = false;
@@ -307,10 +307,10 @@
           "bind \"Alt n\"" = {NewPane = [];};
           "bind \"Alt i\"" = {MoveTab = "Left";};
           "bind \"Alt o\"" = {MoveTab = "Right";};
-          "bind \"Ctrl h\" \"Ctrl Left\"" = {MoveFocusOrTab = "Left";};
-          "bind \"Ctrl l\" \"Ctrl Right\"" = {MoveFocusOrTab = "Right";};
-          "bind \"Ctrl j\" \"Ctrl Down\"" = {MoveFocus = "Down";};
-          "bind \"Ctrl k\" \"Ctrl Up\"" = {MoveFocus = "Up";};
+          "bind \"Alt h\" \"Alt Left\"" = {MoveFocusOrTab = "Left";};
+          "bind \"Alt l\" \"Alt Right\"" = {MoveFocusOrTab = "Right";};
+          "bind \"Alt j\" \"Alt Down\"" = {MoveFocus = "Down";};
+          "bind \"Alt k\" \"Alt Up\"" = {MoveFocus = "Up";};
           "bind \"Alt =\" \"Alt +\"" = {Resize = "Increase";};
           "bind \"Alt -\"" = {Resize = "Decrease";};
           "bind \"Alt [\"" = {PreviousSwapLayout = [];};

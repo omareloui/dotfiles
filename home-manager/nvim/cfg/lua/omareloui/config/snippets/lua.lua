@@ -29,13 +29,12 @@ cs(
 )
 
 cs(
-  "preq",
+  "pcall",
   fmt(
-    [[local present, {} = pcall(require, "{}")
+    [[local ok, {} = pcall(require, "{}")
 
-if not present then
-  return
-end]],
+-- stylua: ignore
+if not ok then return end]],
     {
       f(function(import_name)
         local name_spaces = vim.split(import_name[1][1], ".", true)

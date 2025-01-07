@@ -62,22 +62,3 @@ set("J", ":m '>+1<CR>gv=gv", "Move the line down", { mode = { "v" } })
 
 set("<A-j>", '"dyy"dp', "Duplicate line down")
 set("<A-k>", '"dyy"dP', "Duplicate line up")
-
--- Window
-set("<C-j>", "<C-w>j", "Go to down window")
-set("<C-k>", "<C-w>k", "Go to up window")
-set("<C-h>", "<C-w>h", "Go to left window")
-set("<C-l>", "<C-w>l", "Go to right window")
-
--- splits
-set("<leader>sv", "<Cmd>vsplit<CR>", "Split window vertically")
-set("<leader>sh", "<Cmd>split<CR>", "Split window horizontally")
-set("<leader>sx", "<Cmd>close<CR>", "Split window horizontally")
-set("<leader>so", "<C-w>o", "Close all other windows")
-
-set("<leader>s+", "<Cmd>resize +10<CR>", "Increase window height")
-set("<leader>s-", "<Cmd>resize -10<CR>", "Decrease window height")
-set("<leader>s>", "<Cmd>vertical resize +10<CR>", "Increase window width")
-set("<leader>s<", "<Cmd>vertical resize -10<CR>", "Decrease window width")
-set("<leader>s=", "<C-w>=", "Make the splits equal")
-set("<leader>se", "<C-w>=", "Make the splits equal")

@@ -8,9 +8,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
-
     hyprland.url = "github:hyprwm/Hyprland";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
@@ -28,11 +25,11 @@
 
     templ.url = "github:a-h/templ";
 
-    # anyrun.url = "github:Kirottu/anyrun";
-    # anyrun.inputs.nixpkgs.follows = "nixpkgs";
-
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    anyrun.url = "github:anyrun-org/anyrun";
+    anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
     # TODO: change to upstream
     # moviesscripts.url = "/home/omareloui/myhome/repos/moviesscripts";
@@ -95,7 +92,10 @@
         extraSpecialArgs = {
           inherit inputs outputs systemConfig;
         };
-        modules = [./home-manager/home.nix];
+        modules = [
+          ./home-manager/home.nix
+          inputs.anyrun.homeManagerModules.default
+        ];
       };
     };
   };

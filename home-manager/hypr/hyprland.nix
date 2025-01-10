@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   wayland.windowManager.hyprland = let
@@ -304,8 +305,8 @@
           "$mainMod SHIFT, N, exec, swaync-client -t"
 
           # Scripts
-          "$mainMod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
-          # "$mainMod, R, exec, ${lib.getExe inputs.anyrun.packages.${pkgs.system}.anyrun-with-all-plugins}"
+          # "$mainMod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
+          "$mainMod, R, exec, ${lib.getExe inputs.anyrun.packages.${pkgs.system}.anyrun}"
           "$mainMod, V, exec, ${lib.getExe pkgs.cliphist_wrapper} list"
 
           "$mainMod, W, exec, ${lib.getExe pkgs.wallpaper}"

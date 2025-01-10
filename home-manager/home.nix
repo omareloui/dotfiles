@@ -19,7 +19,7 @@ in {
     ./hypr/hyprshade.nix
     ./hypr/pyprland.nix
 
-    # ./anyrun
+    ./anyrun
     ./atuin
     ./dunst
     ./eza

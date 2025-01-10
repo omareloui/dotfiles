@@ -1,25 +1,15 @@
 return {
   "nvimtools/hydra.nvim",
 
+  enabled = false,
+
   config = function()
     local ok, hydra = pcall(require, "hydra")
 
     -- stylua: ignore
     if not ok then return end
 
-    hydra.setup {
-      -- exit = "q",
-      -- foreign_keys = "run",
-      -- timeout = true,
-      -- hint = {
-      --   position = "top",
-      --   float_opts = {
-      --     style = "rounded",
-      --   },
-      -- },
-    }
-
-    local tables = require "omareloui.util.tables"
+    hydra.setup {}
 
     hydra {
       name = "Debugger hydra",
@@ -41,22 +31,22 @@ return {
       { "h", "<C-w>h", { desc = "Go to the right window" } },
     }
 
-    -- if require "omareloui.util.has_plugin" "zellij-nav.nvim" then
-    --   local zellij_nav = require "zellij-nav"
-    --   window_navigate_hydra = {
-    --     { "h", zellij_nav.left_tab, { desc = "Go to the left window or zellij tab" } },
-    --     { "j", zellij_nav.down, { desc = "Go to the down window" } },
-    --     { "k", zellij_nav.up, { desc = "Go to the up window" } },
-    --     { "l", zellij_nav.right_tab, { desc = "Go to the right window or zellij tab" } },
-    --   }
-    -- end
+    if require "omareloui.util.has_plugin" "zellij-nav.nvim" then
+      local zellij_nav = require "zellij-nav"
+      window_navigate_hydra = {
+        { "h", zellij_nav.left_tab, { desc = "Go to the left window or zellij tab" } },
+        { "j", zellij_nav.down, { desc = "Go to the down window" } },
+        { "k", zellij_nav.up, { desc = "Go to the up window" } },
+        { "l", zellij_nav.right_tab, { desc = "Go to the right window or zellij tab" } },
+      }
+    end
 
     hydra {
       name = "Window navigate and move hydra",
       mode = { "n" },
-      body = "<C-w>",
+      body = "<leader>w",
 
-      heads = tables.merge({
+      heads = require("omareloui.util.tables").merge({
         { "w", "<C-w>w", { desc = "Switch windows" } },
         { "x", "<C-w>x", { desc = "Swap window with next" } },
 
@@ -77,7 +67,14 @@ return {
         { "H", "<C-w>H", { desc = "Move the current window to be at the very right" } },
         { "L", "<C-w>L", { desc = "Move the current window to be at the very left" } },
 
+        {
+          "d",
+          "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>",
+          { desc = "Open definition in vertical split window", exit = true },
+        },
+
         { "q", "<C-w>q", { desc = "Quite a window", exit = true } },
+        { "o", "<C-w>o", { desc = "Close all other windows", exit = true } },
       }, window_navigate_hydra),
     }
 
@@ -85,7 +82,7 @@ return {
 
     if wk_ok then
       wk.add {
-        { "<C-w>", group = "Hydra window move" },
+        { "<leader>w", group = "Hydra window move" },
         { "<leader>dd", group = "Hydra debug" },
       }
     end

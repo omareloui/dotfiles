@@ -67,8 +67,8 @@ return {
 
       set("<leader>ls", l.buf.signature_help, "Lsp signature_help")
       set("<leader>rs", "<Cmd>LspRestart<CR>", "Restart the lsp server")
-      set("<leader>sdv", "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>", "Open definition in vertical split window")
-      set("<leader>sdh", "<Cmd>split | lua vim.lsp.buf.definition()<CR>", "Open definition in horizontal split window")
+      -- set("<leader>sdv", "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>", "Open definition in vertical split window")
+      -- set("<leader>sdh", "<Cmd>split | lua vim.lsp.buf.definition()<CR>", "Open definition in horizontal split window")
       set("<leader>rn", l.buf.rename, "Smart rename")
       set("<leader>ca", l.buf.code_action, "See available code actions", { mode = { "n", "v" } })
 

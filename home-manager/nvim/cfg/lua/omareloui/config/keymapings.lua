@@ -18,7 +18,6 @@ set(">", ">gv", "Indend line forwards", { mode = { "v" } })
 -- keep the cursor on the same position
 set("J", "mzJ`z", "Merge with next line")
 
-set("<C-s>", "<Cmd>up<CR>", "Save buffer")
 set("<leader>w", "<Cmd>up<CR>", "Save buffer")
 
 -- stylua: ignore
@@ -49,6 +48,3 @@ set("<leader>j", "<Cmd>m .+1<CR>==", "Move the line down")
 set("<leader>k", "<Cmd>m .-2<CR>==", "Move the line up")
 set("K", ":m '<-2<CR>gv=gv", "Move the line up", { mode = { "v" } })
 set("J", ":m '>+1<CR>gv=gv", "Move the line down", { mode = { "v" } })
-
--- set("<A-j>", '"dyy"dp', "Duplicate line down")
--- set("<A-k>", '"dyy"dP', "Duplicate line up")

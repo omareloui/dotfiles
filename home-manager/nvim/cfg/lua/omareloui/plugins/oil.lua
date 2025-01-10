@@ -1,7 +1,3 @@
--- Disable netrw in favor of Oil.nivm
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrw = 1
-
 local function get_oil_winbar()
   local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
   local dir = require("oil").get_current_dir(bufnr)
@@ -16,6 +12,12 @@ end
 return {
   "stevearc/oil.nvim",
   event = { "VeryLazy", "BufReadPost", "BufWritePost", "BufNewFile", "BufReadPre" },
+
+  init = function()
+    -- Disable netrw in favor of Oil.nivm
+    vim.g.loaded_netrwPlugin = 1
+    vim.g.loaded_netrw = 1
+  end,
 
   config = function()
     local ok, oil = pcall(require, "oil")

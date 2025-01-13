@@ -38,6 +38,7 @@ return {
     lint.linters_by_ft = {
       astro = { js_linter, "cspell" },
       bzl = { "buildifier", "cspell" },
+      cs = { "cspell" },
       dockerfile = { "hadolint", "cspell" },
       gitcommit = { "gitlint", "cspell" },
       go = { "golangcilint", "cspell" },

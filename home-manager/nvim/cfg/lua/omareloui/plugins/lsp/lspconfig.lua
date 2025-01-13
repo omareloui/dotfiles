@@ -2,6 +2,7 @@ local language_server_to_load = {
   "astro",
   "bash",
   "bazel",
+  "csharp",
   "css",
   "deno",
   "docker",

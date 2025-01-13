@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   home = {
     packages = with pkgs; [
       #
@@ -131,6 +127,7 @@
       cargo
       delve
       deno
+      dotnet-sdk_9
       gnumake
       go-mockery
       goose
@@ -141,6 +138,7 @@
       makeWrapper
       mongodb-compass
       nodejs
+      omnisharp-roslyn
       postman
       protobuf
       protoc-gen-go

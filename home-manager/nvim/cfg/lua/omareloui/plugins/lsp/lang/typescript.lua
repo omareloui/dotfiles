@@ -9,7 +9,7 @@ return {
         plugins = {
           {
             name = "@vue/typescript-plugin",
-            location = require "omareloui.plugins.lsp.lang.vue_language_server_path",
+            location = require("omareloui.plugins.lsp.lang.system_packages").vue_lsp,
             languages = { "vue" },
           },
         },
@@ -34,7 +34,6 @@ return {
         end
 
         set("<leader>co", function()
-          apply_code_action "source.removeUnused.ts"
           apply_code_action "source.organizeImports.ts"
         end, "Organize Imports")
 

@@ -49,6 +49,7 @@ return {
       formatters_by_ft = {
         astro = { "prettierd" },
         bzl = { "buildifier" },
+        cs = { "csharpier" },
         css = { "prettierd" },
         graphql = { "prettierd" },
         html = { "prettierd" },

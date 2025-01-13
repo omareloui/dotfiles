@@ -7,7 +7,11 @@
 }: {
   wayland.windowManager.hyprland = let
     p = config.colorScheme.palette;
-    terminalEmulator = lib.getExe pkgs.wezterm;
+    hyprlandConfig = import ./config.nix {
+      pkgs = pkgs;
+      lib = lib;
+    };
+    terminalEmulator = hyprlandConfig.terminal;
   in {
     enable = true;
     xwayland.enable = true;

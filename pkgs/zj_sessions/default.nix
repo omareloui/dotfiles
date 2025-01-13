@@ -16,7 +16,7 @@ writeShellApplication {
     ''
       ${import ../utils/ansi.nix}
 
-      version=1.0.0
+      version=1.0.1
 
       LONGOPTS=help
       OPTIONS=h
@@ -72,8 +72,13 @@ writeShellApplication {
 
       if [[ -z $zj_session ]]; then exit; fi
 
+      function start_terminal_with_zj {
+        # wezterm start -- zsh --login -c "$1"
+        kitty --single-instance -e zsh -l -c "$1"
+      }
+
       function start_default {
-        wezterm start -- zsh --login -c "zellij --layout $_default_layout"
+        start_terminal_with_zj "zellij --layout $_default_layout"
       }
 
       if [[ $zj_session == "$_new" ]]; then
@@ -90,14 +95,14 @@ writeShellApplication {
         if [[ $layout == "$_default_layout" ]]; then
           start_default
         else
-          wezterm start --always-new-process -- zsh --login -c "zellij --layout $layout attach -c $layout"
+          start_terminal_with_zj "zellij --layout $layout attach -c $layout"
         fi
       elif [[ $zj_session == "$_named" ]]; then
         name=$(rofi -dmenu -p "Session name")
         if [[ -z $name ]]; then exit; fi
-        wezterm start -- zsh --login -c "zellij attach -c $name"
+        start_terminal_with_zj "zellij attach -c $name"
       else
-        wezterm start -- zsh --login -c "zellij attach -c $zj_session"
+        start_terminal_with_zj "zellij attach -c $zj_session"
       fi
     '';
 }

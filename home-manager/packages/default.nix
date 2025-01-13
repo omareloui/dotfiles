@@ -133,6 +133,7 @@
       goose
       grpcui
       grpcurl
+      lazydocker
       lua
       luarocks
       makeWrapper

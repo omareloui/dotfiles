@@ -105,6 +105,12 @@
       };
 
       plugin = {
+        prepend_preloaders = [
+          {
+            mime = "image/*";
+            run = "noop";
+          }
+        ];
         prepend_previewers = [
           {
             mime = "audio/*";

@@ -302,6 +302,11 @@
               ''shell --confirm 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' ''
             ];
           }
+          {
+            on = ["T"];
+            run = "plugin hide-preview";
+            desc = "Hide or show preview";
+          }
         ];
       };
 

@@ -45,3 +45,11 @@ end
 
 Status:children_add(status_mimetype, 400, Status.RIGHT)
 Status:children_add(status_owner, 500, Status.RIGHT)
+
+-- Hide preview on nvim mode
+if os.getenv("NVIM") then
+	local ok, hide_preview = pcall(require, "hide_preview")
+	if ok then
+		hide_preview:entry()
+	end
+end

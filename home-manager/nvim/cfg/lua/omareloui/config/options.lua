@@ -29,7 +29,7 @@ opt.foldlevelstart = 99
 opt.foldenable = true
 opt.fillchars = { eob = " ", foldopen = "", foldclose = "" }
 
-opt.hlsearch = false
+opt.hlsearch = true
 opt.linebreak = true
 opt.list = true
 --o.conceallevel = 2

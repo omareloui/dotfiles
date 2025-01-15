@@ -20,6 +20,8 @@ set("J", "mzJ`z", "Merge with next line")
 
 set("<leader>w", "<Cmd>up<CR>", "Save buffer")
 
+set("<Esc>", "<Cmd>noh<CR>", "Exit highligh")
+
 -- stylua: ignore
 set("<leader>q", function() vim.schedule(function() vim.cmd "bd" end) end, "Close buffer", { silent = true })
 

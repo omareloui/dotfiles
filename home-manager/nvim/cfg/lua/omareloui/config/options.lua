@@ -77,6 +77,9 @@ vim.opt.iskeyword:append "-"
 vim.api.nvim_create_autocmd("FileType", { command = "set formatoptions-=cro" })
 
 vim.filetype.add {
+  extension = {
+    mdx = "markdown",
+  },
   pattern = {
     [".*/hypr/.*%.conf"] = "hyprlang",
   },

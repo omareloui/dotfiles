@@ -7,6 +7,7 @@
       age
       ark
       autoconf
+      awscli2
       bat
       bc
       bison
@@ -25,7 +26,6 @@
       fd
       ffmpeg
       file
-      firefox
       flex
       font-awesome
       font-manager
@@ -50,6 +50,7 @@
       light
       loupe
       lsof
+      lux
       microsoft-edge
       mpg123
       nautilus
@@ -145,6 +146,7 @@
       protoc-gen-go
       protoc-gen-go-grpc
       rustc
+      shc
       sqlc
       sqlite
       sqlitebrowser

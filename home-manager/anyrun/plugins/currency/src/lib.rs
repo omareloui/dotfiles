@@ -22,7 +22,7 @@ static STATE: Lazy<Mutex<PluginState>> = Lazy::new(|| {
 });
 
 static INPUT_REGEX: Lazy<Regex> = Lazy::new(|| {
-    Regex::new(r"^(\d+)\s*([A-Za-z]{3})\s+(?:to\s+)?([A-Za-z]{3})$").unwrap()
+    Regex::new(r"^(\d+(?:\.\d+)?)\s*([A-Za-z]{3})\s+(?:to\s+)?([A-Za-z]{3})$").unwrap()
 });
 
 #[init]

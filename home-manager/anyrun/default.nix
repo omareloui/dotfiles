@@ -44,5 +44,5 @@
       '';
   };
 
-  home.file.".config/anyrun/plugins/libcurrency.so".source = ./plugins/currency/builds/libcurrency-0.1.0.so;
+  home.file.".config/anyrun/plugins/libcurrency.so".source = ./plugins/currency/builds/libcurrency-0.1.1.so;
 }

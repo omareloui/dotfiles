@@ -47,6 +47,7 @@
       libnotify
       libreoffice
       libtool
+      libusb1
       light
       loupe
       lsof
@@ -90,6 +91,7 @@
       unrar
       unzip
       vlc
+      wally-cli
       wev
       wf-recorder
       wget
@@ -122,6 +124,9 @@
       nix-du
       graphviz # For `nix-du`
 
+      # QMK and Keyboards Related
+      qmk
+
       # Development
       air
       automake
@@ -135,6 +140,7 @@
       grpcui
       grpcurl
       lazydocker
+      libclang
       lua
       luarocks
       makeWrapper

@@ -18,6 +18,7 @@
     htmlhint
     iferr
     impl
+    libclang
     lua-language-server
     luaPackages.luacheck
     markdownlint-cli

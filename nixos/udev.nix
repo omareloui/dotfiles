@@ -36,10 +36,10 @@
             ATTR{online}=="0", \
             ATTR{type}=="Mains", \
             RUN+="${lib.getExe pkgs.coreutils} --coreutils-prog=touch /tmp/bat-conn"
-
-            # RUN+="${lib.getExe pkgs.coreutils} --coreutils-prog=su omareloui -c \"${lib.getExe pkgs.batplug} connected\""
-            # RUN+="${lib.getExe pkgs.coreutils} --coreutils-prog=su omareloui -c \"${lib.getExe pkgs.batplug} connected\""
         '';
+
+      # RUN+="${lib.getExe pkgs.coreutils} --coreutils-prog=su omareloui -c \"${lib.getExe pkgs.batplug} connected\""
+      # RUN+="${lib.getExe pkgs.coreutils} --coreutils-prog=su omareloui -c \"${lib.getExe pkgs.batplug} connected\""
     };
   };
 }

@@ -31,6 +31,9 @@
     anyrun.url = "github:anyrun-org/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
+    solaar.url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
+    solaar.inputs.nixpkgs.follows = "nixpkgs";
+
     # TODO: change to upstream
     # moviesscripts.url = "/home/omareloui/myhome/repos/moviesscripts";
   };
@@ -80,7 +83,10 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs systemConfig;};
-        modules = [./nixos/configuration.nix];
+        modules = [
+          inputs.solaar.nixosModules.default
+          ./nixos/configuration.nix
+        ];
       };
     };
 

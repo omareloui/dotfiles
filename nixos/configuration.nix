@@ -185,6 +185,10 @@
         "0 0 */1 * * ${config.users.users.omareloui.name} ${outputs.packages.${pkgs.system}.cloud_backup}"
       ];
     };
+
+    solaar = {
+      enable = true;
+    };
   };
 
   security.pam.services.swaylock = {

@@ -1,7 +1,7 @@
 local set = require("omareloui.util.keymap").set
 
 -- Navigate insert mode
-set("jk", "<Esc>", "Exit insert mode", { nowait = true, mode = { "i" } })
+-- set("jk", "<Esc>", "Exit insert mode", { nowait = true, mode = { "i" } })
 
 set("k", "v:count == 0 ? 'gk' : 'k'", "Move up", { expr = true, silent = true, mode = { "n", "x" } })
 set("j", "v:count == 0 ? 'gj' : 'j'", "Move down", { expr = true, silent = true, mode = { "n", "x" } })
@@ -12,8 +12,8 @@ set("<Down>", "v:count == 0 ? 'gj' : 'j'", "Move down", { expr = true, silent = 
 set("<A-p>", "<Cmd>e#<CR>", "Last edited buffer")
 
 -- Indenting
-set("<", "<gv", "Indend line backwards", { mode = { "v" } })
-set(">", ">gv", "Indend line forwards", { mode = { "v" } })
+set("<", "<gv", "Indent line backwards", { mode = { "v" } })
+set(">", ">gv", "Indent line forwards", { mode = { "v" } })
 
 -- keep the cursor on the same position
 set("J", "mzJ`z", "Merge with next line")

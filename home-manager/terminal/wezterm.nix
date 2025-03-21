@@ -1,6 +1,6 @@
 {config, ...}: {
   programs.wezterm = {
-    enable = true;
+    enable = false;
     enableZshIntegration = true;
 
     colorSchemes = with config.colorScheme.palette; {

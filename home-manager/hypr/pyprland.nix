@@ -8,7 +8,12 @@
   home.file.".config/hypr/pyprland.toml".text = let
     class = "scratchpad";
 
-    term = "${lib.getExe pkgs.wezterm} start --class ${class} --always-new-process --";
+    hyprlandConfig = import ./config.nix {
+      pkgs = pkgs;
+      lib = lib;
+    };
+
+    term = "${hyprlandConfig.terminal} --class ${class} --";
 
     xsize = 80;
     ysize = 85;

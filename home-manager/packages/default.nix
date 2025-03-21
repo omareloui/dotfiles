@@ -5,7 +5,7 @@
 
       acpi
       age
-      ark
+      # ark
       autoconf
       awscli2
       bat
@@ -165,8 +165,9 @@
 
       (pkgs.python312.withPackages (ppkgs:
         with ppkgs; [
-          pip
+          django
           inkex
+          pip
           pyclipper
         ]))
     ];

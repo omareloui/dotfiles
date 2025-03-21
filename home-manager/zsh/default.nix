@@ -11,7 +11,6 @@
     enableCompletion = true;
     defaultKeymap = "viins";
     localVariables = {
-      ZVM_VI_INSERT_ESCAPE_BINDKEY = "jk";
       ZSH_AUTOSUGGEST_STRATEGY = ["history" "completion"];
     };
     history = {

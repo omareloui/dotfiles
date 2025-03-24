@@ -10,40 +10,48 @@
   browserPkg = "${pkgs.microsoft-edge}/bin/microsoft-edge";
   editor = "nvim";
 in {
-  imports = [
-    inputs.nix-colors.homeManagerModules.default
+  imports =
+    [
+      inputs.nix-colors.homeManagerModules.default
 
-    ./hypr/hyprland.nix
-    ./hypr/hypridle.nix
-    ./hypr/hyprlock.nix
-    ./hypr/hyprshade.nix
-    ./hypr/pyprland.nix
+      ./atuin
+      ./eza
+      ./go
+      ./terminal
+      ./lazygit
+      ./neovide
+      ./nvim
+      ./packages
 
-    ./anyrun
-    ./atuin
-    ./dunst
-    ./eza
-    ./go
-    ./inkscape
-    ./terminal
-    ./lazygit
-    ./neovide
-    ./notifications
-    ./nvim
-    ./packages
-    ./pywal
-    ./rofi
-    ./ssh
-    ./starship
-    ./swappy
-    ./thefuck
-    ./vcs
-    ./waybar
-    ./wlogout
-    ./yazi
-    ./zoxide
-    ./zsh
-  ];
+      ./ssh
+      ./starship
+      ./thefuck
+      ./yazi
+      ./zoxide
+      ./zsh
+    ]
+    ++ (
+      if !outputs.isWsl
+      then [
+        ./hypr/hyprland.nix
+        ./hypr/hypridle.nix
+        ./hypr/hyprlock.nix
+        ./hypr/hyprshade.nix
+        ./hypr/pyprland.nix
+
+        ./anyrun
+        ./dunst
+        ./inkscape
+        ./notifications
+        ./pywal
+        ./rofi
+        ./swappy
+        ./vcs
+        ./waybar
+        ./wlogout
+      ]
+      else []
+    );
 
   nixpkgs = {
     overlays = [

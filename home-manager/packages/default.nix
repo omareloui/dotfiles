@@ -1,176 +1,190 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  outputs,
+  ...
+}: {
   home = {
-    packages = with pkgs; [
-      #
+    packages = with pkgs;
+      [
+        #
 
-      acpi
-      age
-      # ark
-      autoconf
-      awscli2
-      bat
-      bc
-      bison
-      bottom
-      brillo
-      btrfs-progs
-      calibre
-      cliphist
-      cloc
-      codeium
-      corepack_latest
-      dconf
-      du-dust
-      entr
-      eva
-      fd
-      ffmpeg
-      file
-      flex
-      font-awesome
-      font-manager
-      fontforge
-      fzf
-      gcc
-      gh
-      ghostscript
-      git
-      gnome-bluetooth
-      gnome-disk-utility
-      hyprpicker
-      imagemagick
-      jq
-      keepassxc
-      kora-icon-theme
-      libcanberra-gtk3
-      libiconv
-      libnotify
-      libreoffice
-      libtool
-      libusb1
-      light
-      loupe
-      lsof
-      lux
-      microsoft-edge
-      mpg123
-      nautilus
-      neofetch
-      neovide
-      networkmanagerapplet
-      nwg-look
-      optimize
-      p7zip
-      parallel
-      patchelf
-      pavucontrol
-      pkg-config
-      playerctl
-      polkit_gnome
-      poppler
-      pulseaudioFull
-      pv
-      qalculate-gtk
-      rclone
-      rink
-      ripgrep
-      slack
-      slock
-      socat
-      sops
-      srm
-      ssh-to-age
-      swaylock-effects
-      swww
-      teams-for-linux
-      telegram-desktop
-      termdown
-      tldr
-      trashy
-      tree
-      unrar
-      unzip
-      vlc
-      wally-cli
-      wev
-      wf-recorder
-      wget
-      whatsapp-for-linux
-      wirelesstools
-      wl-clipboard
-      xorg.xhost
-      yarn
-      zathura
-      zip
+        #
+        age
+        # ark
+        autoconf
+        awscli2
+        bat
+        bc
+        bison
+        bottom
+        cloc
+        codeium
+        corepack_latest
+        dconf
+        du-dust
+        entr
+        eva
+        fd
+        ffmpeg
+        file
+        flex
+        fzf
+        gcc
+        gh
+        ghostscript
+        git
+        imagemagick
+        jq
+        lsof
+        lux
+        mpg123
+        neofetch
+        neovide
+        p7zip
+        parallel
+        patchelf
+        pkg-config
+        playerctl
+        polkit_gnome
+        poppler
+        pv
+        rclone
+        rink
+        ripgrep
+        socat
+        sops
+        srm
+        ssh-to-age
+        termdown
+        tldr
+        trashy
+        tree
+        unrar
+        unzip
+        wev
+        wget
+        wl-clipboard
+        yarn
+        zip
 
-      # Custom scripts/packages
-      # moviesscripts
-      bar_themeswitcher
-      batplug
-      batsuspend
-      batwarning
-      cliphist_wrapper
-      cloud_backup
-      gengif
-      init_bar
-      screenshot
-      shade
-      sortpics
-      wallpaper
-      zj_sessions
+        # Custom scripts/packages
+        # moviesscripts
+        sortpics
+        gengif
+        cloud_backup
+        optimize
+        zj_sessions
 
-      # Nix Utilities
-      nh
-      nix-du
-      graphviz # For `nix-du`
+        # Nix Utilities
+        nh
+        nix-du
+        graphviz # For `nix-du`
 
-      # QMK and Keyboards Related
-      qmk
+        # QMK and Keyboards Related
+        qmk
+        wally-cli
 
-      # Development
-      air
-      automake
-      cargo
-      delve
-      deno
-      dotnet-sdk_9
-      gnumake
-      go-mockery
-      goose
-      grpcui
-      grpcurl
-      lazydocker
-      libclang
-      lua
-      luarocks
-      makeWrapper
-      mongodb-compass
-      nodejs
-      omnisharp-roslyn
-      postman
-      protobuf
-      protoc-gen-go
-      protoc-gen-go-grpc
-      rustc
-      shc
-      sqlc
-      sqlite
-      sqlitebrowser
-      templ
+        # Development
+        air
+        automake
+        cargo
+        delve
+        deno
+        dotnet-sdk_9
+        gnumake
+        go-mockery
+        goose
+        grpcui
+        grpcurl
+        lazydocker
+        libclang
+        lua
+        luarocks
+        makeWrapper
+        mongodb-compass
+        nodejs
+        omnisharp-roslyn
+        postman
+        protobuf
+        protoc-gen-go
+        protoc-gen-go-grpc
+        rustc
+        shc
+        sqlc
+        sqlite
+        sqlitebrowser
+        templ
 
-      nodePackages.prisma
-      prisma-engines
-      openssl
-      openssl.dev
+        nodePackages.prisma
+        prisma-engines
+        openssl
+        openssl.dev
 
-      (pkgs.python312.withPackages (ppkgs:
-        with ppkgs; [
-          django
-          inkex
-          pip
-          pyclipper
-        ]))
-    ];
+        (pkgs.python312.withPackages (ppkgs:
+          with ppkgs; [
+            django
+            inkex
+            pip
+            pyclipper
+          ]))
+      ]
+      ++ (
+        if !outputs.isWsl
+        then [
+          acpi
+          brillo
+          btrfs-progs
+          calibre
+          cliphist
+          font-awesome
+          font-manager
+          fontforge
+          gnome-bluetooth
+          gnome-disk-utility
+          hyprpicker
+          keepassxc
+          kora-icon-theme
+          libcanberra-gtk3
+          libiconv
+          libnotify
+          libreoffice
+          libtool
+          libusb1
+          light
+          loupe
+          microsoft-edge
+          nautilus
+          networkmanagerapplet
+          nwg-look
+          pavucontrol
+          pulseaudioFull
+          qalculate-gtk
+          slack
+          slock
+          swaylock-effects
+          swww
+          teams-for-linux
+          telegram-desktop
+          vlc
+          wf-recorder
+          whatsapp-for-linux
+          wirelesstools
+          xorg.xhost
+          zathura
+
+          # Custom scripts/packages
+          bar_themeswitcher
+          batplug
+          batsuspend
+          batwarning
+          cliphist_wrapper
+          init_bar
+          screenshot
+          shade
+          wallpaper
+        ]
+        else []
+      );
 
     sessionVariables = {
       # for pkg-config

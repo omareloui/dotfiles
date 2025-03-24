@@ -6,22 +6,28 @@
   pkgs,
   ...
 }: {
-  imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
+  imports =
+    [
+      # If you want to use modules your own flake exports (from modules/nixos):
+      # outputs.nixosModules.example
 
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
+      # Or modules from other flakes (such as nixos-hardware):
+      # inputs.hardware.nixosModules.common-cpu-amd
+      # inputs.hardware.nixosModules.common-ssd
 
-    ./fonts.nix
-    ./homelab.nix
-    ./sops.nix
-    ./udev.nix
-    ./users.nix
-
-    ./hardware-configuration.nix
-  ];
+      ./homelab.nix
+      ./sops.nix
+      ./users.nix
+    ]
+    ++ (
+      if !outputs.isWsl
+      then [
+        ./udev.nix
+        ./fonts.nix
+        ./hardware-configuration.nix
+      ]
+      else []
+    );
 
   nix = {
     # This will add each flake input as a registry
@@ -69,8 +75,8 @@
   };
 
   networking = {
-    hostName = "nixos";
-    networkmanager.enable = true;
+    hostName = outputs.hostName;
+    networkmanager.enable = !outputs.isWsl;
   };
 
   system = {
@@ -83,9 +89,9 @@
   boot = {
     loader = {
       systemd-boot.enable = false;
-      efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = !outputs.isWsl;
       grub = {
-        enable = true;
+        enable = !outputs.isWsl;
         device = "nodev";
         useOSProber = true;
         efiSupport = true;
@@ -107,9 +113,9 @@
   };
 
   hardware = {
-    graphics.enable = true;
+    graphics.enable = !outputs.isWsl;
     pulseaudio.enable = false;
-    acpilight.enable = true;
+    acpilight.enable = !outputs.isWsl;
   };
 
   systemd = {
@@ -129,10 +135,10 @@
   };
 
   hardware.bluetooth = {
-    enable = true;
+    enable = !outputs.isWsl;
     powerOnBoot = true;
   };
-  services.blueman.enable = true;
+  services.blueman.enable = !outputs.isWsl;
 
   virtualisation = {
     docker = {
@@ -148,7 +154,7 @@
 
   services = {
     xserver = {
-      enable = true;
+      enable = !outputs.isWsl;
       xkb.layout = "us";
       displayManager.gdm = {
         enable = true;
@@ -157,19 +163,17 @@
     };
 
     pipewire = {
-      enable = true;
+      enable = !outputs.isWsl;
       alsa = {
         enable = true;
         support32Bit = true;
       };
       pulse.enable = true;
       jack.enable = true;
-      wireplumber = {
-        enable = true;
-      };
+      wireplumber.enable = true;
     };
 
-    udisks2.enable = true;
+    udisks2.enable = !outputs.isWsl;
 
     openssh = {
       enable = true;
@@ -181,13 +185,16 @@
 
     cron = {
       enable = true;
-      systemCronJobs = [
-        "0 0 */1 * * ${config.users.users.omareloui.name} ${outputs.packages.${pkgs.system}.cloud_backup}"
-      ];
+      systemCronJobs =
+        if !outputs.isWsl
+        then [
+          "0 0 */1 * * ${config.users.users.omareloui.name} ${outputs.packages.${pkgs.system}.cloud_backup}"
+        ]
+        else [];
     };
 
     solaar = {
-      enable = true;
+      enable = !outputs.isWsl;
     };
   };
 
@@ -232,10 +239,10 @@
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
-  programs.mtr.enable = true;
+  programs.mtr.enable = !outputs.isWsl;
   programs.zsh.enable = true;
   programs.light = {
-    enable = true;
+    enable = !outputs.isWsl;
     brightnessKeys.enable = true;
   };
   programs.gnupg.agent = {
@@ -243,7 +250,7 @@
     enableSSHSupport = true;
   };
   programs.hyprland = {
-    enable = true;
+    enable = !outputs.isWsl;
     xwayland.enable = true;
   };
 

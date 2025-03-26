@@ -8,26 +8,15 @@
 }: {
   imports =
     [
-      # If you want to use modules your own flake exports (from modules/nixos):
-      # outputs.nixosModules.example
-
-      # Or modules from other flakes (such as nixos-hardware):
-      # inputs.hardware.nixosModules.common-cpu-amd
-      # inputs.hardware.nixosModules.common-ssd
-
+      ./hardware-configuration.nix
       ./homelab.nix
       ./sops.nix
       ./users.nix
-    ]
-    ++ (
-      if !outputs.isWsl
-      then [
-        ./udev.nix
-        ./fonts.nix
-        ./hardware-configuration.nix
-      ]
-      else []
-    );
+      ./udev.nix
+      ./fonts.nix
+
+      inputs.solaar.nixosModules.default
+    ];
 
   nix = {
     # This will add each flake input as a registry
@@ -39,6 +28,16 @@
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
     nixPath = ["/etc/nix/path"];
+
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+      auto-optimise-store = true;
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than +3";
+    };
   };
 
   environment = {
@@ -62,21 +61,9 @@
     };
   };
 
-  nix = {
-    settings = {
-      experimental-features = ["nix-command" "flakes"];
-      auto-optimise-store = true;
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than +3";
-    };
-  };
-
   networking = {
     hostName = outputs.hostName;
-    networkmanager.enable = !outputs.isWsl;
+    networkmanager.enable = true;
   };
 
   system = {
@@ -89,9 +76,9 @@
   boot = {
     loader = {
       systemd-boot.enable = false;
-      efi.canTouchEfiVariables = !outputs.isWsl;
+      efi.canTouchEfiVariables = true;
       grub = {
-        enable = !outputs.isWsl;
+        enable = true;
         device = "nodev";
         useOSProber = true;
         efiSupport = true;
@@ -113,9 +100,9 @@
   };
 
   hardware = {
-    graphics.enable = !outputs.isWsl;
+    graphics.enable = true;
     pulseaudio.enable = false;
-    acpilight.enable = !outputs.isWsl;
+    acpilight.enable = true;
   };
 
   systemd = {
@@ -135,16 +122,16 @@
   };
 
   hardware.bluetooth = {
-    enable = !outputs.isWsl;
+    enable = true;
     powerOnBoot = true;
   };
-  services.blueman.enable = !outputs.isWsl;
+  services.blueman.enable = true;
 
   virtualisation = {
     docker = {
       enable = true;
       enableOnBoot = true;
-      storageDriver = "btrfs";
+   storageDriver = "btrfs";
     };
 
     oci-containers = {
@@ -154,7 +141,7 @@
 
   services = {
     xserver = {
-      enable = !outputs.isWsl;
+      enable = true;
       xkb.layout = "us";
       displayManager.gdm = {
         enable = true;
@@ -163,7 +150,7 @@
     };
 
     pipewire = {
-      enable = !outputs.isWsl;
+      enable = true;
       alsa = {
         enable = true;
         support32Bit = true;
@@ -173,7 +160,7 @@
       wireplumber.enable = true;
     };
 
-    udisks2.enable = !outputs.isWsl;
+    udisks2.enable = true;
 
     openssh = {
       enable = true;
@@ -186,7 +173,7 @@
     cron = {
       enable = true;
       systemCronJobs =
-        if !outputs.isWsl
+        if true
         then [
           "0 0 */1 * * ${config.users.users.omareloui.name} ${outputs.packages.${pkgs.system}.cloud_backup}"
         ]
@@ -194,7 +181,7 @@
     };
 
     solaar = {
-      enable = !outputs.isWsl;
+      enable = true;
     };
   };
 
@@ -239,10 +226,10 @@
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
-  programs.mtr.enable = !outputs.isWsl;
+  programs.mtr.enable = true;
   programs.zsh.enable = true;
   programs.light = {
-    enable = !outputs.isWsl;
+    enable = true;
     brightnessKeys.enable = true;
   };
   programs.gnupg.agent = {
@@ -250,7 +237,7 @@
     enableSSHSupport = true;
   };
   programs.hyprland = {
-    enable = !outputs.isWsl;
+    enable = true;
     xwayland.enable = true;
   };
 

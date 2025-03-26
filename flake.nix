@@ -84,17 +84,16 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      dell = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs systemConfig;};
         modules = [
-          inputs.solaar.nixosModules.default
-          ./nixos/configuration.nix
+          ./hosts/dell
         ];
       };
       zenbook = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs systemConfig;};
         modules = [
-          ./nixos/configuration.nix
+          ./hosts/zenbook
         ];
       };
     };
@@ -102,7 +101,7 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "omareloui@nixos" = home-manager.lib.homeManagerConfiguration {
+      "omareloui@dell" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
           inherit inputs outputs systemConfig;

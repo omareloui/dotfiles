@@ -4,10 +4,7 @@ return {
     name = "LAYOUT",
     comment_preview = {
       keymap_overrides = {
-        M_LBRC = "[",
-        M_LABK = "<",
-        M_LCBR = "{",
-        M_LPRN = "(",
+        QK_LLCK = "Layer Lock",
       },
     },
     layout = {

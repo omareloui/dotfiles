@@ -1,15 +1,19 @@
-{inputs, ...}: {
-  imports =
-    [
-      inputs.home-manager.nixosModules.home-manager
+{
+  outputs,
+  config,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
 
-      ./zsh.nix
-      ./locale.nix
-      ./nix.nix
-      ./ssh.nix
-      ./console.nix
-      ./virtualisation.nix
-    ];
+    ./packages.nix
+    ./zsh.nix
+    ./locale.nix
+    ./nix.nix
+    ./ssh.nix
+    ./virtualisation.nix
+  ];
 
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = {

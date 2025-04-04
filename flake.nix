@@ -5,6 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -51,7 +53,6 @@
 
     systemConfig = {
       colorScheme = inputs.nix-colors.lib.schemeFromYAML "folke-tokyo-night-dark" (builtins.readFile ./assets/themes/folke-tokyo-night-dark.yaml);
-      # colorScheme = inputs.nix-colors.colorSchemes.paraiso;
     };
 
     # This is a function that generates an attribute by calling a function you
@@ -86,15 +87,11 @@
     nixosConfigurations = {
       dell = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs systemConfig;};
-        modules = [
-          ./hosts/dell
-        ];
+        modules = [./hosts/dell];
       };
       zenbook = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs systemConfig;};
-        modules = [
-          ./hosts/zenbook
-        ];
+        modules = [./hosts/zenbook];
       };
     };
 

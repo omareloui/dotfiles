@@ -103,10 +103,7 @@
         extraSpecialArgs = {
           inherit inputs outputs systemConfig;
         };
-        modules = [
-          ./home-manager/home.nix
-          inputs.anyrun.homeManagerModules.default
-        ];
+        modules = [./home/dell.nix];
       };
 
       "omareloui@zenbook" = home-manager.lib.homeManagerConfiguration {
@@ -114,9 +111,7 @@
         extraSpecialArgs = {
           inherit inputs outputs systemConfig;
         };
-        modules = [
-          ./home-manager/home.nix
-        ];
+        modules = [./home/zenbook.nix];
       };
     };
   };

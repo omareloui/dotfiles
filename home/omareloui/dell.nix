@@ -13,6 +13,7 @@ in {
   imports =
     [
       inputs.nix-colors.homeManagerModules.default
+      inputs.anyrun.homeManagerModules.default
 
       ./atuin
       ./eza

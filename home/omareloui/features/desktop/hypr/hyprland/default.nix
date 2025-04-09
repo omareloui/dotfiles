@@ -2,16 +2,14 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }: {
+  imports = [
+    ./binds.nix
+  ];
+
   wayland.windowManager.hyprland = let
     p = config.colorScheme.palette;
-    hyprlandConfig = import ./config.nix {
-      pkgs = pkgs;
-      lib = lib;
-    };
-    terminalEmulator = hyprlandConfig.terminal;
   in {
     enable = true;
     xwayland.enable = true;
@@ -94,22 +92,6 @@
           "nice, 0, 6.9, 0.5, -4.20"
         ];
         animation = [
-          # "windows, 1, 7, myBezier"
-          # "windowsOut, 1, 7, default, popin 80%"
-          # "border, 1, 10, default"
-          # "borderangle, 1, 8, default"
-          # "fade, 1, 7, default"
-          # "workspaces, 1, 6, default"
-
-          # "windows, 1, 5, overshot1, slide"
-          # "windowsOut, 1, 3, smoothOut"
-          # "windowsIn, 1, 3, smoothOut"
-          # "windowsMove, 1, 4, smoothIn, slide"
-          # "border, 1, 5, default"
-          # "fade, 1, 5, smoothIn"
-          # "fadeDim, 1, 5, smoothIn"
-          # "workspaces, 1, 6, default"
-
           "windowsIn, 1, 5, winIn, slide"
           "windowsOut, 1, 5, winOut, slide"
           "windowsMove, 1, 5, wind, slide"
@@ -174,12 +156,8 @@
         "workspace special silent, ${scratpad}"
         "stayfocused, ${scratpad}"
 
-        # "stayfocused, title:^TelegramDesktop$"
-        # "stayfocused, class:^\.telegram-desktop-wrapped&,title:^Choose export folder$"
-
         "float, class:^(${shouldFloatClasses})$"
         "center 1, class:^(${shouldFloatClasses})$"
-        # "size 1200 760, class:^(${shouldFloatClasses})$"
 
         "float, class:${bluetoothClientRe}"
         "center 1, class:${bluetoothClientRe}"
@@ -236,103 +214,6 @@
         disable_splash_rendering = true;
         disable_hyprland_logo = true;
       };
-
-      "$mainMod" = "SUPER";
-      bind =
-        [
-          # window manipulation
-          "$mainMod, escape, exec, ${lib.getExe pkgs.wlogout} -b 5 -T 400 -B 400"
-          "$mainMod, Q, killactive,"
-          "$mainMod, F, fullscreen,"
-          "$mainMod, C, pseudo, dwindle"
-
-          # Move focus with mainMod + vim keys
-          "$mainMod, h, movefocus, l"
-          "$mainMod, l, movefocus, r"
-          "$mainMod, k, movefocus, u"
-          "$mainMod, j, movefocus, d"
-
-          "$mainMod, tab, workspace, +1"
-          "$mainMod SHIFT, tab, workspace, -1"
-
-          # Move windows in workspace
-          "$mainMod SHIFT, h, movewindow, l"
-          "$mainMod SHIFT, l, movewindow, r"
-          "$mainMod SHIFT, k, movewindow, u"
-          "$mainMod SHIFT, j, movewindow, d"
-
-          # Resize in workspace
-          "$mainMod CONTROL, h, splitratio, -0.1"
-          "$mainMod CONTROL, l, splitratio, +0.1"
-
-          # Scroll through existing workspaces with mainMod + scroll
-          "$mainMod, mouse_down, workspace, e+1"
-          "$mainMod, mouse_up, workspace, e-1"
-
-          # Layout
-          "$mainMod CTRL, Space, togglefloating"
-          "$mainMod, Space, togglesplit"
-
-          # Groups
-          "$mainMod SHIFT, V, togglegroup"
-          "$mainMod, N, changegroupactive, f"
-          "$mainMod SHIFT, N, changegroupactive, b"
-
-          # Hypdland misc
-          "$mainMod SHIFT, R, exec, hyprctl reload"
-
-          # Laptop keys
-          ",XF86MonBrightnessUp, exec, lightctl up"
-          ",XF86MonBrightnessDown, exec, lightctl down"
-          ",XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
-          ",XF86AudioRaiseVolume, exec, volumectl -u up"
-          ",XF86AudioLowerVolume, exec, volumectl -u down"
-          ",XF86AudioMute, exec, volumectl toggle-mute"
-          ",XF86Calculator, exec, ${lib.getExe pkgs.qalculate-gtk}"
-
-          "$mainMod, A, exec, hyprctl switchxkblayout"
-
-          # Plugins
-          "$mainMod SHIFT, B, exec, pypr toggle btm && hyprctl dispatch bringactivetotop"
-          "$mainMod SHIFT, T, exec, pypr toggle term && hyprctl dispatch bringactivetotop"
-          "$mainMod SHIFT, E, exec, pypr toggle yazi && hyprctl dispatch bringactivetotop"
-
-          # Apps keybindings
-          "$mainMod, Return, exec, ${terminalEmulator}"
-          "$mainMod SHIFT, Return, exec, ${lib.getExe pkgs.zj_sessions}"
-          "$mainMod, B, exec, [workspace 1] microsoft-edge"
-          "$mainMod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
-          "$mainMod, N, exec, nm-connection-editor"
-          "$mainMod, U, exec, blueman-manager"
-          "$mainMod, E, exec, ${lib.getExe pkgs.nautilus}"
-
-          "$mainMod SHIFT, N, exec, swaync-client -t"
-
-          # Scripts
-          # "$mainMod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
-          "$mainMod, R, exec, ${lib.getExe inputs.anyrun.packages.${pkgs.system}.anyrun}"
-          "$mainMod, V, exec, ${lib.getExe pkgs.cliphist_wrapper} list"
-
-          "$mainMod, W, exec, ${lib.getExe pkgs.wallpaper}"
-
-          "$mainMod CTRL SHIFT, R, exec, ${lib.getExe pkgs.init_bar}"
-
-          ", Print, exec, ${lib.getExe pkgs.screenshot} -s 3 full"
-          "$mainMod, Print, exec, ${lib.getExe pkgs.screenshot} -p area"
-        ]
-        ++ (
-          # workspaces
-          # binds $mainMod + [shift +] {1..10} to [move to] workspace {1..10}
-          builtins.concatLists (builtins.genList (x: let
-              ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
-            in [
-              "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
-              "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-            ])
-            10)
-        );
-
-      bindm = ["$mainMod, mouse:272, movewindow" "$mainMod, mouse:273, resizewindow"];
     };
   };
 }

@@ -1,5 +1,6 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   imports = [
+    ./nvim
     ./yazi
     ./zellij
 

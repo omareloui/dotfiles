@@ -6,13 +6,10 @@
   outputs,
   ...
 }: {
-  imports =
-    [
-      inputs.nix-colors.homeManagerModules.default
-
-      ../features/cli
-      ../features/nvim
-    ];
+  imports = [
+    inputs.nix-colors.homeManagerModules.default
+    ../features/cli
+  ];
 
   nix = {
     package = lib.mkDefault pkgs.nix;
@@ -27,6 +24,12 @@
   };
 
   nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.stable-packages
+    ];
+
     config = {
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942

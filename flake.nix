@@ -51,10 +51,6 @@
     system = "x86_64-linux";
     systems = ["x86_64-linux" "aarch64-linux"];
 
-    systemConfig = {
-      colorScheme = inputs.nix-colors.lib.schemeFromYAML "folke-tokyo-night-dark" (builtins.readFile ./assets/themes/folke-tokyo-night-dark.yaml);
-    };
-
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});

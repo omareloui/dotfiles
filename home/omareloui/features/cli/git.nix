@@ -4,17 +4,6 @@
     email = "contact@omareloui.com";
   };
 in {
-  programs.jujutsu = {
-    enable = true;
-    settings = {
-      user = user;
-      ui = {
-        allow-init-native = true;
-        default-command = "log";
-      };
-    };
-  };
-
   programs.git = {
     enable = true;
     userName = user.name;
@@ -26,6 +15,11 @@ in {
       push.autoSetupRemote = true;
       commit.gpgSign = true;
       tag.gpgSign = true;
+      commit.verbose = true;
+      column.ui = "auto";
+      branch.sort = "committerdate";
+      rerere.enabled = true;
+
       core = {
         editor = "nvim";
         sshCommand = "ssh -i ~/.ssh/id_rsa_github";
@@ -47,5 +41,12 @@ in {
       l = ''
         log --pretty=format:"%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --graph --date=relative --decorate --all'';
     };
+
+    ignores = [
+      ".direnv"
+      "result"
+      ".jj"
+    ];
   };
 }
+

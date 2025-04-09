@@ -12,28 +12,13 @@
 in {
   imports =
     [
-      inputs.nix-colors.homeManagerModules.default
-      inputs.anyrun.homeManagerModules.default
-
-      ./atuin
-      ./eza
-      ./go
-      ./terminal
-      ./lazygit
-      ./neovide
-      ./nvim
-      ./packages
-
-      ./ssh
-      ./starship
-      ./thefuck
-      ./yazi
-      ./zoxide
-      ./zsh
+      ./global
     ]
     ++ (
       if !outputs.isWsl
       then [
+        inputs.anyrun.homeManagerModules.default
+
         ./hypr/hyprland.nix
         ./hypr/hypridle.nix
         ./hypr/hyprlock.nix
@@ -69,34 +54,12 @@ in {
   };
 
   inherit (systemConfig) colorScheme;
-  systemd.user.startServices = "sd-switch";
 
   home = {
-    stateVersion = "24.05";
-
-    username = "omareloui";
-    homeDirectory = "/home/omareloui";
-
     sessionVariables = let
       h = config.home.homeDirectory;
       mh = config.home.sessionVariables.MYHOME;
     in {
-      PATH = builtins.concatStringsSep ":" [
-        "$PATH"
-        "/usr/local/go/bin"
-        "/usr/local/bin"
-        "${h}/.local/share/pnpm"
-        "${h}/.cargo/bin"
-        "${h}/.deno/bin"
-        "${h}/.local/bin"
-        "${h}/bin"
-      ];
-
-      LANG = "en_US.UTF-8";
-
-      VISUAL = editor;
-      EDITOR = editor;
-
       MYHOME = "${h}/myhome";
 
       DOWNLOADS_DIR = "${mh}/downloads";
@@ -105,13 +68,6 @@ in {
       PICS_DIR = "${mh}/pictures";
       WALLPAPERS_DIR = "${mh}/pictures/wallpapers/.loop_over";
 
-      _ZO_EXCLUDE_DIRS = "${h}:${mh}/**/.private/**:${mh}/**/.private";
-
-      NVM_DIR = "${h}/.nvm";
-
-      # For electron apps
-      DEFAULT_BROWSER = browserPkg;
-
       # Used by the nix helper `nh`
       FLAKE = "${h}/.dotfiles";
     };
@@ -119,50 +75,14 @@ in {
     shellAliases = {
       "." = "cd ${config.home.sessionVariables.FLAKE} && ${config.home.sessionVariables.EDITOR}";
 
-      py = "python3";
-      pve = "python3 -m venv ./env";
-      pva = "source ./env/bin/activate";
-
       q = "exit";
       ":q" = "exit";
-
-      cat = "bat --color always --plain";
-      du = "dust";
-
-      lg = "lazygit";
-
-      docker_clean = "docker builder prune -a --force";
-      docker_clean_images = "docker rmi $(docker images -a --filter=dangling=true -q)";
-      docker_clean_ps = "docker rm $(docker ps --filter=status=exited --filter=status=created -q)";
-
-      distro = "cat /etc/*-release | awk -F'=' '/DISTRIB_ID/ {print $2}'";
-
-      pnpx = "pnpm dlx";
 
       # BtrFS aliases
       # https://marc.merlins.org/perso/btrfs/post_2014-05-04_Fixing-Btrfs-Filesystem-Full-Problems.html
       btrfs_balance = "(sudo btrfs balance start -musage=0 / && sudo btrfs balance start -dusage=0 / && sudo btrfs balance start -dusage=20 / &) && while :; do sudo btrfs balance status -v /; sleep 60; done";
       btrfs_df = "sudo btrfs filesystem usage /";
       btrfs_show = "sudo btrfs filesystem show";
-
-      # Nix aliases
-      nix = "noglob nix";
-      ngen = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
-      hgen = "home-manager generations";
-
-      ngc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
-
-      nu = "cd ${config.home.sessionVariables.FLAKE} && nix flake update";
-
-      nb = "nh os build";
-      ns = "nh os switch";
-
-      hm = "home-manager";
-      hb = "nh home build";
-      hs = "nh home switch";
-
-      # Zellij aliases
-      zj = "zellij";
 
       depgraph = "nix-du | dot -Tsvg | display";
     };
@@ -235,12 +155,7 @@ in {
     };
   };
 
-  programs.home-manager.enable = true;
   programs.gpg.enable = true;
-
-  services.syncthing.enable = true;
-  services.udiskie.enable = true;
-
   services.gpg-agent = let
     day = 86400;
   in {
@@ -249,7 +164,9 @@ in {
     enableZshIntegration = true;
 
     defaultCacheTtl = day;
-
     maxCacheTtl = day;
   };
+
+  services.syncthing.enable = true;
+  services.udiskie.enable = true;
 }

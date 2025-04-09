@@ -8,9 +8,7 @@
       [
         #
 
-        #
         age
-        # ark
         autoconf
         awscli2
         bat
@@ -131,6 +129,7 @@
       ++ (
         if !outputs.isWsl
         then [
+          # ark
           acpi
           brillo
           btrfs-progs

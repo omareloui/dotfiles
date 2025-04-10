@@ -57,11 +57,10 @@
     };
   };
 
-  colorscheme.mode = lib.mkOverride 1499 "dark";
-  specialisation = {
-    dark.configuration.colorscheme.mode = lib.mkOverride 1498 "dark";
-    light.configuration.colorscheme.mode = lib.mkOverride 1498 "light";
-  };
+  # specialisation = {
+  #   dark.configuration.colorscheme.mode = lib.mkOverride 1498 "dark";
+  #   light.configuration.colorscheme.mode = lib.mkOverride 1498 "light";
+  # };
   home.file = {
     ".colorscheme.json".text = builtins.toJSON config.colorscheme;
   };

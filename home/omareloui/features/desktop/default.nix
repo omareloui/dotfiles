@@ -83,12 +83,12 @@
 
   dconf = {
     enable = true;
-    settings."org/gnome/desktop/interface".color-scheme =
-      if config.colorscheme.mode == "dark"
-      then "prefer-dark"
-      else if config.colorscheme.mode == "light"
-      then "prefer-light"
-      else "default";
+    # settings."org/gnome/desktop/interface".color-scheme =
+    #   if config.colorscheme.mode == "dark"
+    #   then "prefer-dark"
+    #   else if config.colorscheme.mode == "light"
+    #   then "prefer-light"
+    #   else "default";
   };
 
   xdg.portal.enable = true;

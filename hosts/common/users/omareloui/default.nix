@@ -25,6 +25,4 @@ in {
     shell = pkgs.zsh;
     packages = [pkgs.home-manager];
   };
-
-  home-manager.users.omareloui = import ../../../../home/omareloui/${config.networking.hostName}.nix;
 }

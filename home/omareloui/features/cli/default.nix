@@ -1,13 +1,22 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./nvim
     ./yazi
     ./zellij
 
     ./atuin.nix
+    ./bat.nix
+    ./direnv.nix
     ./eza.nix
+    ./fzf.nix
+    ./gh.nix
     ./git.nix
     ./go.nix
+    ./gpg.nix
     ./jujutsu.nix
     ./lazygit.nix
     ./ssh.nix
@@ -15,28 +24,12 @@
     ./thefuck.nix
     ./zoxide.nix
     ./zsh.nix
-
-    ./bat.nix
-    ./direnv.nix
-    ./gh.nix
-    ./git.nix
-    ./gpg.nix
-    ./jujutsu.nix
-    ./lyrics.nix
-    ./nushell.nix
-    ./nix-index.nix
-    ./pfetch.nix
-    ./ssh.nix
-    ./xpo.nix
-    ./fzf.nix
-    ./jira.nix
   ];
-   
+
   home.packages = with pkgs; [
     age
     autoconf
     awscli2
-    bat
     bc
     bison
     bottom
@@ -50,9 +43,7 @@
     ffmpeg
     file
     flex
-    fzf
     gcc
-    gh
     ghostscript
     git
     imagemagick
@@ -149,7 +140,6 @@
         pip
         pyclipper
       ]))
-
   ];
 
   home = {

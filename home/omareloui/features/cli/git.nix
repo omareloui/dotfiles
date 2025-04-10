@@ -10,7 +10,7 @@ in {
     userEmail = user.email;
 
     extraConfig = {
-      user.signingKey = "contact@omareloui.com";
+      user.signingkey = "52F14BEFFC734AFA";
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       commit.gpgSign = true;
@@ -40,6 +40,11 @@ in {
       uncommit = "reset HEAD^ --soft";
       l = ''
         log --pretty=format:"%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --graph --date=relative --decorate --all'';
+      p = "pull --ff-only";
+      ff = "merge --ff-only";
+      graph = "log --decorate --oneline --graph";
+      pushall = "!git remote | xargs -L1 git push --all";
+      add-nowhitespace = "!git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --unidiff-zero -";
     };
 
     ignores = [
@@ -49,4 +54,3 @@ in {
     ];
   };
 }
-

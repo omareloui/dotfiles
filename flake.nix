@@ -82,11 +82,11 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       dell = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs systemConfig;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./hosts/dell];
       };
       zenbook = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs systemConfig;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./hosts/zenbook];
       };
     };
@@ -97,17 +97,17 @@
       "omareloui@dell" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
-          inherit inputs outputs systemConfig;
+          inherit inputs outputs;
         };
-        modules = [./home/dell.nix];
+        modules = [./home/omareloui/dell.nix];
       };
 
       "omareloui@zenbook" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
-          inherit inputs outputs systemConfig;
+          inherit inputs outputs;
         };
-        modules = [./home/zenbook.nix];
+        modules = [./home/omareloui/zenbook.nix];
       };
     };
   };

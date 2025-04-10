@@ -85,17 +85,13 @@ in rec {
       );
     };
     iconTheme = {
-      name = "Papirus-${
-        if config.colorscheme.mode == "dark"
-        then "Dark"
-        else "Light"
-      }";
+      # name = "Papirus-${
+      #   if config.colorscheme.mode == "dark"
+      #   then "Dark"
+      #   else "Light"
+      # }";
+      name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-    };
-    cursorTheme = {
-      package = pkgs.apple-cursor;
-      name = "macOS-BigSur";
-      size = 24;
     };
   };
 

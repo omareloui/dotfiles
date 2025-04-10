@@ -6,17 +6,19 @@
   pkgs,
   ...
 }: {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./homelab.nix
-      ./sops.nix
-      ./users.nix
-      ./udev.nix
-      ./fonts.nix
+  imports = [
+    ./hardware-configuration.nix
+    ./homelab.nix
+    ./sops.nix
+    ./users.nix
+    ./udev.nix
+    ./fonts.nix
 
-      inputs.solaar.nixosModules.default
-    ];
+    ../common/global
+    ../common/users/omareloui
+
+    inputs.solaar.nixosModules.default
+  ];
 
   nix = {
     # This will add each flake input as a registry
@@ -131,7 +133,7 @@
     docker = {
       enable = true;
       enableOnBoot = true;
-   storageDriver = "btrfs";
+      storageDriver = "btrfs";
     };
 
     oci-containers = {

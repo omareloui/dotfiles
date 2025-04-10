@@ -1,11 +1,11 @@
 {
   lib,
-  pkgs,
   inputs,
   ...
 }: {
   imports = [
     ../common/global
+    ../common/users/omareloui
     inputs.nixos-wsl.nixosModules.default
   ];
   system.stateVersion = "24.05";

@@ -4,14 +4,19 @@
   lib,
   ...
 }: {
-  services.gpg-agent = {
+  services.gpg-agent = let
+    day = 86400;
+  in {
     enable = true;
     enableSshSupport = true;
     enableExtraSocket = true;
-    pinentryPackage =
+    pinentryPackage = lib.mkDefault (
       if config.gtk.enable
       then pkgs.pinentry-gnome3
-      else pkgs.pinentry-tty;
+      else pkgs.pinentry-tty
+    );
+    defaultCacheTtl = day;
+    maxCacheTtl = day;
   };
 
   home.packages = lib.optional config.gtk.enable pkgs.gcr;

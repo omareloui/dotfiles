@@ -2,7 +2,9 @@
   inputs,
   config,
   ...
-}: {
+}: let
+  gpg_client = "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe";
+in {
   imports = [
     ./global
   ];
@@ -25,15 +27,12 @@
     };
   };
 
-  programs.gpg.enable = true;
-  services.gpg-agent = let
-    day = 86400;
-  in {
-    enable = true;
-    enableSshSupport = true;
-    enableZshIntegration = true;
-
-    defaultCacheTtl = day;
-    maxCacheTtl = day;
+  services.gpg-agent = {
+    pinentryPackage = null;
+    extraConfig = ''
+      pinentry-program "${gpg_client}"
+    '';
   };
+
+  programs.git.extraConfig.gpg.openpgp.program = [];
 }

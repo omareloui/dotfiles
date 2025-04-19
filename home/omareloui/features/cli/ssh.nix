@@ -11,7 +11,12 @@
       "gitlab.com" = {
         host = "gitlab.com";
         hostname = "gitlab.com";
-        identityFile = "~/.ssh/id_gitlab";
+        identityFile = "~/.ssh/id_gitlab_umbra";
+      };
+      "trustclaim" = {
+        host = "68.183.144.184";
+        hostname = "68.183.144.184";
+        identityFile = "~/.ssh/id_trustclaim";
       };
       "mobile" = {
         host = "192.168.1.8";

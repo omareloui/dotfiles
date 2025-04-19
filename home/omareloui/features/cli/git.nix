@@ -1,4 +1,8 @@
-{...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   user = {
     name = "Omar Eloui";
     email = "contact@omareloui.com";
@@ -9,12 +13,15 @@ in {
     userName = user.name;
     userEmail = user.email;
 
+    signing = {
+      key = "52F14BEFFC734AFA";
+      signByDefault = true;
+      signer = lib.mkDefault config.services.gpg-agent.pinentryPackage;
+    };
+
     extraConfig = {
-      user.signingkey = "52F14BEFFC734AFA";
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
-      commit.gpgSign = true;
-      tag.gpgSign = true;
       commit.verbose = true;
       column.ui = "auto";
       branch.sort = "committerdate";
@@ -22,7 +29,7 @@ in {
 
       core = {
         editor = "nvim";
-        sshCommand = "ssh -i ~/.ssh/id_rsa_github";
+        sshCommand = "ssh -i ~/.ssh/id_github";
       };
     };
 

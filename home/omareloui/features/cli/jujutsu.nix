@@ -13,14 +13,14 @@
         show-cryptographic-signatures = true;
       };
       signing = let
-        gitCfg = config.programs.git.extraConfig;
+        gitCfg = config.programs.git;
       in {
         backend = "gpg";
         behaviour =
-          if gitCfg.commit.gpgSign
+          if gitCfg.signing.signByDefault
           then "own"
           else "never";
-        key = gitCfg.user.signingkey;
+        inherit (gitCfg.signing) key;
       };
       template-aliases = {
         "gerrit_change_id(change_id)" = ''

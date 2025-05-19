@@ -17,7 +17,7 @@
       plugins = {
         "autolock location=\"file:~/.config/zellij/plugins/zellij-autolock.wasm\"" = {
           is_enabled = true;
-          triggers = "nvim|vim|git|fzf|zoxide|atuin";
+          triggers = "nvim|vim|fzf|zoxide|atuin";
           reaction_seconds = "0.5";
           print_to_log = true;
         };

@@ -4,7 +4,17 @@ return {
     name = "LAYOUT",
     comment_preview = {
       keymap_overrides = {
-        -- QK_LLCK = "Layer Lock",
+        SYM_LABK = "<",
+        SYM_RABK = ">",
+        SYM_LBRC = "[",
+        SYM_RBRC = "]",
+        SYM_LPRN = "(",
+        SYM_RPRN = ")",
+        SYM_LCBR = "{",
+        SYM_RCBR = "}",
+        SYM_SCLN = ";",
+        SYM_COLN = ":",
+        QK_LLCK = "lock",
       },
     },
     layout = {

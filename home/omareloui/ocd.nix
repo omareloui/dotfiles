@@ -40,4 +40,9 @@ in {
       gpg.openpgp.program = [];
     };
   };
+
+  programs.ssh.matchBlocks."github.com" = {
+    hostname = "ssh.github.com";
+    port = 443;
+  };
 }

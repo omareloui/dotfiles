@@ -75,9 +75,6 @@
     # These are usually stuff you would upstream into home-manager
     # homeManagerModules = import ./modules/home-manager;
 
-    isWsl = false;
-    hostName = "nixos";
-
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -85,9 +82,15 @@
         specialArgs = {inherit inputs outputs;};
         modules = [./hosts/dell];
       };
+
       zenbook = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [./hosts/zenbook];
+      };
+
+      ocd = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./hosts/ocd];
       };
     };
 
@@ -103,6 +106,14 @@
       };
 
       "omareloui@zenbook" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+        modules = [./home/omareloui/zenbook.nix];
+      };
+
+      "omareloui@ocd" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
           inherit inputs outputs;

@@ -56,4 +56,8 @@
   };
 
   services.udiskie.enable = true;
+
+  programs.git = {
+    signing.key = "52F14BEFFC734AFA";
+  };
 }

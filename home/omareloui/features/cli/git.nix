@@ -14,7 +14,6 @@ in {
     userEmail = user.email;
 
     signing = {
-      key = "52F14BEFFC734AFA";
       signByDefault = true;
       signer = lib.mkDefault config.services.gpg-agent.pinentryPackage;
     };
@@ -29,7 +28,7 @@ in {
 
       core = {
         editor = "nvim";
-        sshCommand = "ssh -i ~/.ssh/id_github";
+        sshCommand = lib.mkDefault "ssh -i ~/.ssh/id_github";
       };
     };
 

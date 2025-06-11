@@ -64,7 +64,7 @@
   };
 
   networking = {
-    hostName = outputs.hostName;
+    hostName = "dell";
     networkmanager.enable = true;
   };
 

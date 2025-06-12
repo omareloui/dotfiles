@@ -1,7 +1,10 @@
 return {
   "nvim-lualine/lualine.nvim",
   enabled = true,
-  dependencies = { "kyazdani42/nvim-web-devicons" },
+  dependencies = {
+    "kyazdani42/nvim-web-devicons",
+    "AndreM222/copilot-lualine",
+  },
 
   config = function()
     local present, lualine = pcall(require, "lualine")
@@ -37,13 +40,15 @@ return {
     lualine.setup {
       options = {
         theme = theme,
-        -- globalstatus = true,
-        -- icons_enabled = true,
+        globalstatus = true,
+        icons_enabled = true,
         disabled_filetypes = { "alpha", "dashboard", "NvimTree" },
         always_divide_middle = true,
       },
+
       sections = {
         lualine_x = {
+          { "copilot", show_colors = true },
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,

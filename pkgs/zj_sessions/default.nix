@@ -3,12 +3,11 @@
   fd,
   ripgrep,
   zellij,
-  wezterm,
   rofi-wayland,
 }:
 writeShellApplication {
   name = "zj_sessions";
-  runtimeInputs = [fd wezterm zellij rofi-wayland ripgrep];
+  runtimeInputs = [fd zellij rofi-wayland ripgrep];
   text =
     /*
     bash

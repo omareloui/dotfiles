@@ -22,17 +22,9 @@
       REPOS_DIR = "${mh}/repos";
       PICS_DIR = "${mh}/pictures";
       WALLPAPERS_DIR = "${mh}/pictures/wallpapers/.loop_over";
-
-      # Used by the nix helper `nh`
-      FLAKE = "${h}/.dotfiles";
     };
 
     shellAliases = {
-      "." = "cd ${config.home.sessionVariables.FLAKE} && ${config.home.sessionVariables.EDITOR}";
-
-      q = "exit";
-      ":q" = "exit";
-
       # BtrFS aliases
       # https://marc.merlins.org/perso/btrfs/post_2014-05-04_Fixing-Btrfs-Filesystem-Full-Problems.html
       btrfs_balance = "(sudo btrfs balance start -musage=0 / && sudo btrfs balance start -dusage=0 / && sudo btrfs balance start -dusage=20 / &) && while :; do sudo btrfs balance status -v /; sleep 60; done";

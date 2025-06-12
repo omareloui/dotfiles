@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   imports = [
@@ -159,8 +160,13 @@
 
       # for pkg-config
       PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig:$PKG_CONFIG_PATH";
+
+      FLAKE = lib.mkDefault "${config.home.homeDirectory}/.dotfiles";
     };
+
     shellAliases = {
+      edot = "cd ${config.home.sessionVariables.FLAKE} && ${config.home.sessionVariables.EDITOR} .";
+
       py = "python3";
       pve = "python3 -m venv ./env";
       pva = "source ./env/bin/activate";

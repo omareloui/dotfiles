@@ -118,7 +118,7 @@
         extraSpecialArgs = {
           inherit inputs outputs;
         };
-        modules = [./home/omareloui/zenbook.nix];
+        modules = [./home/omareloui/ocd.nix];
       };
     };
   };

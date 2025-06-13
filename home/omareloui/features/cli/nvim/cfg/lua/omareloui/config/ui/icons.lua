@@ -1,3 +1,9 @@
+local git = {
+  added = " ",
+  modified = " ",
+  removed = " ",
+}
+
 local M = {
   misc = {
     dots = "󰇘",
@@ -29,11 +35,7 @@ local M = {
     prefix = "●",
   },
 
-  git = {
-    added = " ",
-    modified = " ",
-    removed = " ",
-  },
+  git = git,
 
   kinds = {
     Array = " ",
@@ -88,9 +90,13 @@ local M = {
   },
 
   lualine = {
-    copilot = " ",
-    diff = "",
-    lsp = "󰆼 ",
+    git = git,
+    file_symbols = {
+      modified = "",
+      readonly = "󰈡",
+      unnamed = "󰡯",
+      newfile = "󰎔",
+    },
   },
 }
 

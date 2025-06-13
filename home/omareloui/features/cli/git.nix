@@ -51,6 +51,7 @@ in {
       graph = "log --decorate --oneline --graph";
       pushall = "!git remote | xargs -L1 git push --all";
       add-nowhitespace = "!git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --unidiff-zero -";
+      sync = "!MAIN_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p') git switch --detach --quiet HEAD && git fetch origin $MAIN_BRANCH:$MAIN_BRANCH && git switch --quiet -";
     };
 
     ignores = [

@@ -46,6 +46,13 @@
             WriteChars = "\\u{000D}";
             "MessagePlugin \"autolock\"" = {};
           };
+          "bind \"Ctrl n\"" = {
+            "LaunchOrFocusPlugin \"session-manager\"" = {
+              floating = true;
+              move_to_focused_tab = true;
+            };
+            SwitchToMode = "Normal";
+          };
         };
 
         locked = {
@@ -69,6 +76,7 @@
           "bind \"=\" \"+\"" = {Resize = "Increase";};
           "bind \"-\"" = {Resize = "Decrease";};
         };
+
         pane = {
           "bind \"Ctrl w\"" = {SwitchToMode = "Normal";};
           "bind \"h\"" = {MoveFocus = "Left";};

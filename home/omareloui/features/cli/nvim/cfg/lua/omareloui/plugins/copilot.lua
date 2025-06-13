@@ -11,11 +11,19 @@ return {
         accept = "<C-l>",
         next = "<C-j>",
         prev = "<C-k>",
-        dismiss = "<C-]>",
+        dismiss = "<C-e>",
       },
     },
     panel = {
-      enabled = false,
+      enabled = true,
+      auto_refresh = true,
+      keymap = {
+        jump_prev = "[c",
+        jump_next = "]c",
+        accept = "<C-l>",
+        refresh = "gr",
+        open = "<C-x>",
+      },
     },
     filetypes = {
       help = false,

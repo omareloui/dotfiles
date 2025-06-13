@@ -68,6 +68,7 @@ return {
         file_sorter = require("telescope.sorters").get_fuzzy_file,
         file_ignore_patterns = {
           "node_modules",
+          ".cache",
           "__pycache__",
           "venv",
           ".*%.git/.*$",

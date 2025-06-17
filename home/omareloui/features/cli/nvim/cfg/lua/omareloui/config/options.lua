@@ -79,6 +79,8 @@ vim.api.nvim_create_autocmd("FileType", { command = "set formatoptions-=cro" })
 vim.filetype.add {
   extension = {
     mdx = "markdown",
+
+    j2 = "jinja",
   },
   pattern = {
     [".*/hypr/.*%.conf"] = "hyprlang",
@@ -91,6 +93,8 @@ vim.filetype.add {
     [".*/tasks/.*%.ya?ml"] = "yaml.ansible",
     [".*/handlers/.*%.ya?ml"] = "yaml.ansible",
     [".*/host_vars/.*%.ya?ml"] = "yaml.ansible",
+
+    [".*/.*%.html.j2"] = "jinja.html",
   },
 }
 

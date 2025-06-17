@@ -10,6 +10,7 @@ local language_server_to_load = {
   "emmet",
   "go",
   "html",
+  "jinja",
   "json",
   "lua_ls",
   "markdown",

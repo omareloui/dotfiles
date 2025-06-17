@@ -19,6 +19,7 @@
     htmlhint
     iferr
     impl
+    jinja-lsp
     libclang
     lua-language-server
     luaPackages.luacheck

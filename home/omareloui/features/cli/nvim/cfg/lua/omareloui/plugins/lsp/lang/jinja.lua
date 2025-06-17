@@ -1,9 +1,9 @@
 return {
   setup = function(lspconfig, on_attach, capabilities)
-    lspconfig["html"].setup {
+    lspconfig["jinja_lsp"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = { "html", "templ", "jinja.html" },
+      filetypes = { "jinja", "jinja.html" },
     }
   end,
 }

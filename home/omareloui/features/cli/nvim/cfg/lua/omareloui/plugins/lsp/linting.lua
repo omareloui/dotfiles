@@ -35,6 +35,7 @@ return {
     }
 
     local js_linter = "eslint"
+
     lint.linters_by_ft = {
       astro = { js_linter, "cspell" },
       bzl = { "buildifier", "cspell" },
@@ -56,6 +57,8 @@ return {
       text = { "cspell" },
       typescript = { js_linter, "cspell" },
       typescriptreact = { js_linter, "cspell" },
+      yaml = { "yamllint", "cspell" },
+      ansible = { "ansible_lint" },
       vue = { js_linter, "cspell" },
     }
 

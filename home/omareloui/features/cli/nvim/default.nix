@@ -1,6 +1,7 @@
 {pkgs, ...}: let
   extraPackages = with pkgs; [
     alejandra
+    ansible-lint
     bazel-buildtools
     buf
     codeium

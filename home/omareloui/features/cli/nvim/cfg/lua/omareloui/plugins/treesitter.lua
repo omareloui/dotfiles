@@ -43,6 +43,10 @@ return {
       },
     },
     config = function()
+      local ok, configs = pcall(require, "nvim-treesitter.configs")
+
+      -- stylua: ignore
+      if not ok then return end
       local opts = {
         auto_install = true,
         highlight = {
@@ -53,6 +57,7 @@ return {
         indent = { enable = true },
         rainbow = { enable = true },
         ensure_installed = {
+          "angular",
           "astro",
           "bash",
           "diff",
@@ -76,6 +81,7 @@ return {
           "regex",
           "ron",
           "rust",
+          "scss",
           "toml",
           "tsx",
           "typescript",
@@ -133,7 +139,14 @@ return {
         },
       }
 
-      require("nvim-treesitter.configs").setup(opts)
+      configs.setup(opts)
+
+      vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+        pattern = { "*.component.html", "*.container.html" },
+        callback = function()
+          vim.treesitter.start(nil, "angular")
+        end,
+      })
     end,
   },
 

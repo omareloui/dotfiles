@@ -1,4 +1,5 @@
 local language_server_to_load = {
+  "angular",
   "astro",
   "bash",
   "bazel",

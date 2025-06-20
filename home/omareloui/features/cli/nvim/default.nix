@@ -1,6 +1,7 @@
 {pkgs, ...}: let
   extraPackages = with pkgs; [
     alejandra
+    angular-language-server
     ansible-lint
     bazel-buildtools
     buf

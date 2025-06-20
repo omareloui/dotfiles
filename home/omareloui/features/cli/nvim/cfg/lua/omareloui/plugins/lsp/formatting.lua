@@ -47,12 +47,14 @@ return {
       format_on_save = format_opts,
 
       formatters_by_ft = {
+        angular = { "prettierd" },
         astro = { "prettierd" },
         bzl = { "buildifier" },
         cs = { "csharpier" },
         css = { "prettierd" },
         graphql = { "prettierd" },
         html = { "prettierd" },
+        htmlangular = { "prettierd" },
         javascript = { "prettierd" },
         javascriptreact = { "prettierd" },
         json = { "prettierd" },

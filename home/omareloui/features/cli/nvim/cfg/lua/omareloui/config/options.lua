@@ -85,6 +85,7 @@ vim.filetype.add {
   pattern = {
     [".*/hypr/.*%.conf"] = "hyprlang",
 
+    -- Ansible
     [".*/roles/.*%.ya?ml"] = "yaml.ansible",
     [".*/playbooks/.*%.ya?ml"] = "yaml.ansible",
     [".*/defaults/.*%.ya?ml"] = "yaml.ansible",
@@ -94,7 +95,12 @@ vim.filetype.add {
     [".*/handlers/.*%.ya?ml"] = "yaml.ansible",
     [".*/host_vars/.*%.ya?ml"] = "yaml.ansible",
 
-    [".*/.*%.html.j2"] = "jinja.html",
+    -- Jinja templates
+    [".*/.*%.html%.j2"] = "jinja.html",
+
+    -- Angular components
+    [".*/.*%.component%.html?"] = "htmlangular",
+    [".*/.*%.container%.html?"] = "htmlangular",
   },
 }
 

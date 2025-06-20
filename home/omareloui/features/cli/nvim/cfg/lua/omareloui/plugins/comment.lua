@@ -4,6 +4,9 @@ return {
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts = {
       enable_autocmd = false,
+      languages = {
+        angular = "<!-- %s -->",
+      },
     },
   },
   {

@@ -34,6 +34,7 @@ return {
         end
         return true
       end,
+      ["*"] = true,
     },
   },
   keys = {

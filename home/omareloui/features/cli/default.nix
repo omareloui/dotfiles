@@ -20,6 +20,7 @@
     ./gpg.nix
     ./jujutsu.nix
     ./lazygit.nix
+    ./nushell.nix
     ./ssh.nix
     ./starship.nix
     ./thefuck.nix
@@ -165,11 +166,11 @@
     };
 
     shellAliases = {
-      edot = "cd ${config.home.sessionVariables.FLAKE} && ${config.home.sessionVariables.EDITOR} .";
+      edot = "cd ${config.home.sessionVariables.FLAKE}; ${config.home.sessionVariables.EDITOR} .";
 
       py = "python3";
       pve = "python3 -m venv ./env";
-      pva = "source ./env/bin/activate";
+      # pva = "source ./env/bin/activate";
 
       cat = "bat --color always --plain";
       du = "dust";
@@ -177,8 +178,8 @@
       lg = "lazygit";
 
       docker_clean = "docker builder prune -a --force";
-      docker_clean_images = "docker rmi $(docker images -a --filter=dangling=true -q)";
-      docker_clean_ps = "docker rm $(docker ps --filter=status=exited --filter=status=created -q)";
+      docker_clean_images = lib.mkDefault "docker rmi $(docker images -a --filter=dangling=true -q)";
+      docker_clean_ps = lib.mkDefault "docker rm $(docker ps --filter=status=exited --filter=status=created -q)";
 
       distro = "cat /etc/*-release | awk -F'=' '/DISTRIB_ID/ {print $2}'";
 
@@ -189,9 +190,9 @@
       ngen = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       hgen = "home-manager generations";
 
-      ngc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
+      ngc = "nix-collect-garbage -d; sudo nix-collect-garbage -d";
 
-      nu = "cd ${config.home.sessionVariables.FLAKE} && nix flake update";
+      nu = "cd ${config.home.sessionVariables.FLAKE};  nix flake update";
 
       nb = "nh os build";
       ns = "nh os switch";

@@ -6,12 +6,12 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
 
-    ./packages.nix
-    ./zsh.nix
     ./locale.nix
     ./nix.nix
+    ./packages.nix
     ./ssh.nix
     ./virtualisation.nix
+    ./zsh.nix
   ];
 
   home-manager.useGlobalPkgs = true;

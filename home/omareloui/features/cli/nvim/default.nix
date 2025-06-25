@@ -77,6 +77,11 @@
     */
     ''
       return {
+        plugins = {
+          mason = {
+            enabled = false,
+          },
+        },
         system_packages = {
           vue_lsp = "${pkgs.vue-language-server + "/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"}",
           omnisharp_dll = "${pkgs.omnisharp-roslyn + "/lib/omnisharp-roslyn/OmniSharp.dll"}",

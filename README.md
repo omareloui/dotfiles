@@ -6,8 +6,6 @@ This is the dotfiles for my NixOS Linux system.
 
 ```bash
 git clone git@github.com:omareloui/dotfiles.git --depth 1 ~/.dotfiles
-cd ~/.dotfiles
-git submodule update --init --recursive
 ```
 
 <!-- TODO: Add instructions for installing Nix and NixOS -->

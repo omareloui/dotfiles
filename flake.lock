@@ -1292,6 +1292,22 @@
         "type": "github"
       }
     },
+    "nvim-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750876678,
+        "narHash": "sha256-GIG/euC5xFTBrXM4xKU/9Rf0ycSR5cOz/g4QwOK1pbU=",
+        "owner": "omareloui",
+        "repo": "nvim",
+        "rev": "6c14f917dbb13f600f0e932b2979b91ffd84e014",
+        "type": "github"
+      },
+      "original": {
+        "owner": "omareloui",
+        "repo": "nvim",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -1330,6 +1346,7 @@
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
+        "nvim-config": "nvim-config",
         "solaar": "solaar",
         "sops-nix": "sops-nix",
         "templ": "templ"

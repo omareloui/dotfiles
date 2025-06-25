@@ -2,12 +2,12 @@
 
 This is the dotfiles for my NixOS Linux system.
 
-## Todo
+## Setup
 
-- [ ] in waybar add button to toggle hyprshade modes.
-- [ ] remove the \_old directory after porting the scripts to be nix packages.
-- [ ] make anyrun work.
-- [ ] write the docs.
-- [ ] write a flake for my movies scripts and use it.
-- [ ] style the notification center.
-- [ ] add keyboard layouts.
+```bash
+git clone git@github.com:omareloui/dotfiles.git --depth 1 ~/.dotfiles
+cd ~/.dotfiles
+git submodule update --init --recursive
+```
+
+<!-- TODO: Add instructions for installing Nix and NixOS -->

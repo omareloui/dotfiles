@@ -2,6 +2,11 @@
   description = "Your new nix config";
 
   inputs = {
+    nvim-config = {
+      url = "github:omareloui/nvim";
+      flake = false;
+    };
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 

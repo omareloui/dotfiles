@@ -1,4 +1,0 @@
-[submodule "home/omareloui/features/cli/nvim/cfg"]
-	path = home/omareloui/features/cli/nvim/cfg
-	url = git@github.com:omareloui/nvim.git
-  branch = main

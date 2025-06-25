@@ -52,4 +52,28 @@
   programs.git = {
     signing.key = "52F14BEFFC734AFA";
   };
+
+  programs.ssh.matchBlocks = {
+    "trustclaim" = {
+      host = "68.183.144.184";
+      hostname = "68.183.144.184";
+      identityFile = "~/.ssh/id_trustclaim";
+    };
+    "mobile" = {
+      host = "192.168.1.8";
+      user = "omar";
+      extraOptions = {
+        PubkeyAcceptedAlgorithms = "+ssh-rsa";
+        HostkeyAlgorithms = "+ssh-rsa";
+      };
+    };
+    "pc" = {
+      host = "192.168.1.11";
+      user = "omar";
+      extraOptions = {
+        PubkeyAcceptedAlgorithms = "+ssh-rsa";
+        HostkeyAlgorithms = "+ssh-rsa";
+      };
+    };
+  };
 }

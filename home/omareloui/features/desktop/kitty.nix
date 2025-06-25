@@ -12,7 +12,10 @@
       package = pkgs.nerd-fonts.fira-code;
       size = 12;
     };
-    shellIntegration.enableZshIntegration = true;
+    shellIntegration = {
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
+    };
 
     settings = with config.colorScheme.palette; {
       enable_audio_bell = false;

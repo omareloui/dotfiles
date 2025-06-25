@@ -2,6 +2,7 @@
   programs.eza = {
     enable = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
   };
 
   home.shellAliases = let

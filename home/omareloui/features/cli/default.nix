@@ -166,11 +166,11 @@
     };
 
     shellAliases = {
-      edot = "cd ${config.home.sessionVariables.FLAKE}; ${config.home.sessionVariables.EDITOR} .";
+      edot = lib.mkDefault "cd ${config.home.sessionVariables.FLAKE} && ${config.home.sessionVariables.EDITOR} .";
 
       py = "python3";
       pve = "python3 -m venv ./env";
-      # pva = "source ./env/bin/activate";
+      pva = "source ./env/bin/activate";
 
       cat = "bat --color always --plain";
       du = "dust";
@@ -189,10 +189,8 @@
       nix = "noglob nix";
       ngen = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       hgen = "home-manager generations";
-
-      ngc = "nix-collect-garbage -d; sudo nix-collect-garbage -d";
-
-      nu = "cd ${config.home.sessionVariables.FLAKE};  nix flake update";
+      ngc = lib.mkDefault "nix-collect-garbage -d && sudo nix-collect-garbage -d";
+      nu = lib.mkDefault "cd ${config.home.sessionVariables.FLAKE} && nix flake update";
 
       nb = "nh os build";
       ns = "nh os switch";

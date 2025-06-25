@@ -2,6 +2,7 @@
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
     settings = {
       style = "auto";
       inline_height = 0;

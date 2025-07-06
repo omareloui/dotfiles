@@ -15,7 +15,7 @@ in {
 
     signing = {
       signByDefault = true;
-      signer = lib.mkDefault config.services.gpg-agent.pinentryPackage;
+      signer = lib.mkDefault config.services.gpg-agent.pinentry.package;
     };
 
     extraConfig = {

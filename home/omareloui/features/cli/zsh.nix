@@ -26,7 +26,7 @@
     initExtraFirst = "";
     initExtraBeforeCompInit = "";
 
-    initExtra =
+    initContent =
       /*
       bash
       */

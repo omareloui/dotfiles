@@ -10,7 +10,7 @@
     enable = true;
     enableSshSupport = true;
     enableExtraSocket = true;
-    pinentryPackage = lib.mkDefault (
+    pinentry.package = lib.mkDefault (
       if config.gtk.enable
       then pkgs.pinentry-gnome3
       else pkgs.pinentry-tty

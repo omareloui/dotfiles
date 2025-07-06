@@ -4,6 +4,7 @@
     enableZshIntegration = true;
 
     settings = {
+      show_startup_tips = false;
       mirror_session = false;
 
       ui = {

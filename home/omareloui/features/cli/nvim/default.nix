@@ -38,7 +38,6 @@
       marksman
       nil
       nodePackages."@astrojs/language-server"
-      nodePackages."@prisma/language-server"
       nodePackages.bash-language-server
       nodePackages.cspell
       nodePackages.sql-formatter

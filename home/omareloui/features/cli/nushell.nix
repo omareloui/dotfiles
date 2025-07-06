@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   programs.nushell = {
     enable = true;
     settings = {
@@ -10,10 +14,12 @@
       completions.algorithm = "fuzzy";
     };
 
-    environmentVariables = {
-      PROMPT_INDICATOR_VI_NORMAL = "";
-      PROMPT_INDICATOR_VI_INSERT = "";
-    };
+    environmentVariables =
+      config.home.sessionVariables
+      // {
+        PROMPT_INDICATOR_VI_NORMAL = "";
+        PROMPT_INDICATOR_VI_INSERT = "";
+      };
 
     extraConfig =
       /*
@@ -62,12 +68,12 @@
     shellAliases =
       config.home.shellAliases
       // {
-        docker_clean_images = "docker rmi (docker images -a --filter=dangling=true -q)";
-        docker_clean_ps = "docker rm (docker ps --filter=status=exited --filter=status=created -q)";
-        edot = "_edot";
-        pva = "ignore";
-        ngc = "_ngc";
-        nu = "_nu";
+        docker_clean_images = lib.mkForce "docker rmi (docker images -a --filter=dangling=true -q)";
+        docker_clean_ps = lib.mkForce "docker rm (docker ps --filter=status=exited --filter=status=created -q)";
+        edot = lib.mkForce "_edot";
+        pva = lib.mkForce "ignore";
+        ngc = lib.mkForce "_ngc";
+        nu = lib.mkForce "_nu";
       };
   };
 }

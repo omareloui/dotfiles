@@ -76,12 +76,12 @@ in rec {
       inherit (config.fontProfiles.regular) name size;
     };
     theme = let
-      inherit (config.colorscheme) mode colors;
-      name = "generated-${hashString "md5" (toJSON colors)}-${mode}";
+      inherit (config.colorScheme) mode palette;
+      name = "generated-${hashString "md5" (toJSON palette)}-${mode}";
     in {
       inherit name;
       package = materiaTheme name (
-        lib.mapAttrs (_: v: lib.removePrefix "#" v) colors
+        lib.mapAttrs (_: v: lib.removePrefix "#" v) palette
       );
     };
     iconTheme = {

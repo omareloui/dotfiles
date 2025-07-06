@@ -23,7 +23,7 @@
     ./nushell.nix
     ./ssh.nix
     ./starship.nix
-    ./thefuck.nix
+    ./pay-respects.nix
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -79,7 +79,6 @@
     wev
     wget
     wl-clipboard
-    yarn
     zip
 
     # Custom scripts/packages
@@ -163,6 +162,7 @@
       PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig:$PKG_CONFIG_PATH";
 
       FLAKE = lib.mkDefault "${config.home.homeDirectory}/.dotfiles";
+      NH_FLAKE = config.home.sessionVariables.FLAKE;
     };
 
     shellAliases = {
@@ -170,7 +170,7 @@
 
       py = "python3";
       pve = "python3 -m venv ./env";
-      pva = "source ./env/bin/activate";
+      pva = lib.mkDefault "source ./env/bin/activate";
 
       cat = "bat --color always --plain";
       du = "dust";

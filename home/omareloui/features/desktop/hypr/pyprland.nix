@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }: {
   home.packages = with pkgs; [pyprland];
@@ -8,9 +9,10 @@
   home.file.".config/hypr/pyprland.toml".text = let
     class = "scratchpad";
 
-    hyprlandConfig = import ./config.nix {
+    hyprlandConfig = import ./hyprland {
       pkgs = pkgs;
       lib = lib;
+      config = config;
     };
 
     term = "${hyprlandConfig.terminal} --class ${class} --";

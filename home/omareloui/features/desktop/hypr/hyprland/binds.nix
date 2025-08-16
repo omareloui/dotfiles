@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
 
     bindm = [
@@ -13,7 +13,7 @@
     ];
 
     bind = let
-      workspaces = builtins.genList (x: builtins.toString x + 1) 10;
+      workspaces = builtins.genList (x: builtins.toString (x + 1)) 9;
       directions = rec {
         left = "l";
         right = "r";
@@ -124,10 +124,10 @@
       ]
       ++
       # Change workspace
-      (map (n: "$mainMod, ${n}, workspace, name:${n}") workspaces)
+      (builtins.map (n: "$mainMod, ${n}, workspace, ${n}") workspaces)
       ++
       # Move window to workspace
-      (map (n: "$mainMod SHIFT, ${n}, movetoworkspacesilent, name:${n}") workspaces)
+      (builtins.map (n: "$mainMod SHIFT, ${n}, movetoworkspacesilent, ${n}") workspaces)
       ++
       # Move focus
       (lib.mapAttrsToList (key: direction: "$mainMod, ${key}, movefocus, ${direction}") directions)

@@ -1,15 +1,10 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hypr
     ./inkscape
 
     ./qt.nix
     ./gtk.nix
-    ./fonts.nix
 
     ./ark.nix
     ./kitty.nix
@@ -17,11 +12,13 @@
     ./loupe.nix
     ./ms-edge.nix
     ./neovide.nix
+    ./swww.nix
     ./teams.nix
     ./telegram.nix
     ./tranmission.nix
     ./vlc.nix
     ./zathura.nix
+    ./zen.nix
   ];
 
   home = {
@@ -54,7 +51,6 @@
       slack
       slock
       swaylock-effects
-      swww
       wf-recorder
       whatsapp-for-linux
       wirelesstools
@@ -83,12 +79,13 @@
 
   dconf = {
     enable = true;
-    # settings."org/gnome/desktop/interface".color-scheme =
-    #   if config.colorscheme.mode == "dark"
-    #   then "prefer-dark"
-    #   else if config.colorscheme.mode == "light"
-    #   then "prefer-light"
-    #   else "default";
+    settings."org/gnome/desktop/interface".color-scheme =
+      # if config.colorscheme.mode == "dark"
+      # then "prefer-dark"
+      # else if config.colorscheme.mode == "light"
+      # then "prefer-light"
+      # else "default";
+      "prefer-dark";
   };
 
   xdg.portal.enable = true;

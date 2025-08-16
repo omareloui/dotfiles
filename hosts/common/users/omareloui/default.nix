@@ -22,7 +22,7 @@ in {
       "bazarr"
       "transmission"
     ];
-    shell = pkgs.nushell;
+    shell = pkgs.zsh;
     packages = [pkgs.home-manager];
   };
 }

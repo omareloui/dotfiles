@@ -1,15 +1,14 @@
 {
   lib,
-  inputs,
   pkgs,
   ...
 }: {
   wayland.windowManager.hyprland.settings = {
-    "$mainMod" = "SUPER";
+    "$mod" = "SUPER";
 
     bindm = [
-      "$mainMod, mouse:272, movewindow"
-      "$mainMod, mouse:273, resizewindow"
+      "$mod, mouse:272, movewindow"
+      "$mod, mouse:273, resizewindow"
     ];
 
     bind = let
@@ -27,33 +26,32 @@
     in
       [
         # window manipulation
-        "$mainMod, escape, exec, ${lib.getExe pkgs.wlogout} -b 5 -T 400 -B 400"
-        "$mainMod, Q, killactive,"
-        "$mainMod, F, fullscreen,"
-        "$mainMod, C, pseudo, dwindle"
+        "$mod, escape, exec, ${lib.getExe pkgs.wlogout} -b 5 -T 400 -B 400"
+        "$mod, Q, killactive,"
+        "$mod, F, fullscreen,"
+        "$mod, C, pseudo, dwindle"
 
-        "$mainMod, tab, workspace, +1"
-        "$mainMod SHIFT, tab, workspace, -1"
+        "$mod, apostrophe, workspace, previous"
+        "$mod SHIFT, apostrophe, workspace, next"
 
         # Resize in workspace
-        "$mainMod CONTROL, h, splitratio, -0.1"
-        "$mainMod CONTROL, l, splitratio, +0.1"
+        "$mod CONTROL, h, splitratio, -0.1"
+        "$mod CONTROL, l, splitratio, +0.1"
 
-        # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
+        # Scroll through existing workspaces with mod + scroll
+        "$mod, mouse_down, workspace, e+1"
+        "$mod, mouse_up, workspace, e-1"
 
         # Layout
-        "$mainMod CTRL, Space, togglefloating"
-        "$mainMod, Space, togglesplit"
+        "$mod CTRL, Space, togglefloating"
 
         # Groups
-        "$mainMod SHIFT, V, togglegroup"
-        "$mainMod, N, changegroupactive, f"
-        "$mainMod SHIFT, N, changegroupactive, b"
+        # "$mod SHIFT, V, togglegroup"
+        # "$mod, N, changegroupactive, f"
+        # "$mod SHIFT, N, changegroupactive, b"
 
         # Hypdland misc
-        "$mainMod SHIFT, R, exec, hyprctl reload"
+        "$mod SHIFT, R, exec, hyprctl reload"
 
         # Laptop keys
         ",XF86MonBrightnessUp, exec, lightctl up"
@@ -64,84 +62,69 @@
         ",XF86AudioMute, exec, volumectl toggle-mute"
         ",XF86Calculator, exec, ${lib.getExe pkgs.qalculate-gtk}"
 
-        "$mainMod, A, exec, hyprctl switchxkblayout"
+        "$mod, A, exec, hyprctl switchxkblayout"
 
         # Plugins
-        "$mainMod SHIFT, B, exec, pypr toggle btm && hyprctl dispatch bringactivetotop"
-        "$mainMod SHIFT, T, exec, pypr toggle term && hyprctl dispatch bringactivetotop"
-        "$mainMod SHIFT, E, exec, pypr toggle yazi && hyprctl dispatch bringactivetotop"
+        "$mod SHIFT, B, exec, pypr toggle btm && hyprctl dispatch bringactivetotop"
+        "$mod SHIFT, T, exec, pypr toggle term && hyprctl dispatch bringactivetotop"
+        "$mod SHIFT, E, exec, pypr toggle yazi && hyprctl dispatch bringactivetotop"
 
         # Apps keybindings
-        "$mainMod, Return, exec, ${lib.getExe pkgs.kitty}"
-        "$mainMod SHIFT, Return, exec, ${lib.getExe pkgs.zj_sessions}"
-        "$mainMod, B, exec, [workspace 1] microsoft-edge"
-        "$mainMod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
-        "$mainMod, N, exec, nm-connection-editor"
-        "$mainMod, U, exec, blueman-manager"
-        "$mainMod, E, exec, ${lib.getExe pkgs.nautilus}"
+        "$mod, Return, exec, ${lib.getExe pkgs.kitty}"
+        "$mod SHIFT, Return, exec, ${lib.getExe pkgs.zj_sessions}"
+        "$mod, B, exec, [workspace 1] zen"
+        "$mod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
+        "$mod, N, exec, nm-connection-editor"
+        "$mod, U, exec, blueman-manager"
+        "$mod, E, exec, ${lib.getExe pkgs.nautilus}"
 
-        "$mainMod SHIFT, N, exec, swaync-client -t"
+        "$mod SHIFT, N, exec, swaync-client -t"
 
         # Scripts
-        # "$mainMod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
-        "$mainMod, R, exec, ${lib.getExe inputs.anyrun.packages.${pkgs.system}.anyrun}"
-        "$mainMod, V, exec, ${lib.getExe pkgs.cliphist_wrapper} list"
+        "$mod, R, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
+        # "$mod, R, exec, ${lib.getExe inputs.anyrun.packages.${pkgs.system}.anyrun}"
+        "$mod, V, exec, ${lib.getExe pkgs.cliphist_wrapper} list"
 
-        "$mainMod, W, exec, ${lib.getExe pkgs.wallpaper}"
+        "$mod, W, exec, ${lib.getExe pkgs.wallpaper}"
 
-        "$mainMod CTRL SHIFT, R, exec, ${lib.getExe pkgs.init_bar}"
+        "$mod CTRL SHIFT, R, exec, ${lib.getExe pkgs.init_bar}"
 
         ", Print, exec, ${lib.getExe pkgs.screenshot} -s 3 full"
-        "$mainMod, Print, exec, ${lib.getExe pkgs.screenshot} -p area"
+        "$mod, Print, exec, ${lib.getExe pkgs.screenshot} -p area"
 
-        # "$mainMod SHIFT, Q, killactive"
-        # "$mainMod SHIFT, E, exit"
+        "$mod, S, togglesplit"
+        # "$mod SHIFT, space, togglefloating"
 
-        # "$mainMod, S, togglesplit"
-        # "$mainMod, F, fullscreen, 1"
-        # "$mainMod SHIFT, F, fullscreen, 0"
-        # "$mainMod SHIFT, space, togglefloating"
+        # "$mod, minus, splitratio, -0.25"
+        # "$mod SHIFT, minus, splitratio, -0.3333333"
 
-        # "$mainMod, minus, splitratio, -0.25"
-        # "$mainMod SHIFT, minus, splitratio, -0.3333333"
+        # "$mod, equal, splitratio, 0.25"
+        # "$mod SHIFT, equal, splitratio, 0.3333333"
 
-        # "$mainMod, equal, splitratio, 0.25"
-        # "$mainMod SHIFT, equal, splitratio, 0.3333333"
-
-        # "$mainMod, G, togglegroup"
-        # "$mainMod, T, lockactivegroup, toggle"
-        # "$mainMod, tab, changegroupactive, f"
-        # "$mainMod SHIFT, tab, changegroupactive, b"
-
-        # "$mainMod, apostrophe, workspace, previous"
-        # "$mainMod SHIFT, apostrophe, workspace, next"
-        # "$mainMod, dead_grave, workspace, previous"
-        # "$mainMod SHIFT, dead_grave, workspace, next"
-
-        # "$mainMod, U, togglespecialworkspace"
-        # "$mainMod SHIFT, U, movetoworkspacesilent, special"
-        # "$mainMod, I, pseudo"
+        # "$mod, U, togglespecialworkspace"
+        # "$mod SHIFT, U, movetoworkspacesilent, special"
+        # "$mod, I, pseudo"
       ]
       ++
       # Change workspace
-      (builtins.map (n: "$mainMod, ${n}, workspace, ${n}") workspaces)
+      (builtins.map (n: "$mod, ${n}, workspace, ${n}") workspaces)
       ++
       # Move window to workspace
-      (builtins.map (n: "$mainMod SHIFT, ${n}, movetoworkspacesilent, ${n}") workspaces)
+      (builtins.map (n: "$mod SHIFT, ${n}, movetoworkspace, ${n}") workspaces)
       ++
       # Move focus
-      (lib.mapAttrsToList (key: direction: "$mainMod, ${key}, movefocus, ${direction}") directions)
+      (lib.mapAttrsToList (key: direction: "$mod, ${key}, movefocus, ${direction}") directions)
       ++
       # Swap windows
-      (lib.mapAttrsToList (key: direction: "$mainMod SHIFT, ${key}, swapwindow, ${direction}") directions)
+      (lib.mapAttrsToList (key: direction: "$mod SHIFT, ${key}, swapwindow, ${direction}") directions)
       ++
       # Move windows
-      (lib.mapAttrsToList (key: direction: "$mainMod CONTROL, ${key}, movewindow, ${direction}") directions)
+      (lib.mapAttrsToList (key: direction: "$mod CONTROL, ${key}, movewindow, ${direction}") directions)
       ++
       # Move monitor focus
-      (lib.mapAttrsToList (key: direction: "$mainMod ALT, ${key}, focusmonitor, ${direction}") directions)
+      (lib.mapAttrsToList (key: direction: "$mod ALT, ${key}, focusmonitor, ${direction}") directions)
       ++
       # Move workspace to other monitor
-      (lib.mapAttrsToList (key: direction: "$mainMod ALT SHIFT, ${key}, movecurrentworkspacetomonitor, ${direction}") directions);
+      (lib.mapAttrsToList (key: direction: "$mod ALT SHIFT, ${key}, movecurrentworkspacetomonitor, ${direction}") directions);
   };
 }

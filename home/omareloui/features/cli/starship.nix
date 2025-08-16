@@ -5,6 +5,7 @@
     enableNushellIntegration = true;
     settings = {
       add_newline = false;
+      line_break.disabled = true;
       format = lib.concatStrings [
         "$directory"
         "$git_branch"
@@ -15,7 +16,6 @@
         "$python"
         "$character"
       ];
-      line_break.disabled = true;
       python = {format = "[(($virtualenv) )]($style)";};
       character = {
         success_symbol = "[❱](bold green)";

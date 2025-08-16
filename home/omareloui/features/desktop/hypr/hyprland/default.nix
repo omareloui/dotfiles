@@ -135,7 +135,6 @@
       exec-once = [
         "${lib.getExe pkgs.hypridle}"
         "${lib.getExe pkgs.pyprland}"
-        "${lib.getExe pkgs.swww} init"
         "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # fixes the bluetooth stutter
         "${lib.getExe pkgs.telegram-desktop} -startintray"
         # "${lib.getExe pkgs.slack}"
@@ -177,7 +176,7 @@
         "size 960 520, class:^transmission-gtk$,title:^Transmission$"
         "size 482 567, class:^transmission-gtk$,title:^Torrent Options$"
 
-        "opacity 0.95 0.95, class:^(microsoft-edge)$"
+        "opacity 0.95 0.95, class:^(microsoft-edge|zen-beta)$"
         "opacity 0.95 0.8, class:^(kitty|org\.wezfurlong\.wezterm)$"
         "opacity 0.85 0.8, class:^(org.gnome.Nautilus)$"
 

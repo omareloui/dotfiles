@@ -4,10 +4,11 @@
   ffmpeg,
   file,
   pywal,
+  imagemagick,
 }:
 writeShellApplication {
   name = "wallpaper";
-  runtimeInputs = [swww ffmpeg pywal file];
+  runtimeInputs = [swww ffmpeg pywal file imagemagick];
   text =
     /*
     bash
@@ -101,7 +102,7 @@ writeShellApplication {
       blurry_cache_file="$wall_cache_dir/blurred_$filename.png"
 
       if [[ ! -f $blurry_cache_file ]]; then
-        convert "$wp" -blur 0x16 -channel RGBA "$blurry_cache_file"
+        magick convert "$wp" -blur 0x16 -channel RGBA "$blurry_cache_file"
       fi
 
       cp -f "$blurry_cache_file" "$wall_cache_dir/current_blurred.png"

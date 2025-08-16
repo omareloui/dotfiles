@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }: {
   home.packages = with pkgs; [pyprland];
@@ -9,13 +8,7 @@
   home.file.".config/hypr/pyprland.toml".text = let
     class = "scratchpad";
 
-    hyprlandConfig = import ./hyprland {
-      pkgs = pkgs;
-      lib = lib;
-      config = config;
-    };
-
-    term = "${hyprlandConfig.terminal} --class ${class} --";
+    term = "${lib.getExe pkgs.kitty} --class ${class} --";
 
     xsize = 80;
     ysize = 85;

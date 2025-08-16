@@ -14,7 +14,7 @@
     };
     shellIntegration = {
       enableZshIntegration = true;
-      enableNushellIntegration = true;
+      # enableNushellIntegration = true;
     };
 
     settings = with config.colorScheme.palette; {

@@ -108,7 +108,7 @@
       # Browser Launcher
       "custom/browser" = {
         format = "";
-        on-click = "microsoft-edge";
+        on-click = "zen";
         tooltip = false;
       };
 

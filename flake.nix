@@ -41,8 +41,8 @@
     solaar.url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
     solaar.inputs.nixpkgs.follows = "nixpkgs";
 
-    # TODO: change to upstream
-    # moviesscripts.url = "/home/omareloui/myhome/repos/moviesscripts";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -67,6 +67,7 @@
 
     pkgs = nixpkgs.legacyPackages.${system};
   in {
+    inherit system;
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
     packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
@@ -97,6 +98,11 @@
         specialArgs = {inherit inputs outputs;};
         modules = [./hosts/ocd];
       };
+
+      nyx = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./hosts/nyx];
+      };
     };
 
     # Standalone home-manager configuration entrypoint
@@ -124,6 +130,16 @@
           inherit inputs outputs;
         };
         modules = [./home/omareloui/ocd.nix];
+      };
+
+      "omareloui@nyx" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+        modules = [
+          ./home/omareloui/nyx.nix
+        ];
       };
     };
   };

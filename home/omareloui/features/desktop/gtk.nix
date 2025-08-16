@@ -39,26 +39,26 @@
         sed -e 's/handle-horz-.*//' -e 's/handle-vert-.*//' -i ./src/gtk-2.0/assets.txt
 
         cat > /build/gtk-colors << EOF
-          BTN_BG=${colors.primary_container}
-          BTN_FG=${colors.on_primary_container}
-          BG=${colors.surface}
-          FG=${colors.on_surface}
-          HDR_BTN_BG=${colors.secondary_container}
-          HDR_BTN_FG=${colors.on_secondary_container}
-          ACCENT_BG=${colors.primary}
-          ACCENT_FG=${colors.on_primary}
-          HDR_BG=${colors.surface_bright}
-          HDR_FG=${colors.on_surface}
-          MATERIA_SURFACE=${colors.surface_bright}
-          MATERIA_VIEW=${colors.surface_dim}
-          MENU_BG=${colors.surface_container}
-          MENU_FG=${colors.on_surface}
-          SEL_BG=${colors.primary_fixed_dim}
-          SEL_FG=${colors.on_primary}
-          TXT_BG=${colors.primary_container}
-          TXT_FG=${colors.on_primary_container}
-          WM_BORDER_FOCUS=${colors.outline}
-          WM_BORDER_UNFOCUS=${colors.outline_variant}
+          BTN_BG=${colors.base01}
+          BTN_FG=${colors.base07}
+          BG=${colors.base00}
+          FG=${colors.base07}
+          HDR_BTN_BG=${colors.base02}
+          HDR_BTN_FG=${colors.base07}
+          ACCENT_BG=${colors.base0D}
+          ACCENT_FG=${colors.base00}
+          HDR_BG=${colors.base00}
+          HDR_FG=${colors.base07}
+          MATERIA_SURFACE=${colors.base00}
+          MATERIA_VIEW=${colors.base01}
+          MENU_BG=${colors.base00}
+          MENU_FG=${colors.base07}
+          SEL_BG=${colors.base0D}
+          SEL_FG=${colors.base00}
+          TXT_BG=${colors.base00}
+          TXT_FG=${colors.base07}
+          WM_BORDER_FOCUS=${colors.base0D}
+          WM_BORDER_UNFOCUS=${colors.base03}
           UNITY_DEFAULT_LAUNCHER_STYLE=False
           NAME=${name}
           MATERIA_STYLE_COMPACT=True

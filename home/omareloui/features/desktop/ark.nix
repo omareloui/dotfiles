@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [ark];
+  home.packages = with pkgs; [kdePackages.ark];
 
   xdg.mimeApps = let
     mimeTypes = {

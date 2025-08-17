@@ -7,7 +7,7 @@
     sonarr = {
       enable = false;
       openFirewall = config.services.sonarr.enable;
-      group = "media";
+      group = "shared";
     };
 
     nginx = {

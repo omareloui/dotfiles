@@ -7,7 +7,7 @@
     radarr = {
       enable = false;
       openFirewall = config.services.radarr.enable;
-      group = "media";
+      group = "shared";
     };
 
     nginx.virtualHosts."radarr.homelab" =

@@ -10,8 +10,8 @@
       openFirewall = config.services.transmission.enable;
       package = pkgs.transmission_4-gtk;
       # settings = {
-      #   download-dir = "/home/media/torrents";
-      #   incomplete-dir = "/home/media/torrents/.incomplete";
+      #   download-dir = "/home/shared/torrents";
+      #   incomplete-dir = "/home/shared/torrents/.incomplete";
       # };
     };
 

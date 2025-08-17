@@ -7,7 +7,7 @@
     bazarr = {
       enable = false;
       openFirewall = config.services.bazarr.enable;
-      group = "media";
+      group = "shared";
     };
   };
 }

@@ -10,7 +10,7 @@
         "networkmanager"
         "video"
         "docker"
-        "media"
+        "shared"
         "syncthing"
         "plugdev"
       ];
@@ -21,7 +21,7 @@
       # Create the group for the ZSA udev rules
       plugdev = {};
 
-      media.members = [
+      shared.members = [
         "omareloui"
         "syncthing"
         "jellyfin"

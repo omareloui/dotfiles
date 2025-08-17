@@ -7,7 +7,7 @@
     syncthing = {
       enable = true;
       openDefaultPorts = config.services.syncthing.enable;
-      group = "media";
+      group = "shared";
       settings = {
         devices = {
           "device1" = {
@@ -18,17 +18,17 @@
         folders = {
           "notes" = {
             id = "rrwsq-soksl";
-            path = "/home/media/notes";
+            path = "/home/shared/notes";
             devices = ["device1"];
           };
           "documents" = {
             id = "9p7nq-v2zcq";
-            path = "/home/media/documents";
+            path = "/home/shared/documents";
             devices = ["device1"];
           };
           "leatherwork" = {
             id = "hxq6n-smcyd";
-            path = "/home/media/leatherwork";
+            path = "/home/shared/leatherwork";
             devices = ["device1"];
           };
         };
@@ -39,8 +39,6 @@
       lib.mkIf config.services.syncthing.enable
       {locations."/".proxyPass = "http://localhost:8384";};
   };
-
-  users.users.syncthing.extraGroups = lib.mkIf config.services.syncthing.enable ["media"];
 
   networking.extraHosts = lib.mkIf config.services.syncthing.enable "127.0.0.1 syncthing.homelab";
 }

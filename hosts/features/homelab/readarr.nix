@@ -7,7 +7,7 @@
     readarr = {
       enable = false;
       openFirewall = config.services.readarr.enable;
-      group = "media";
+      group = "shared";
     };
   };
 }

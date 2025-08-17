@@ -7,7 +7,7 @@
     jellyfin = {
       enable = false;
       openFirewall = config.services.jellyfin.enable;
-      group = "media";
+      group = "shared";
     };
 
     nginx.virtualHosts."jellyfin.homelab" =

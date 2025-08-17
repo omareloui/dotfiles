@@ -44,6 +44,7 @@ in {
     aliases = {
       uc = "reset HEAD^ --soft";
       uncommit = "reset HEAD^ --soft";
+      stash = "stash --all";
       l = ''
         log --pretty=format:"%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --graph --date=relative --decorate --all'';
       p = "pull --ff-only";

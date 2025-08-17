@@ -30,15 +30,15 @@
       plugins = ["scratchpads"]
 
       [scratchpads.term]
-      command = "${term} zsh --login -c 'zellij attach -c ${class}'"
-      class = "${class}"
+      command = "${term} zsh --login -c 'zellij attach -c ${class}-term'"
+      class = "${class}-term"
       position = "${builtins.toString xpos}% ${builtins.toString ypos}%"
       size = "${builtins.toString xsize}% ${builtins.toString ysize}%"
       animation = "fromTop"
 
       [scratchpads.yazi]
       command = "${term} ${lib.getExe pkgs.yazi}"
-      class = "${class}"
+      class = "${class}-yazi"
       unfocus = "hide"
       position = "${builtins.toString xpos}% ${builtins.toString ypos}%"
       size = "${builtins.toString xsize}% ${builtins.toString ysize}%"
@@ -46,7 +46,7 @@
 
       [scratchpads.btm]
       command = "${term} ${lib.getExe pkgs.bottom}"
-      class = "${class}"
+      class = "${class}-btm"
       unfocus = "hide"
       position = "${builtins.toString smxpos}% ${builtins.toString smypos}%"
       size = "${builtins.toString smxsize}% ${builtins.toString smysize}%"

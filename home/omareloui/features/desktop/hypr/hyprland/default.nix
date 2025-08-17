@@ -146,14 +146,14 @@
 
       windowrulev2 = let
         shouldFloatClasses = "transmission-gtk|org\.gnome\.Loupe|pavucontrol|scratchpad|nm-connection-editor|org\.keepassxc\.KeePassXC";
-        scratpad = "class:^scratchpad$";
+        scratchpad = "class:^scratchpad-";
         bluetoothClientRe = "^\.blueman-manager-wrapped$";
         fileSelectorTitleRe = "^(Select file to open)$";
         fileSelectorClassRe = "^(xdg-desktop-portal-gtk)$";
         pipRe = "Picture[\- ]in[\- ][Pp]icture";
       in [
-        "workspace special silent, ${scratpad}"
-        "stayfocused, ${scratpad}"
+        "workspace special silent, ${scratchpad}"
+        "stayfocused, ${scratchpad}"
 
         "float, class:^(${shouldFloatClasses})$"
         "center 1, class:^(${shouldFloatClasses})$"

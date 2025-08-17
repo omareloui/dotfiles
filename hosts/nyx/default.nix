@@ -15,8 +15,7 @@
 
     ../common/global
     ../common/users/omareloui
-
-    ../features/homelab
+    ../common/optional/homelab
   ];
 
   nix = {

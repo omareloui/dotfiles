@@ -1,12 +1,12 @@
 {
-  lib,
   pkgs,
+  lib,
   ...
 }: {
   # if a package contains udev rules in $out/{etc, lib}/udev You can load them using:
   services = {
     udev = {
-      packages = with pkgs; [wally-cli];
+      packages = with pkgs; [coreutils wally-cli];
 
       extraRules =
         /*

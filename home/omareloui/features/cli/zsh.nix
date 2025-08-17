@@ -121,18 +121,7 @@
         keymap = "vi";
         promptContext = true;
       };
-      pmodules = [
-        "completion"
-        "directory"
-        "editor"
-        "environment"
-        "git"
-        "history"
-        "prompt"
-        "spectrum"
-        "terminal"
-        "utility"
-      ];
+      pmodules = ["completion" "git"];
       terminal.autoTitle = true;
     };
 

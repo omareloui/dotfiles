@@ -59,7 +59,7 @@
     };
 
     syncthing = {
-      enable = false;
+      enable = true;
       openDefaultPorts = false;
     };
 
@@ -73,25 +73,25 @@
       # };
     };
     jellyfin = {
-      enable = true;
+      enable = false;
       openFirewall = true;
       group = "media";
     };
     jellyseerr = {
-      enable = true;
+      enable = false;
       openFirewall = true;
     };
     prowlarr = {
-      enable = true;
+      enable = false;
       openFirewall = true;
     };
     sonarr = {
-      enable = true;
+      enable = false;
       openFirewall = true;
       group = "media";
     };
     radarr = {
-      enable = true;
+      enable = false;
       openFirewall = true;
       group = "media";
     };

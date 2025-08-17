@@ -8,7 +8,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./homelab.nix
     ./sops.nix
     ./users.nix
     ./udev.nix
@@ -17,7 +16,7 @@
     ../common/global
     ../common/users/omareloui
 
-    # inputs.solaar.nixosModules.default
+    ../features/homelab
   ];
 
   nix = {

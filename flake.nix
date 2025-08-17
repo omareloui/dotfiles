@@ -38,9 +38,6 @@
     anyrun.url = "github:anyrun-org/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
-    solaar.url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
-    solaar.inputs.nixpkgs.follows = "nixpkgs";
-
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 

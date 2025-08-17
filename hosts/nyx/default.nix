@@ -16,6 +16,7 @@
     ../common/global
     ../common/users/omareloui
     ../common/optional/homelab
+    ../common/optional/qmk.nix
   ];
 
   nix = {

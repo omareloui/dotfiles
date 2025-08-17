@@ -21,9 +21,10 @@
     ./jujutsu.nix
     ./lazygit.nix
     ./nushell.nix
+    ./pay-respects.nix
+    ./qmk.nix
     ./ssh.nix
     ./starship.nix
-    ./pay-respects.nix
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -93,10 +94,6 @@
     nh
     nix-du
     graphviz # For `nix-du`
-
-    # QMK and Keyboards Related
-    qmk
-    wally-cli
 
     # Development
     air

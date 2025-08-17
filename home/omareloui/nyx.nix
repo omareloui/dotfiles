@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   config,
   ...
@@ -49,8 +50,11 @@
 
   services.udiskie.enable = true;
 
-  programs.git = {
-    signing.key = "7CA07EEDEEF445E9";
-    extraConfig.core.sshCommand = "ssh -i ~/.ssh/id_github_ed25519";
+  programs = {
+    ssh.matchBlocks."github.com".identityFile = "~/.ssh/id_github_ed25519";
+    git = {
+      signing.key = "7CA07EEDEEF445E9";
+      extraConfig.core.sshCommand = "ssh -i ~/.ssh/id_github_ed25519";
+    };
   };
 }

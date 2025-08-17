@@ -10,7 +10,7 @@
       "github.com" = {
         host = "github.com";
         hostname = lib.mkDefault "github.com";
-        identityFile = "~/.ssh/id_github";
+        identityFile = lib.mkDefault "~/.ssh/id_github";
         extraOptions = {
           AddressFamily = "inet";
           IdentitiesOnly = "yes";

@@ -1268,11 +1268,11 @@
     "nvim-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1753885393,
-        "narHash": "sha256-vv2xUUUSIoHUc1T5xYB2Ois+5Rlk6vXEbQYcPnZxP88=",
+        "lastModified": 1755434544,
+        "narHash": "sha256-Ebsvo5ht+deGyXBcfoQ3QpTiUbJlGRGtfsY8vct5W1o=",
         "owner": "omareloui",
         "repo": "nvim",
-        "rev": "553fff36a38fc068e7029d5993adacab7b091e1c",
+        "rev": "4a31063546cc313ee451e90f71f9c595a946b161",
         "type": "github"
       },
       "original": {

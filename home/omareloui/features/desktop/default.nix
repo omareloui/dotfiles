@@ -19,6 +19,8 @@
     ./vlc.nix
     ./zathura.nix
     ./zen.nix
+
+    ./catppuccin.nix
   ];
 
   home = {

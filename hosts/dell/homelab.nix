@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   networking = {
     firewall.allowedTCPPorts = [
       8384 # Syncthing
@@ -25,32 +30,32 @@
     nginx = {
       enable = true;
       virtualHosts = {
-        "jellyfin.homelab" = {
+        "jellyfin.homelab" = lib.mkIf config.jellyfin.enable {
           locations."/" = {
             proxyPass = "http://localhost:8096";
           };
         };
-        "sonarr.homelab" = {
+        "sonarr.homelab" = lib.mkIf config.sonarr.enable {
           locations."/" = {
             proxyPass = "http://localhost:8989";
           };
         };
-        "radarr.homelab" = {
+        "radarr.homelab" = lib.mkIf config.radarr.enable {
           locations."/" = {
             proxyPass = "http://localhost:7878";
           };
         };
-        "prowlarr.homelab" = {
+        "prowlarr.homelab" = lib.mkIf config.prowlarr.enable {
           locations."/" = {
             proxyPass = "http://localhost:9696";
           };
         };
-        "syncthing.homelab" = {
+        "syncthing.homelab" = lib.mkIf config.syncthing.enable {
           locations."/" = {
             proxyPass = "http://localhost:8384";
           };
         };
-        "transmission.homelab" = {
+        "transmission.homelab" = lib.mkIf config.transmission.enable {
           locations."/" = {
             proxyPass = "http://localhost:9091";
           };
@@ -59,8 +64,9 @@
     };
 
     syncthing = {
-      enable = false;
-      openDefaultPorts = false;
+      enable = true;
+      openDefaultPorts = true;
+      group = "media";
     };
 
     transmission = {

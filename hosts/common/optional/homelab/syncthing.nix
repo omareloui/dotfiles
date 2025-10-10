@@ -10,8 +10,8 @@
       group = "shared";
       settings = {
         devices = {
-          "device1" = {
-            id = "IGUWK2P-ESQ3GYD-RGZJYFF-3U77V4B-K5RX5GC-5KYCCEQ-EI2U4ZX-MP2OFAP";
+          "galaxy_a24" = {
+            id = "ZCBT4LG-BGAA2ZN-AJDFJV7-MDXOYG7-IKLTD27-IDNK3T2-TJYITDH-TWV7OQA";
             name = "Samsung Galaxy A24";
           };
         };
@@ -19,17 +19,17 @@
           "notes" = {
             id = "rrwsq-soksl";
             path = "/home/shared/notes";
-            devices = ["device1"];
+            devices = ["galaxy_a24"];
           };
           "documents" = {
             id = "9p7nq-v2zcq";
             path = "/home/shared/documents";
-            devices = ["device1"];
+            devices = ["galaxy_a24"];
           };
           "leatherwork" = {
             id = "hxq6n-smcyd";
             path = "/home/shared/leatherwork";
-            devices = ["device1"];
+            devices = ["galaxy_a24"];
           };
         };
       };

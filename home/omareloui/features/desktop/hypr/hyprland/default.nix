@@ -8,9 +8,7 @@
     ./binds.nix
   ];
 
-  wayland.windowManager.hyprland = let
-    p = config.colorScheme.palette;
-  in {
+  wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
@@ -23,8 +21,8 @@
         gaps_in = 5;
         gaps_out = 14;
         border_size = 2;
-        "col.active_border" = "rgba(${p.base0B}ee) rgba(${p.base0D}ee) 45deg";
-        "col.inactive_border" = "rgba(${p.base04}aa)";
+        "col.active_border" = "rgba(fab387ee) rgba(cba6f7ee) 120deg";
+        "col.inactive_border" = "rgba(1e1e2eaa)";
         layout = "dwindle";
         allow_tearing = false;
       };
@@ -179,8 +177,6 @@
         "opacity 0.95 0.95, class:^(microsoft-edge|zen-beta)$"
         "opacity 0.95 0.8, class:^(kitty|org\.wezfurlong\.wezterm)$"
         "opacity 0.85 0.8, class:^(org.gnome.Nautilus)$"
-
-        "bordercolor rgb(${p.base00}) rgb(${p.base01}), floating:1"
 
         "opacity 1 1, title:^(${pipRe})$"
         "pin, title:^(${pipRe})$"

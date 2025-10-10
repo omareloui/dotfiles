@@ -5,8 +5,6 @@ in {
     ./global
   ];
 
-  colorScheme = inputs.nix-colors.lib.schemeFromYAML "folke-tokyo-night-dark" (builtins.readFile ./assets/themes/folke-tokyo-night-dark.yaml);
-
   services.gpg-agent = {
     pinentry.package = null;
     extraConfig = ''

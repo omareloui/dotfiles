@@ -288,32 +288,9 @@
     recursive = true;
   };
 
-  home.file.".config/waybar/palette.css".text = let
-    p = config.colorScheme.palette;
-  in
+  home.file.".config/waybar/palette.css".text =
     /*
     css
     */
-    ''
-      @define-color foreground #${p.base05};
-      @define-color background #${p.base00};
-      @define-color cursor #${p.base05};
-
-      @define-color color0  #${p.base00};
-      @define-color color1  #${p.base01};
-      @define-color color2  #${p.base02};
-      @define-color color3  #${p.base03};
-      @define-color color4  #${p.base04};
-      @define-color color5  #${p.base05};
-      @define-color color6  #${p.base06};
-      @define-color color7  #${p.base07};
-      @define-color color8  #${p.base08};
-      @define-color color9  #${p.base09};
-      @define-color color10 #${p.base0A};
-      @define-color color11 #${p.base0B};
-      @define-color color12 #${p.base0C};
-      @define-color color13 #${p.base0D};
-      @define-color color14 #${p.base0E};
-      @define-color color15 #${p.base0F};
-    '';
+    '''';
 }

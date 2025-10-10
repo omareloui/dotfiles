@@ -1,14 +1,8 @@
-{
-  inputs,
-  config,
-  ...
-}: {
+{config, ...}: {
   imports = [
     ./global
     ./features/desktop
   ];
-
-  colorScheme = inputs.nix-colors.lib.schemeFromYAML "folke-tokyo-night-dark" (builtins.readFile ./assets/themes/folke-tokyo-night-dark.yaml);
 
   home = {
     sessionVariables = let

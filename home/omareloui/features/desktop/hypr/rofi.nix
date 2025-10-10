@@ -73,15 +73,6 @@
         border-color = mkLiteral "@border-colour";
         cursor = "default";
         background-color = mkLiteral "@background-colour";
-
-        # /* Background Image */
-        # background-image = mkLiteral "url(\"/path/to/image.png\", none)";
-        # /* Simple Linear Gradient */
-        # background-image = mkLiteral "linear-gradient(red, orange, pink, purple)";
-        # /* Directional Linear Gradient */
-        # background-image = mkLiteral "linear-gradient(to bottom, pink, yellow, magenta)";
-        # /* Angle Linear Gradient */
-        # background-image = mkLiteral "linear-gradient(45, cyan, purple, indigo)";
       };
 
       "mainbox" = {
@@ -333,31 +324,6 @@
   home.file.".config/rofi/border.rasi".text = ''* { border-width: 3px; }'';
   home.file.".config/rofi/font.rasi".text = ''* { font: "Fira Sans 11"; }'';
   home.file.".config/rofi/wallpaper.rasi".text = ''* { current-image: url("${config.home.homeDirectory}/.cache/wallpapers/current_blurred.png", height); }'';
-  home.file.".config/rofi/palette.rasi".text = let
-    p = config.colorScheme.palette;
-  in ''
-    * {
-      background: rgba(0,0,1,0.5);
-      foreground: #FFFFFF;
-
-      color0:  #${p.base00};
-      color1:  #${p.base01};
-      color2:  #${p.base02};
-      color3:  #${p.base03};
-      color4:  #${p.base04};
-      color5:  #${p.base05};
-      color6:  #${p.base06};
-      color7:  #${p.base07};
-      color8:  #${p.base08};
-      color9:  #${p.base09};
-      color10: #${p.base0A};
-      color11: #${p.base0B};
-      color12: #${p.base0C};
-      color13: #${p.base0D};
-      color14: #${p.base0E};
-      color15: #${p.base0F};
-    }
-  '';
 
   home.file.".config/rofi/common.rasi".text =
     /*

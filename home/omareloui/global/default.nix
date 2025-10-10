@@ -57,14 +57,6 @@
     };
   };
 
-  # specialisation = {
-  #   dark.configuration.colorscheme.mode = lib.mkOverride 1498 "dark";
-  #   light.configuration.colorscheme.mode = lib.mkOverride 1498 "light";
-  # };
-  home.file = {
-    ".colorscheme.json".text = builtins.toJSON config.colorScheme;
-  };
-
   home.packages = let
     specialisation = pkgs.writeShellScriptBin "specialisation" ''
       profiles="$HOME/.local/state/nix/profiles"

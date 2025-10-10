@@ -28,6 +28,8 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.stable-packages
+
+      inputs.neovim-nightly.overlays.default
     ];
 
     config = {

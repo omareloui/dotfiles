@@ -24,6 +24,8 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+
     nixvim.url = "github:nix-community/nixvim";
 
     eva.url = "github:nerdypepper/eva";

@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{lib, ...}: let
   user = {
     name = "Omar Eloui";
     email = "contact@omareloui.com";
@@ -15,7 +11,6 @@ in {
 
     signing = {
       signByDefault = true;
-      # signer = lib.mkDefault (lib.getExe config.services.gpg-agent.pinentry.package);
     };
 
     extraConfig = {
@@ -35,9 +30,9 @@ in {
     delta = {
       enable = true;
       options = {
-        side-by-side = true;
         diff-so-fancy = true;
         line-numbers = true;
+        paging = "never";
       };
     };
 

@@ -1,12 +1,12 @@
 {
   writeShellApplication,
   cliphist,
-  rofi-wayland,
+  rofi,
   wl-clipboard,
 }:
 writeShellApplication {
   name = "cliphist_wrapper";
-  runtimeInputs = [cliphist rofi-wayland wl-clipboard];
+  runtimeInputs = [cliphist rofi wl-clipboard];
   text =
     /*
     bash

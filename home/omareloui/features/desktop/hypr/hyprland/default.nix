@@ -101,16 +101,9 @@
         ];
       };
 
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_invert = true;
-        workspace_swipe_create_new = true;
-        workspace_swipe_forever = false;
-        workspace_swipe_fingers = 3;
-        workspace_swipe_distance = 400;
-        workspace_swipe_min_speed_to_force = 30;
-        workspace_swipe_cancel_ratio = 0.5;
-      };
+      gesture = [
+        "3, horizontal, workspace"
+      ];
 
       master = {
         new_status = "slave";
@@ -124,7 +117,7 @@
       };
 
       exec = [
-        "avizo-service"
+        # "avizo-service"
         "${lib.getExe pkgs.swaynotificationcenter}"
         "${lib.getExe pkgs.init_bar}"
         "${lib.getExe pkgs.hyprshade} auto"
@@ -135,7 +128,6 @@
         "${lib.getExe pkgs.pyprland}"
         "${lib.getExe pkgs.xorg.xhost} +SI:${config.home.username}:root" # fixes the bluetooth stutter
         "${lib.getExe pkgs.telegram-desktop} -startintray"
-        # "${lib.getExe pkgs.slack}"
 
         "wl-paste --watch cliphist store"
 

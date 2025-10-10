@@ -1,11 +1,11 @@
 {
   writeShellApplication,
-  rofi-wayland,
+  rofi,
   findutils,
 }:
 writeShellApplication {
   name = "bar_themeswitcher";
-  runtimeInputs = [rofi-wayland findutils];
+  runtimeInputs = [rofi findutils];
   text =
     /*
     bash

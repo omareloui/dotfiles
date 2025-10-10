@@ -17,7 +17,7 @@
       buf
       codeium
       csharpier
-      dockerfile-language-server-nodejs
+      dockerfile-language-server
       elixir-ls
       emmet-ls
       eslint_d

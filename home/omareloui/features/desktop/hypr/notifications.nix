@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     swaynotificationcenter
-    avizo
+    # avizo
   ];
 
   home.file.".config/swaync/config.json".text = builtins.toJSON {

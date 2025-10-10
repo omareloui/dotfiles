@@ -22,7 +22,7 @@
     ./lazygit.nix
     ./nushell.nix
     ./pay-respects.nix
-    ./qmk.nix
+    # ./qmk.nix
     ./ssh.nix
     ./starship.nix
     ./zoxide.nix
@@ -32,7 +32,7 @@
   home.packages = with pkgs; [
     age
     autoconf
-    awscli2
+    # awscli2
     bc
     bison
     bottom

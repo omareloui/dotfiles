@@ -5,7 +5,7 @@
 }: {
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
 
     font = "JetBrainsMono Nerd Font 10.6";
 

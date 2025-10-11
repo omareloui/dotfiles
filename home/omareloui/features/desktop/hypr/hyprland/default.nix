@@ -117,7 +117,6 @@
       };
 
       exec = [
-        # "avizo-service"
         "${lib.getExe pkgs.swaynotificationcenter}"
         "${lib.getExe pkgs.init_bar}"
         "${lib.getExe pkgs.hyprshade} auto"

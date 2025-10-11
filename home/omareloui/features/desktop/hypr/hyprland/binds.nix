@@ -54,13 +54,15 @@
         "$mod SHIFT, R, exec, hyprctl reload"
 
         # Laptop keys
-        ",XF86MonBrightnessUp, exec, lightctl up"
-        ",XF86MonBrightnessDown, exec, lightctl down"
         ",XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
-        ",XF86AudioRaiseVolume, exec, volumectl -u up"
-        ",XF86AudioLowerVolume, exec, volumectl -u down"
-        ",XF86AudioMute, exec, volumectl toggle-mute"
         ",XF86Calculator, exec, ${lib.getExe pkgs.qalculate-gtk}"
+
+        # ",XF86MonBrightnessUp, exec, lightctl up"
+        # ",XF86MonBrightnessDown, exec, lightctl down"
+
+        # ",XF86AudioRaiseVolume, exec, volumectl -u up"
+        # ",XF86AudioLowerVolume, exec, volumectl -u down"
+        # ",XF86AudioMute, exec, volumectl toggle-mute"
 
         "$mod, A, exec, hyprctl switchxkblayout"
 

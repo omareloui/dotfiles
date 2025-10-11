@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   home.packages = with pkgs; [
     swaynotificationcenter
-    # avizo
   ];
 
   home.file.".config/swaync/config.json".text = builtins.toJSON {
@@ -63,81 +67,27 @@
     };
   };
 
-  # home.file.".config/swaync/style.css".text =
-  #   /*
-  #   css
-  #   */
-  #   ''
-  #     @import "../waybar/palette.css";
-  #     @define-color text            @foreground;
-  #     @define-color background-alt  @color1;
-  #     @define-color selected        @color3;
-  #     @define-color hover           @color5;
-  #     @define-color urgent          @color2;
-  #   '';
+  services.swayosd = {
+    enable = true;
+  };
 
-  home.file.".configavizoconfig.ini".text =
+  wayland.windowManager.hyprland.settings = lib.mkIf config.services.swayosd.enable {
+    bind = [
+      ",XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
+      ",XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
+
+      ",XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise"
+      ",XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
+      ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
+    ];
+
+    exec-once = ["swayosd-server"];
+  };
+
+  home.file.".config/swayosd/style.css".text =
+    lib.mkIf config.services.swayosd.enable
     /*
-    ini
+    css
     */
-    ''
-      [default]
-      # The time to show the notification for.
-      ;time = 5.0
-
-      # The base directory to resolve relative image-path against (default is $XDG_DATA_HOMEavizo).
-      ;image-base-dir =
-
-      # The image opacity; allowed values range from 0 (fully transparent) to 1.0 (fully opaque).
-      ;image-opacity = 1.0
-
-      # The width of the notification.
-      ;width = 248
-      width = 297
-
-      # The height of the notification.
-      ;height = 232
-      height = 185
-
-      # The inner padding of the notification.
-      ;padding = 24
-
-      # A relative offset of the notification to the top of the screen.
-      # Allowed values range from 0 (top) to 1.0 (bottom).
-      y-offset = 0.75
-
-      # The border radius of the notification in px.
-      border-radius = 20
-
-      # Sets the border width of the notification in px.
-      ;border-width = 1
-
-      # The block height of the progress indicator.
-      ;block-height = 10
-
-      # The spacing between blocks in the progress indicator.
-      ;block-spacing = 2
-
-      # Sets the amount of blocks in the progress indicator.
-      block-count = 20
-
-      # Sets the fade in animation duration in seconds.
-      fade-in = 0.2
-
-      # Sets the fade out animation duration in seconds.
-      fade-out = 0.5
-
-      # The color of the notification background in format: rgba([0, 255], [0, 255], [0, 255], [0, 1]).
-      background = rgba(160, 160, 160, 0.9)
-
-      # Sets the color of the notification border in format rgba([0, 255], [0, 255], [0, 255], [0, 1]).
-      ;border-color = rgba(90, 90, 90, 0.8)
-
-      # The color of the filled bar blocks in format: rgba([0, 255], [0, 255], [0, 255], [0, 1]).
-      ;bar-fg-color = rgba(0, 0, 0, 0.8)
-
-      # The color of the unfilled bar blocks in format rgba([0, 255], [0, 255], [0, 255], [0, 1]).
-      # Defaults to 'background' with 23 brightness.
-      ;bar-bg-color =
-    '';
+    '''';
 }

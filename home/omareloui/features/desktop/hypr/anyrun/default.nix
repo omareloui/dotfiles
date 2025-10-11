@@ -1,33 +1,27 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.anyrun = {
     enable = true;
 
     config = {
       x = {fraction = 0.5;};
-      y = {fraction = 0.0;};
+      y = {fraction = 0.3;};
       width = {fraction = 0.3;};
-      height = {absolute = 0;};
-
       hideIcons = false;
       ignoreExclusiveZones = false;
       layer = "overlay";
       hidePluginInfo = false;
-      closeOnClick = true;
+      closeOnClick = false;
       showResultsImmediately = false;
       maxEntries = null;
 
       plugins = [
-        inputs.anyrun.packages.${pkgs.system}.applications
-        inputs.anyrun.packages.${pkgs.system}.dictionary
-        inputs.anyrun.packages.${pkgs.system}.rink
-        inputs.anyrun.packages.${pkgs.system}.shell
-        inputs.anyrun.packages.${pkgs.system}.symbols
-        inputs.anyrun.packages.${pkgs.system}.translate
-        inputs.anyrun.packages.${pkgs.system}.websearch
+        "${pkgs.anyrun}/lib/libapplications.so"
+        "${pkgs.anyrun}/lib/libdictionary.so"
+        "${pkgs.anyrun}/lib/librink.so"
+        "${pkgs.anyrun}/lib/libshell.so"
+        "${pkgs.anyrun}/lib/libsymbols.so"
+        "${pkgs.anyrun}/lib/libtranslate.so"
+        "${pkgs.anyrun}/lib/libwebsearch.so"
         "libcurrency.so"
       ];
     };

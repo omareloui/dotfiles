@@ -36,6 +36,7 @@
     bc
     bison
     bottom
+    claude-code
     cloc
     codeium
     corepack_latest

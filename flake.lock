@@ -1404,11 +1404,11 @@
     "nvim-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1760265296,
-        "narHash": "sha256-yx9GQH4OKsfOI1Pa0wt1D60kcLSIeoNKE1TzwOWeaGA=",
+        "lastModified": 1760634209,
+        "narHash": "sha256-H/v3+hlzpBk5G/nufjfqf3cUYGwNmrx65/cOPbs6hW0=",
         "owner": "omareloui",
         "repo": "nvim",
-        "rev": "08c573ea11b27cd711f9f7348416c98cebe25c75",
+        "rev": "a953186b2e519e1f9c61b00de6b102062a9d8a13",
         "type": "github"
       },
       "original": {

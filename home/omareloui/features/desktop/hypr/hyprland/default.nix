@@ -173,7 +173,7 @@
         "pin, title:^(${pipRe})$"
         "float, title:^(${pipRe})$"
         "size 656 386, title:^(${pipRe})$"
-        "move 1252 680, title:^(${pipRe})$"
+        "move 1137 733, title:^(${pipRe})$"
       ];
 
       layerrule = [

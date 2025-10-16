@@ -58,7 +58,6 @@
       statix
       stylua
       tailwindcss-language-server
-      vale
       vscode-extensions.sonarsource.sonarlint-vscode
       vscode-extensions.vue.volar
       vscode-langservers-extracted
@@ -181,7 +180,7 @@
             javascript = { "eslint", "cspell" },
             javascriptreact = { "eslint", "cspell" },
             lua = { "luacheck", "cspell" },
-            markdown = { "markdownlint", "vale", "cspell" },
+            markdown = { "markdownlint", "cspell" },
             nix = { "statix", "cspell" },
             proto = { "buf", "cspell" },
             python = { "flake8" },

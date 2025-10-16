@@ -87,9 +87,43 @@
             cssls = {},
             docker_compose_language_service = {},
             dockerls = {},
-            emmet_ls = {},
-            gopls = {},
-            html = {},
+            emmet_ls = {
+             filetypes = {
+               "html",
+               "typescriptreact",
+               "javascriptreact",
+               "handlebars",
+               "css",
+               "sass",
+               "scss",
+               "less",
+               "vue",
+               "astro",
+             },
+             init_options = {
+               html = {
+                 options = {
+                   -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+                   ["bem.enabled"] = true,
+                 },
+               },
+             },
+           },
+           gopls = {
+             filetypes = { "go", "gomod" },
+             settings = {
+               gopls = {
+                 completeUnimported = true,
+                 usePlaceholders = true,
+                 analyses = {
+                   unusedparams = true,
+                 },
+                 staticcheck = true,
+                 gofumpt = true,
+               },
+             },
+           },
+           html = {},
             jinja_lsp = {},
             jsonls = {},
             lua_ls = {},

@@ -3,10 +3,11 @@
   libcanberra-gtk3,
   grimblast,
   swappy,
+  imagemagick
 }:
 writeShellApplication {
   name = "screenshot";
-  runtimeInputs = [grimblast libcanberra-gtk3 swappy];
+  runtimeInputs = [grimblast libcanberra-gtk3 swappy imagemagick];
   text =
     /*
     bash
@@ -14,7 +15,7 @@ writeShellApplication {
     ''
       ${import ../utils/ansi.nix}
 
-      version=3.0.1
+      version=3.0.2
 
       LONGOPTS=help,no-copy,sleep:,e,quite,preview
       OPTIONS=h,C,s:,edit,q,p
@@ -99,25 +100,6 @@ writeShellApplication {
       time=$(date +%Y-%m-%d-%I-%M-%S)
       filename="screenshot_''${time}.png"
 
-      # notification_icon="$HOME/.local/share/icons/camera-shutter.png"
-      # notification_icon2="$HOME/.local/share/icons/stopwatch.png"
-
-      # if [[ ! -f $notification_icon ]]; then
-      #   source_file="$DOTFILES/assets/icons/camera-shutter.png"
-      #   if [[ ! -f "$source_file" ]]; then
-      #     echo -e "''${YELLOW_BG}''${BOLD}''${BLACK}Warning''${RESET} can't find the notification icon."
-      #   fi
-      #   cp "$source_file" "$notification_icon"
-      # fi
-
-      # if [[ ! -f $notification_icon2 ]]; then
-      #   source_file="$DOTFILES/assets/icons/stopwatch.png"
-      #   if [[ ! -f "$source_file" ]]; then
-      #     echo -e "''${YELLOW_BG}''${BOLD}''${BLACK}Warning''${RESET} can't find the counter icon."
-      #   fi
-      #   cp "$source_file" "$notification_icon2"
-      # fi
-
       [[ ! -d $dir ]] && mkdir -p "$dir"
 
       function play_sound_effect() {
@@ -190,7 +172,8 @@ writeShellApplication {
         pushd "$dir" || exit 1
         {
           action="save"
-          grimblast "$action" area - | convert - -shave 1x1 "$filename"
+          sleep "$sleep"
+          grimblast "$action" area - | magick - -shave 1x1 "$filename"
           if ((copy == 1)); then
             wl-copy <"$filename"
           fi

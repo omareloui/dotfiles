@@ -98,6 +98,7 @@
     # Development
     air
     automake
+    awscli
     cargo
     delve
     deno

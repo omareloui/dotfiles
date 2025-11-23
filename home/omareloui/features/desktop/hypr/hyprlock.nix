@@ -8,10 +8,6 @@
     hyprlang
     */
     ''
-      general {
-        grace = 2
-      }
-
       background {
           monitor =
 
@@ -63,7 +59,20 @@
           color = rgba(200, 200, 200, 1.0)
           font_size = 55
           font_family = Fira Semibold
-          position = -100, 200
+          position = -100, 220
+          halign = right
+          valign = bottom
+          shadow_passes = 5
+          shadow_size = 10
+      }
+
+      label {
+          monitor =
+          text = $LAYOUT
+          color = rgba(200, 200, 200, 1.0)
+          font_size = 12
+          font_family = Fira Semibold
+          position = -100, 100
           halign = right
           valign = bottom
           shadow_passes = 5
@@ -76,7 +85,7 @@
           color = rgba(200, 200, 200, 1.0)
           font_size = 20
           font_family = Fira Semibold
-          position = -100, 120
+          position = -100, 160
           halign = right
           valign = bottom
           shadow_passes = 5

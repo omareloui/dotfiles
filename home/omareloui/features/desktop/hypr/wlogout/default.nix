@@ -9,7 +9,7 @@
     layout = [
       {
         label = "lock";
-        action = lib.getExe pkgs.hyprlock;
+        action = "${lib.getExe pkgs.hyprlock} --grace 2";
         text = "Lock (l)";
         keybind = "l";
       }

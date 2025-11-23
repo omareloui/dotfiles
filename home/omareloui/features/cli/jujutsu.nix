@@ -2,10 +2,7 @@
   programs.jujutsu = {
     enable = true;
     settings = {
-      user = {
-        name = config.programs.git.userName;
-        email = config.programs.git.userEmail;
-      };
+      inherit (config.programs.git.settings) user;
       ui = {
         allow-init-native = true;
         default-command = "log";

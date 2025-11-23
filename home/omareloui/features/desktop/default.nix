@@ -54,7 +54,7 @@
       slock
       swaylock-effects
       wf-recorder
-      whatsapp-for-linux
+      wasistlos
       wirelesstools
       xorg.xhost
 

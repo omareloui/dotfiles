@@ -40,7 +40,7 @@
     codeium
     corepack_latest
     dconf
-    du-dust
+    dust
     eva
     fd
     ffmpeg
@@ -98,7 +98,7 @@
     # Development
     air
     automake
-    awscli
+    awscli2
     cargo
     delve
     deno

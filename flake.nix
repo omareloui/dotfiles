@@ -12,7 +12,8 @@
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
-    home-manager.url = "github:nix-community/home-manager";
+    # home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "git+file:///home/omareloui/.home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/Hyprland";

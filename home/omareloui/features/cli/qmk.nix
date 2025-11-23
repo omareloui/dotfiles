@@ -1,14 +1,7 @@
 {pkgs, ...}: {
   home = {
     packages = with pkgs; [
-      (qmk.override {
-        wb32-dfu-updater = pkgs.wb32-dfu-updater.overrideAttrs (oldAttrs: {
-          postPatch = ''
-            substituteInPlace CMakeLists.txt \
-              --replace-fail "cmake_minimum_required(VERSION 3.0)" "cmake_minimum_required(VERSION 3.5)"
-          '';
-        });
-      })
+      qmk
       wally-cli
     ];
 

@@ -15,7 +15,7 @@
       # Screenlock
       listener {
           timeout = 600
-          on-timeout = hyprctl switchxkblayout at-translated-set-2-keyboard 0 && hyprlock
+          on-timeout = hyprctl switchxkblayout at-translated-set-2-keyboard 0 && hyprlock --grace 2
       }
 
       # dpms

@@ -84,10 +84,11 @@
 
     # Custom scripts/packages
     # moviesscripts
-    sortpics
-    gengif
     cloud_backup
+    genpdf
+    gengif
     optimize
+    sortpics
     zj_sessions
 
     # Nix Utilities

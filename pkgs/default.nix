@@ -8,6 +8,7 @@
   shade = pkgs.callPackage ./shade {};
   sortpics = pkgs.callPackage ./sortpics {};
   gengif = pkgs.callPackage ./gengif {};
+  genpdf = pkgs.callPackage ./genpdf {};
   optimize = pkgs.callPackage ./optimize {};
 
   init_bar = pkgs.callPackage ./init_bar {};

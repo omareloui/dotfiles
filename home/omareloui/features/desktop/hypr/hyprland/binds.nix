@@ -84,7 +84,7 @@
 
         # Scripts
         "$mod, R, exec, ${lib.getExe pkgs.rofi} -show drun"
-        # "$mod, R, exec, ${lib.getExe inputs.anyrun.packages.${pkgs.system}.anyrun}"
+        # "$mod, R, exec, ${lib.getExe inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}.anyrun}"
         "$mod, V, exec, ${lib.getExe pkgs.cliphist_wrapper} list"
 
         "$mod, W, exec, ${lib.getExe pkgs.wallpaper}"

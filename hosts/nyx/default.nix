@@ -180,7 +180,7 @@
       systemCronJobs =
         if true
         then [
-          "0 0 */1 * * ${config.users.users.omareloui.name} ${outputs.packages.${pkgs.system}.cloud_backup}"
+          "0 0 */1 * * ${config.users.users.omareloui.name} ${outputs.packages.${pkgs.stdenv.hostPlatform.system}.cloud_backup}"
         ]
         else [];
     };

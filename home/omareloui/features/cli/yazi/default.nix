@@ -6,7 +6,7 @@
   programs.yazi = {
     enable = true;
     settings = {
-      manager = {
+      mgr = {
         ratio = [1 3 4];
         linemode = "custom";
         sort_by = "natural";
@@ -133,7 +133,7 @@
     keymap = let
       leader = "<Tab>";
     in {
-      manager = {
+      mgr = {
         prepend_keymap = [
           {
             on = ["l"];

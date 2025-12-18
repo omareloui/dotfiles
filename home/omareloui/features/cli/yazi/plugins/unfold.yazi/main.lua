@@ -17,7 +17,7 @@ end
 ---@param path string
 ---@return  string|nil mime,string|nil err
 local function get_mime(path)
-	local out, err = Command("file"):args({ "-b", path }):output()
+	local out, err = Command("file"):arg({ "-b", path }):output()
 	if err then
 		return nil, "error while getting the mime type: " .. err
 	end
@@ -54,7 +54,7 @@ end)
 ---@param files string[]
 ---@return string|nil error_message
 local function mv_to_dir(dirname, files)
-	local child, err = Command("mkdir"):args({ "-p", dirname }):spawn()
+	local child, err = Command("mkdir"):arg({ "-p", dirname }):spawn()
 	if err then
 		return "error while creating the mkdir child: " .. err
 	end
@@ -64,7 +64,7 @@ local function mv_to_dir(dirname, files)
 		return "error on running the mkdir child: " .. err
 	end
 
-	local child, err = Command("mv"):args(files):arg(dirname):spawn()
+	local child, err = Command("mv"):arg(files):arg(dirname):spawn()
 	if err then
 		return "error while creating the mv child: " .. err
 	end
@@ -92,7 +92,7 @@ end
 ---@param dir string
 ---@return string[] children, string|nil error
 local function get_children(dir)
-	local out, err = Command("fd"):args({ "-IHd1", ".", dir }):output()
+	local out, err = Command("fd"):arg({ "-IHd1", ".", dir }):output()
 	if err then
 		return {}, "error while getting the children: " .. err
 	end

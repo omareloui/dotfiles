@@ -13,7 +13,7 @@ end)
 ---@param paths string[]
 ---@return string|nil error_message
 local function gengif(paths)
-	local child, err = Command("gengif"):args(paths):spawn()
+	local child, err = Command("gengif"):arg(paths):spawn()
 	if err then
 		return "error while creating the gnegif child: " .. err
 	end

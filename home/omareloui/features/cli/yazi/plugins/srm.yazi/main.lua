@@ -13,7 +13,7 @@ end)
 ---@param paths string[]
 ---@return string|nil error_message
 local function srm(paths)
-	local child, err = Command("srm"):arg("-rfvvv"):args(paths):spawn()
+	local child, err = Command("srm"):arg("-rfvvv"):arg(paths):spawn()
 	if err then
 		return "error while creating the srm child: " .. err
 	end

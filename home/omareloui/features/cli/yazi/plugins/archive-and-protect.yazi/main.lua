@@ -28,7 +28,7 @@ end)
 local function get_rel_paths(cwd, abs_paths)
 	local rel_paths = {}
 	for _, abs_path in ipairs(abs_paths) do
-		local out, err = Command("realpath"):args({ "-s", "--relative-to", cwd, abs_path }):output()
+		local out, err = Command("realpath"):arg({ "-s", "--relative-to", cwd, abs_path }):output()
 		local rel_path = out.stdout
 		rel_path = trim(rel_path)
 		if err then
@@ -44,7 +44,7 @@ end
 ---@return string|nil error_message
 local function cp_to_dir(dirname, files)
 	-- TODO: make sure the directory dones't exist first
-	local child, err = Command("mkdir"):args({ "-p", dirname }):spawn()
+	local child, err = Command("mkdir"):arg({ "-p", dirname }):spawn()
 	if err then
 		return "error while creating the mkdir child: " .. err
 	end
@@ -54,7 +54,7 @@ local function cp_to_dir(dirname, files)
 		return "error on running the mkdir child: " .. err
 	end
 
-	local child, err = Command("cp"):args(files):arg(dirname):spawn()
+	local child, err = Command("cp"):arg(files):arg(dirname):spawn()
 	if err then
 		return "error while creating the cp child: " .. err
 	end
@@ -68,7 +68,7 @@ end
 ---@param files string[]
 ---@return string|nil error_message
 local function srm(files)
-	local child, err = Command("srm"):stdout(Command.PIPED):stderr(Command.PIPED):args({ "-rfvvv" }):args(files):spawn()
+	local child, err = Command("srm"):stdout(Command.PIPED):stderr(Command.PIPED):arg({ "-rfvvv" }):arg(files):spawn()
 	if err then
 		return "error while creating the srm child: " .. err
 	end
@@ -82,7 +82,7 @@ end
 ---@param files string[]
 ---@return string|nil error_message
 local function rm(files)
-	local child, err = Command("rm"):stdout(Command.PIPED):stderr(Command.PIPED):args({ "-rf" }):args(files):spawn()
+	local child, err = Command("rm"):stdout(Command.PIPED):stderr(Command.PIPED):arg({ "-rf" }):arg(files):spawn()
 	if err then
 		return "error while creating the rm child: " .. err
 	end
@@ -100,7 +100,7 @@ local function gpg(file, ignoreSecureRemove)
 	local child, err = Command("gpg")
 		:stdout(Command.PIPED)
 		:stderr(Command.PIPED)
-		:args({ "-r", "contact@omareloui.com", "-e", file })
+		:arg({ "-r", "contact@omareloui.com", "-e", file })
 		:spawn()
 	if err then
 		return "error while creating the gpg child: " .. err
@@ -123,7 +123,7 @@ end
 ---@return string|nil error_message
 local function tarxz(archive_name, files)
 	local child, err =
-		Command("tar"):stdout(Command.PIPED):stderr(Command.PIPED):args({ "-Jcvf", archive_name }):args(files):spawn()
+		Command("tar"):stdout(Command.PIPED):stderr(Command.PIPED):arg({ "-Jcvf", archive_name }):arg(files):spawn()
 	if err then
 		return "error while creating the tar child: " .. err
 	end
@@ -149,7 +149,7 @@ local function zip(name, files, is_protected)
 	if err then return err end
 
 	local child, err =
-		Command("zip"):stdout(Command.PIPED):stderr(Command.PIPED):args({ args, name, name }):args(files):spawn()
+		Command("zip"):stdout(Command.PIPED):stderr(Command.PIPED):arg({ args, name, name }):arg(files):spawn()
 	if err then
 		return "error while creating the tar child: " .. err
 	end

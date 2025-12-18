@@ -20,7 +20,7 @@ end)
 ---@param files string[]
 ---@return string|nil error_message
 local function mv_to_dir(dirname, files)
-	local child, err = Command("mkdir"):args({ "-p", dirname }):spawn()
+	local child, err = Command("mkdir"):arg({ "-p", dirname }):spawn()
 	if err then
 		return "error while creating the mkdir child: " .. err
 	end
@@ -30,7 +30,7 @@ local function mv_to_dir(dirname, files)
 		return "error on running the mkdir child: " .. err
 	end
 
-	local child, err = Command("mv"):args(files):arg(dirname):spawn()
+	local child, err = Command("mv"):arg(files):arg(dirname):spawn()
 	if err then
 		return "error while creating the mv child: " .. err
 	end

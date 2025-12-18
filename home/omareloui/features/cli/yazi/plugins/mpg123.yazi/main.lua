@@ -2,7 +2,7 @@ local M = {}
 
 function M:peek()
 	local child = Command("mpg123")
-		:args({ tostring(self.area.w), tostring(self.file.url) })
+		:arg({ tostring(self.area.w), tostring(self.file.url) })
 		:stdout(Command.PIPED)
 		:stderr(Command.NULL)
 		:spawn()

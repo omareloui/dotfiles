@@ -3,11 +3,12 @@
   ffmpeg,
   ghostscript,
   optimize,
+  imagemagick,
   ...
 }:
 writeShellApplication {
   name = "genpdf";
-  runtimeInputs = [ffmpeg ghostscript optimize];
+  runtimeInputs = [ffmpeg ghostscript optimize imagemagick];
   text =
     /*
     bash
@@ -82,7 +83,7 @@ writeShellApplication {
       opt_out=".output.optimized.pdf"
 
       # shellcheck disable=SC2068
-      magick convert $@ $out &&
+      magick $@ $out &&
         optimize -o "$opt_out" "$out"
 
       if [[ -f $opt_out ]]; then

@@ -5,6 +5,7 @@
 }: {
   programs.yazi = {
     enable = true;
+    extraPackages = with pkgs; [ueberzugpp];
     settings = {
       mgr = {
         ratio = [1 3 4];
@@ -240,31 +241,31 @@
               '
             '';
           }
-          {
-            desc = "edit gpg files";
-            on = [leader "p" "o"];
-            run = ''
-              shell --confirm --block '
-                file=$0
-                if [[ $file == *.gpg ]]; then
-                  # TODO: decrepit as a temp
-                  # TODO: update $file to be that temp
-                else
-                  # TODO: copy the file to /tmp
-                  # TODO: update $file to be that temp
-                fi
-
-                # TODO: edit the file
-
-                # TODO: know how to track if exited after saving or not
-
-                # TODO: on success (file updated/changed) encrypt and move to current dir
-                # TODO: remove the temp files
-
-                # TODO: on failure (file updated/changed) move back the files
-              '
-            '';
-          }
+          # {
+          #   desc = "edit gpg files";
+          #   on = [leader "p" "o"];
+          #   run = ''
+          #     shell --confirm --block '
+          #       file=$0
+          #       if [[ $file == *.gpg ]]; then
+          #         # TODO: decrepit as a temp
+          #         # TODO: update $file to be that temp
+          #       else
+          #         # TODO: copy the file to /tmp
+          #         # TODO: update $file to be that temp
+          #       fi
+          #
+          #       # TODO: edit the file
+          #
+          #       # TODO: know how to track if exited after saving or not
+          #
+          #       # TODO: on success (file updated/changed) encrypt and move to current dir
+          #       # TODO: remove the temp files
+          #
+          #       # TODO: on failure (file updated/changed) move back the files
+          #     '
+          #   '';
+          # }
           {
             on = [leader "a"];
             orphan = true;
@@ -297,7 +298,12 @@
             desc = "show the help menu";
           }
           {
-            on = [leader "g"];
+            on = [leader "g" "p"];
+            run = "plugin genpdf";
+            desc = "generate a pdf from selected files";
+          }
+          {
+            on = [leader "g" "g"];
             run = "plugin gengif";
             desc = "generate a gif preview from a video";
           }

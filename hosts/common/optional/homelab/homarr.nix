@@ -5,7 +5,7 @@
 }: {
   virtualisation.oci-containers.containers = {
     homarr = {
-      autoStart = false;
+      autoStart = lib.mkDefault false;
       image = "ghcr.io/ajnart/homarr:latest";
       volumes = [
         "/var/run/docker.sock:/var/run/docker.sock"
@@ -20,4 +20,6 @@
   services.nginx.virtualHosts."homarr.homelab" =
     lib.mkIf config.virtualisation.oci-containers.containers.homarr.autoStart
     {locations."/".proxyPass = "http://localhost:7575";};
+
+  networking.extraHosts = lib.mkIf config.virtualisation.oci-containers.containers.homarr.autoStart "127.0.0.1 homarr.homelab";
 }

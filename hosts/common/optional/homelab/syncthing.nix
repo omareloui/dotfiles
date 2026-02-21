@@ -5,31 +5,31 @@
 }: {
   services = {
     syncthing = {
-      enable = true;
+      enable = lib.mkDefault false;
       openDefaultPorts = config.services.syncthing.enable;
       group = "shared";
       settings = {
         devices = {
-          "galaxy_a24" = {
-            id = "ZCBT4LG-BGAA2ZN-AJDFJV7-MDXOYG7-IKLTD27-IDNK3T2-TJYITDH-TWV7OQA";
-            name = "Samsung Galaxy A24";
+          "fold_7" = {
+            id = "UIGFQ6R-YR4TMTV-PPOGUPP-FTE2NNS-KIUEYFE-ANWOLH7-TUXSCIW-BY2NRAB";
+            name = "Samsung Galaxy Z Fold 7";
           };
         };
         folders = {
           "notes" = {
             id = "rrwsq-soksl";
             path = "/home/shared/notes";
-            devices = ["galaxy_a24"];
+            devices = ["fold_7"];
           };
           "documents" = {
             id = "9p7nq-v2zcq";
             path = "/home/shared/documents";
-            devices = ["galaxy_a24"];
+            devices = ["fold_7"];
           };
           "leatherwork" = {
             id = "hxq6n-smcyd";
             path = "/home/shared/leatherwork";
-            devices = ["galaxy_a24"];
+            devices = ["fold_7"];
           };
         };
       };

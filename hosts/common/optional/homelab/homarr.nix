@@ -6,14 +6,16 @@
   virtualisation.oci-containers.containers = {
     homarr = {
       autoStart = lib.mkDefault false;
-      image = "ghcr.io/ajnart/homarr:latest";
+      image = "ghcr.io/homarr-labs/homarr:v1.51.0";
       volumes = [
         "/var/run/docker.sock:/var/run/docker.sock"
-        "/home/omareloui/.config/homarr/configs:/app/data/configs"
-        "/home/omareloui/.config/homarr/icons:/app/public/icons"
-        "/home/omareloui/.config/homarr/data:/data"
+        "/home/omareloui/.config/homarr/appdata:/appdata"
       ];
       ports = ["7575:7575"];
+      environment = {
+        # TODO: Generate this value and store it in a file, then read it here.
+        SECRET_ENCRYPTION_KEY = "fde16779e559ebf3405cdf9270662b0ee5fc87cf642d7c87ee6ef8068a320cb8";
+      };
     };
   };
 

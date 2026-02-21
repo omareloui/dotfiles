@@ -24,4 +24,5 @@
     {locations."/".proxyPass = "http://localhost:7575";};
 
   networking.extraHosts = lib.mkIf config.virtualisation.oci-containers.containers.homarr.autoStart "127.0.0.1 homarr.homelab";
+  networking.firewall.allowedTCPPorts = lib.mkIf config.virtualisation.oci-containers.containers.homarr.autoStart [7575];
 }

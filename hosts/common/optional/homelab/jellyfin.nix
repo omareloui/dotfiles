@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -15,5 +16,6 @@
       {locations."/".proxyPass = "http://localhost:8096";};
   };
 
+  environment.systemPackages = lib.mkIf config.services.jellyfin.enable [pkgs.jellyfin-ffmpeg];
   networking.extraHosts = lib.mkIf config.services.jellyfin.enable "127.0.0.1 jellyfin.homelab";
 }

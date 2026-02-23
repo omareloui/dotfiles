@@ -36,6 +36,7 @@
       gnome-bluetooth
       gnome-disk-utility
       hyprpicker
+      kdePackages.dolphin
       keepassxc
       kora-icon-theme
       libcanberra-gtk3
@@ -44,6 +45,7 @@
       libtool
       libusb1
       light
+      localsend
       nautilus
       networkmanagerapplet
       nwg-look
@@ -53,8 +55,8 @@
       slack
       slock
       swaylock-effects
-      wf-recorder
       wasistlos
+      wf-recorder
       wirelesstools
       xorg.xhost
 

@@ -26,6 +26,7 @@
     syncthing.enable = true;
     transmission.enable = true;
   };
+  systemd.services.jellyfin2.enable = true;
   virtualisation.oci-containers.containers.byparr.autoStart = true;
   virtualisation.oci-containers.containers.homarr.autoStart = true;
 }

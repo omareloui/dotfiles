@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [libreoffice];
+  home.packages = [pkgs.libreoffice];
 
   xdg.mimeApps = let
     mimeTypes = {

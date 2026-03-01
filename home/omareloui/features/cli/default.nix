@@ -30,6 +30,8 @@
   ];
 
   home.packages = with pkgs; [
+    # (corepack.override {nodejs-slim = pkgs.nodejs-slim_latest;})
+
     age
     android-file-transfer
     autoconf
@@ -39,7 +41,6 @@
     claude-code
     cloc
     codeium
-    corepack_latest
     dconf
     dust
     eva
@@ -56,7 +57,6 @@
     lux
     mpg123
     neofetch
-    neovide
     p7zip
     parallel
     patchelf

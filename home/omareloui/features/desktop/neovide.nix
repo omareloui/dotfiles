@@ -1,4 +1,5 @@
-{...}: {
+{pkgs, ...}: {
+  home.packages = [pkgs.neovide];
   home.file.".config/neovide".text = ''
     [font]
       normal = []

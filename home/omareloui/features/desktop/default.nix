@@ -8,10 +8,9 @@
 
     ./ark.nix
     ./kitty.nix
-    ./libreoffice.nix
+    # ./libreoffice.nix
     ./loupe.nix
     ./ms-edge.nix
-    ./neovide.nix
     ./swww.nix
     ./teams.nix
     ./telegram.nix
@@ -28,7 +27,7 @@
       acpi
       brillo
       btrfs-progs
-      calibre
+      # calibre
       cliphist
       font-awesome
       font-manager
@@ -58,7 +57,7 @@
       wasistlos
       wf-recorder
       wirelesstools
-      xorg.xhost
+      xhost
 
       # Custom scripts/packages
       bar_themeswitcher

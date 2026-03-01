@@ -6,6 +6,7 @@
   programs.yazi = {
     enable = true;
     extraPackages = with pkgs; [ueberzugpp];
+    shellWrapperName = "ya";
     settings = {
       mgr = {
         ratio = [1 3 4];

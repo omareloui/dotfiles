@@ -31,6 +31,7 @@
 
   home.packages = with pkgs; [
     age
+    android-file-transfer
     autoconf
     bc
     bison

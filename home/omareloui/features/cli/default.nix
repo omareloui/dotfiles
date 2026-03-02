@@ -43,6 +43,7 @@
     codeium
     dconf
     dust
+    dysk
     eva
     fd
     ffmpeg
@@ -174,6 +175,8 @@
 
       cat = "bat --color always --plain";
       du = "dust";
+
+      df = "dysk";
 
       lg = "lazygit";
 

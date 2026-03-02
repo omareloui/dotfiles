@@ -58,6 +58,7 @@
       statix
       stylua
       tailwindcss-language-server
+      tree-sitter
       vscode-extensions.sonarsource.sonarlint-vscode
       vscode-extensions.vue.volar
       vscode-langservers-extracted

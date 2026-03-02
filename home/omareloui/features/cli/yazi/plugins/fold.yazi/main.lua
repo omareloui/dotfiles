@@ -45,7 +45,7 @@ return {
 	entry = function()
 		local dirname, event = ya.input({
 			title = "Fold to:",
-			position = { "top-center", w = 40 },
+			pos = { "top-center", w = 40 },
 			realtime = false,
 		})
 

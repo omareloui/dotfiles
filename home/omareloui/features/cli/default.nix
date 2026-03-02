@@ -100,7 +100,7 @@
     # Development
     air
     automake
-    awscli2
+    # awscli2
     cargo
     delve
     deno

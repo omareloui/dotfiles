@@ -143,6 +143,12 @@
             desc = "enter the child directory, or open the file";
           }
           {
+            on = "!";
+            for = "unix";
+            run = "shell \"$SHELL\" --block";
+            desc = "Open $SHELL here";
+          }
+          {
             on = ["w"];
             run = ''shell --confirm '${lib.getExe pkgs.wallpaper} "$0"' '';
             desc = "set the image as wallpaper";
@@ -317,8 +323,8 @@
           }
           {
             on = ["T"];
-            run = "plugin hide-preview";
-            desc = "Hide or show preview";
+            run = "plugin toggle-pane min-preview";
+            desc = "Show or hide the preview pane";
           }
         ];
       };

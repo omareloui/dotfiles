@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   programs.zsh = {
     enable = true;
     dotDir = "${config.xdg.configHome}/zsh";
@@ -67,15 +62,6 @@
               echo -e "\e[31mError\e[33m:\e[0m Didn't find a function to exctract $1"
               ;;
           esac
-        }
-
-        function ya() {
-          local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-          ${lib.getExe pkgs.yazi} "$@" --cwd-file="$tmp"
-          if cwd="$(\cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-            cd -- "$cwd"
-          fi
-          rm -f -- "$tmp"
         }
 
         function _list_zellij_sessions () {

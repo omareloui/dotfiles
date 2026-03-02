@@ -199,7 +199,7 @@ return {
 
 		local archive_name, event = ya.input({
 			title = "Archive name:",
-			position = { "top-center", w = 40 },
+			pos = { "top-center", w = 40 },
 			realtime = false,
 		})
 

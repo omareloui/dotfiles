@@ -19,10 +19,10 @@ in {
       name = "vibrance"
       default = true
 
-      [[shades]]
-      name = "blue-light-filter"
-      start_time = ${start_blue_light_filter_on}
-      end_time = ${end_blue_light_filter_on}
+      # [[shades]]
+      # name = "blue-light-filter"
+      # start_time = ${start_blue_light_filter_on}
+      # end_time = ${end_blue_light_filter_on}
 
       # [[shades]]
       # name = "color-filter"

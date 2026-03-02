@@ -21,83 +21,99 @@
     initExtraFirst = "";
     initExtraBeforeCompInit = "";
 
+    dirHashes = {
+      h = "${config.home.homeDirectory}/myhome";
+      d = "${config.home.homeDirectory}/.dotfiles";
+    };
+
+    shellGlobalAliases = {
+      NE = "2>/dev/null";
+      NO = ">/dev/null";
+      NUL = ">/dev/null 2>&1";
+      J = "| jq";
+      G = "| rg";
+      C = "| wl-copy";
+      UUID = "$(uuidgen | tr -d \\n)";
+    };
+
+    siteFunctions = {
+      extract = ''
+        case $1 in
+          *.tar.xz.gpg|*.txz.gpg)
+            foldername="$(basename "''${1%%.*}")"
+            [[ ! -d foldername ]] && mkdir $foldername
+            gpg -d "$file" | tar xJvC "$foldername"
+          ;;
+          *.tar.bz | *.tar.bz2 | *.tar.tbz | *.tar.tbz2)
+            foldername="$(basename "''${1%%.*}")"
+            [[ ! -d $foldername ]] && mkdir $foldername
+            tar xjvf "$1" -C "$foldername"
+            ;;
+          *.tar.gz | *.tar.tgz)
+            foldername="$(basename "''${1%%.*}")"
+            [[ ! -d $foldername ]] && mkdir $foldername
+            tar xzvf "$1" -C "$foldername"
+            ;;
+          *.tar.xz | *.tar.txz)
+            foldername="$(basename "''${1%%.*}")"
+            [[ ! -d $foldername ]] && mkdir $foldername
+            tar xJvf "$1" -C "$foldername"
+            ;;
+          *.zip)
+            unzip "$1"
+            ;;
+          *.rar)
+            unrar x "$1"
+            ;;
+          *.7z)
+            7z x "$1"
+            ;;
+          *)
+            echo -e "\e[31mError\e[33m:\e[0m Didn't find a function to exctract $1"
+            ;;
+        esac
+      '';
+
+      _list_zellij_sessions = ''
+        zellij list-sessions 2>/dev/null | sed -e 's/\x1b\[[0-9;]*m//g'
+      '';
+      zja = ''
+        zj_session=$(_list_zellij_sessions | rg -v '(EXITED -|\(current\))' | awk '{print $1}' | fzf)
+        if [[ -n $zj_session ]]; then
+          wezterm start -- zsh --login -c "zellij attach $session"
+        fi
+      '';
+      zjl = ''
+        layout=$(fd '.*' "$HOME/.config/zellij/layouts" | xargs -I{} basename {} .kdl | fzf)
+        if [[ -n $layout ]]; then
+          wezterm start -- zsh --login -c "zellij --layout $layout attach -c $layout"
+        fi
+      '';
+      zjgc = ''
+        sessions=$(_list_zellij_sessions | awk '/EXITED -/ {print $1}' )
+        if [[ -n $sessions ]]; then
+          echo $sessions | xargs -n1 zellij d
+        fi
+      '';
+      zjd = ''
+        sessions=$(_list_zellij_sessions | awk '{print $1}' | fzf -m)
+        if [[ -n $sessions ]]; then
+          echo $sessions | xargs -n1 zellij d --force
+        fi
+      '';
+
+      mkcd = ''
+        mkdir -p "$1" && cd "$1"
+      '';
+    };
+
     initContent =
       /*
-      bash
+      zsh
       */
       ''
         bindkey '^ ' autosuggest-accept
-        extract() {
-          case $1 in
-            *.tar.xz.gpg|*.txz.gpg)
-              foldername="$(basename "''${1%%.*}")"
-              [[ ! -d foldername ]] && mkdir $foldername
-              gpg -d "$file" | tar xJvC "$foldername"
-            ;;
-            *.tar.bz | *.tar.bz2 | *.tar.tbz | *.tar.tbz2)
-              foldername="$(basename "''${1%%.*}")"
-              [[ ! -d $foldername ]] && mkdir $foldername
-              tar xjvf "$1" -C "$foldername"
-              ;;
-            *.tar.gz | *.tar.tgz)
-              foldername="$(basename "''${1%%.*}")"
-              [[ ! -d $foldername ]] && mkdir $foldername
-              tar xzvf "$1" -C "$foldername"
-              ;;
-            *.tar.xz | *.tar.txz)
-              foldername="$(basename "''${1%%.*}")"
-              [[ ! -d $foldername ]] && mkdir $foldername
-              tar xJvf "$1" -C "$foldername"
-              ;;
-            *.zip)
-              unzip "$1"
-              ;;
-            *.rar)
-              unrar x "$1"
-              ;;
-            *.7z)
-              7z x "$1"
-              ;;
-            *)
-              echo -e "\e[31mError\e[33m:\e[0m Didn't find a function to exctract $1"
-              ;;
-          esac
-        }
-
-        function _list_zellij_sessions () {
-          zellij list-sessions 2>/dev/null | sed -e 's/\x1b\[[0-9;]*m//g'
-        }
-
-        function zja() {
-          zj_session=$(_list_zellij_sessions | rg -v '(EXITED -|\(current\))' | awk '{print $1}' | fzf)
-          if [[ -n $zj_session ]]; then
-            wezterm start -- zsh --login -c "zellij attach $session"
-          fi
-        }
-
-        function zjl() {
-          layout=$(fd '.*' "$HOME/.config/zellij/layouts" | xargs -I{} basename {} .kdl | fzf)
-          if [[ -n $layout ]]; then
-            wezterm start -- zsh --login -c "zellij --layout $layout attach -c $layout"
-          fi
-        }
-
-        function zjgc() {
-          sessions=$(_list_zellij_sessions | awk '/EXITED -/ {print $1}' )
-          if [[ -n $sessions ]]; then
-            echo $sessions | xargs -n1 zellij d
-          fi
-        }
-
-        function zjd() {
-          sessions=$(_list_zellij_sessions | awk '{print $1}' | fzf -m)
-          if [[ -n $sessions ]]; then
-            echo $sessions | xargs -n1 zellij d --force
-          fi
-        }
-
-        hash -d h="$HOME/myhome"
-        hash -d d="$HOME/.dotfiles"
+        autoload -Uz zmv
       '';
 
     prezto = {

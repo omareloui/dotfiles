@@ -52,6 +52,7 @@
     gcc
     ghostscript
     git
+    gvfs
     imagemagick
     jq
     lsof

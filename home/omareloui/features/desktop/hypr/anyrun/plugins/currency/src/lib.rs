@@ -26,16 +26,23 @@ static INPUT_REGEX: Lazy<Regex> = Lazy::new(|| {
 });
 
 #[init]
-fn init(_config_dir: RString) -> anyhow::Result<()> {
+fn init(_config_dir: RString) {
+    match fetch_rates() {
+        Ok(rates) => {
+            let mut state = STATE.lock().unwrap();
+            state.rates = rates;
+        }
+        Err(e) => eprintln!("Failed to fetch exchange rates: {}", e),
+    }
+}
+
+fn fetch_rates() -> anyhow::Result<HashMap<String, f64>> {
     let client = reqwest::blocking::Client::new();
     let response = client
         .get("https://api.exchangerate-api.com/v4/latest/USD")
         .send()?
         .json::<ExchangeRates>()?;
-    
-    let mut state = STATE.lock().unwrap();
-    state.rates = response.rates;
-    Ok(())
+    Ok(response.rates)
 }
 
 #[info]
@@ -74,7 +81,7 @@ fn get_matches(input: RString) -> RVec<Match> {
         }
     }
     
-    vec![].into()
+    RVec::new()
 }
 
 #[handler]

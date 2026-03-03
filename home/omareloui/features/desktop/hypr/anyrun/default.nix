@@ -45,5 +45,5 @@
 
   home.file.".config/anyrun/plugins/libcurrency.so".source =
     lib.mkIf config.programs.anyrun.enable
-    ./plugins/currency/builds/libcurrency-0.1.1.so;
+    ./plugins/currency/builds/libcurrency-0.1.2.so;
 }

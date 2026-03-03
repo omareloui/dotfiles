@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -138,15 +139,297 @@
       mgr = {
         prepend_keymap = [
           {
-            on = ["l"];
-            run = "plugin smart-enter";
-            desc = "enter the child directory, or open the file";
+            on = "k";
+            run = "plugin augment-command -- arrow -1";
+            desc = "Move cursor up";
           }
           {
-            on = "!";
-            for = "unix";
-            run = "shell \"$SHELL\" --block";
-            desc = "Open $SHELL here";
+            on = "j";
+            run = "plugin augment-command -- arrow 1";
+            desc = "Move cursor down";
+          }
+          {
+            on = "K";
+            run = "plugin augment-command -- parent_arrow -1";
+            desc = "Move cursor up in the parent directory";
+          }
+          {
+            on = "J";
+            run = "plugin augment-command -- parent_arrow 1";
+            desc = "Move cursor down in the parent directory";
+          }
+
+          {
+            on = "<C-k>";
+            run = "seek -5";
+            desc = "Seek up 5 units in the preview pane";
+          }
+          {
+            on = "<C-j>";
+            run = "seek 5";
+            desc = "Seek down 5 units in the preview pane";
+          }
+          {
+            on = "l";
+            run = "plugin augment-command -- enter";
+            desc = "Enter the child directory, or open the file";
+          }
+          {
+            on = "<Enter>";
+            run = "plugin augment-command -- enter";
+            desc = "Enter the child directory, or open the file";
+          }
+          {
+            on = "<S-Enter>";
+            run = "plugin augment-command -- enter --interactive";
+            desc = "Enter the child directory, or open the file interactively";
+          }
+          {
+            on = "<Right>";
+            run = "plugin augment-command -- enter --no-skip";
+            desc = "Enter the child directory, or open the file";
+          }
+          {
+            on = ["h"];
+            run = "plugin augment-command -- leave";
+            desc = "Go back to the parent directory";
+          }
+          {
+            on = ["<Left>"];
+            run = "plugin augment-command -- leave --no-skip";
+            desc = "Go back to the parent directory";
+          }
+          {
+            on = "t";
+            run = "plugin augment-command -- tab_create --current";
+            desc = "Create a new tab with CWD";
+          }
+          {
+            on = "O";
+            run = "plugin augment-command -- open --interactive";
+            desc = "Open selected files interactively";
+          }
+          {
+            on = "<Space>";
+            run = ["toggle" "plugin augment-command -- arrow 1 --no-wrap"];
+            desc = "Toggle the current selection state";
+          }
+          {
+            on = "u";
+            run = ["escape --select" "unyank"];
+            desc = "Unselect all files and also unyank cut files";
+          }
+          {
+            on = "d";
+            run = "yank --cut";
+            desc = "Cut the selected files";
+          }
+          {
+            on = "p";
+            run = "plugin augment-command -- paste";
+            desc = "Paste the files";
+          }
+          {
+            on = "P";
+            run = "plugin augment-command -- paste --force";
+            desc = "Paste the files (overwrite if the destination exists)";
+          }
+          {
+            on = "_";
+            run = "plugin augment-command -- create";
+            desc = "Create a file or directory";
+          }
+          {
+            on = "+";
+            run = "plugin augment-command -- create";
+            desc = "Create a file or directory";
+          }
+          {
+            on = "=";
+            run = "hardlink";
+            desc = "Hardlink yanked files";
+          }
+          {
+            on = "x";
+            run = "plugin augment-command -- remove";
+            desc = "Move the files to the trash";
+          }
+          {
+            on = "X";
+            run = "plugin augment-command -- remove --permanently";
+            desc = "Permanently delete the files";
+          }
+          {
+            on = "a";
+            run = "plugin augment-command -- archive";
+            desc = "Add files to an archive";
+          }
+          {
+            on = "<C-s>";
+            run = ''shell "$SHELL" --block'';
+            desc = "Open shell here";
+          }
+          {
+            on = "z";
+            run = "plugin fzf";
+            desc = "Jump to a directory, or reveal a file using fzf";
+          }
+          {
+            on = "Z";
+            run = "plugin fzf";
+            desc = "Jump to a directory, or reveal a file using fzf";
+          }
+          {
+            on = "o";
+            run = "plugin augment-command -- editor";
+            desc = "Open files with the default editor";
+          }
+          {
+            on = "i";
+            run = "plugin augment-command -- pager";
+            desc = "Open files with the default pager";
+          }
+          {
+            on = "r";
+            run = "plugin augment-command -- rename --cursor=before_ext";
+            desc = "Rename a file or directory";
+          }
+          {
+            on = "R";
+            run = "plugin augment-command -- rename --empty=all";
+            desc = "Rename file and remove the whole file name";
+          }
+          {
+            on = "I";
+            run = "plugin augment-command -- rename --cursor=start";
+            desc = "Rename file at the start of the file name";
+          }
+          # {
+          #   on = "A";
+          #   run = "plugin augment-command -- rename --cursor=end";
+          #   desc = "Rename file with the cursor at the end of the file name";
+          # }
+          {
+            on = "C";
+            run = "plugin augment-command -- rename --empty=all";
+            desc = "Rename file and remove the whole file name";
+          }
+          {
+            on = ["c" "c"];
+            run = "plugin augment-command -- copy path";
+            desc = "Copy the file path";
+          }
+          {
+            on = ["c" "d"];
+            run = "plugin augment-command -- copy dirname";
+            desc = "Copy the directory path";
+          }
+          {
+            on = ["c" "f"];
+            run = "plugin augment-command -- copy filename";
+            desc = "Copy the filename";
+          }
+          {
+            on = ["c" "n"];
+            run = "plugin augment-command -- copy name_without_ext";
+            desc = "Copy the filename without extension";
+          }
+          {
+            on = ["c" "m"];
+            run = "plugin augment-command -- rename --empty=stem --cursor=start";
+            desc = "Rename file and remove the file name";
+          }
+          {
+            on = ["c" "r"];
+            run = "create";
+            desc = "Create a file (ends with / for directories)";
+          }
+          {
+            on = ["e" "m"];
+            run = "plugin augment-command -- emit";
+            desc = "Emit a Yazi command";
+          }
+          {
+            on = ["g" "c"];
+            run = "cd ~/.config";
+            desc = "Go to the config directory";
+          }
+          {
+            on = ["g" "d"];
+            run = "cd ${config.home.sessionVariables.DOWNLOADS_DIR}";
+            desc = "Go to the downloads directory";
+          }
+          {
+            on = ["g" "v"];
+            run = "cd ${config.home.sessionVariables.FLAKE}";
+            desc = "Go to the dotfiles directory";
+          }
+          {
+            on = ["g" "r"];
+            run = "cd ${config.home.sessionVariables.REPOS_DIR}";
+            desc = "Go to the repos directory";
+          }
+          {
+            on = ["g" "l"];
+            run = "follow";
+            desc = "Follow hovered symlink";
+          }
+          {
+            on = ["g" "f"];
+            run = "plugin augment-command -- first_file";
+            desc = "Jump to the first file";
+          }
+
+          {
+            on = "1";
+            run = "plugin relative-motions -- 1";
+            desc = "Move in relative steps";
+          }
+          {
+            on = "2";
+            run = "plugin relative-motions -- 2";
+            desc = "Move in relative steps";
+          }
+          {
+            on = "3";
+            run = "plugin relative-motions -- 3";
+            desc = "Move in relative steps";
+          }
+          {
+            on = "4";
+            run = "plugin relative-motions -- 4";
+            desc = "Move in relative steps";
+          }
+          {
+            on = "5";
+            run = "plugin relative-motions -- 5";
+            desc = "Move in relative steps";
+          }
+          {
+            on = "6";
+            run = "plugin relative-motions -- 6";
+            desc = "Move in relative steps";
+          }
+          {
+            on = "7";
+            run = "plugin relative-motions -- 7";
+            desc = "Move in relative steps";
+          }
+          {
+            on = "8";
+            run = "plugin relative-motions -- 8";
+            desc = "Move in relative steps";
+          }
+          {
+            on = "9";
+            run = "plugin relative-motions -- 9";
+            desc = "Move in relative steps";
+          }
+
+          {
+            on = ["g" "i"];
+            run = "plugin lazygit";
+            desc = "run lazygit";
           }
           {
             on = ["w"];
@@ -154,74 +437,14 @@
             desc = "set the image as wallpaper";
           }
           {
-            on = ["A"];
+            on = "A";
             run = "plugin fold";
             desc = "add selected to a new directory";
-          }
-          {
-            on = ["-"];
-            run = "shell --confirm --block 'nvim -c \"norm -\" ..'";
-            desc = "open oil file explorer";
           }
           {
             on = [leader "f"];
             run = ''plugin unfold'';
             desc = "flatten the selected directories";
-          }
-          {
-            desc = "extract a compressed file";
-            on = [leader "e"];
-            # TODO: move this to a plugin
-            run = ''
-              shell --confirm --block '
-                IFS=$'\n'
-                for file in "$@"; do
-                  filename_with_ext="$(basename "$file")"
-                  foldername="''${filename_with_ext%.*}"
-
-                  case $filename_with_ext in
-                    *.tar.xz.gpg)
-                      foldername="''${filename_with_ext%.*.*.*}"
-                    ;;
-                    *.tar.bz|*.tar.bz2|*.tar.gz|*.tar.xz)
-                      foldername="''${filename_with_ext%.*.*}"
-                    ;;
-                  esac
-
-                  [[ ! -d foldername ]] && mkdir "$foldername"
-
-                  case $file in
-                    *.tar.xz.gpg|*.txz.gpg)
-                      gpg -d "$file" | tar xJvC "$foldername"
-                      ;;
-                    *.tar.bz|*.tar.bz2|*.tbz|*.tbz2)
-                      tar xjvf "$file" -C "$foldername"
-                      ;;
-                    *.tar.gz|*.tgz)
-                      tar xzvf "$file" -C "$foldername"
-                      ;;
-                    *.tar.xz|*.txz)
-                      tar xJvf "$file" -C "$foldername"
-                      ;;
-                    *.zip)
-                      unzip -d "$foldername" "$file"
-                      ;;
-                    *.rar)
-                      unrar x "$file" -op"$foldername"
-                      ;;
-                    *.7z)
-                      7z x "$file" -o"$foldername"
-                      ;;
-                    *)
-                      rmdir "$foldername"
-                      echo "Error: Unsupported file: $file"
-                      continue
-                      ;;
-                  esac
-                done
-                unset IFS
-              '
-            '';
           }
           {
             desc = "protect with gpg";
@@ -315,14 +538,14 @@
             desc = "generate a gif preview from a video";
           }
           {
-            on = ["y"];
+            on = "y";
             run = [
               "yank"
               ''shell --confirm 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' ''
             ];
           }
           {
-            on = ["T"];
+            on = "T";
             run = "plugin toggle-pane min-preview";
             desc = "Show or hide the preview pane";
           }
@@ -368,9 +591,23 @@
     };
   };
 
-  home.file.".config/yazi/init.lua".source = ./init.lua;
-  home.file.".config/yazi/plugins" = {
-    source = ./plugins;
-    recursive = true;
+  home.file = {
+    ".config/yazi/init.lua".source = ./init.lua;
+    ".config/yazi/plugins" = {
+      source = ./plugins;
+      recursive = true;
+    };
+
+    ".config/starship-yazi.toml".text = lib.mkIf config.programs.yazi.enable ''
+      add_newline = false
+      format = "$directory$git_branch$cmd_duration$jobs$battery$python
+      palette = "catppuccin_mocha"
+
+      [aws]
+      disabled = true
+
+      [python]
+      format = "[(($virtualenv) )]($style)"
+    '';
   };
 }

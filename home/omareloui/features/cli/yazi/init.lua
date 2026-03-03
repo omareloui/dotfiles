@@ -47,4 +47,7 @@ Status:children_add(status_mimetype, 400, Status.RIGHT)
 Status:children_add(status_owner, 500, Status.RIGHT)
 
 -- Start plugins
-require("starship"):setup()
+require("starship"):setup({ config_file = "~/.config/starship-yazi.toml" })
+require("relative-motions"):setup({ show_numbers = "relative", show_motion = true })
+require("git"):setup()
+require("augment-command"):setup()

@@ -74,7 +74,7 @@
         # Apps keybindings
         "$mod, Return, exec, ${lib.getExe pkgs.kitty}"
         "$mod SHIFT, Return, exec, ${lib.getExe pkgs.zj_sessions}"
-        "$mod, B, exec, [workspace 1] zen"
+        "$mod, B, exec, [workspace 1] zen-beta"
         "$mod, T, exec, ${lib.getExe pkgs.telegram-desktop}"
         "$mod, N, exec, nm-connection-editor"
         "$mod, U, exec, blueman-manager"

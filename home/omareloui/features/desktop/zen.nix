@@ -9,7 +9,7 @@
   };
 
   xdg.mimeApps = let
-    zen = "zen";
+    zen = "zen-beta";
     mimeTypes = {
       "text/html" = zen;
       "x-scheme-handler/http" = zen;

@@ -22,6 +22,18 @@
         image_filter = "catmull-rom";
         image_quality = 85;
         sixel_fraction = 10;
+        max_width = 1000;
+        max_height = 1000;
+
+        # From the docs:
+        # ```
+        # If your monitor has a 2.0 scale factor, and is running on Wayland under
+        # Hyprland, you may need to set ueberzug_scale: 0.5, and adjust the value of
+        # ueberzug_offset according to your case, to offset this issue
+        # ```
+        # formela 1/current_scale
+        ueberzug_scale = 0.6666;
+        ueberzug_offset = [60 3 10 5];
       };
 
       opener = {

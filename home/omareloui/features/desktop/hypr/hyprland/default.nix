@@ -14,7 +14,7 @@
     systemd.enable = true;
 
     settings = {
-      monitor = "eDP-1, preferred, auto, 1.6";
+      monitor = "eDP-1, preferred, auto, 1.5";
       workspace = "1, monitor:eDP-1, default:true";
 
       general = {
@@ -134,12 +134,22 @@
 
       windowrule = let
         shouldFloatClasses = "transmission-gtk|org\.gnome\.Loupe|pavucontrol|scratchpad|nm-connection-editor|org\.keepassxc\.KeePassXC";
-        scratchpad = "match:class ^scratchpad-";
+        scratchpad = "match:class ^scratchpad-.*";
         bluetoothClientRe = "^\.blueman-manager-wrapped$";
         fileSelectorTitleRe = "^(Select file to open)$";
         fileSelectorClassRe = "^(xdg-desktop-portal-gtk)$";
         pipRe = "Picture[\- ]in[\- ][Pp]icture";
+        ueberzugppRe = "match:class ^ueberzugpp_.*";
       in [
+        "float on, ${ueberzugppRe}"
+        "no_anim on, ${ueberzugppRe}"
+        "no_focus on, ${ueberzugppRe}"
+        "no_shadow on, ${ueberzugppRe}"
+        "no_blur on, ${ueberzugppRe}"
+        "border_size 0, ${ueberzugppRe}"
+        "rounding 0, ${ueberzugppRe}"
+        "size 800 800, ${ueberzugppRe}"
+
         "workspace special silent, ${scratchpad}"
         "stay_focused on, ${scratchpad}"
 
@@ -191,7 +201,7 @@
       ];
 
       misc = {
-        enable_swallow = false;
+        enable_swallow = true;
         swallow_regex = "^(Alacritty|kitty|wezterm|footclient|scratchpad)$";
         disable_splash_rendering = true;
         disable_hyprland_logo = true;

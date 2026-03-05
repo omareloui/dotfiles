@@ -55,7 +55,6 @@
           new_optimizations = true;
           ignore_opacity = true;
           xray = false;
-          blurls = "waybar";
         };
 
         active_opacity = 1.0;
@@ -133,65 +132,62 @@
         "dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE"
       ];
 
-      windowrulev2 = let
+      windowrule = let
         shouldFloatClasses = "transmission-gtk|org\.gnome\.Loupe|pavucontrol|scratchpad|nm-connection-editor|org\.keepassxc\.KeePassXC";
-        scratchpad = "class:^scratchpad-";
+        scratchpad = "match:class ^scratchpad-";
         bluetoothClientRe = "^\.blueman-manager-wrapped$";
         fileSelectorTitleRe = "^(Select file to open)$";
         fileSelectorClassRe = "^(xdg-desktop-portal-gtk)$";
         pipRe = "Picture[\- ]in[\- ][Pp]icture";
       in [
         "workspace special silent, ${scratchpad}"
-        "stayfocused, ${scratchpad}"
+        "stay_focused on, ${scratchpad}"
 
-        "float, class:^(${shouldFloatClasses})$"
-        "center 1, class:^(${shouldFloatClasses})$"
+        "float on, match:class ^(${shouldFloatClasses})$"
+        "center on, match:class ^(${shouldFloatClasses})$"
 
-        "float, class:${bluetoothClientRe}"
-        "center 1, class:${bluetoothClientRe}"
-        "size 750 445, class:${bluetoothClientRe}"
+        "float on, match:class ${bluetoothClientRe}"
+        "center on, match:class ${bluetoothClientRe}"
+        "size 750 445, match:class ${bluetoothClientRe}"
 
-        "float, title:${fileSelectorTitleRe}"
-        "center 1, title:${fileSelectorTitleRe}"
-        "size 1160 680, title:${fileSelectorTitleRe}"
+        "float on, match:title ${fileSelectorTitleRe}"
+        "center on, match:title ${fileSelectorTitleRe}"
+        "size 1160 680, match:title ${fileSelectorTitleRe}"
 
-        "float, class:${fileSelectorClassRe}"
-        "center 1, class:${fileSelectorClassRe}"
-        "size 1160 680, class:${fileSelectorClassRe}"
+        "float on, match:class ${fileSelectorClassRe}"
+        "center on, match:class ${fileSelectorClassRe}"
+        "size 1160 680, match:class ${fileSelectorClassRe}"
 
-        "float, class:^thunar$,title:^(File Operation Progress)$"
-        "float, class:^org.inkscape.Inkscape$,title:^(|Measure Path|PDF Import Settings|Calender|Frame|Offset Paths)$"
+        "float on, match:class ^thunar$, match:title ^(File Operation Progress)$"
+        "float on, match:class ^org.inkscape.Inkscape$, match:title ^(|Measure Path|PDF Import Settings|Calender|Frame|Offset Paths)$"
 
-        "size 960 520, class:^transmission-gtk$,title:^Transmission$"
-        "size 482 567, class:^transmission-gtk$,title:^Torrent Options$"
+        "size 960 520, match:class ^transmission-gtk$, match:title ^Transmission$"
+        "size 482 567, match:class ^transmission-gtk$, match:title ^Torrent Options$"
 
-        "opacity 0.95 0.95, class:^(microsoft-edge|zen-beta)$"
-        "opacity 0.95 0.8, class:^(kitty|org\.wezfurlong\.wezterm)$"
-        "opacity 0.85 0.8, class:^(org.gnome.Nautilus)$"
+        "opacity 0.95 0.95, match:class ^(microsoft-edge|zen-beta)$"
+        "opacity 0.95 0.8, match:class ^(kitty|org\.wezfurlong\.wezterm)$"
+        "opacity 0.85 0.8, match:class ^(org.gnome.Nautilus)$"
 
-        "opacity 1 1, title:^(${pipRe})$"
-        "pin, title:^(${pipRe})$"
-        "float, title:^(${pipRe})$"
-        "size 656 386, title:^(${pipRe})$"
-        "move 1137 733, title:^(${pipRe})$"
+        "opacity 1 1, match:title ^(${pipRe})$"
+        "pin on, match:title ^(${pipRe})$"
+        "float on, match:title ^(${pipRe})$"
+        "size 656 386, match:title ^(${pipRe})$"
+        "move 1137 733, match:title ^(${pipRe})$"
       ];
 
       layerrule = [
-        "unset, rofi"
-        "blur, rofi"
-        "ignorezero, rofi"
+        "blur on, match:namespace rofi"
+        "ignore_alpha 0, match:namespace rofi"
 
-        "blur, wlogout"
-        "blur, class:^(swww)$"
+        "blur on, match:namespace waybar"
 
-        "blur, swaync-control-center"
-        "blur, swaync-notification-window"
+        "blur on, match:namespace wlogout"
+        "blur on, match:class ^(swww)$"
 
-        "ignorezero, swaync-control-center"
-        "ignorezero, swaync-notification-window"
-
-        "ignorealpha 0.5, swaync-control-center"
-        "ignorealpha 0.5, swaync-notification-window"
+        "blur on, match:namespace swaync-control-center"
+        "blur on, match:namespace swaync-notification-window"
+        "ignore_alpha 0, match:namespace swaync-control-center"
+        "ignore_alpha 0, match:namespace swaync-notification-window"
       ];
 
       misc = {

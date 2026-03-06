@@ -14,15 +14,16 @@ writeShellApplication {
     ''
       ${import ../utils/ansi.nix}
 
-      version=1.1.0
+      version=1.2.0
 
       custom_output=""
-      replace_original=false
       resize=false
       max_width=1920
       max_height=1080
       image_quality_factor=14
       verbose=true
+      override_original=false
+      remove_original=false
 
       function show_help {
         echo -e ""
@@ -44,9 +45,13 @@ writeShellApplication {
         echo -e "  ''${BLUE}-W''${RESET}, ''${BLUE}--max-width ''${YELLOW}<''${MAGENTA}int''${YELLOW}>''${RESET}     ''${B_RED}-''${RESET} When \`--resize\` is provided, set maximum width ''${DARK_GRAY}(default: $max_width)''${RESET}."
         echo -e "  ''${BLUE}-H''${RESET}, ''${BLUE}--max-height ''${YELLOW}<''${MAGENTA}int''${YELLOW}>''${RESET}    ''${B_RED}-''${RESET} When \`--resize\` is provided, set maximum height ''${DARK_GRAY}(default: $max_height)''${RESET}."
         echo -e "  ''${BLUE}-Q''${RESET}, ''${BLUE}--image-quality ''${YELLOW}<''${MAGENTA}int''${YELLOW}>''${RESET} ''${B_RED}-''${RESET} Set the image quality ''${DARK_GRAY}(highest: 0, lowest: 100, default: $image_quality_factor)''${RESET}."
-        echo -e "  ''${BLUE}-r''${RESET}, ''${BLUE}--replace-original''${RESET}    ''${B_RED}-''${RESET} Replace original images with optimized ones."
+        echo -e "  ''${BLUE}-O''${RESET}, ''${BLUE}--override-original''${RESET}   ''${B_RED}-''${RESET} Override original file with optimized ones."
+        echo -e "  ''${BLUE}-r''${RESET}, ''${BLUE}--remove-original''${RESET}     ''${B_RED}-''${RESET} Remove the original file."
         echo -e "  ''${BLUE}-o''${RESET}, ''${BLUE}--output''${RESET}              ''${B_RED}-''${RESET} Specify the output file."
         echo -e "  ''${BLUE}-q''${RESET}, ''${BLUE}--quite''${RESET}               ''${B_RED}-''${RESET} Make the command quiter."
+
+
+
         echo -e ""
         echo -e "''${BOLD}Examples:''${RESET}"
         echo -e ""
@@ -56,8 +61,8 @@ writeShellApplication {
         echo -e ""
       }
 
-      LONGOPTS=help,max-width:,max-height:,replace-original,resize,image-quality:,output:,quite
-      OPTIONS=hW:H:rRnQ:o:q
+      LONGOPTS=help,max-width:,max-height:,remove-original,override-original,resize,image-quality:,output:,quite
+      OPTIONS=hW:H:rORnQ:o:q
 
       PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
       eval set -- "$PARSED"
@@ -84,8 +89,12 @@ writeShellApplication {
             max_height="$2"
             shift 2
             ;;
-          -r | --replace-original)
-            replace_original=true
+          -O | --override-original)
+            override_original=true
+            shift
+            ;;
+          -r | --remove-original)
+            remove_original=true
             shift
             ;;
           -q | --quite)
@@ -180,8 +189,8 @@ writeShellApplication {
         ffmpeg -y -loglevel error \
           -i "$1" \
           -vf "scale=$scale_width:$scale_height:force_original_aspect_ratio=decrease" \
-          -c:v libx264 \
-          -crf 23 \
+          -c:v libx265 \
+          -crf 28 \
           -c:a aac \
           -b:a 128k \
           "$2"
@@ -259,7 +268,10 @@ writeShellApplication {
             echo -e "''${BLUE}''${BOLD}Reduction''${YELLOW}:''${RESET} $reduction%"
           fi
 
-          if $replace_original; then
+          if $remove_original; then
+            rm -f "$file"
+          fi
+          if $override_original; then
             mv -f "$output" "$file"
           fi
         else

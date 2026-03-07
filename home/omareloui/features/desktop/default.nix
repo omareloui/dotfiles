@@ -47,7 +47,6 @@
       localsend
       nautilus
       networkmanagerapplet
-      nwg-look
       pavucontrol
       pulseaudioFull
       qalculate-gtk

@@ -115,9 +115,7 @@
         force_split = 2;
       };
 
-      exec = [
-        (lib.mkIf config.programs.keepassxc.enable "${lib.getExe config.programs.keepassxc.package} --minimized")
-      ];
+      exec = [];
 
       exec-once = [
         "${lib.getExe pkgs.hypridle}"
@@ -127,6 +125,8 @@
         "${lib.getExe pkgs.init_bar}"
         "${lib.getExe pkgs.hyprshade} auto"
         "${lib.getExe pkgs.swaynotificationcenter}"
+
+        (lib.mkIf config.programs.keepassxc.enable "${lib.getExe config.programs.keepassxc.package} --minimized")
 
         "wl-paste --watch cliphist store"
 

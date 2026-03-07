@@ -9,6 +9,8 @@
       enable = lib.mkDefault false;
       openFirewall = config.services.transmission.enable;
       package = pkgs.transmission_4-gtk;
+      group = "shared";
+      downloadDirPermissions = "770";
       settings = {
         download-dir = "/home/shared/torrents";
         incomplete-dir = "/home/shared/torrents/.incomplete";

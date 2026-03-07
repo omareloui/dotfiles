@@ -118,6 +118,8 @@
       exec = [];
 
       exec-once = [
+        "wl-paste --watch cliphist store"
+
         "${lib.getExe pkgs.hypridle}"
         "${lib.getExe pkgs.pyprland}"
         "${lib.getExe pkgs.xhost} +SI:${config.home.username}:root" # fixes the bluetooth stutter
@@ -126,9 +128,8 @@
         "${lib.getExe pkgs.hyprshade} auto"
         "${lib.getExe pkgs.swaynotificationcenter}"
 
+        (lib.mkIf config.programs.anyrun.enable "${lib.getExe config.programs.anyrun.package} daemon")
         (lib.mkIf config.programs.keepassxc.enable "${lib.getExe config.programs.keepassxc.package} --minimized")
-
-        "wl-paste --watch cliphist store"
 
         "dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE"
       ];
@@ -192,12 +193,16 @@
 
         "blur on, match:namespace waybar"
 
+        (lib.mkIf config.programs.anyrun.enable "blur on, match:namespace anyrun")
+        (lib.mkIf config.programs.anyrun.enable "ignore_alpha 0, match:namespace anyrun")
+
         "blur on, match:namespace wlogout"
         "blur on, match:class ^(swww)$"
 
         "blur on, match:namespace swaync-control-center"
-        "blur on, match:namespace swaync-notification-window"
         "ignore_alpha 0, match:namespace swaync-control-center"
+
+        "blur on, match:namespace swaync-notification-window"
         "ignore_alpha 0, match:namespace swaync-notification-window"
       ];
 

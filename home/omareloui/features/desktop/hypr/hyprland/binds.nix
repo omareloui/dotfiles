@@ -84,8 +84,9 @@
 
         # Scripts
         # "$mod, R, exec, ${lib.getExe pkgs.rofi} -show drun"
+        # "$mod, V, exec, ${lib.getExe pkgs.cliphist_wrapper} list"
         "$mod, R, exec, anyrun"
-        "$mod, V, exec, ${lib.getExe pkgs.cliphist_wrapper} list"
+        "$mod, V, exec,  cliphist list | anyrun --hide-plugin-info true --max-entries 10 --show-results-immediately true --plugins libstdin.so | cliphist decode | wl-copy"
 
         "$mod, W, exec, ${lib.getExe pkgs.wallpaper}"
 

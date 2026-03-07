@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./anyrun
     ./hypr
     ./inkscape
 

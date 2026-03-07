@@ -19,7 +19,7 @@ in {
       hidePluginInfo = false;
       closeOnClick = false;
       showResultsImmediately = false;
-      maxEntries = null;
+      maxEntries = 15;
 
       plugins = [
         "${pkgs.anyrun}/lib/libapplications.so"
@@ -32,8 +32,7 @@ in {
         "${pkgs.anyrun}/lib/libniri_focus.so"
         "${pkgs.anyrun}/lib/librandr.so"
         "${pkgs.anyrun}/lib/libshell.so"
-        "${pkgs.anyrun}/lib/libsymbols.so"
-        "${pkgs.anyrun}/lib/libwebsearch.so"
+        # "${pkgs.anyrun}/lib/libsymbols.so"
 
         (
           (buildAnyrunPlugin
@@ -49,33 +48,68 @@ in {
             })
           + "/lib/libcurrency.so"
         )
+
+        (
+          (buildAnyrunPlugin
+            {
+              name = "websearchplus";
+              version = "0.1.2";
+              src = ./plugins/websearchplus;
+              cargoLock = {
+                lockFile = ./plugins/websearchplus/Cargo.lock;
+                outputHashes = pluginsOutputHashes;
+              };
+              buildInputs = [pkgs.openssl];
+            })
+          + "/lib/libwebsearchplus.so"
+        )
       ];
     };
 
-    extraConfigFiles."nix-run.ron".text =
-      /*
-      ron
-      */
-      ''
-        Config(
-          prefix: ":nr ",
-          allow_unfree: true,
-          channel: "nixpkgs-unstable",
-          max_entries: 15,
-        )
-      '';
+    extraConfigFiles = {
+      "nix-run.ron".text =
+        /*
+        ron
+        */
+        ''
+          Config(
+            prefix: ":nr ",
+            allow_unfree: true,
+            channel: "nixpkgs-unstable",
+            max_entries: 15,
+          )
+        '';
 
-    extraConfigFiles."stdin.ron".text =
-      /*
-      ron
-      */
-      ''
-        Config(
-          allow_invalid: false,
-          max_entries: 10,
-          preserve_order: false,
-        )
-      '';
+      "websearchplus.ron".text =
+        /*
+        ron
+        */
+        ''
+          Config(
+            prefix: "?",
+            engines: [
+              Google,
+              Custom(
+                name: "YouTube",
+                url: "youtube.com/results?search_query={}",
+                secondary_prefix: "yt",
+              )
+            ]
+          )
+        '';
+
+      "stdin.ron".text =
+        /*
+        ron
+        */
+        ''
+          Config(
+            allow_invalid: false,
+            max_entries: 10,
+            preserve_order: false,
+          )
+        '';
+    };
 
     extraCss =
       /*
@@ -168,7 +202,8 @@ in {
 
         /* ===== Description label ===== */
         label.match.description {
-          font-size: 0rem;
+          font-size: 0.8rem;
+          margin-top: 0.2rem;
           color: var(--fg-color);
         }
       '';

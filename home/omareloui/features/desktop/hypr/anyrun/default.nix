@@ -1,9 +1,11 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
+{pkgs, ...}: let
+  buildAnyrunPlugin = import ./lib/build-anyrun-plugin.nix {inherit pkgs;};
+
+  pluginsOutputHashes = {
+    "anyrun-interface-25.12.0" = "sha256-zcKI1OUg+Ukst0nasodrhKgBi61XT8vbvdK6/nuuApk=";
+    "anyrun-macros-25.12.0" = "sha256-KEEJLERvo04AsPo/SWHFJUmHaGGOVjUoGwA9e8GVIQQ=";
+  };
+in {
   programs.anyrun = {
     enable = true;
 
@@ -33,7 +35,20 @@
         "${pkgs.anyrun}/lib/libsymbols.so"
         "${pkgs.anyrun}/lib/libwebsearch.so"
 
-        "libcurrency.so"
+        (
+          (buildAnyrunPlugin
+            {
+              name = "currency";
+              version = "0.1.2";
+              src = ./plugins/currency;
+              cargoLock = {
+                lockFile = ./plugins/currency/Cargo.lock;
+                outputHashes = pluginsOutputHashes;
+              };
+              buildInputs = [pkgs.openssl];
+            })
+          + "/lib/libcurrency.so"
+        )
       ];
     };
 
@@ -47,6 +62,18 @@
           allow_unfree: true,
           channel: "nixpkgs-unstable",
           max_entries: 15,
+        )
+      '';
+
+    extraConfigFiles."stdin.ron".text =
+      /*
+      ron
+      */
+      ''
+        Config(
+          allow_invalid: false,
+          max_entries: 10,
+          preserve_order: false,
         )
       '';
 
@@ -146,8 +173,4 @@
         }
       '';
   };
-
-  home.file.".config/anyrun/plugins/libcurrency.so".source =
-    lib.mkIf config.programs.anyrun.enable
-    ./plugins/currency/builds/libcurrency-0.1.2.so;
 }

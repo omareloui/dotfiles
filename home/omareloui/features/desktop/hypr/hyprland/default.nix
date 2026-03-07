@@ -116,9 +116,7 @@
       };
 
       exec = [
-        "${lib.getExe pkgs.swaynotificationcenter}"
-        "${lib.getExe pkgs.init_bar}"
-        "${lib.getExe pkgs.hyprshade} auto"
+        (lib.mkIf config.programs.keepassxc.enable "${lib.getExe config.programs.keepassxc.package} --minimized")
       ];
 
       exec-once = [
@@ -126,6 +124,9 @@
         "${lib.getExe pkgs.pyprland}"
         "${lib.getExe pkgs.xhost} +SI:${config.home.username}:root" # fixes the bluetooth stutter
         "${lib.getExe pkgs.telegram-desktop} -startintray"
+        "${lib.getExe pkgs.init_bar}"
+        "${lib.getExe pkgs.hyprshade} auto"
+        "${lib.getExe pkgs.swaynotificationcenter}"
 
         "wl-paste --watch cliphist store"
 

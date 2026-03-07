@@ -7,6 +7,7 @@
     ./gtk.nix
 
     ./ark.nix
+    ./keepassxc.nix
     ./kitty.nix
     # ./libreoffice.nix
     ./loupe.nix
@@ -36,7 +37,6 @@
       gnome-disk-utility
       hyprpicker
       kdePackages.dolphin
-      keepassxc
       kora-icon-theme
       libcanberra-gtk3
       libiconv
@@ -85,8 +85,11 @@
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
 
-  xdg.portal.enable = true;
+  xdg = {
+    portal.enable = true;
+    autostart.enable = true; # used to autostart some apps like keepassxc
 
-  # To find the desktop files checkout `/run/current-system/sw/share/applications/`
-  xdg.mimeApps.enable = true;
+    # To find the desktop files checkout `/run/current-system/sw/share/applications/`
+    mimeApps.enable = true;
+  };
 }

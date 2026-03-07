@@ -126,7 +126,6 @@
         "${lib.getExe pkgs.telegram-desktop} -startintray"
         "${lib.getExe pkgs.init_bar}"
         "${lib.getExe pkgs.hyprshade} auto"
-        "${lib.getExe pkgs.swaynotificationcenter}"
 
         (lib.mkIf config.programs.anyrun.enable "${lib.getExe config.programs.anyrun.package} daemon")
         (lib.mkIf config.programs.keepassxc.enable "${lib.getExe config.programs.keepassxc.package} --minimized")
@@ -196,12 +195,14 @@
         (lib.mkIf config.programs.anyrun.enable "blur on, match:namespace anyrun")
         (lib.mkIf config.programs.anyrun.enable "ignore_alpha 0, match:namespace anyrun")
 
+        (lib.mkIf config.services.swaync .enable "blur on, match:namespace swayosd")
+        (lib.mkIf config.services.swaync .enable "ignore_alpha 0, match:namespace swayosd")
+
         "blur on, match:namespace wlogout"
         "blur on, match:class ^(swww)$"
 
         "blur on, match:namespace swaync-control-center"
         "ignore_alpha 0, match:namespace swaync-control-center"
-
         "blur on, match:namespace swaync-notification-window"
         "ignore_alpha 0, match:namespace swaync-notification-window"
       ];

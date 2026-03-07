@@ -9,7 +9,8 @@
   };
 
   xdg.mimeApps = let
-    zen = "zen-beta";
+    # got from  ~/.nix-profile/share/applications/
+    zen = "zen-beta.desktop";
     mimeTypes = {
       "text/html" = zen;
       "x-scheme-handler/http" = zen;

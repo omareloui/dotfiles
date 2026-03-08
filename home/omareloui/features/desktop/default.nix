@@ -27,6 +27,7 @@
   home = {
     packages = with pkgs; [
       acpi
+      brightnessctl
       brillo
       btrfs-progs
       # calibre

@@ -76,7 +76,7 @@ home-manager generations
 - **pkgs/**: Custom packages and scripts
   - Custom utilities: `vol`, `brightness`, `wallpaper`, `screenshot`, `cloud_backup`, etc.
   - Bar utilities: `init_bar`, `bar_themeswitcher`
-  - Battery utilities: `batplug`, `batsuspend`, `batwarning`
+  - Battery utilities: `batsuspend`, `batwarning`
   - Session management: `zj_sessions` (Zellij sessions)
 - **overlays/**: Nixpkgs overlays
   - `additions`: Custom packages from `pkgs/`
@@ -128,12 +128,14 @@ specialisation list
 ### Custom Package Development
 
 Custom packages in `pkgs/` follow the pattern:
+
 - Each package in its own directory with `default.nix`
 - Exported through `pkgs/default.nix`
 - Added to overlays via `overlays/default.nix`
 - Available in system as `pkgs.<package-name>`
 
 When adding new custom packages:
+
 1. Create directory in `pkgs/<package-name>/`
 2. Add `default.nix` with package derivation
 3. Export in `pkgs/default.nix`

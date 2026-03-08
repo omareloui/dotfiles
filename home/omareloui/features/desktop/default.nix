@@ -62,7 +62,6 @@
 
       # Custom scripts/packages
       bar_themeswitcher
-      batplug
       batsuspend
       batwarning
       cliphist_wrapper

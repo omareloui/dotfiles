@@ -14,7 +14,6 @@
   init_bar = pkgs.callPackage ./init_bar {};
   bar_themeswitcher = pkgs.callPackage ./bar_themeswitcher {};
 
-  batplug = pkgs.callPackage ./battery/batplug.nix {};
   batsuspend = pkgs.callPackage ./battery/batsuspend.nix {};
   batwarning = pkgs.callPackage ./battery/batwarning.nix {};
 

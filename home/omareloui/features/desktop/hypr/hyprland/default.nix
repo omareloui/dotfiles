@@ -126,6 +126,8 @@
         "${lib.getExe pkgs.init_bar}"
         "${lib.getExe pkgs.hyprshade} auto"
 
+        "${lib.getExe pkgs.batwarning}"
+
         (lib.mkIf config.programs.anyrun.enable "${lib.getExe config.programs.anyrun.package} daemon")
         (lib.mkIf config.programs.keepassxc.enable "${lib.getExe config.programs.keepassxc.package} --minimized")
 

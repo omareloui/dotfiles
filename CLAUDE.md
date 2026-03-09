@@ -76,7 +76,7 @@ home-manager generations
 - **pkgs/**: Custom packages and scripts
   - Custom utilities: `vol`, `brightness`, `wallpaper`, `screenshot`, `cloud_backup`, etc.
   - Bar utilities: `init_bar`, `bar_themeswitcher`
-  - Battery utilities: `batsuspend`, `batwarning`
+  - Battery utility: `batwarning`
   - Session management: `zj_sessions` (Zellij sessions)
 - **overlays/**: Nixpkgs overlays
   - `additions`: Custom packages from `pkgs/`

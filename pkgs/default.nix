@@ -1,21 +1,19 @@
 {pkgs ? import <nixpkgs> {}}: {
-  vol = pkgs.callPackage ./vol {};
+  batwarning = pkgs.callPackage ./batwarning {};
   brightness = pkgs.callPackage ./brightness {};
-  wallpaper = pkgs.callPackage ./wallpaper {};
-  cloud_backup = pkgs.callPackage ./cloud_backup {};
-  screenshot = pkgs.callPackage ./screenshot {};
   cliphist_wrapper = pkgs.callPackage ./cliphist_wrapper {};
-  shade = pkgs.callPackage ./shade {};
-  sortpics = pkgs.callPackage ./sortpics {};
+  cloud_backup = pkgs.callPackage ./cloud_backup {};
   gengif = pkgs.callPackage ./gengif {};
   genpdf = pkgs.callPackage ./genpdf {};
   optimize = pkgs.callPackage ./optimize {};
+  screenshot = pkgs.callPackage ./screenshot {};
+  shade = pkgs.callPackage ./shade {};
+  sortpics = pkgs.callPackage ./sortpics {};
+  vol = pkgs.callPackage ./vol {};
+  wallpaper = pkgs.callPackage ./wallpaper {};
 
   init_bar = pkgs.callPackage ./init_bar {};
   bar_themeswitcher = pkgs.callPackage ./bar_themeswitcher {};
-
-  batsuspend = pkgs.callPackage ./battery/batsuspend.nix {};
-  batwarning = pkgs.callPackage ./battery/batwarning.nix {};
 
   zj_sessions = pkgs.callPackage ./zj_sessions {};
 }

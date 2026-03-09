@@ -12,7 +12,7 @@ writeShellApplication {
     ''
       ${import ../utils/ansi.nix}
 
-      version=1.0.0
+      version=1.0.1
 
       LONGOPTS=help
       OPTIONS=h
@@ -93,7 +93,7 @@ writeShellApplication {
         hyprshade off
         ;;
       list | ls)
-        hyprshade list
+        hyprshade ls
         ;;
       *)
         echo -e "''${RED_BG}''${BOLD}''${BLACK}Error''${RESET} invalid action."

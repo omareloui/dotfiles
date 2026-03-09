@@ -120,7 +120,6 @@
       exec-once = [
         "wl-paste --watch cliphist store"
 
-        "${lib.getExe pkgs.hypridle}"
         "${lib.getExe pkgs.pyprland}"
         "${lib.getExe pkgs.xhost} +SI:${config.home.username}:root" # fixes the bluetooth stutter
         "${lib.getExe pkgs.telegram-desktop} -startintray"

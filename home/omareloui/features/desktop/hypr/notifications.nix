@@ -463,8 +463,6 @@
       ",XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
       ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
     ];
-
-    exec-once = ["swayosd-server"];
   };
 
   home.file.".config/swayosd/style.css".text =

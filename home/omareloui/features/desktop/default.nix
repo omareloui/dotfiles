@@ -13,6 +13,7 @@
     # ./libreoffice.nix
     ./loupe.nix
     ./ms-edge.nix
+    ./quickshell.nix
     ./swww.nix
     ./teams.nix
     ./telegram.nix

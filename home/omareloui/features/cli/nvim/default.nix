@@ -32,6 +32,7 @@
       iferr
       impl
       jinja-lsp
+      kdePackages.qtdeclarative # for qmlls
       libclang
       lua-language-server
       luaPackages.luacheck
@@ -124,20 +125,23 @@
              },
            },
            html = {},
-            jinja_lsp = {},
-            jsonls = {},
-            lua_ls = {},
-            marksman = {},
-            nil_ls = {},
-            omnisharp = {},
-            prismals = {},
-            pylsp = {},
-            sqls = {},
-            tailwindcss = {},
-            templ = {},
-            ts_ls = {},
-            vue_ls = {},
-            yamlls = {},
+           jinja_lsp = {},
+           jsonls = {},
+           lua_ls = {},
+           marksman = {},
+           nil_ls = {},
+           omnisharp = {},
+           prismals = {},
+           pylsp = {},
+           qmlls = {
+             cmd = { "qmlls", "-E" },
+           },
+           sqls = {},
+           tailwindcss = {},
+           templ = {},
+           ts_ls = {},
+           vue_ls = {},
+           yamlls = {},
           },
 
           formatters_by_ft = {

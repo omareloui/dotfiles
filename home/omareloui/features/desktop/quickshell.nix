@@ -1,0 +1,5 @@
+{...}: {
+  programs.quickshell = {
+    enable = true;
+  };
+}

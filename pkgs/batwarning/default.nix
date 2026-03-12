@@ -102,7 +102,7 @@ writeShellApplication {
             -i "battery-full-charging" \
             -h "string:synchronous:battery"
           # find in /run/current-system/sw/share/sounds
-          canberra-gtk-play -i complete
+          canberra-gtk-play -i complete --volume 1.0
           touch "$CHARGED_FILE"
         elif [[ "$is_discharging" -eq 1 && -f "$CHARGED_FILE" ]]; then
           rm "$CHARGED_FILE"

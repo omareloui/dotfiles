@@ -1,6 +1,6 @@
 {pkgs ? import <nixpkgs> {}}: {
   batwarning = pkgs.callPackage ./batwarning {};
-  brightness = pkgs.callPackage ./brightness {};
+
   cliphist_wrapper = pkgs.callPackage ./cliphist_wrapper {};
   cloud_backup = pkgs.callPackage ./cloud_backup {};
   gengif = pkgs.callPackage ./gengif {};

@@ -3,13 +3,10 @@
     inputs.zen-browser.homeModules.beta
   ];
 
-  programs.zen-browser = {
-    enable = true;
-    suppressXdgMigrationWarning = true;
-  };
+  programs.zen-browser.enable = true;
 
   xdg.mimeApps = let
-    # got from  ~/.nix-profile/share/applications/
+    # got it from  ~/.nix-profile/share/applications/
     zen = "zen-beta.desktop";
     mimeTypes = {
       "text/html" = zen;

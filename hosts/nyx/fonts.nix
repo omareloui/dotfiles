@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   fonts = {
     packages = with pkgs; [
+      udev-gothic-nf
+
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
@@ -35,13 +37,16 @@
       })
     ];
 
-    fontconfig.defaultFonts = let
-      arabic = "Rubik";
-      icons = ["font-awesome"];
-    in {
-      serif = icons ++ ["Ubuntu" arabic];
-      sansSerif = icons ++ ["Ubuntu" arabic];
-      monospace = icons ++ ["NerdFontsSymbolsOnly" "Iosevka" arabic];
+    fontconfig = {
+      enable = true;
+      defaultFonts = let
+        arabic = "Rubik";
+        icons = ["font-awesome"];
+      in {
+        serif = icons ++ ["Ubuntu" arabic];
+        sansSerif = icons ++ ["Ubuntu" arabic];
+        monospace = icons ++ ["NerdFontsSymbolsOnly" "Iosevka" arabic];
+      };
     };
   };
 }

@@ -15,24 +15,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprlock.url = "github:hyprwm/hyprlock";
-    hypridle.url = "github:hyprwm/hypridle";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
-    nixvim.url = "github:nix-community/nixvim";
-
-    eva.url = "github:nerdypepper/eva";
-
     nix-colors.url = "github:misterio77/nix-colors";
-
-    templ.url = "github:a-h/templ";
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";

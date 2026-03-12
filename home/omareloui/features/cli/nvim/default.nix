@@ -16,7 +16,7 @@
       ansible-lint
       bazel-buildtools
       buf
-      codeium
+      # codeium
       csharpier
       dockerfile-language-server
       elixir-ls
@@ -89,59 +89,59 @@
             docker_compose_language_service = {},
             dockerls = {},
             emmet_ls = {
-             filetypes = {
-               "html",
-               "typescriptreact",
-               "javascriptreact",
-               "handlebars",
-               "css",
-               "sass",
-               "scss",
-               "less",
-               "vue",
-               "astro",
-             },
-             init_options = {
-               html = {
-                 options = {
-                   -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-                   ["bem.enabled"] = true,
-                 },
-               },
-             },
-           },
-           gopls = {
-             filetypes = { "go", "gomod" },
-             settings = {
-               gopls = {
-                 completeUnimported = true,
-                 usePlaceholders = true,
-                 analyses = {
-                   unusedparams = true,
-                 },
-                 staticcheck = true,
-                 gofumpt = true,
-               },
-             },
-           },
-           html = {},
-           jinja_lsp = {},
-           jsonls = {},
-           lua_ls = {},
-           marksman = {},
-           nil_ls = {},
-           omnisharp = {},
-           prismals = {},
-           pylsp = {},
-           qmlls = {
-             cmd = { "qmlls", "-E" },
-           },
-           sqls = {},
-           tailwindcss = {},
-           templ = {},
-           ts_ls = {},
-           vue_ls = {},
-           yamlls = {},
+              filetypes = {
+                "html",
+                "typescriptreact",
+                "javascriptreact",
+                "handlebars",
+                "css",
+                "sass",
+                "scss",
+                "less",
+                "vue",
+                "astro",
+              },
+              init_options = {
+                html = {
+                  options = {
+                    -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+                      ["bem.enabled"] = true,
+                  },
+                },
+              },
+            },
+            gopls = {
+              filetypes = { "go", "gomod" },
+              settings = {
+                gopls = {
+                  completeUnimported = true,
+                  usePlaceholders = true,
+                  analyses = {
+                    unusedparams = true,
+                  },
+                  staticcheck = true,
+                  gofumpt = true,
+                },
+              },
+            },
+            html = {},
+            jinja_lsp = {},
+            jsonls = {},
+            lua_ls = {},
+            marksman = {},
+            nil_ls = {},
+            omnisharp = {},
+            prismals = {},
+            pylsp = {},
+            qmlls = {
+              cmd = { "qmlls", "-E" },
+            },
+            sqls = {},
+            tailwindcss = {},
+            templ = {},
+            ts_ls = {},
+            vue_ls = {},
+            yamlls = {},
           },
 
           formatters_by_ft = {
@@ -162,6 +162,7 @@
             nix = { "alejandra" },
             proto = { "buf" },
             python = { "isort", "black" },
+            qml = { "qmlformat" },
             sh = { "shfmt" },
             sql = { "sqlfluff" },
             svelte = { "prettierd" },
@@ -192,6 +193,7 @@
             sh = { "shellcheck", "cspell" },
             sql = { "sqlfluff", "cspell" },
             svelte = { "eslint", "cspell" },
+            qml = { "qmllint" },
             text = { "cspell" },
             typescript = { "eslint", "cspell" },
             typescriptreact = { "eslint", "cspell" },

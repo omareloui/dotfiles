@@ -96,7 +96,21 @@
 
   time.timeZone = "Egypt";
 
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
+  };
+
   console = {
     font = "Lat2-Terminus16";
     useXkbConfig = true;
@@ -146,7 +160,10 @@
 
     xserver = {
       enable = true;
-      xkb.layout = "us";
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
     };
 
     displayManager.gdm = {
@@ -221,22 +238,22 @@
   xdg.portal = {
     enable = true;
     config = {
-      common = {default = ["gtk"];};
+      common = {default = ["*"];};
       pantheon = {
         default = ["pantheon" "gtk"];
         "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
       };
       x-cinnamon = {default = ["xapp" "gtk"];};
     };
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+    ];
   };
 
   programs.mtr.enable = true;
   programs.zsh.enable = true;
-  programs.light = {
-    enable = true;
-    brightnessKeys.enable = true;
-  };
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

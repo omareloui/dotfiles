@@ -200,7 +200,6 @@
         (lib.mkIf config.services.swaync .enable "ignore_alpha 0, match:namespace swayosd")
 
         "blur on, match:namespace wlogout"
-        "blur on, match:class ^(swww)$"
 
         "blur on, match:namespace swaync-control-center"
         "ignore_alpha 0, match:namespace swaync-control-center"

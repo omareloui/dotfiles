@@ -45,6 +45,7 @@
     dust
     dysk
     eva
+    fastfetch
     fd
     ffmpeg
     file
@@ -58,7 +59,6 @@
     lsof
     lux
     mpg123
-    neofetch
     p7zip
     parallel
     patchelf

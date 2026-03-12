@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.kitty = {
     enable = true;
     # `kitty list-fonts` to choose a font

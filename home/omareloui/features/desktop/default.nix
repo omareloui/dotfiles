@@ -10,15 +10,15 @@
     ./ark.nix
     ./keepassxc.nix
     ./kitty.nix
-    # ./libreoffice.nix
+    ./libreoffice.nix
     ./loupe.nix
     ./ms-edge.nix
     ./quickshell.nix
-    ./swww.nix
     ./teams.nix
     ./telegram.nix
     ./tranmission.nix
     ./vlc.nix
+    ./wallpaper.nix
     ./zathura.nix
     ./zen.nix
 
@@ -31,7 +31,7 @@
       brightnessctl
       brillo
       btrfs-progs
-      # calibre
+      calibre
       cliphist
       font-awesome
       font-manager
@@ -46,7 +46,6 @@
       libnotify
       libtool
       libusb1
-      light
       localsend
       nautilus
       networkmanagerapplet

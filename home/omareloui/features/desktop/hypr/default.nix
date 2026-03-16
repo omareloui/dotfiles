@@ -4,9 +4,9 @@
 
     ./waybar
     ./wlogout
+    ./hyprlock
 
     ./hypridle.nix
-    ./hyprlock.nix
     ./hyprshade.nix
     ./pyprland.nix
 

@@ -277,7 +277,7 @@
             desc = "Add files to an archive";
           }
           {
-            on = "<C-s>";
+            on = "!";
             run = ''shell "$SHELL" --block'';
             desc = "Open shell here";
           }

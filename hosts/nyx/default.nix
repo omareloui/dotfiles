@@ -31,7 +31,6 @@
     nixPath = ["/etc/nix/path"];
 
     settings = {
-      experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
     };
     gc = {

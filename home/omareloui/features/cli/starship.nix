@@ -23,6 +23,7 @@
           then "\${custom.yazi}"
           else ""
         )
+        "\${env_var.nix_shell}"
         "$character"
       ];
       python = {format = "[(($virtualenv) )]($style)";};
@@ -33,6 +34,12 @@
         vimcmd_replace_one_symbol = "[❰](bold purple)";
         vimcmd_replace_symbol = "[❰](bold purple)";
         vimcmd_visual_symbol = "[❰](bold yellow)";
+      };
+      env_var.nix_shell = {
+        variable = "IN_NIX_SHELL";
+        symbol = " ";
+        format = "[$symbol]($style)";
+        style = "bold blue";
       };
       custom.yazi = lib.mkIf config.programs.yazi.enable {
         description = "Indicate when the shell was launched by `yazi`";

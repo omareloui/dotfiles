@@ -16,7 +16,7 @@
       ansible-lint
       bazel-buildtools
       buf
-      # codeium
+      codeium
       csharpier
       dockerfile-language-server
       elixir-ls

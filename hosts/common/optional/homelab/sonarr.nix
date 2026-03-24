@@ -15,5 +15,6 @@
       {locations."/".proxyPass = "http://localhost:8989";};
   };
 
+  systemd.services.sonarr.serviceConfig.ProtectHome = lib.mkForce false;
   networking.extraHosts = lib.mkIf config.services.sonarr.enable "127.0.0.1 sonarr.homelab";
 }

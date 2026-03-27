@@ -12,6 +12,7 @@ in {
     enable = true;
     signing = {
       signByDefault = true;
+      format = "openpgp";
     };
 
     settings = {

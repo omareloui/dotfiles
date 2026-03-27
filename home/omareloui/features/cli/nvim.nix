@@ -18,6 +18,7 @@
       buf
       codeium
       csharpier
+      docker-compose-language-service
       dockerfile-language-server
       elixir-ls
       emmet-ls
@@ -27,6 +28,7 @@
       gomodifytags
       gopls
       gotest
+      gotests
       hadolint
       htmlhint
       iferr
@@ -48,10 +50,12 @@
       nodePackages_latest.prettier
       omnisharp-roslyn
       prettierd
+      prisma-language-server
       pyright
-      python312Packages.black
-      python312Packages.flake8
-      python312Packages.isort
+      python314Packages.black
+      python314Packages.flake8
+      python314Packages.isort
+      python314Packages.python-lsp-server
       shellcheck
       shfmt
       sqlfluff

@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    ./nvim
     ./yazi
     ./zellij
 
@@ -21,6 +20,7 @@
     ./jujutsu.nix
     ./lazygit.nix
     ./nushell.nix
+    ./nvim.nix
     ./pay-respects.nix
     ./qmk.nix
     ./ssh.nix
@@ -30,8 +30,6 @@
   ];
 
   home.packages = with pkgs; [
-    # (corepack.override {nodejs-slim = pkgs.nodejs-slim_latest;})
-
     age
     android-file-transfer
     autoconf
@@ -86,7 +84,6 @@
     zip
 
     # Custom scripts/packages
-    # moviesscripts
     cloud_backup
     genpdf
     gengif
@@ -99,50 +96,105 @@
     nix-du
     graphviz # For `nix-du`
 
-    # Development
+    ### Development ###
+    # Go
     air
-    automake
-    # awscli2
-    cargo
     delve
-    deno
-    entr
-    gnumake
     go-mockery
     goose
-    grpcui
-    grpcurl
-    lazydocker
-    libclang
-    lua
-    luarocks
-    makeWrapper
-    mongodb-compass
-    nodejs
-    omnisharp-roslyn
-    postman
-    protobuf
-    protoc-gen-go
-    protoc-gen-go-grpc
-    rustc
-    shc
     sqlc
-    sqlite
-    sqlitebrowser
     templ
 
-    nodePackages.prisma
-    prisma-engines
-    openssl
-    openssl.dev
+    # Clang
+    libclang
+    clang-manpages
+    linux-manual # docs for C
+    man-pages # docs for C
+    man-pages-posix # docs for C
 
-    (pkgs.python312.withPackages (ppkgs:
+    # Rust
+    rustc
+    cargo
+
+    # JS
+    deno
+    nodejs
+    # corepack
+    # nodePackages.prisma
+    # prisma-engines
+
+    # Lua
+    lua
+    luarocks
+
+    # Python
+    (pkgs.python314.withPackages (ppkgs:
       with ppkgs; [
         django
         inkex
         pip
         pyclipper
       ]))
+
+    # Shell
+    shc
+
+    # ProtoBuffers
+    grpcui
+    grpcurl
+    protobuf
+    protoc-gen-go
+    protoc-gen-go-grpc
+
+    # DB
+    sqlite
+    mongodb-compass
+    sqlitebrowser
+
+    # Build tools
+    automake
+    gnumake
+    makeWrapper
+
+    # Misc
+    # awscli2
+    entr
+    lazydocker
+    openssl
+    openssl.dev
+    postman
+
+    # tree-sitter-cli for nvim
+    (pkgs.rustPlatform.buildRustPackage rec {
+      pname = "tree-sitter-cli";
+      version = "0.26.1";
+
+      src = pkgs.fetchFromGitHub {
+        owner = "tree-sitter";
+        repo = "tree-sitter";
+        rev = "v${version}";
+        hash = "sha256-k8X2qtxUne8C6znYAKeb4zoBf+vffmcJZQHUmBvsilA=";
+      };
+
+      cargoLock = {
+        lockFile = "${src}/Cargo.lock";
+      };
+
+      cargoBuildFlags = ["-p" "tree-sitter-cli"];
+
+      doCheck = false;
+
+      nativeBuildInputs = with pkgs; [
+        pkg-config
+      ];
+
+      buildInputs = with pkgs;
+        [openssl clang glibc llvmPackages.libclang]
+        ++ lib.optionals stdenv.isDarwin [darwin.apple_sdk.frameworks.Security];
+
+      LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+      BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.glibc.dev}/include";
+    })
   ];
 
   home = {
@@ -152,11 +204,9 @@
       "$HOME/.cargo/bin"
       "$HOME/.deno/bin"
     ];
-    sessionVariables = let
-      editor = "nvim";
-    in {
-      VISUAL = editor;
-      EDITOR = editor;
+    sessionVariables = {
+      VISUAL = "nvim";
+      EDITOR = "nvim";
 
       NVM_DIR = "${config.home.homeDirectory}/.nvm";
 

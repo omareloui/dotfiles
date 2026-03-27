@@ -1,4 +1,5 @@
 {
+  pkgs,
   outputs,
   inputs,
   ...
@@ -8,21 +9,32 @@
 
     ./locale.nix
     ./nix.nix
-    ./packages.nix
     ./ssh.nix
     ./virtualisation.nix
-    ./zsh.nix
+    ./shell.nix
   ];
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = {
-    inherit inputs outputs;
+  home-manager = {
+    useGlobalPkgs = true;
+    extraSpecialArgs = {inherit inputs outputs;};
   };
+
+  environment.systemPackages = with pkgs; [
+    neovim
+    git
+    wget
+  ];
 
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config = {
       allowUnfree = true;
     };
+  };
+
+  documentation = {
+    enable = true;
+    dev.enable = true;
+    man.enable = true;
   };
 }

@@ -1,6 +1,6 @@
 {
   writeShellApplication,
-  awww,
+  swww,
   ffmpeg,
   file,
   pywal,
@@ -8,7 +8,7 @@
 }:
 writeShellApplication {
   name = "wallpaper";
-  runtimeInputs = [awww ffmpeg pywal file imagemagick];
+  runtimeInputs = [swww ffmpeg pywal file imagemagick];
   text =
     /*
     bash
@@ -73,7 +73,7 @@ writeShellApplication {
       # transition_type="random"
 
       # --transition-type="$transition_type" \
-      awww img "$wp" \
+      swww img "$wp" \
         --transition-step=20 \
         --transition-bezier .43,1.19,1,.4 \
         --transition-fps=60 \

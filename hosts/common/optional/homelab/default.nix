@@ -18,7 +18,7 @@
 
     bazarr.enable = true;
     jellyfin.enable = true;
-    seerr.enable = true;
+    jellyseerr.enable = true;
     prowlarr.enable = true;
     radarr.enable = true;
     readarr.enable = true;

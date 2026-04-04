@@ -58,7 +58,6 @@
     lux
     mpg123
     p7zip
-    pandoc
     parallel
     patchelf
     pkg-config
@@ -74,7 +73,6 @@
     srm
     ssh-to-age
     termdown
-    texliveFull # For `pandoc`. NOTE: this is a large package
     tldr
     trashy
     tree
@@ -84,6 +82,9 @@
     wget
     wl-clipboard
     zip
+
+    # pandoc # transform between markup formats
+    # texliveFull # For `pandoc`. NOTE: this is a large package
 
     # Custom scripts/packages
     cloud_backup

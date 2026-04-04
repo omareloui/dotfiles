@@ -1,14 +1,11 @@
 {
-  lib,
   inputs,
+  lib,
   ...
 }: {
   imports = [
-    ../common/global
-    ../common/users/omareloui
     inputs.nixos-wsl.nixosModules.default
   ];
-  system.stateVersion = "24.05";
 
   wsl = {
     enable = true;
@@ -22,7 +19,7 @@
 
   services.xserver.enable = false;
   networking = {
-    hostName = "zenbook";
+    hostName = "ocd";
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

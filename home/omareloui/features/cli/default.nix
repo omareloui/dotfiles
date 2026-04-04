@@ -58,6 +58,7 @@
     lux
     mpg123
     p7zip
+    pandoc
     parallel
     patchelf
     pkg-config
@@ -73,6 +74,7 @@
     srm
     ssh-to-age
     termdown
+    texliveFull # For `pandoc`. NOTE: this is a large package
     tldr
     trashy
     tree

@@ -31,9 +31,9 @@
         # Hyprland, you may need to set ueberzug_scale: 0.5, and adjust the value of
         # ueberzug_offset according to your case, to offset this issue
         # ```
-        # formela 1/current_scale
+        # formela 1/current_display_scale
         ueberzug_scale = 0.6666;
-        ueberzug_offset = [60 3 10 5];
+        ueberzug_offset = [65 3 10 5]; # [x, y, width, height]
       };
 
       opener = {

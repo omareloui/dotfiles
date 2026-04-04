@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   boot = {
     loader = {
       systemd-boot.enable = false;
@@ -15,5 +15,7 @@
     extraModprobeConfig = ''
       options iwlwifi bt_coex_active=0
     '';
+
+    kernel.sysctl."kernal.yama.ptrace_scope" = lib.mkOverride 499 0;
   };
 }

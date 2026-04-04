@@ -4,7 +4,7 @@
     ./byparr.nix
     ./homarr.nix
     ./jellyfin.nix
-    ./jellyseer.nix
+    ./seerr.nix
     ./prowlarr.nix
     ./radarr.nix
     ./readarr.nix
@@ -18,7 +18,7 @@
 
     bazarr.enable = true;
     jellyfin.enable = true;
-    jellyseerr.enable = true;
+    seerr.enable = true;
     prowlarr.enable = true;
     radarr.enable = true;
     readarr.enable = true;

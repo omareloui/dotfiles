@@ -14,14 +14,18 @@
       alejandra
       angular-language-server
       ansible-lint
+      astro-language-server
+      bash-language-server
       bazel-buildtools
       buf
       codeium
       csharpier
+      cspell
       docker-compose-language-service
       dockerfile-language-server
       elixir-ls
       emmet-ls
+      eslint
       eslint_d
       gitlint
       golangci-lint
@@ -41,14 +45,8 @@
       markdownlint-cli
       marksman
       nil
-      nodePackages."@astrojs/language-server"
-      nodePackages.bash-language-server
-      nodePackages.cspell
-      nodePackages.sql-formatter
-      nodePackages.typescript-language-server
-      nodePackages_latest.eslint
-      nodePackages_latest.prettier
       omnisharp-roslyn
+      prettier
       prettierd
       prisma-language-server
       pyright
@@ -58,12 +56,14 @@
       python314Packages.python-lsp-server
       shellcheck
       shfmt
+      sql-formatter
       sqlfluff
       sqls
       statix
       stylua
       tailwindcss-language-server
       tree-sitter
+      typescript-language-server
       vscode-extensions.sonarsource.sonarlint-vscode
       vscode-extensions.vue.volar
       vscode-langservers-extracted

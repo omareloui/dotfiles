@@ -5,7 +5,7 @@
 }: {
   home.packages = with pkgs; [pyprland];
 
-  home.file.".config/hypr/pyprland.toml".text = let
+  home.file.".config/pypr/config.toml".text = let
     class = "scratchpad";
 
     term = "${lib.getExe pkgs.kitty} --class ${class} --";

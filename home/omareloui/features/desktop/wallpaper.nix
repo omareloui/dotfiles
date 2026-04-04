@@ -1,4 +1,4 @@
 {...}: {
-  services.swww.enable = true;
+  services.awww.enable = true;
   programs.mpvpaper.enable = true;
 }

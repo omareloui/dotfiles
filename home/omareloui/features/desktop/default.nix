@@ -54,7 +54,6 @@
       qalculate-gtk
       slack
       slock
-      swaylock-effects
       wasistlos
       wf-recorder
       wirelesstools

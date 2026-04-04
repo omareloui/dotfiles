@@ -1,7 +1,8 @@
 {
   hardware = {
     graphics.enable = true;
-    pulseaudio.enable = false;
     acpilight.enable = true;
   };
+
+  services.pulseaudio.enable = false;
 }

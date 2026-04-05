@@ -36,7 +36,7 @@
     bc
     bison
     bottom
-    claude-code
+    stable.claude-code
     cloc
     codeium
     dconf

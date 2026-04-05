@@ -36,10 +36,8 @@ in {
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs ++ ["/etc/nix/path"];
   };
 
-  system = {
-    autoUpgrade = {
-      enable = true;
-      allowReboot = true;
-    };
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = true;
   };
 }

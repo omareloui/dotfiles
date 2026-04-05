@@ -36,7 +36,7 @@
     bc
     bison
     bottom
-    stable.claude-code
+    claude-code
     cloc
     codeium
     dconf
@@ -83,7 +83,7 @@
     wl-clipboard
     zip
 
-    # pandoc # transform between markup formats
+    # pandoc # transform between markup formats (e.g. markdown to pdf)
     # texliveFull # For `pandoc`. NOTE: this is a large package
 
     # Custom scripts/packages

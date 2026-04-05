@@ -4,14 +4,14 @@
   ...
 }: {
   services = {
-    jellyseerr = {
+    seerr = {
       enable = lib.mkDefault false;
-      openFirewall = config.services.jellyseerr.enable;
+      openFirewall = config.services.seerr.enable;
     };
-    nginx.virtualHosts."jellyseerr.homelab" =
-      lib.mkIf config.services.jellyseerr.enable
+    nginx.virtualHosts."seerr.homelab" =
+      lib.mkIf config.services.seerr.enable
       {locations."/".proxyPass = "http://localhost:5055";};
   };
 
-  networking.extraHosts = lib.mkIf config.services.jellyseerr.enable "127.0.0.1 jellyseerr.homelab";
+  networking.extraHosts = lib.mkIf config.services.seerr.enable "127.0.0.1 seerr.homelab";
 }

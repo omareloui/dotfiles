@@ -4,6 +4,8 @@
   lib,
   ...
 }: {
+  home.packages = with pkgs; [mediainfo];
+
   programs.yazi = {
     enable = true;
     extraPackages = with pkgs; [ueberzugpp];
@@ -122,14 +124,79 @@
       plugin = {
         prepend_preloaders = [
           {
-            mime = "image/*";
-            run = "noop";
+            mime = "{audio,video,image}/*";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/subrip";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/postscript";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/illustrator";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/dvb.ait";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/vnd.adobe.illustrator";
+            run = "mediainfo";
+          }
+          {
+            mime = "image/x-eps";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/eps";
+            run = "mediainfo";
+          }
+          {
+            url = "*.{ai,eps,ait}";
+            run = "mediainfo";
           }
         ];
         prepend_previewers = [
           {
-            mime = "audio/*";
-            run = "mpg123";
+            mime = "{audio,video,image}/*";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/subrip";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/postscript";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/illustrator";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/dvb.ait";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/vnd.adobe.illustrator";
+            run = "mediainfo";
+          }
+          {
+            mime = "image/x-eps";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/eps";
+            run = "mediainfo";
+          }
+          {
+            # some adobe files don't have the correct mimetype, so also match by extension
+            url = "*.{ai,eps,ait}";
+            run = "mediainfo";
           }
           {
             mime = "application/x-subrip";

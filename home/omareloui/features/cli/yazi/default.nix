@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  home.packages = with pkgs; [mediainfo glow];
+  home.packages = with pkgs; [mediainfo glow hexyl];
 
   programs.yazi = {
     enable = true;
@@ -205,6 +205,10 @@
           {
             mime = "application/sqlite3";
             run = "piper -- sqlite3 \"$1\" \".schema --indent\"";
+          }
+          {
+            mime = "application/pie-executable";
+            run = "piper -- hexyl --terminal-width=$w \"$1\"";
           }
         ];
         append_previewers = [

@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  home.packages = with pkgs; [mediainfo];
+  home.packages = with pkgs; [mediainfo glow];
 
   programs.yazi = {
     enable = true;
@@ -199,8 +199,12 @@
             run = "mediainfo";
           }
           {
-            mime = "application/x-subrip";
-            run = "code";
+            url = "*.md";
+            run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
+          }
+          {
+            mime = "application/sqlite3";
+            run = "piper -- sqlite3 \"$1\" \".schema --indent\"";
           }
         ];
         append_previewers = [

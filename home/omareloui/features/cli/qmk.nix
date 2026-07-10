@@ -3,6 +3,7 @@
     packages = with pkgs; [
       qmk
       wally-cli
+      keymap-drawer # generates keymap images from QMK keymaps
     ];
 
     file.".config/qmk/qmk.ini".text = let

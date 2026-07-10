@@ -122,6 +122,7 @@
     # JS
     deno
     nodejs
+    pnpm
     # corepack
     # nodePackages.prisma
     # prisma-engines

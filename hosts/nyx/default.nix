@@ -14,6 +14,8 @@
     ../common/global
     ../common/users/omareloui
 
+    ../common/optional/asusd.nix
+    ../common/optional/printing.nix
     ../common/optional/backup.nix
     ../common/optional/bluetooth.nix
     ../common/optional/boot.nix

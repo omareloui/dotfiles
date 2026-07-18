@@ -39,6 +39,7 @@
       gnome-bluetooth
       gnome-disk-utility
       hyprpicker
+      karere # for whatsapp
       kdePackages.dolphin
       kora-icon-theme
       libcanberra-gtk3
@@ -54,7 +55,6 @@
       qalculate-gtk
       slack
       slock
-      wasistlos
       wf-recorder
       wirelesstools
       xhost
@@ -70,6 +70,7 @@
     ];
 
     pointerCursor = {
+      enable = true;
       gtk.enable = true;
       x11.enable = true;
       package = pkgs.bibata-cursors;

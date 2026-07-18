@@ -29,14 +29,13 @@
         "$mod, escape, exec, ${lib.getExe pkgs.wlogout} -b 5 -T 400 -B 400"
         "$mod, Q, killactive,"
         "$mod, F, fullscreen,"
-        "$mod, C, pseudo, dwindle"
 
         "$mod, apostrophe, workspace, previous"
         "$mod SHIFT, apostrophe, workspace, next"
 
         # Resize in workspace
-        "$mod CONTROL, h, splitratio, -0.1"
-        "$mod CONTROL, l, splitratio, +0.1"
+        "$mod CONTROL, h, layoutmsg, splitratio, -0.1"
+        "$mod CONTROL, l, layoutmsg, splitratio, +0.1"
 
         # Scroll through existing workspaces with mod + scroll
         "$mod, mouse_down, workspace, e+1"
@@ -95,7 +94,7 @@
         ", Print, exec, ${lib.getExe pkgs.screenshot} -s 3 full"
         "$mod, Print, exec, ${lib.getExe pkgs.screenshot} -p area"
 
-        "$mod, S, togglesplit"
+        "$mod, S, layoutmsg, togglesplit"
         # "$mod SHIFT, space, togglefloating"
 
         # "$mod, minus, splitratio, -0.25"

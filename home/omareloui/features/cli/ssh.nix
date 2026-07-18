@@ -1,21 +1,15 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "github.com" = {
-        host = "github.com";
-        hostname = lib.mkDefault "github.com";
-        identityFile = lib.mkDefault "~/.ssh/id_github";
-        addKeysToAgent = "yes";
-        extraOptions = {
-          AddressFamily = "inet";
-          IdentitiesOnly = "yes";
-        };
+        Host = "github.com";
+        Hostname = lib.mkDefault "github.com";
+        IdentityFile = lib.mkDefault "~/.ssh/id_github";
+        AddKeysToAgent = "yes";
+        AddressFamily = "inet";
+        IdentitiesOnly = "yes";
       };
     };
   };

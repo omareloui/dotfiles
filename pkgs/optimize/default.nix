@@ -14,7 +14,7 @@ writeShellApplication {
     ''
       ${import ../utils/ansi.nix}
 
-      version=1.2.0
+      version=1.3.0
 
       custom_output=""
       resize=false
@@ -24,6 +24,7 @@ writeShellApplication {
       verbose=true
       override_original=false
       remove_original=false
+      force_smaller=false
 
       function show_help {
         echo -e ""
@@ -48,6 +49,7 @@ writeShellApplication {
         echo -e "  ''${BLUE}-O''${RESET}, ''${BLUE}--override-original''${RESET}   ''${B_RED}-''${RESET} Override original file with optimized ones."
         echo -e "  ''${BLUE}-r''${RESET}, ''${BLUE}--remove-original''${RESET}     ''${B_RED}-''${RESET} Remove the original file."
         echo -e "  ''${BLUE}-o''${RESET}, ''${BLUE}--output''${RESET}              ''${B_RED}-''${RESET} Specify the output file."
+        echo -e "  ''${BLUE}-f''${RESET}, ''${BLUE}--force-smaller''${RESET}       ''${B_RED}-''${RESET} Specify the output file."
         echo -e "  ''${BLUE}-q''${RESET}, ''${BLUE}--quite''${RESET}               ''${B_RED}-''${RESET} Make the command quiter."
 
 
@@ -61,8 +63,8 @@ writeShellApplication {
         echo -e ""
       }
 
-      LONGOPTS=help,max-width:,max-height:,remove-original,override-original,resize,image-quality:,output:,quite
-      OPTIONS=hW:H:rORnQ:o:q
+      LONGOPTS=help,max-width:,max-height:,remove-original,override-original,resize,image-quality:,output:,force-smaller,quite
+      OPTIONS=hW:H:rORnQ:o:fq
 
       PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
       eval set -- "$PARSED"
@@ -104,6 +106,10 @@ writeShellApplication {
           -o | --output)
             custom_output="$2"
             shift 2
+            ;;
+          -f | --force-smaller)
+            force_smaller=true
+            shift
             ;;
           --)
             shift
@@ -258,14 +264,20 @@ writeShellApplication {
 
         # shellcheck disable=SC2181
         if [[ $? -eq 0 ]]; then
+          original_size=$(stat -c %s "$file")
+          optimized_size=$(stat -c %s "$output")
+
           if $verbose; then
-            original_size=$(stat -c %s "$file")
-            optimized_size=$(stat -c %s "$output")
             reduction=$(( (original_size - optimized_size) * 100 / original_size ))
 
             echo -e "''${BLUE}''${BOLD}Original size''${YELLOW}:''${RESET} $(numfmt --to=iec-i --suffix=B "$original_size")"
             echo -e "''${BLUE}''${BOLD}Optimized size''${YELLOW}:''${RESET} $(numfmt --to=iec-i --suffix=B "$optimized_size")"
             echo -e "''${BLUE}''${BOLD}Reduction''${YELLOW}:''${RESET} $reduction%"
+          fi
+
+          if [[ "$force_smaller" && "$original_size" -lt "$optimized_size" ]]; then
+            echo -e "''${BOLD}''${YELLOW}Warning''${RED}:''${RESET} Optimized file is larger than the original. Ignoring optimization for ''${BOLD}$file''${RESET}."
+            cp -f "$file" "$output"
           fi
 
           if $remove_original; then

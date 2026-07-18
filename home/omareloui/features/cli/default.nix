@@ -152,7 +152,6 @@
 
     # DB
     sqlite
-    mongodb-compass
     sqlitebrowser
 
     # Build tools

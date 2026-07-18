@@ -10,18 +10,19 @@
     ./users.nix
     ./udev.nix
     ./fonts.nix
+    ./graphics-and-gaming.nix
 
     ../common/global
     ../common/users/omareloui
 
     ../common/optional/asusd.nix
-    ../common/optional/printing.nix
     ../common/optional/backup.nix
     ../common/optional/bluetooth.nix
     ../common/optional/boot.nix
     ../common/optional/console.nix
     ../common/optional/cron.nix
     ../common/optional/displaymanager.nix
+    ../common/optional/gaming.nix
     ../common/optional/gpg.nix
     ../common/optional/hardware.nix
     ../common/optional/homelab
@@ -29,6 +30,7 @@
     ../common/optional/mtr.nix
     ../common/optional/pipewire.nix
     ../common/optional/polkit.nix
+    ../common/optional/printing.nix
     ../common/optional/qmk.nix
     ../common/optional/udisk.nix
     ../common/optional/virtualisation.nix

@@ -9,6 +9,7 @@
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
+    configType = "hyprlang";
 
     settings = {
       monitor = "eDP-1, preferred, auto, 1.5";
@@ -106,7 +107,6 @@
       };
 
       dwindle = {
-        pseudotile = true;
         preserve_split = true;
         smart_resizing = true;
         force_split = 2;

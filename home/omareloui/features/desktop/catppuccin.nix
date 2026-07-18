@@ -10,7 +10,9 @@
 
   catppuccin = {
     enable = true;
+    autoEnable = true;
     flavor = "mocha";
     accent = "blue";
+    hyprland.enable = false;
   };
 }

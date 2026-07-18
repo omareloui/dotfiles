@@ -20,7 +20,7 @@ in {
   };
 
   programs.ssh.matchBlocks."github.com" = {
-    hostname = "ssh.github.com";
-    port = 443;
+    Hostname = "ssh.github.com";
+    Port = 443;
   };
 }

@@ -91,7 +91,7 @@
             use = "text";
           }
           {
-            name = "*.{json,yaml,yml,md}";
+            url = "*.{json,yaml,yml,md}";
             use = "text";
           }
           {

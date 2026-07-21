@@ -7,7 +7,7 @@
     windowrule = let
       shouldFloatClasses = "transmission-gtk|org\.gnome\.Loupe|pavucontrol|scratchpad|nm-connection-editor|org\.keepassxc\.KeePassXC";
       scratchpad = "match:class ^scratchpad-.*";
-      bluetoothClientRe = "^\.blueman-manager-wrapped$";
+      bluetoothClientRe = "^blueman-manager$";
       fileSelectorTitleRe = "^(Select file to open)$";
       fileSelectorClassRe = "^(xdg-desktop-portal-gtk)$";
       pipRe = "Picture[\- ]in[\- ][Pp]icture";

@@ -18,6 +18,7 @@
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
   };
 
   # Optimizes process priorities and scheduling when launching games

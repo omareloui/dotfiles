@@ -2,6 +2,7 @@
   imports = [
     ./binds.nix
     ./exec.nix
+    ./monitors.nix
     ./window-rules.nix
   ];
 
@@ -12,8 +13,7 @@
     configType = "hyprlang";
 
     settings = {
-      monitor = "eDP-1, preferred, auto, 1.5";
-      workspace = "1, monitor:eDP-1, default:true";
+      workspace = "1, default:true";
 
       general = {
         gaps_in = 5;

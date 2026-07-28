@@ -32,6 +32,7 @@
   home.packages = with pkgs; [
     age
     android-file-transfer
+    android-tools # adb
     autoconf
     bc
     bison

@@ -17,6 +17,7 @@
     ./teams.nix
     ./telegram.nix
     ./tranmission.nix
+    ./scrcpy.nix
     ./vlc.nix
     ./wallpaper.nix
     ./zathura.nix

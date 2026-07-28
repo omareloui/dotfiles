@@ -5,12 +5,13 @@
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
-    ./sops.nix
-    ./users.nix
-    ./udev.nix
     ./fonts.nix
     ./graphics-and-gaming.nix
+    ./hardware-configuration.nix
+    ./sops.nix
+    ./udev.nix
+    ./users.nix
+    ./virtual-camera.nix
 
     ../common/global
     ../common/users/omareloui

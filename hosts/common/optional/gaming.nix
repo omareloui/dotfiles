@@ -1,17 +1,10 @@
 {pkgs, ...}: {
-  hardware = {
-    opengl = {
-      enable = true;
-      driSupport32Bit = true;
-    };
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
 
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-
-      # Ensures older games and wrappers map the 32-bit layers correctly
-      extraPackages32 = with pkgs.pkgsi686Linux; [intel-media-driver];
-    };
+    # Ensures older games and wrappers map the 32-bit layers correctly
+    extraPackages32 = with pkgs.pkgsi686Linux; [intel-media-driver];
   };
 
   programs.steam = {

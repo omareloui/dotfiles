@@ -454,16 +454,8 @@
     enable = true;
   };
 
-  wayland.windowManager.hyprland.settings = lib.mkIf config.services.swayosd.enable {
-    bind = [
-      ",XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
-      ",XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
-
-      ",XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise"
-      ",XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
-      ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
-    ];
-  };
+  wayland.windowManager.hyprland.extraLuaFiles."swayosd-binds" =
+    lib.mkIf config.services.swayosd.enable ./lua/swayosd-binds.lua;
 
   home.file.".config/swayosd/style.css".text =
     lib.mkIf config.services.swayosd.enable

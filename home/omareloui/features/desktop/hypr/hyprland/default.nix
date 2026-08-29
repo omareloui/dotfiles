@@ -1,4 +1,9 @@
-{...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./binds.nix
     ./exec.nix
@@ -6,118 +11,52 @@
     ./window-rules.nix
   ];
 
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = let
+    substitutions = {
+      "@WLOGOUT@" = lib.getExe pkgs.wlogout;
+      "@PLAYERCTL@" = lib.getExe pkgs.playerctl;
+      "@QALCULATE@" = lib.getExe pkgs.qalculate-gtk;
+      "@KITTY@" = lib.getExe pkgs.kitty;
+      "@ZJ_SESSIONS@" = lib.getExe pkgs.zj_sessions;
+      "@TELEGRAM@" = lib.getExe pkgs.telegram-desktop;
+      "@NAUTILUS@" = lib.getExe pkgs.nautilus;
+      "@WALLPAPER@" = lib.getExe pkgs.wallpaper;
+      "@INIT_BAR@" = lib.getExe pkgs.init_bar;
+      "@SCREENSHOT@" = lib.getExe pkgs.screenshot;
+
+      "@PYPRLAND@" = lib.getExe pkgs.pyprland;
+      "@HYPRSHADE@" = lib.getExe pkgs.hyprshade;
+      "@BATWARNING@" = lib.getExe pkgs.batwarning;
+      "@ANYRUN_DAEMON_CMD@" =
+        lib.optionalString config.programs.anyrun.enable
+        ''hl.exec_cmd("${lib.getExe config.programs.anyrun.package} daemon")'';
+      "@KEEPASSXC_CMD@" =
+        lib.optionalString config.programs.keepassxc.enable
+        ''hl.exec_cmd("${lib.getExe config.programs.keepassxc.package} --minimized")'';
+      "@ANYRUN_LAYER_RULE@" =
+        lib.optionalString config.programs.anyrun.enable
+        ''hl.layer_rule({ match = { namespace = "anyrun" }, blur = true, ignore_alpha = 0 })'';
+      "@SWAYOSD_LAYER_RULE@" =
+        lib.optionalString config.services.swaync.enable
+        ''hl.layer_rule({ match = { namespace = "swayosd" }, blur = true, ignore_alpha = 0 })'';
+    };
+    subst = name:
+      lib.replaceStrings
+      (builtins.attrNames substitutions)
+      (builtins.attrValues substitutions)
+      (builtins.readFile (./lua + "/${name}"));
+  in {
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
-    configType = "hyprlang";
+    configType = "lua";
 
-    settings = {
-      workspace = "1, default:true";
-
-      general = {
-        gaps_in = 5;
-        gaps_out = 14;
-        border_size = 2;
-        "col.active_border" = "rgba(fab387ee) rgba(cba6f7ee) 120deg";
-        "col.inactive_border" = "rgba(1e1e2eaa)";
-        layout = "dwindle";
-        allow_tearing = false;
-      };
-
-      input = {
-        kb_layout = "us,es,eg";
-        kb_options = "grp:alt_shift_toggle";
-        repeat_rate = 30;
-        repeat_delay = 300;
-        numlock_by_default = 1;
-        follow_mouse = 1;
-        sensitivity = 0;
-
-        touchpad = {
-          disable_while_typing = true;
-          natural_scroll = true;
-          clickfinger_behavior = false;
-          tap-to-click = true;
-          drag_lock = false;
-        };
-      };
-
-      decoration = {
-        rounding = 10;
-
-        blur = {
-          enabled = true;
-          size = 10;
-          passes = 3;
-          new_optimizations = true;
-          ignore_opacity = true;
-          xray = false;
-        };
-
-        active_opacity = 1.0;
-        # inactive_opacity = 0.85;
-        fullscreen_opacity = 1.0;
-
-        shadow = {
-          enabled = true;
-          color = "0x66000000";
-          range = 4;
-          render_power = 3;
-        };
-      };
-
-      animations = {
-        enabled = true;
-        bezier = [
-          "myBezier, 0.05, 0.9, 0.1, 1.05"
-
-          "overshot1, 0.05, 0.9, 0.1, 1.05"
-          "smoothOut, 0.5, 0, 0.99, 0.99"
-          "smoothIn, 0.5, -0.5, 0.68, 1.5"
-
-          "linear, 0.0, 0.0, 1.0, 1.0"
-          "wind, 0.05, 0.9, 0.1, 1.05"
-          "winIn, 0.1, 1.1, 0.1, 1.1"
-          "winOut, 0.3, -0.3, 0, 1"
-          "slow, 0, 0.85, 0.3, 1"
-          "overshot2, 0.7, 0.6, 0.1, 1.1"
-          "bounce, 1.1, 1.6, 0.1, 0.85"
-          "sligshot, 1, -1, 0.15, 1.25"
-          "nice, 0, 6.9, 0.5, -4.20"
-        ];
-        animation = [
-          "windowsIn, 1, 5, winIn, slide"
-          "windowsOut, 1, 5, winOut, slide"
-          "windowsMove, 1, 5, wind, slide"
-          "border, 1, 10, linear"
-          "borderangle, 1, 180, linear, loop #used by rainbow borders and rotating colors"
-          "fade, 1, 5, overshot2"
-          "workspaces, 1, 5, wind"
-          "windows, 1, 5, bounce, slide"
-        ];
-      };
-
-      gesture = [
-        "3, horizontal, workspace"
-      ];
-
-      master = {
-        new_status = "slave";
-      };
-
-      dwindle = {
-        preserve_split = true;
-        smart_resizing = true;
-        force_split = 2;
-      };
-
-      misc = {
-        enable_swallow = true;
-        swallow_regex = "^(Alacritty|kitty|wezterm|footclient|scratchpad)$";
-        disable_splash_rendering = true;
-        disable_hyprland_logo = true;
-      };
+    extraLuaFiles = {
+      "config" = ./lua/config.lua;
+      "binds" = subst "binds.lua";
+      "exec" = subst "exec.lua";
+      "monitors" = ./lua/monitors.lua;
+      "window-rules" = subst "window-rules.lua";
     };
   };
 }

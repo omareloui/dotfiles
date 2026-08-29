@@ -1,7 +1,6 @@
 {...}: {
   imports = [
     ./bazarr.nix
-    ./byparr.nix
     ./homarr.nix
     ./jellyfin.nix
     ./seerr.nix
@@ -17,15 +16,15 @@
     nginx.enable = true;
 
     bazarr.enable = true;
+    flaresolverr.enable = true;
     jellyfin.enable = true;
-    seerr.enable = true;
     prowlarr.enable = true;
     radarr.enable = true;
     readarr.enable = true;
+    seerr.enable = true;
     sonarr.enable = true;
     syncthing.enable = true;
     transmission.enable = true;
   };
-  virtualisation.oci-containers.containers.byparr.autoStart = true;
   virtualisation.oci-containers.containers.homarr.autoStart = true;
 }

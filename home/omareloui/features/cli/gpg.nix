@@ -19,7 +19,7 @@
     maxCacheTtl = day;
   };
 
-  home.packages = lib.optional config.gtk.enable pkgs.gcr;
+  home.packages = lib.optional config.gtk.enable pkgs.gcr_4;
 
   programs = let
     fixGpg =

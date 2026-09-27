@@ -7,8 +7,8 @@
         showFileTree = false;
         nerdFontsVersion = "3";
       };
-      git.pagers = [
-        {pager = "delta";}
+      git.diffRenderers = [
+        {command = "delta";}
       ];
     };
   };

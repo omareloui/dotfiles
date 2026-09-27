@@ -7,9 +7,7 @@
     enable = true;
     package = pkgs.rofi;
 
-    font = "JetBrainsMono Nerd Font 10.6";
-
-    extraConfig = {
+    settings = {
       modi = "drun,run,filebrowser,window";
       show-icons = false;
       display-drun = " ";
@@ -18,6 +16,7 @@
       display-window = " ";
       drun-display-format = "{name}";
       window-format = "{w} · {c} · {t}";
+      font = "JetBrainsMono Nerd Font 10.6";
     };
 
     theme = let

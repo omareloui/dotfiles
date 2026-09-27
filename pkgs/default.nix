@@ -8,6 +8,7 @@
   optimize = pkgs.callPackage ./optimize {};
   screenshot = pkgs.callPackage ./screenshot {};
   shade = pkgs.callPackage ./shade {};
+  sony-device-center = pkgs.callPackage ./sony-device-center {};
   sortpics = pkgs.callPackage ./sortpics {};
   vol = pkgs.callPackage ./vol {};
   wallpaper = pkgs.callPackage ./wallpaper {};

@@ -56,6 +56,7 @@
       qalculate-gtk
       slack
       slock
+      sony-device-center
       wf-recorder
       wirelesstools
       xhost

@@ -21,5 +21,9 @@
     mangohud # system overlay tracking real-time FPS, frame timings, and VRAM utilization.
     protonup-qt # graphical interface used to install community-managed compatibility runtimes like Proton-GE inside Steam
     heroic # manager for running games outside the Steam ecosystem (e.g., Epic Games, GOG, or direct executable binaries)
+    ultimate-software-8bitdo # 8BitDo controller configurator/firmware updater under Wine
   ];
+
+  # Grants the logged-in user hidraw/usb access to 8BitDo devices for Ultimate Software
+  services.udev.packages = with pkgs; [ultimate-software-8bitdo];
 }

@@ -28,13 +28,15 @@ in {
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than +3";
+      options = "--delete-older-than 7d";
     };
 
     # Add each flake input as a registry and nix_path
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs ++ ["/etc/nix/path"];
   };
+
+  services.journald.settings.Journal.SystemMaxUse = "500M";
 
   system.autoUpgrade = {
     enable = true;

@@ -10,9 +10,7 @@
       group = "shared";
     };
 
-    nginx.virtualHosts."bazarr.homelab" =
-      lib.mkIf config.virtualisation.oci-containers.containers.homarr.autoStart
-      {locations."/".proxyPass = "http://localhost:6767";};
+    nginx.virtualHosts."bazarr.homelab" = lib.mkIf config.services.bazarr.enable {locations."/".proxyPass = "http://localhost:6767";};
   };
 
   networking.extraHosts = lib.mkIf config.services.bazarr.enable "127.0.0.1 bazarr.homelab";

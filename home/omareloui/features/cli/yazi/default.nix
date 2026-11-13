@@ -128,31 +128,7 @@
             run = "mediainfo";
           }
           {
-            mime = "application/subrip";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/postscript";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/illustrator";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/dvb.ait";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/vnd.adobe.illustrator";
-            run = "mediainfo";
-          }
-          {
-            mime = "image/x-eps";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/eps";
+            mime = "application/{subrip,eps,postscript,illustrator,dvb.ait,vnd.adobe.illustrator}";
             run = "mediainfo";
           }
           {
@@ -166,31 +142,7 @@
             run = "mediainfo";
           }
           {
-            mime = "application/subrip";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/postscript";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/illustrator";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/dvb.ait";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/vnd.adobe.illustrator";
-            run = "mediainfo";
-          }
-          {
-            mime = "image/x-eps";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/eps";
+            mime = "application/{subrip,eps,postscript,illustrator,dvb.ait,vnd.adobe.illustrator}";
             run = "mediainfo";
           }
           {

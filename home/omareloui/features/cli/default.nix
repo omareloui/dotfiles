@@ -161,7 +161,7 @@
     makeWrapper
 
     # Misc
-    # awscli2
+    awscli2
     entr
     lazydocker
     openssl
@@ -194,7 +194,7 @@
 
       buildInputs = with pkgs;
         [openssl clang glibc llvmPackages.libclang]
-        ++ lib.optionals stdenv.isDarwin [darwin.apple_sdk.frameworks.Security];
+        ++ lib.optionals stdenv.hostPlatform.isDarwin [darwin.apple_sdk.frameworks.Security];
 
       LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
       BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.glibc.dev}/include";

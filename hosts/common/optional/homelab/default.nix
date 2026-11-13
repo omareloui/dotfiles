@@ -26,5 +26,5 @@
     syncthing.enable = true;
     transmission.enable = true;
   };
-  virtualisation.oci-containers.containers.homarr.autoStart = true;
+  # virtualisation.oci-containers.containers.homarr.autoStart = true;
 }

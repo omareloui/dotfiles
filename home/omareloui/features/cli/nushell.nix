@@ -14,6 +14,7 @@
       completions.algorithm = "fuzzy";
     };
 
+    loadSessionVariables = true;
     environmentVariables =
       config.home.sessionVariables
       // {

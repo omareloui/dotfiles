@@ -16,7 +16,7 @@ hl.bind(mod .. " + CONTROL + l", hl.dsp.layout("splitratio, +0.1"))
 hl.bind(mod .. " + CTRL + Space", hl.dsp.window.float())
 
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mod .. " + mouse:272", hl.dsp.window.float(), { mouse = true, click = true })
+-- hl.bind(mod .. " + mouse:272", hl.dsp.window.float(), { mouse = true, click = true })
 hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))

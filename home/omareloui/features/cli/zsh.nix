@@ -18,8 +18,6 @@
       save = 1000000000;
       size = 1000000000;
     };
-    initExtraFirst = "";
-    initExtraBeforeCompInit = "";
 
     dirHashes = {
       h = "${config.home.homeDirectory}/myhome";

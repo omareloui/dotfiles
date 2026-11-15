@@ -70,7 +70,7 @@ hl.bind(mod .. " + W", hl.dsp.exec_cmd("@WALLPAPER@"))
 hl.bind(mod .. " + CTRL + SHIFT + R", hl.dsp.exec_cmd("@INIT_BAR@"))
 
 hl.bind("Print", hl.dsp.exec_cmd("@SCREENSHOT@ -s 3 full"))
-hl.bind(mod .. " + Print", hl.dsp.exec_cmd("@SCREENSHOT@ -p area"))
+hl.bind(mod .. " + Print", hl.dsp.exec_cmd("@SCREENSHOT@ -e area"))
 
 hl.bind(mod .. " + S", hl.dsp.layout("togglesplit"))
 

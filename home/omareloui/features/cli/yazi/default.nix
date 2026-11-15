@@ -472,7 +472,7 @@
           }
           {
             on = ["w"];
-            run = ''shell --confirm '${lib.getExe pkgs.wallpaper} "$0"' '';
+            run = ''shell --confirm '${lib.getExe pkgs.wallpaper} "%s1"' '';
             desc = "set the image as wallpaper";
           }
           {

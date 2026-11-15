@@ -34,8 +34,8 @@
         # ueberzug_offset according to your case, to offset this issue
         # ```
         # formela 1/current_display_scale
-        ueberzug_scale = 0.6666;
-        ueberzug_offset = [65 3 10 5]; # [x, y, width, height]
+        ueberzug_scale = 1.0; # 1/monitor scale: DP-1 = 1, eDP-1 (1.5) = 0.6666
+        ueberzug_offset = [0 0 0 0]; # [x, y, width, height]
       };
 
       opener = {

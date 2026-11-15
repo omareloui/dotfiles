@@ -1,0 +1,52 @@
+--- a/src/canvas/wayland/config/hyprland.cpp
++++ b/src/canvas/wayland/config/hyprland.cpp
+@@ -19,10 +19,12 @@
+ #include "tmux.hpp"
+ #include "util/socket.hpp"
+ 
++#include <chrono>
+ #include <filesystem>
+ #include <fmt/format.h>
+ #include <nlohmann/json.hpp>
+ #include <range/v3/all.hpp>
++#include <thread>
+ 
+ using njson = nlohmann::json;
+ namespace fs = std::filesystem;
+@@ -87,6 +89,8 @@
+     const UnixSocket socket{socket_path};
+     logger->debug("Running socket command {}", payload);
+     socket.write(payload.data(), payload.length());
++    // Hyprland drops the command if the client hangs up before reading the reply.
++    socket.read_until_empty();
+ }
+ 
+ auto HyprlandSocket::get_active_window() -> nlohmann::json
+@@ -180,7 +184,26 @@
+     }
+     std::string payload;
+     if (is_lua_protocol) {
+-        payload = fmt::format("/eval hl.window_rule({{match={{title='{}'}},move={{{},{}}}}})", appid, res_x, res_y);
++        // A `move` window rule only applies when the window maps, and this is
++        // called right after the first commit, usually before Hyprland has
++        // mapped the window. Dispatch a real move instead, and repeat it a few
++        // times so it lands once the window exists.
++        payload = fmt::format("/eval hl.dispatch(hl.dsp.window.move({{x={},y={},window='title:{}'}}))", res_x, res_y,
++            appid);
++        logger->debug("Running socket command {}", payload);
++        std::thread([path = socket_path, payload]() {
++            for (const int delay_ms : {0, 25, 50, 100, 200, 400}) {
++                std::this_thread::sleep_for(std::chrono::milliseconds(delay_ms));
++                try {
++                    const UnixSocket socket{path};
++                    socket.write(payload.data(), payload.length());
++                    socket.read_until_empty();
++                } catch (...) {
++                    return;
++                }
++            }
++        }).detach();
++        return;
+     } else {
+         payload = fmt::format("/keyword windowrule match:title {}, move {} {}", appid, res_x, res_y);
+     }

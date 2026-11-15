@@ -154,6 +154,7 @@ in {
         box.main {
           border-radius: 16px;
           background-color: color-mix(in srgb, var(--bg-color) 30%, transparent);
+          backdrop-filter: blur(10px);
           padding: 12px; /* add uniform padding around the whole box */
         }
 

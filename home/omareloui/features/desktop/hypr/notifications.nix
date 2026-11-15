@@ -450,6 +450,14 @@
       '';
   };
 
+  # GTK >= 4.24 announces blur via ext-background-effect-v1, and Hyprland then
+  # ignores layer rules unless the app reports a blur region. swaync 0.12.6
+  # wraps notifications in opacity nodes, so GTK never reports one for popups.
+  # Opting out of the protocol lets the Hyprland layer rules blur it again.
+  systemd.user.services.swaync.Service.Environment = [
+    "GDK_WAYLAND_DISABLE=ext_background_effect_manager_v1"
+  ];
+
   services.swayosd = {
     enable = true;
   };

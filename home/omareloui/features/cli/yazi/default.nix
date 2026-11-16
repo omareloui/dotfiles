@@ -41,28 +41,28 @@
       opener = {
         default = [
           {
-            run = ''xdg-open "$@"'';
+            run = ''xdg-open %s'';
             desc = "open with default system application";
           }
         ];
 
         pdf = [
           {
-            run = ''zathura "$@"'';
+            run = ''zathura %s'';
             desc = "open pdf files";
           }
         ];
 
         image = [
           {
-            run = ''loupe "$@"'';
+            run = ''loupe %s'';
             desc = "open images";
           }
         ];
 
         video = [
           {
-            run = ''vlc "$@"'';
+            run = ''vlc %s'';
             orphan = true;
             desc = "open videos";
           }
@@ -70,14 +70,14 @@
 
         text = [
           {
-            run = ''nvim "$@"'';
+            run = ''nvim %s'';
             desc = "open with the text editor";
             block = true;
           }
         ];
         archive = [
           {
-            run = ''ark "$0"'';
+            run = ''ark %s1'';
             desc = "open a gui to view/extract the archive";
             block = true;
           }
@@ -179,22 +179,22 @@
         prepend_keymap = [
           {
             on = "k";
-            run = "plugin augment-command -- arrow -1";
+            run = "plugin augment-command.arrow -1";
             desc = "Move cursor up";
           }
           {
             on = "j";
-            run = "plugin augment-command -- arrow 1";
+            run = "plugin augment-command.arrow 1";
             desc = "Move cursor down";
           }
           {
             on = "K";
-            run = "plugin augment-command -- parent_arrow -1";
+            run = "plugin augment-command.parent-arrow -1";
             desc = "Move cursor up in the parent directory";
           }
           {
             on = "J";
-            run = "plugin augment-command -- parent_arrow 1";
+            run = "plugin augment-command.parent-arrow 1";
             desc = "Move cursor down in the parent directory";
           }
 
@@ -210,47 +210,47 @@
           }
           {
             on = "l";
-            run = "plugin augment-command -- enter";
+            run = "plugin augment-command.enter";
             desc = "Enter the child directory, or open the file";
           }
           {
             on = "<Enter>";
-            run = "plugin augment-command -- enter";
+            run = "plugin augment-command.enter";
             desc = "Enter the child directory, or open the file";
           }
           {
             on = "<S-Enter>";
-            run = "plugin augment-command -- enter --interactive";
+            run = "plugin augment-command.enter --interactive";
             desc = "Enter the child directory, or open the file interactively";
           }
           {
             on = "<Right>";
-            run = "plugin augment-command -- enter --no-skip";
+            run = "plugin augment-command.enter --no-skip";
             desc = "Enter the child directory, or open the file";
           }
           {
             on = ["h"];
-            run = "plugin augment-command -- leave";
+            run = "plugin augment-command.leave";
             desc = "Go back to the parent directory";
           }
           {
             on = ["<Left>"];
-            run = "plugin augment-command -- leave --no-skip";
+            run = "plugin augment-command.leave --no-skip";
             desc = "Go back to the parent directory";
           }
           {
             on = "t";
-            run = "plugin augment-command -- tab_create --current";
+            run = "plugin augment-command.tab-create --current";
             desc = "Create a new tab with CWD";
           }
           {
             on = "O";
-            run = "plugin augment-command -- open --interactive";
+            run = "plugin augment-command.open --interactive";
             desc = "Open selected files interactively";
           }
           {
             on = "<Space>";
-            run = ["toggle" "plugin augment-command -- arrow 1 --no-wrap"];
+            run = ["toggle" "plugin augment-command.arrow 1 --no-wrap"];
             desc = "Toggle the current selection state";
           }
           {
@@ -265,22 +265,22 @@
           }
           {
             on = "p";
-            run = "plugin augment-command -- paste";
+            run = "plugin augment-command.paste";
             desc = "Paste the files";
           }
           {
             on = "P";
-            run = "plugin augment-command -- paste --force";
+            run = "plugin augment-command.paste --force";
             desc = "Paste the files (overwrite if the destination exists)";
           }
           {
             on = "_";
-            run = "plugin augment-command -- create";
+            run = "plugin augment-command.create";
             desc = "Create a file or directory";
           }
           {
             on = "+";
-            run = "plugin augment-command -- create";
+            run = "plugin augment-command.create";
             desc = "Create a file or directory";
           }
           {
@@ -290,17 +290,17 @@
           }
           {
             on = "x";
-            run = "plugin augment-command -- remove";
+            run = "plugin augment-command.remove";
             desc = "Move the files to the trash";
           }
           {
             on = "X";
-            run = "plugin augment-command -- remove --permanently";
+            run = "plugin augment-command.remove --permanently";
             desc = "Permanently delete the files";
           }
           {
             on = "a";
-            run = "plugin augment-command -- archive";
+            run = "plugin augment-command.archive";
             desc = "Add files to an archive";
           }
           {
@@ -320,62 +320,62 @@
           }
           {
             on = "o";
-            run = "plugin augment-command -- editor";
+            run = "plugin augment-command.editor";
             desc = "Open files with the default editor";
           }
           {
             on = "i";
-            run = "plugin augment-command -- pager";
+            run = "plugin augment-command.pager";
             desc = "Open files with the default pager";
           }
           {
             on = "r";
-            run = "plugin augment-command -- rename --cursor=before_ext";
+            run = "plugin augment-command.augment -- rename --cursor=before_ext";
             desc = "Rename a file or directory";
           }
           {
             on = "R";
-            run = "plugin augment-command -- rename --empty=all";
+            run = "plugin augment-command.augment -- rename --empty=all";
             desc = "Rename file and remove the whole file name";
           }
           {
             on = "I";
-            run = "plugin augment-command -- rename --cursor=start";
+            run = "plugin augment-command.augment -- rename --cursor=start";
             desc = "Rename file at the start of the file name";
           }
           # {
           #   on = "A";
-          #   run = "plugin augment-command -- rename --cursor=end";
+          #   run = "plugin augment-command.augment -- rename --cursor=end";
           #   desc = "Rename file with the cursor at the end of the file name";
           # }
           {
             on = "C";
-            run = "plugin augment-command -- rename --empty=all";
+            run = "plugin augment-command.augment -- rename --empty=all";
             desc = "Rename file and remove the whole file name";
           }
           {
             on = ["c" "c"];
-            run = "plugin augment-command -- copy path";
+            run = "plugin augment-command.copy path";
             desc = "Copy the file path";
           }
           {
             on = ["c" "d"];
-            run = "plugin augment-command -- copy dirname";
+            run = "plugin augment-command.copy dirname";
             desc = "Copy the directory path";
           }
           {
             on = ["c" "f"];
-            run = "plugin augment-command -- copy filename";
+            run = "plugin augment-command.copy filename";
             desc = "Copy the filename";
           }
           {
             on = ["c" "n"];
-            run = "plugin augment-command -- copy name_without_ext";
+            run = "plugin augment-command.copy name_without_ext";
             desc = "Copy the filename without extension";
           }
           {
             on = ["c" "m"];
-            run = "plugin augment-command -- rename --empty=stem --cursor=start";
+            run = "plugin augment-command.augment -- rename --empty=stem --cursor=start";
             desc = "Rename file and remove the file name";
           }
           {
@@ -385,7 +385,7 @@
           }
           {
             on = ["e" "m"];
-            run = "plugin augment-command -- emit";
+            run = "plugin augment-command.emit";
             desc = "Emit a Yazi command";
           }
           {
@@ -415,7 +415,7 @@
           }
           {
             on = ["g" "f"];
-            run = "plugin augment-command -- first_file";
+            run = "plugin augment-command.first-file";
             desc = "Jump to the first file";
           }
 
@@ -491,7 +491,7 @@
             orphan = true;
             run = ''
               shell --confirm '
-                for file in $@; do
+                for file in %s; do
                   [[ -f $file ]] && gpg -r contact@omareloui.com -e "$file"
                 done
               '
@@ -503,7 +503,7 @@
             orphan = true;
             run = ''
               shell --confirm --block '
-                for file in $@; do
+                for file in %s; do
                   name="$(basename "$file")"
                   gpg -d "$file" 1>''${name%.*} 2>/dev/null
                 done
@@ -580,7 +580,7 @@
             on = "y";
             run = [
               "yank"
-              ''shell --confirm 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' ''
+              ''shell --confirm 'for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list' ''
             ];
           }
           {

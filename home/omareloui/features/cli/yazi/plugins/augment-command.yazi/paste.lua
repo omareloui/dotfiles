@@ -1,0 +1,56 @@
+--- @since 26.8.15
+
+-- The module to handle the paste command
+
+-- Import the utilities module
+local utils = require(".utils")
+
+-- The module table
+local M = {}
+
+-- Function to handle the paste command
+---@type YaziPluginEntry
+function M:entry(job)
+
+	-- Get the arguments and the configuration
+	local args, config = require(".config").parse_args_and_init(job)
+
+	-- The function to paste the items
+	---@type fun(): nil
+	local function paste()
+
+		-- Always paste the items
+		ya.emit("paste", args)
+
+		-- If unyanking after pasting is wanted, emit the unyank command
+		if
+			config.unyank_after_paste or utils.table_pop(args, "unyank", false)
+		then
+			ya.emit("unyank", {})
+		end
+	end
+
+	-- If the hovered item is not a directory or smart paste is not wanted
+	if
+		not utils.hovered_item_is_dir()
+		or not (config.smart_paste or utils.table_pop(args, "smart", false))
+	then
+
+		-- Just paste the items inside the current directory
+		-- and exit the function
+		return paste()
+	end
+
+	-- Otherwise, enter the directory
+	ya.emit("enter", {})
+
+	-- Paste the items inside the directory
+	paste()
+
+	-- Leave the directory
+	ya.emit("leave", {})
+
+end
+
+-- Return the module table
+return M

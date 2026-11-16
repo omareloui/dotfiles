@@ -62,7 +62,12 @@ hl.window_rule({
 })
 
 hl.window_rule({
-  match = { class = "^org.inkscape.Inkscape$", title = "^(|Measure Path|PDF Import Settings|Calender|Frame|Offset Paths)$" },
+  match = {
+    class = "^org\\.inkscape\\.Inkscape$",
+    title = "^(WIP: )?(|Measure Path|PDF Import Settings|Calendar|Frame|Offset Paths"
+        .. "|Center Marks|Match Seams|Split to Pages|Print Helper|Pattern Presets"
+        .. "|Page Template|Stitching|Apply Role|Leather Usage & Price)$"
+  },
   float = true,
 })
 

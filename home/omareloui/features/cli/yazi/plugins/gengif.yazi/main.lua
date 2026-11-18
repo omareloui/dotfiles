@@ -1,11 +1,11 @@
 local get_selected = ya.sync(function(state)
 	local sel = cx.active.selected
 	if #sel == 0 then
-		sel = { cx.active.current.hovered.url }
+		sel = { cx.active.current.hovered }
 	end
 	state.selected = {}
 	for _, file in pairs(sel) do
-		table.insert(state.selected, tostring(file))
+		table.insert(state.selected, tostring(file.url))
 	end
 	return state.selected, nil
 end)

@@ -27,14 +27,7 @@
         max_width = 1000;
         max_height = 1000;
 
-        # From the docs:
-        # ```
-        # If your monitor has a 2.0 scale factor, and is running on Wayland under
-        # Hyprland, you may need to set ueberzug_scale: 0.5, and adjust the value of
-        # ueberzug_offset according to your case, to offset this issue
-        # ```
-        # formela 1/current_display_scale
-        ueberzug_scale = 1.0; # 1/monitor scale: DP-1 = 1, eDP-1 (1.5) = 0.6666
+        ueberzug_scale = 1.0; # monitor scale is handled by the patched ueberzugpp (see overlays)
         ueberzug_offset = [0 0 0 0]; # [x, y, width, height]
       };
 

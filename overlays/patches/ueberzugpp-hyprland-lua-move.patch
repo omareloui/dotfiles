@@ -22,7 +22,38 @@
  }
  
  auto HyprlandSocket::get_active_window() -> nlohmann::json
-@@ -180,7 +184,26 @@
+@@ -171,16 +175,53 @@
+ 
+ void HyprlandSocket::move_window(const std::string_view appid, int xcoord, int ycoord)
+ {
++    // xcoord/ycoord are the terminal's position (logical) plus the image offset
++    // inside it, which comes from cell sizes in buffer pixels. Only that offset
++    // has to be scaled down, by the scale of the monitor the terminal is on
++    // (looked up every time, so moving between monitors keeps working).
+     int res_x = xcoord;
+     int res_y = ycoord;
+-    if (output_scale > 1.0F) {
+-        const int offset = 10;
+-        res_x = res_x / 2 + offset;
+-        res_y = res_y / 2 + offset;
++    try {
++        const auto terminal = get_active_window();
++        const int win_x = terminal.at("at").at(0);
++        const int win_y = terminal.at("at").at(1);
++        const int monitor_id = terminal.at("monitor");
++        float scale = output_scale;
++        for (const auto &monitor : request_result("j/monitors")) {
++            if (monitor.at("id") == monitor_id) {
++                scale = monitor.at("scale");
++                break;
++            }
++        }
++        if (scale > 0.0F) {
++            res_x = win_x + static_cast<int>(static_cast<float>(xcoord - win_x) / scale);
++            res_y = win_y + static_cast<int>(static_cast<float>(ycoord - win_y) / scale);
++        }
++    } catch (const std::exception &err) {
++        logger->warn("Could not scale preview position: {}", err.what());
      }
      std::string payload;
      if (is_lua_protocol) {

@@ -14,7 +14,7 @@ in {
 
   programs.git = {
     signing.key = "52F14BEFFC734AFA";
-    extraConfig = {
+    settings = {
       gpg.openpgp.program = [];
     };
   };

@@ -14,13 +14,13 @@ in {
 
   programs.git = {
     signing.key = "973834CA43700F55";
-    extraConfig = {
+    settings = {
       gpg.openpgp.program = [];
     };
   };
 
   programs.ssh.matchBlocks."github.com" = {
-    Hostname = "ssh.github.com";
-    Port = 443;
+    hostname = "ssh.github.com";
+    port = 443;
   };
 }

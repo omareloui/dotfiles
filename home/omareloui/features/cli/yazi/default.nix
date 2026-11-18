@@ -388,7 +388,7 @@
           }
           {
             on = ["g" "d"];
-            run = "cd ${config.home.sessionVariables.DOWNLOADS_DIR}";
+            run = "cd ${config.home.sessionVariables.DOWNLOADS_DIR or "~/Downloads"}";
             desc = "Go to the downloads directory";
           }
           {
@@ -398,7 +398,7 @@
           }
           {
             on = ["g" "r"];
-            run = "cd ${config.home.sessionVariables.REPOS_DIR}";
+            run = "cd ${config.home.sessionVariables.REPOS_DIR or "~/repos"}";
             desc = "Go to the repos directory";
           }
           {
@@ -546,7 +546,7 @@
           }
           {
             on = [leader "t"];
-            run = "tasks_show";
+            run = "tasks:show";
             desc = "show the tasks manager";
           }
           {

@@ -1,133 +1,110 @@
----@param s string
----@return string
-local function trim(s)
-	return s:match("^%s*(.-)%s*$")
-end
+--- Flatten the selected (or hovered) directories: move their children into
+--- the directory that contains them, then remove them if they end up empty.
+---
+--- Never overwrites anything: a child whose name already exists next to the
+--- directory is left inside it, and the directory is kept.
 
----@param s string
----@return string[]
-local function get_lines(s)
-	local lines = {}
-	for str in s:gmatch("[^\r\n]+") do
-		table.insert(lines, str)
+local get_targets = ya.sync(function()
+	local targets = {}
+	for _, file in pairs(cx.active.selected) do
+		targets[#targets + 1] = tostring(file.url)
 	end
-	return lines
-end
-
----@param path string
----@return  string|nil mime,string|nil err
-local function get_mime(path)
-	local out, err = Command("file"):arg({ "-b", path }):output()
-	if err then
-		return nil, "error while getting the mime type: " .. err
+	if #targets == 0 and cx.active.current.hovered then
+		targets[1] = tostring(cx.active.current.hovered.url)
 	end
-	return trim(out.stdout)
-end
-
----@param path string
----@return  boolean mime, string|nil err
-local function is_dir(path)
-	local mime, err = get_mime(path)
-	if err then
-		return false, err
-	end
-	return mime == "directory"
-end
-
-local get_selected = ya.sync(function(state)
-	local sel = cx.active.selected
-	if #sel == 0 then
-		sel = { cx.active.current.hovered.url }
-	end
-	state.selected = {}
-	for _, file in pairs(sel) do
-		table.insert(state.selected, tostring(file))
-	end
-	return state.selected, nil
+	return targets
 end)
 
-local get_cwd = ya.sync(function()
-	return tostring(cx.active.current.cwd)
-end)
-
----@param dirname string
----@param files string[]
----@return string|nil error_message
-local function mv_to_dir(dirname, files)
-	local child, err = Command("mkdir"):arg({ "-p", dirname }):spawn()
-	if err then
-		return "error while creating the mkdir child: " .. err
-	end
-
-	local _, err = child:wait()
-	if err then
-		return "error on running the mkdir child: " .. err
-	end
-
-	local child, err = Command("mv"):arg(files):arg(dirname):spawn()
-	if err then
-		return "error while creating the mv child: " .. err
-	end
-
-	local _, err = child:wait()
-	if err then
-		return "error on running the mv child: " .. err
-	end
+local function notify(level, content)
+	ya.notify({ title = "Unfold", content = content, timeout = 5, level = level })
 end
 
----@param dirname string
----@return string|nil error_message
-local function rmdir(dirname)
-	local child, err = Command("rmdir"):arg(dirname):spawn()
-	if err then
-		return "error while creating the mkdir child: " .. err
+---@param dir Url
+---@return string[] problems
+local function unfold(dir)
+	local name = dir.name
+	local parent = dir.parent
+	if not name or not parent then
+		return { tostring(dir) .. ": no parent directory" }
 	end
 
-	local _, err = child:wait()
-	if err then
-		return "error on running the mkdir child: " .. err
+	-- Move the directory out of the way first, so a child with the same name as
+	-- the directory (e.g. `proj/proj`) can take its place.
+	local tmp, err = fs.unique("dir", parent:join(".unfold-" .. name))
+	if not tmp then
+		return { name .. ": " .. tostring(err) }
 	end
-end
+	fs.remove("dir", tmp)
+	local ok
+	ok, err = fs.rename(dir, tmp)
+	if not ok then
+		return { name .. ": " .. tostring(err) }
+	end
 
----@param dir string
----@return string[] children, string|nil error
-local function get_children(dir)
-	local out, err = Command("fd"):arg({ "-IHd1", ".", dir }):output()
-	if err then
-		return {}, "error while getting the children: " .. err
+	local problems = {}
+	local children
+	children, err = fs.read_dir(tmp, { resolve = false })
+	if not children then
+		problems[#problems + 1] = name .. ": " .. tostring(err)
+		children = {}
 	end
-	return get_lines(trim(out.stdout))
+
+	for _, child in ipairs(children) do
+		local child_name = child.url.name
+		local target = parent:join(child_name)
+		if fs.cha(target, false) then
+			problems[#problems + 1] = name .. "/" .. child_name .. ": already exists, left in place"
+		else
+			ok, err = fs.rename(child.url, target)
+			if not ok then
+				problems[#problems + 1] = name .. "/" .. child_name .. ": " .. tostring(err)
+			end
+		end
+	end
+
+	-- Only succeeds if it is empty now.
+	if fs.remove("dir", tmp) then
+		return problems
+	end
+
+	-- Something stayed behind: put the directory back, under its old name if
+	-- that is still free.
+	local back = dir
+	if fs.cha(back, false) then
+		back = fs.unique("dir", dir)
+		if back then
+			fs.remove("dir", back)
+		end
+	end
+	if back and fs.rename(tmp, back) then
+		if tostring(back) ~= tostring(dir) then
+			problems[#problems + 1] = "kept the leftovers of " .. name .. " in " .. back.name
+		end
+	else
+		problems[#problems + 1] = "kept the leftovers of " .. name .. " in " .. tmp.name
+	end
+	return problems
 end
 
 return {
 	entry = function()
-		---@type string[]
-		local paths = get_selected()
-		local dirs = {}
-		for _, v in ipairs(paths) do
-			if is_dir(v) then
-				table.insert(dirs, v)
+		local problems = {}
+		local count = 0
+		for _, path in ipairs(get_targets()) do
+			local url = Url(path)
+			local cha = fs.cha(url, false)
+			if cha and cha.is_dir then
+				count = count + 1
+				for _, p in ipairs(unfold(url)) do
+					problems[#problems + 1] = p
+				end
 			end
 		end
 
-		for _, dir in ipairs(dirs) do
-			local children, err = get_children(dir)
-			if err then
-				ya.err(err)
-				return
-			end
-
-			err = mv_to_dir(get_cwd(), children)
-			if err then
-				ya.err(err)
-				return
-			end
-
-			err = rmdir(dir)
-			if err then
-				ya.err(err)
-				return
-			end
+		if count == 0 then
+			notify("warn", "Nothing to flatten: no directory selected or hovered")
+		elseif #problems > 0 then
+			notify("warn", table.concat(problems, "\n"))
 		end
 	end,
 }

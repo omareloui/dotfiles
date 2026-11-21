@@ -18,6 +18,10 @@
         '';
     });
 
+    # The wrapper bundles `_7zz` without the RAR codecs, which shadows the
+    # RAR-capable one, so extracting .rar fails with "Unsupported Method".
+    yazi = prev.yazi.override {_7zz = final._7zz-rar;};
+
     # ueberzugpp never reads Hyprland's socket replies, so Hyprland drops its
     # commands. On top of that, with the lua IPC it positions the preview with a
     # `move` window rule added right after the first commit, usually before the

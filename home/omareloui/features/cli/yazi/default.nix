@@ -104,11 +104,11 @@
             use = "archive";
           }
           {
-            mime = "application/x-rar";
+            mime = "application/{rar,x-rar,vnd.rar}";
             use = "archive";
           }
           {
-            mime = "application/x-tar";
+            mime = "application/{tar,x-tar}";
             use = "archive";
           }
         ];
@@ -482,6 +482,11 @@
             on = [leader "o"];
             run = "plugin optimize";
             desc = "optimize the selected images/videos/pdfs/dirs (replace if smaller)";
+          }
+          {
+            on = [leader "x"];
+            run = "plugin augment-command.extract";
+            desc = "extract the selected/hovered archives";
           }
           {
             desc = "protect with gpg";

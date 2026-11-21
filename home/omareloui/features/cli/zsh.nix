@@ -60,11 +60,8 @@
           *.zip)
             unzip "$1"
             ;;
-          *.rar)
-            unrar x "$1"
-            ;;
-          *.7z)
-            7z x "$1"
+          *.rar | *.7z)
+            7zz x "$1"
             ;;
           *)
             echo -e "\e[31mError\e[33m:\e[0m Didn't find a function to exctract $1"

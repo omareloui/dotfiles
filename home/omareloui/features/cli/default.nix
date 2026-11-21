@@ -30,6 +30,7 @@
   ];
 
   home.packages = with pkgs; [
+    _7zz-rar
     age
     android-file-transfer
     android-tools # adb
@@ -58,7 +59,6 @@
     lsof
     lux
     mpg123
-    p7zip
     parallel
     patchelf
     pkg-config

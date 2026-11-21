@@ -41,7 +41,7 @@ local function get_archive_paths(args, config)
 	if item_group == ItemGroup.Hovered then
 
 		-- Get the hovered item path
-		local hovered_item_path = utils.get_path_of_hovered_item(true)
+		local hovered_item_path = utils.get_path_of_hovered_item()
 
 		-- If the hovered item path is nil, exit the function
 		if not hovered_item_path then return end
@@ -54,7 +54,7 @@ local function get_archive_paths(args, config)
 	if item_group == ItemGroup.Selected then
 
 		-- Get the list of selected items
-		local selected_items = utils.get_paths_of_selected_items(true)
+		local selected_items = utils.get_paths_of_selected_items()
 
 		-- If there are no selected items, exit the function
 		if not selected_items then return end

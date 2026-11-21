@@ -481,7 +481,7 @@
           {
             on = [leader "o"];
             run = "plugin optimize";
-            desc = "optimize the selected images/videos/pdfs (replace if smaller)";
+            desc = "optimize the selected images/videos/pdfs/dirs (replace if smaller)";
           }
           {
             desc = "protect with gpg";

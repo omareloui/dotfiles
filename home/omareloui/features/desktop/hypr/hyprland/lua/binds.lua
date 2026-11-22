@@ -9,8 +9,16 @@ hl.bind(mod .. " + apostrophe", hl.dsp.focus({ workspace = "previous" }))
 hl.bind(mod .. " + SHIFT + apostrophe", hl.dsp.focus({ workspace = "next" }))
 
 -- Resize in workspace
-hl.bind(mod .. " + CONTROL + h", hl.dsp.layout("splitratio, -0.1"))
-hl.bind(mod .. " + CONTROL + l", hl.dsp.layout("splitratio, +0.1"))
+local resize_step = 50
+local resize_keys = {
+	h = { x = -resize_step, y = 0 },
+	l = { x = resize_step, y = 0 },
+	k = { x = 0, y = -resize_step },
+	j = { x = 0, y = resize_step },
+}
+for key, delta in pairs(resize_keys) do
+	hl.bind(mod .. " + CONTROL + " .. key, hl.dsp.window.resize({ x = delta.x, y = delta.y, relative = true }))
+end
 
 -- Layout
 hl.bind(mod .. " + CTRL + Space", hl.dsp.window.float())
@@ -101,14 +109,9 @@ for key, direction in pairs(directions) do
 	hl.bind(mod .. " + " .. key, hl.dsp.focus({ direction = direction }))
 end
 
--- Swap windows
-for key, direction in pairs(directions) do
-	hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.swap({ direction = direction }))
-end
-
 -- Move windows
 for key, direction in pairs(directions) do
-	hl.bind(mod .. " + CONTROL + " .. key, hl.dsp.window.move({ direction = direction }))
+	hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ direction = direction }))
 end
 
 -- Move monitor focus
